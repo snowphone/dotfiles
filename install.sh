@@ -10,13 +10,13 @@ source ~/.bashrc
 ln -sf $(pwd)/.vimrc ~/.vimrc
 
 #sshkey 생성
-ssh-keygen -A
+sudo ssh-keygen -A
 
 
 #apt 저장소를 국내로 변경
-sudo sed -i ”s/kr.archive.ubuntu.com/ftp.daumkakao.com/g” /etc/apt/sources.list
-sudo sed -i ”s/archive.ubuntu.com/ftp.daumkakao.com/g” /etc/apt/sources.list
-sudo sed -i ”s/security.ubuntu.com/ftp.daumkakao.com/g” /etc/apt/sources.list
+sudo sed -i 's/kr.archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
+sudo sed -i 's/archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
+sudo sed -i 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 
 sudo apt update -y
 
