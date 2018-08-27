@@ -102,6 +102,7 @@ alias freshclam='sudo freshclam'
 alias vi='vim'
 alias svi='sudo vi'
 alias vis='vim "+set si"'
+alias tmux='tmux -2' 	"force 256 colors
 
 # Change directory aliases
 alias home='cd ~'
