@@ -1,12 +1,13 @@
 #!/bin/bash
 
 #.bashrc 설정
-mv ~/.bashrc ~/.bashrc_bak
-ln -s bashrc ~/.bashrc
+folder=$(pwd)
+
+ln -fs $(pwd)/.bashrc ~/.bashrc
+source ~/.bashrc
 
 #.vimrc 설정
-mv ~/.vimrc ~/.vimrc_bak
-ln -s vimrc ~/.vimrc
+ln -sf $(pwd)/.vimrc ~/.vimrc
 
 #sshkey 생성
 ssh-keygen -A
@@ -26,5 +27,5 @@ sudo apt install -y clang clang-tidy clang-tools clang-format gcc gzip texlive-f
 
 
 #vim 설정
-vim +PluginInstall
+vim 
 
