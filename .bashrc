@@ -172,7 +172,7 @@ alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 alias f="find ."
 
 # Count all files (recursively) in the current folder
-alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+"alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 
 # To see if a command is aliased, a file, or a built-in command
 alias checkcommand="type -t"
