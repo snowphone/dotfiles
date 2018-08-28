@@ -27,5 +27,5 @@ sudo apt install -y cmake clang clang-tidy clang-tools clang-format gcc gzip mak
 
 
 #vim 설정
-vim 
+vim -c PluginInstall
 
