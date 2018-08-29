@@ -72,6 +72,7 @@ set include=^\\s*#\\s*include\ \\(<boost/\\)\\@!
 
 
 Plugin 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 autocmd FileType tex
             \ if &omnifunc != '' |
