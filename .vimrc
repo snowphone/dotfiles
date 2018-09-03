@@ -64,9 +64,6 @@ set laststatus=2 " turn on bottom bar
 
 Plugin 'Townk/vim-autoclose'
 
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
