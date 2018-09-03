@@ -14,7 +14,7 @@ sudo ssh-keygen -A
  
 #링크 설정
 cd ~
-ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ 홍익대학교/ hongik ~/
+ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ 홍익대학교/ ~/hongik/
 ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
 ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
 
