@@ -89,7 +89,7 @@ filetype plugin indent on    " required
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
 "set bg=light
-colo carbonized-dark
+silent! colo carbonized-dark
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
