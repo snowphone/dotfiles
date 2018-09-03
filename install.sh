@@ -9,6 +9,11 @@ source ~/.bashrc
 #.vimrc 설정
 ln -sf $(pwd)/.vimrc ~/.vimrc
 
+#ssh server 설정
+sudo sed -i 's/#\?Port 22/Port 2222/' /etc/ssh/sshd_config
+sudo sed -i 's/UsePrivilegeSeparation */UsePrivilegeSeparation no/' /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
 #sshkey 생성
 sudo ssh-keygen -A
  
