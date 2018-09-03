@@ -9,7 +9,7 @@ flags = [
     '-Wall',
     '-Wextra',
     '-Werror',
-    '-Wc++98-compat',
+    '-Wc++11-compat', # check for compatibility of c++11 
     '-Wno-long-long',
     '-Wno-variadic-macros',
     '-fexceptions',
