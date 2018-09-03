@@ -61,80 +61,14 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 
 set laststatus=2 " turn on bottom bar
 
-Plugin 'rip-rip/clang_complete'
-"헤더 파일과 연동
-let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang-6.0.so.1'
-"let g:clang_library_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
-let g:clang_user_options='-std=c++17'
-"boost 등 사용했을 때 자동 완성 속도 향상 시키기 위함
-let g:clang_use_library=1
-set include=^\\s*#\\s*include\ \\(<boost/\\)\\@!
-
-
-Plugin 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-autocmd FileType tex
-            \ if &omnifunc != '' |
-            \   call SuperTabChain(&omnifunc, "<c-n>") |
-            \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-            \ endif
-
-autocmd FileType python
-            \ if &omnifunc != '' |
-            \   call SuperTabChain(&omnifunc, "<C-Space>") |
-            \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-            \ endif
-
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-            \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-            \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-inoremap <expr> <tab> pumvisible() ? '<tab>' :
-            \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-
 
 Plugin 'Townk/vim-autoclose'
-
-"Plugin 'davidhalter/jedi-vim' "python ide
 
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
-"Plugin 'w0rp/ale' "clangd가 실행되지 않는 문제가 있어 vim-lsp로 대체
-
-Plugin 'prabirshrestha/async.vim' 
-Plugin 'prabirshrestha/vim-lsp'
-"goto definition, rename 및 컴파일 에러 체크 가능. 
-"추가로 autocompletion 및 auto-formatter 등이 가능하나, autocompletion은 아직
-"사용법을 찾지 못했고, formatter는 서버 통신과정에서 텍스트가 손실되는 것
-"같다.
-
-let g:lsp_signs_enabled = 1         " 좌측에 어느 부분이 오류인지 표기하는 기능
-let g:lsp_signs_error = {'text': '>'}
-let g:lsp_signs_warning = {'text': '-'}
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode, airlines에 에러 띄워주는 역할
-
-if executable('clangd')
-	    au User lsp_setup call lsp#register_server({
-		        \ 'name': 'clangd',
-		        \ 'cmd': {server_info->['clangd']},
-		        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-		        \ })
-	endif
-
-nmap <F12> :LspDefinition <CR>
-nmap <F2> :LspRename <CR>
-
-Plugin 'rhysd/vim-clang-format'	"clang-format을 이용한 c family formatter. 사실상 vim용 wrapper
-let g:clang_format#style_options = {
-            \ 'AccessModifierOffset' : -4,
-			\}
-
-
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 call vundle#end()            " required
 
@@ -152,7 +86,7 @@ filetype plugin indent on    " required
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
 "set bg=light
-colo carbonized-light
+colo carbonized-dark
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
