@@ -23,9 +23,6 @@ sudo sed -i 's/kr.archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 sudo sed -i 's/archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 sudo sed -i 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 
-sudo apt update -y
-
-sudo apt upgrade -y
 
 #필요한 프로그램 설치
 sudo apt install -y build-essential ctags libboost-all-dev cmake clang clang-tidy clang-tools clang-format gcc \
