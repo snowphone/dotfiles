@@ -70,6 +70,9 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
+"bear <make command> 를 이용하여 태그 설정해야 goto 사용 가능
+nmap <F12> :YcmCompleter GoTo <CR>
+
 call vundle#end()            " required
 
 filetype plugin indent on    " required

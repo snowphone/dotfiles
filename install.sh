@@ -30,7 +30,7 @@ sudo apt upgrade -y
 #필요한 프로그램 설치
 sudo apt install -y build-essential ctags libboost-all-dev cmake clang clang-tidy clang-tools clang-format gcc \
 	python3-dev python3 python3-dev python-pip python3-pip \
-	gzip make vim sshpass tmux unzip git zip w3m wget m4
+	bear gzip make vim sshpass tmux unzip git zip w3m wget m4
 
 
 #vim 설정
