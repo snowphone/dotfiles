@@ -30,9 +30,10 @@ sudo sed -i 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 
 
 #필요한 프로그램 설치
-sudo apt install -y build-essential exuberant-ctags libboost-all-dev cmake clang clang-tidy clang-tools clang-format gcc \
+sudo apt install -y build-essential exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
-	bear gzip make vim sshpass tmux unzip git zip w3m wget m4
+	bear gzip make vim sshpass tmux unzip git zip w3m wget m4 \
+	openjdk-8-jdk-headless
 
 
 #vim 설정
@@ -41,6 +42,6 @@ vim -c VundleUpdate -c quitall
 
 #YouCompleteMe 설치
 cd ~/.vim/bundle/YouCompleteMe
-python3 ./install.py --clang-completer
+python3 ./install.py --clang-completer --java-completer 
 cd ~
 ln -fs ~/dotfiles/.ycm_extra_conf.py ~/.vim/

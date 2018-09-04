@@ -36,6 +36,8 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'scrooloose/nerdtree'
 
+nmap <C-n> :NERDTreeToggle <CR>
+
 "nerdtree 자동 실행
 "autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -114,7 +116,6 @@ autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | 
 autocmd BufReadPost * if &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
 
 "key mapping
-nmap <C-n> :NERDTreeToggle <CR>
 
 let mapleader=","
 nnoremap <leader>q : bp!<CR> " 쉼표 + q : 이전 탭
@@ -126,35 +127,37 @@ nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 func! Run()
 	if &filetype == 'python'
 		:exec '!python3 "%"'
-	elseif &filetype == 'erlang'
-		!escript % +P
-	elseif &filetype != 'tex'
+	elseif &filetype == 'java'
+		!java %<
+	else
+		"c, c++
 		!./%< 
 	endif
 endfunc
 
 func! Compile()
-	:write! 
+	write! 
+
 	if &filetype == 'tex'
-		!pdflatex -shell-escape %
+		!pdflatex %
 	elseif &filetype=='c'
 		silent !clang % -std=c99 -W -Wall -g -lpthread -pthread -lm  -o %< 
-	elseif &filetype == 'erlang'
+	elseif &filetype == 'python' || &filetype == 'sh'
 		"echo means do nothing.
-		:echo ""
-	elseif &filetype == 'python'
-		"echo means do nothing.
-		:echo ""
+		echo ""
+	elseif &filetype == 'java'
+		!javac %
 	else
-		silent !g++ -W -Wall -O2 % -o %< 
+		"c++
+		silent !clang++ -o %< -W -Wall -O2 -pthread -lboost_system -lboost_program_options -lm % 
+		redraw!
 	endif
 endfunc
 
-map <C-S-B> : exec Compile() <CR>
+map <C-S-b> :exec Compile() <CR>
 map <F5> :exec Compile()<CR> :exec Run()<CR>
 "c++11로 컴파일 후 실행
 map <F6> :w! <CR>  :!clang++ % -g -o %< -std=c++11 -O2<CR>  :! ./%< <CR>
-map <F7> :w! <CR>  :!pdflatex % <CR>
 map <F10> :w! <CR> :!g++ -g % -o %<  <CR> :!gdb %< <CR>
 "euc-kr 인코딩을 utf-8로 변환 후 저장
 map <F4> :e ++enc=euc-kr <CR> :set fenc=utf-8 <CR> :w ++enc=utf-8 <CR>
