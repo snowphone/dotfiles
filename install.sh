@@ -16,6 +16,11 @@ sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/s
 
 #sshkey 생성
 sudo ssh-keygen -A
+
+mkdir ~/.ssh/
+chmod 700 ~/.ssh/
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys 
  
 #링크 설정
 cd ~
