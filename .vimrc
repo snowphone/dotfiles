@@ -80,7 +80,7 @@ aug end
 
 
 "bear <make command> 를 이용하여 태그 설정해야 goto 사용 가능
-nmap <F12> :YcmCompleter GoTo <CR>
+nmap <F12> :silent! YcmCompleter GoTo <CR>
 
 call vundle#end()            " required
 
