@@ -8,7 +8,7 @@ import ycm_core
 flags = [
     '-Wall',
     '-Wextra',
-    '-Werror',
+    #'-Werror',
     '-Wc++17-compat', # check for compatibility of c++17 
     '-Wno-long-long',
     '-Wno-variadic-macros',
