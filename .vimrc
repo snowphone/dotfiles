@@ -69,6 +69,15 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
+".ycm_global_ycm_extra_conf.py가 파일 타입을 얻어낼 수 있도록 함
+let g:ycm_extra_conf_vim_data = [ '&filetype' ] 
+
+"파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
+aug python
+	" ftype/python.vim overwrites this
+	au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+aug end
+
 "bear <make command> 를 이용하여 태그 설정해야 goto 사용 가능
 nmap <F12> :YcmCompleter GoTo <CR>
 
@@ -114,6 +123,11 @@ set fencs=euc-kr,ucs-bom,utf-8
 autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
 "euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
 autocmd BufReadPost * if &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
+
+
+"vim의 검색 기능을 이용할 시 검색 결과를 항상 중앙에 배치한다.
+nmap n nzz 
+nmap <S-n> <S-n>zz
 
 "key mapping
 
