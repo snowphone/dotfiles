@@ -78,6 +78,7 @@ aug python
 	au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
 aug end
 
+
 "bear <make command> 를 이용하여 태그 설정해야 goto 사용 가능
 nmap <F12> :YcmCompleter GoTo <CR>
 
@@ -168,7 +169,6 @@ func! Compile()
 	endif
 endfunc
 
-map <C-S-b> :exec Compile() <CR>
 map <F5> :exec Compile()<CR> :exec Run()<CR>
 "c++11로 컴파일 후 실행
 map <F6> :w! <CR>  :!clang++ % -g -o %< -std=c++11 -O2<CR>  :! ./%< <CR>

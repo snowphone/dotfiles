@@ -24,8 +24,10 @@ flags = [
 	#'-x', 'c++',
 	# This path will only work on OS X, but extra paths that don't exist are not
 	# harmful
-	'-isystem', '/usr/local/include',
-	'-I', 'include'
+	'-isystem', 
+	'/usr/local/include',
+	'/usr/include/',
+	'-I', 
 	'-I.'
 ]
 
