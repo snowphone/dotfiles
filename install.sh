@@ -34,10 +34,11 @@ sudo sed -i 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 
 
 #필요한 프로그램 설치
-sudo apt install -y build-essential exuberant-ctags libboost-all-dev cmake clang-format \
+sudo apt install -y \
+	build-essential exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
-	tmux bear gzip make vim sshpass tmux unzip git zip w3m wget m4 \
-	openjdk-8-jdk-headless
+	bear gzip make vim sshpass tmux unzip git zip w3m wget m4 \
+	openjdk-8-jdk-headless gradle
 
 #tmux 설정
 ln -fs $(folder)/.tmux.conf ~/
