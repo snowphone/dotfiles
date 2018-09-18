@@ -81,6 +81,17 @@ def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
 def FlagsForFile( filename, **kwargs):
 	global flags
 
+	data = kwargs["client_data"]
+	filetype = data["&filetype"]
+
+	if filetype == 'c':
+		flags += ["-xc", "-std=c89"]
+	else:
+		flags += [
+				"-xc++",
+				'-Wc++17-compat', # check for compatibility of c++17
+				'-std=c++17',
+				]
 	if database:
 		# Bear in mind that compilation_info.compiler_flags_ does NOT return a
 		# python list, but a "list-like" StringVec object
@@ -93,19 +104,7 @@ def FlagsForFile( filename, **kwargs):
 		relative_to = DirectoryOfThisScript()
 		final_flags = MakeRelativePathsInFlagsAbsolute( flags, relative_to )
 
-	data = kwargs["client_data"]
-	filetype = data["&filetype"]
-
-	if filetype == 'c':
-		flags += ["-xc", "-std=c89"]
-	else:
-		flags += [
-				"-xc++",
-				'-Wc++17-compat', # check for compatibility of c++17
-				'-std=c++17',
-				]
-
-	return {
+		return {
 				'flags': final_flags,
 				'do_cache': True
 				}
