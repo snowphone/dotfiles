@@ -82,6 +82,8 @@ aug end
 "bear <make command> 를 이용하여 태그 설정해야 goto 사용 가능
 nmap <F12> :silent! YcmCompleter GoTo <CR>
 
+nmap <F9> :YcmCompleter FixIt<CR>
+
 call vundle#end()            " required
 
 filetype plugin indent on    " required
