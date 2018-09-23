@@ -37,7 +37,7 @@ sudo sed -i 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 sudo apt install -y \
 	build-essential exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
-	bear gzip make vim sshpass tmux unzip git zip w3m wget m4 \
+	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute \
 	openjdk-8-jdk-headless gradle
 
 #tmux 설정
