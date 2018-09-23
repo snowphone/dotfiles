@@ -84,6 +84,9 @@ nmap <F12> :silent! YcmCompleter GoTo <CR>
 
 nmap <F9> :YcmCompleter FixIt<CR>
 
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
 call vundle#end()            " required
 
 filetype plugin indent on    " required
