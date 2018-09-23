@@ -85,7 +85,10 @@ def FlagsForFile( filename, **kwargs):
 	filetype = data["&filetype"]
 
 	if filetype == 'c':
-		flags += ["-xc", "-std=c89"]
+		flags += ["-xc", 
+				"-std=c11",
+				'-Wc11-compat' # check for compatibility of c11
+				]
 	else:
 		flags += [
 				"-xc++",
