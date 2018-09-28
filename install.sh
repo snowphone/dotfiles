@@ -31,6 +31,7 @@ ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
 sudo sed -i 's/kr.archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 sudo sed -i 's/archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 sudo sed -i 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
+
 #apt 저장소 갱신
 sudo apt update
 
@@ -40,7 +41,8 @@ sudo apt install -y \
 	build-essential exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute \
-	openjdk-8-jdk-headless gradle
+	openjdk-8-jdk-headless gradle 
+
 
 #tmux 설정
 ln -fs $(folder)/.tmux.conf ~/

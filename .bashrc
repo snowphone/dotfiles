@@ -17,6 +17,7 @@ elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
+
 #######################################################
 # EXPORTS
 #######################################################
@@ -26,7 +27,7 @@ if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
 
 # Expand the history size
 export HISTFILESIZE=10000
-export HISTSIZE=500
+export HISTSIZE=10000
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
@@ -457,26 +458,29 @@ DARKGRAY="$(echo -e "\033[1;30m")"
 RED="$(echo -e "\033[0;31m")"
 LIGHTRED="$(echo -e "\033[1;31m")"
 GREEN="$(echo -e "\033[0;32m")"
-LIGHTGREEN="$(echo -e "\033[32m")"
+LIGHTGREEN="$(echo -e "\033[92m")"
 BROWN="$(echo -e "\033[0;33m")"
 YELLOW="$(echo -e "\033[33m")"
+LIGHTYELLOW="$(echo -e "\033[93m")"
 BLUE="$(echo -e "\033[0;34m")"
 LIGHTBLUE="$(echo -e "\033[1;34m")"
 MAGENTA="$(echo -e "\033[0;35m")"
-LIGHTMAGENTA="$(echo -e "\033[1;35m")"
+LIGHTMAGENTA="$(echo -e "\033[95m")"
 CYAN="$(echo -e "\033[0;36m")"
-LIGHTCYAN="$(echo -e "\033[36m")"
+LIGHTCYAN="$(echo -e "\033[96m")"
 NOCOLOR="$(echo -e "\033[0m")"
 
 # Set prompt
 TIME='${NOCOLOR}\d \t${NOCOLOR}'
 CPU='CPU: $(cpu)'
 USER='${LIGHTMAGENTA}\u${NOCOLOR}'
-HOST='${GREEN}\h${NOCOLOR}'
-LOCATION='${CYAN}\w${NOCOLOR}'
+HOST='${LIGHTGREEN}\h${NOCOLOR}'
+LOCATION='${LIGHTCYAN}\w${NOCOLOR}'
 BRANCH='${YELLOW}$(git-branch-prompt)${NOCOLOR}'
-CMD='${NOCOLOR}> '
 
-PS1="$TIME|$CPU|$USER@$HOST:$LOCATION$BRANCH\n$CMD"
+PS1="$TIME|$CPU|$USER@$HOST:$LOCATION$BRANCH\n> "
 PS2='${LIGHTCYAN}>${NOCOLOR} '
+
+
+
 
