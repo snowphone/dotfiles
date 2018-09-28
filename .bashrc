@@ -1,4 +1,4 @@
-	#!/bin/bash
+#!/bin/bash
 iatest=$(expr index "$-" i)
 
 #######################################################
@@ -188,7 +188,7 @@ alias rebootsafe='sudo shutdown -r now'
 alias rebootforce='sudo shutdown -r -n now'
 
 # Alias's to show disk space and space used in a folder
-alias diskspace="du -S | sort -n -r |less"
+alias diskspace="du -sh * . | sort -rh |less"
 alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias tree='tree -CAhF --dirsfirst'
@@ -208,6 +208,7 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 
 # SHA1
 alias sha1='openssl sha1'
+alias sha256='openssl sha256'
 
 #######################################################
 # SPECIAL FUNCTIONS
@@ -448,4 +449,35 @@ function git-branch-prompt {
 	local branch=`git-branch-name`
 	if [ $branch ]; then printf " [%s]" $branch; fi
 } 
+
+# Define colors
+LIGHTGRAY="$(echo -e "\033[0;37m")"
+WHITE="$(echo -e "\033[1;37m")"
+BLACK="$(echo -e "\033[0;30m")"
+DARKGRAY="$(echo -e "\033[1;30m")"
+RED="$(echo -e "\033[0;31m")"
+LIGHTRED="$(echo -e "\033[1;31m")"
+GREEN="$(echo -e "\033[0;32m")"
+LIGHTGREEN="$(echo -e "\033[32m")"
+BROWN="$(echo -e "\033[0;33m")"
+YELLOW="$(echo -e "\033[33m")"
+BLUE="$(echo -e "\033[0;34m")"
+LIGHTBLUE="$(echo -e "\033[1;34m")"
+MAGENTA="$(echo -e "\033[0;35m")"
+LIGHTMAGENTA="$(echo -e "\033[1;35m")"
+CYAN="$(echo -e "\033[0;36m")"
+LIGHTCYAN="$(echo -e "\033[36m")"
+NOCOLOR="$(echo -e "\033[0m")"
+
+# Set prompt
+TIME='${NOCOLOR}\d \t${NOCOLOR}'
+CPU='CPU: $(cpu)'
+USER='${LIGHTMAGENTA}\u${NOCOLOR}'
+HOST='${GREEN}\h${NOCOLOR}'
+LOCATION='${CYAN}\w${NOCOLOR}'
+BRANCH='${YELLOW}$(git-branch-prompt)${NOCOLOR}'
+CMD='${NOCOLOR}> '
+
+PS1="$TIME|$CPU|$USER@$HOST:$LOCATION$BRANCH\n$CMD"
+PS2='${LIGHTCYAN}>${NOCOLOR} '
 
