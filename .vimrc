@@ -149,6 +149,8 @@ func! Run()
 		:exec '!python3 "%"'
 	elseif &filetype == 'java'
 		!java %<
+	elseif &filetype == 'sh'
+		!bash %
 	else
 		"c, c++
 		!./%< 
