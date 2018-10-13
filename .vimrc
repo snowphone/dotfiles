@@ -24,6 +24,10 @@ endif
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
+
+
+
 call vundle#begin('~/.vim/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -87,6 +91,12 @@ nmap <F9> :YcmCompleter FixIt<CR>
 Plugin 'luochen1990/rainbow'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
+Plugin 'operator-user' 	"user defined key binding
+
+Plugin 'uplus/vim-clang-rename'
+au FileType c,cpp nmap <buffer><silent><leader>cr <Plug>(clang_rename-current)
+
+
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -130,6 +140,9 @@ autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | 
 "euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
 autocmd BufReadPost * if &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
 
+"파일이 변경될 때 마다 자동으로 버퍼 갱신
+set autoread
+au CursorHold * checktime
 
 "vim의 검색 기능을 이용할 시 검색 결과를 항상 중앙에 배치한다.
 nmap n nzz 
