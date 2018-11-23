@@ -164,6 +164,8 @@ func! Run()
 		!java %<
 	elseif &filetype == 'sh'
 		!bash %
+	elseif &filetype == 'tex'
+		!/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe %<.pdf
 	else
 		"c, c++
 		!./%< 
