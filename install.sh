@@ -26,11 +26,12 @@ chmod 600 ~/.ssh/authorized_keys
 ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ 홍익대학교/ ~/hongik/
 ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
 ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
+ln -fs /mnt/c/Users/mjo97/Videos/ ~/
 
 #apt 저장소를 국내로 변경
-sudo sed -i 's/kr.archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
-sudo sed -i 's/archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
-sudo sed -i 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
+sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 
 #apt 저장소 갱신
 sudo apt update
@@ -41,7 +42,13 @@ sudo apt install -y \
 	build-essential clang exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
+	maven transmission-daemon
 
+#transmission 설정
+sudo sed -i 's/"rpc-username": "transmission"/"rpc-username": "snowphone"/g' /etc/transmission-daemon/settings.json 
+sudo sed -i 's/"rpc-password": "transmission"/"rpc-password": "gn36kb"/g' /etc/transmission-daemon/settings.json 
+sudo sed -i 's/"download-dir": ".*"/"download-dir": "~\/Vidoes"/g' /etc/transmission-daemon/settings.json 
+sudo sed -i 's/^{/{\n"rpc-whitelist-enabled": true,\n' /etc/transmission-daemon/settings.json 
 
 #tmux 설정
 ln -fs $(folder)/.tmux.conf ~/
