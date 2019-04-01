@@ -41,7 +41,16 @@ sudo apt install -y \
 	build-essential clang exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
+	bfs tree
 
+#git 설정
+git config --global core.autocrlf input
+git config --global user.name "Moon Junoh"
+
+#fzf 설치
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+source ~/.bashrc
 
 #tmux 설정
 ln -fs $(folder)/.tmux.conf ~/

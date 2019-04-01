@@ -148,8 +148,11 @@ au CursorHold * checktime
 nmap n nzz 
 nmap <S-n> <S-n>zz
 
-"key mapping
+"fzf 설정
+set rtp+=~/.fzf
 
+
+"key mapping
 let mapleader=","
 nnoremap <leader>q : bp!<CR> " 쉼표 + q : 이전 탭
 nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
@@ -165,7 +168,7 @@ func! Run()
 	elseif &filetype == 'sh'
 		!bash %
 	elseif &filetype == 'tex'
-		!/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe %<.pdf
+		!/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe %<.pdf &
 	else
 		"c, c++
 		!./%< 
