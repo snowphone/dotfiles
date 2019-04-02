@@ -58,7 +58,7 @@ source ~/.bashrc
 sudo sed -i 's/"rpc-username": "transmission"/"rpc-username": "snowphone"/g' /etc/transmission-daemon/settings.json 
 sudo sed -i 's/"rpc-password": "transmission"/"rpc-password": "gn36kb"/g' /etc/transmission-daemon/settings.json 
 sudo sed -i 's/"download-dir": ".*"/"download-dir": "\/home\/snowphone\/Videos"/g' /etc/transmission-daemon/settings.json 
-sudo sed -i 's/^{/{\n"rpc-whitelist-enabled": true,\n' /etc/transmission-daemon/settings.json 
+sudo sed -i 's/^{/{\n"rpc-whitelist-enabled": true,\n/g' /etc/transmission-daemon/settings.json 
 
 #tmux 설정
 ln -fs $(folder)/.tmux.conf ~/
