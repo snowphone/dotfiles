@@ -43,7 +43,8 @@ sudo apt install -y \
 	python3-dev python3 python3-dev python-pip python3-pip \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
 	bfs tree \
-	maven transmission-daemon
+	maven transmission-daemon \
+	figlet lolcat
 
 #git 설정
 git config --global core.autocrlf input
