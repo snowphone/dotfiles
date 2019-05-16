@@ -160,11 +160,11 @@ nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
 nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 
 func! BuildLaTex()
-	!pdflatex %<
+	!pdflatex '%<'
 	if !empty(glob("./*.bib"))
-		!bibtex %<
-		!pdflatex %<
-		!pdflatex %<
+		!bibtex '%<'
+		!pdflatex '%<'
+		!pdflatex '%<'
 	endif
 endfunc
 
