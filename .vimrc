@@ -159,6 +159,15 @@ nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
 nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
 nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 
+func! BuildLaTex()
+	!pdflatex %<
+	if !empty(glob("./*.bib"))
+		!bibtex %<
+		!pdflatex %<
+		!pdflatex %<
+	endif
+endfunc
+
 "tex 파일이면 pdflatex로 컴파일, 아닌 경우면 cpp파일로 간주해서 컴파일
 func! Run()
 	if &filetype == 'python'
@@ -179,7 +188,7 @@ func! Compile()
 	write! 
 
 	if &filetype == 'tex'
-		!pdflatex %
+		:exec BuildLaTex()
 	elseif &filetype=='c'
 		silent !clang % -std=c99 -W -Wall -g -lpthread -pthread -lm  -o %< 
 	elseif &filetype == 'python' || &filetype == 'sh'
