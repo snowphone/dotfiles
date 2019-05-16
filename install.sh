@@ -48,7 +48,8 @@ sudo apt install -y \
 
 #git 설정
 git config --global core.autocrlf input
-git config --global user.name "Moon Junoh"
+git config --global user.name "Junoh Moon"
+git config --global user.email "mjo970625@gmail.com"
 
 #fzf 설치
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
