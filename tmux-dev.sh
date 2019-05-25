@@ -1,4 +1,4 @@
-tmux new-session \; \
+tmux -2 new-session \; \
   send-keys 'date | figlet | lolcat' C-m \; \
   split-window -v -p 35 \; \
   split-window -h -p 75 \; \
