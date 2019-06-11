@@ -44,7 +44,7 @@ sudo apt install -y \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
 	bfs tree \
 	maven transmission-daemon \
-	figlet lolcat img2pdf
+	figlet lolcat img2pdf rename
 
 #git 설정
 git config --global core.autocrlf input
