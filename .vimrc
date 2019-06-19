@@ -96,6 +96,24 @@ Plugin 'operator-user' 	"user defined key binding
 Plugin 'uplus/vim-clang-rename'
 au FileType c,cpp nmap <buffer><silent><leader>cr <Plug>(clang_rename-current)
 
+"쉘의 프롬프트를 변경해주는 역할을 한다.
+Plugin 'edkolev/promptline.vim'
+
+
+"현재 커밋 키준으로 변경점을 왼쪽에 +, - ~으로 표시
+Plugin 'airblade/vim-gitgutter'
+
+" vim의 기본 f 기능을 확장함. <leader><leader> w 혹은 <leader><leader> f를
+" 써보길
+Plugin 'Lokaltog/vim-easymotion'
+
+"들여쓰기마다 수직선 그어주는 역할
+Plugin 'Yggdroot/indentLine'
+
+"마크다운 syntax 지원
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
 
 call vundle#end()            " required
 

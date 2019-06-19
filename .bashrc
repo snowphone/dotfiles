@@ -450,37 +450,37 @@ function git-branch-prompt {
 	if [ $branch ]; then printf " [%s]" $branch; fi
 } 
 
-# Define colors
-LIGHTGRAY="$(echo -e "\033[0;37m")"
-WHITE="$(echo -e "\033[1;37m")"
-BLACK="$(echo -e "\033[0;30m")"
-DARKGRAY="$(echo -e "\033[1;30m")"
-RED="$(echo -e "\033[0;31m")"
-LIGHTRED="$(echo -e "\033[1;31m")"
-GREEN="$(echo -e "\033[0;32m")"
-LIGHTGREEN="$(echo -e "\033[92m")"
-BROWN="$(echo -e "\033[0;33m")"
-YELLOW="$(echo -e "\033[33m")"
-LIGHTYELLOW="$(echo -e "\033[93m")"
-BLUE="$(echo -e "\033[0;34m")"
-LIGHTBLUE="$(echo -e "\033[1;34m")"
-MAGENTA="$(echo -e "\033[0;35m")"
-LIGHTMAGENTA="$(echo -e "\033[95m")"
-CYAN="$(echo -e "\033[0;36m")"
-LIGHTCYAN="$(echo -e "\033[96m")"
-NOCOLOR="$(echo -e "\033[0m")"
-
-# Set prompt
-TIME='${LIGHTGREEN}\d \t${NOCOLOR}'
-CPU='${LIGHTGREEN}CPU: $(cpu)${NOCOLOR}'
-USER='${RED}\u${NOCOLOR}'
-HOST='${RED}\h${NOCOLOR}'
-LOCATION='${LIGHTCYAN}$(pwd)${NOCOLOR}'
-BRANCH='${YELLOW}$(git-branch-prompt)${NOCOLOR}'
-
-PS1="$TIME|$CPU|$USER@$HOST:$LOCATION$BRANCH\n> "
-PS2='${LIGHTCYAN}>${NOCOLOR} '
-
+## Define colors
+#LIGHTGRAY="$(echo -e "\033[0;37m")"
+#WHITE="$(echo -e "\033[1;37m")"
+#BLACK="$(echo -e "\033[0;30m")"
+#DARKGRAY="$(echo -e "\033[1;30m")"
+#RED="$(echo -e "\033[0;31m")"
+#LIGHTRED="$(echo -e "\033[1;31m")"
+#GREEN="$(echo -e "\033[0;32m")"
+#LIGHTGREEN="$(echo -e "\033[92m")"
+#BROWN="$(echo -e "\033[0;33m")"
+#YELLOW="$(echo -e "\033[33m")"
+#LIGHTYELLOW="$(echo -e "\033[93m")"
+#BLUE="$(echo -e "\033[0;34m")"
+#LIGHTBLUE="$(echo -e "\033[1;34m")"
+#MAGENTA="$(echo -e "\033[0;35m")"
+#LIGHTMAGENTA="$(echo -e "\033[95m")"
+#CYAN="$(echo -e "\033[0;36m")"
+#LIGHTCYAN="$(echo -e "\033[96m")"
+#NOCOLOR="$(echo -e "\033[0m")"
+#
+## Set prompt
+#TIME='${LIGHTGREEN}\d \t${NOCOLOR}'
+#CPU='${LIGHTGREEN}CPU: $(cpu)${NOCOLOR}'
+#USER='${RED}\u${NOCOLOR}'
+#HOST='${RED}\h${NOCOLOR}'
+#LOCATION='${LIGHTCYAN}$(pwd)${NOCOLOR}'
+#BRANCH='${YELLOW}$(git-branch-prompt)${NOCOLOR}'
+#
+#PS1="$TIME|$CPU|$USER@$HOST:$LOCATION$BRANCH\n> "
+#PS2='${LIGHTCYAN}>${NOCOLOR} '
+source ~/.promptline.sh 
 
 
 

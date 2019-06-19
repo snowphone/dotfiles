@@ -72,6 +72,9 @@ git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmuxResurrect/
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim -c VundleUpdate -c quitall
 
+#Promptline 설정
+vim -c "PromptlineSnapshot ~/.promptline.sh airline"
+
 #YouCompleteMe 설치
 python3  ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer 
 ln -fs ~/dotfiles/.ycm_extra_conf.py ~/.vim/
