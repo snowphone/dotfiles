@@ -1,6 +1,6 @@
-tmux -2 new-session \; \
+tmux -2  new -s dev \; \
   send-keys 'date | figlet | lolcat' C-m \; \
   split-window -v -p 35 \; \
   split-window -h -p 75 \; \
-  send-keys 'htop' C-m \; \
+  send-keys 'htop -s PERCENT_CPU' C-m \; \
   select-pane -t 0 \;
