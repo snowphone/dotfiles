@@ -48,6 +48,7 @@ sudo apt install -y \
 
 #git 설정
 git config --global core.autocrlf input
+git config --global core.eol lf
 git config --global user.name "Junoh Moon"
 git config --global user.email "mjo970625@gmail.com"
 
