@@ -64,7 +64,7 @@ sudo sed -i 's/"download-dir": ".*"/"download-dir": "\/home\/snowphone\/Videos"/
 sudo sed -i 's/^{/{\n"rpc-whitelist-enabled": true,\n/g' /etc/transmission-daemon/settings.json 
 
 #tmux 설정
-ln -fs $(folder)/.tmux.conf ~/
+ln -fs $(pwd)/.tmux.conf ~/
 #bind key + C-s, bind key + C-r을 이용해 전체 tmux session들을 저장 및 복구할 수 있다.
 git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmuxResurrect/
 

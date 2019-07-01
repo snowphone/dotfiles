@@ -110,6 +110,9 @@ Plugin 'Lokaltog/vim-easymotion'
 "들여쓰기마다 수직선 그어주는 역할
 Plugin 'Yggdroot/indentLine'
 
+"tmux airline
+Plugin 'edkolev/tmuxline.vim'
+let g:airline#extensions#tmuxline#enabled = 0
 
 call vundle#end()            " required
 
@@ -127,7 +130,7 @@ filetype plugin indent on    " required
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
 "set bg=light
-silent! colo carbonized-dark
+silent! colo molokai
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
