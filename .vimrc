@@ -110,10 +110,6 @@ Plugin 'Lokaltog/vim-easymotion'
 "들여쓰기마다 수직선 그어주는 역할
 Plugin 'Yggdroot/indentLine'
 
-"마크다운 syntax 지원
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-
 
 call vundle#end()            " required
 
