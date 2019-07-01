@@ -3,11 +3,11 @@
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    let iCanHazVundle=0
+	echo "Installing Vundle.."
+	echo ""
+	silent !mkdir -p ~/.vim/bundle
+	silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	let iCanHazVundle=0
 endif
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
@@ -15,13 +15,13 @@ call vundle#rc()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :PluginInstall
+	echo "Installing Bundles, please ignore key map error messages"
+	echo ""
+	:PluginInstall
 endif
 " END - Setting up Vundle - the vim plugin bundler
 
-filetype off                  " required
+filetype off				  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -60,13 +60,43 @@ Plugin 'vim-scripts/gruvbox'
 Plugin 'float168/vim-colors-cherryblossom'
 
 Plugin 'vim-airline/vim-airline'
-let g:airline#extensions#tabline#enabled = 1              " vim-airline 버퍼 목록 켜기
-let g:airline#extensions#tabline#fnamemod = ':t'          " vim-airline 버퍼 목록 파일명만 출력
-let g:airline#extensions#tabline#buffer_nr_show = 1       " buffer number를 보여준다
+Plugin 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled = 1			  " vim-airline 버퍼 목록 켜기
+let g:airline#extensions#tabline#fnamemod = ':t'		  " vim-airline 버퍼 목록 파일명만 출력
+let g:airline#extensions#tabline#buffer_nr_show = 1	   " buffer number를 보여준다
 let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
-
 set laststatus=2 " turn on bottom bar
 
+let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
+let g:airline_theme='bubblegum'
+
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 Plugin 'Townk/vim-autoclose'
 
@@ -74,7 +104,7 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 ".ycm_global_ycm_extra_conf.py가 파일 타입을 얻어낼 수 있도록 함
-let g:ycm_extra_conf_vim_data = [ '&filetype' ] 
+let g:ycm_extra_conf_vim_data = [ '&filetype' ]
 
 "파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
 aug python
@@ -114,17 +144,17 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0
 
-call vundle#end()            " required
+call vundle#end()			" required
 
-filetype plugin indent on    " required
+filetype plugin indent on	" required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
 " Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginList	   - lists configured plugins
+" :PluginInstall	- installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :PluginClean	  - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 "set theme
 set t_Co=256
@@ -151,7 +181,7 @@ set shiftwidth=4 " 자동 들여쓰기 4칸
 set ts=4
 set number " 행번호 표시, set nu 도 가능
 set fencs=euc-kr,ucs-bom,utf-8
-"set tenc=utf-8      " 터미널 인코딩
+"set tenc=utf-8	  " 터미널 인코딩
 "newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
 autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
 "euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
@@ -162,7 +192,7 @@ set autoread
 au CursorHold * checktime
 
 "vim의 검색 기능을 이용할 시 검색 결과를 항상 중앙에 배치한다.
-nmap n nzz 
+nmap n nzz
 nmap <S-n> <S-n>zz
 
 "fzf 설정
@@ -197,17 +227,17 @@ func! Run()
 		!/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe '%<.pdf' &
 	else
 		"c, c++
-		!./%< 
+		!./%<
 	endif
 endfunc
 
 func! Compile()
-	write! 
+	write!
 
 	if &filetype == 'tex'
 		:exec BuildLaTex()
 	elseif &filetype=='c'
-		silent !clang % -std=c99 -W -Wall -g -lpthread -pthread -lm  -o %< 
+		silent !clang % -std=c99 -W -Wall -g -lpthread -pthread -lm  -o %<
 	elseif &filetype == 'python' || &filetype == 'sh'
 		"echo means do nothing.
 		echo ""
@@ -215,7 +245,7 @@ func! Compile()
 		!javac %
 	else
 		"c++
-		silent !clang++ -o %< -W -Wall -O2 -pthread -lboost_system -lboost_program_options -lm % 
+		silent !clang++ -o %< -W -Wall -O2 -pthread -lboost_system -lboost_program_options -lm %
 		redraw!
 	endif
 endfunc
