@@ -73,7 +73,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim -c VundleUpdate -c quitall
 
 #Promptline 설정
-vim -c "PromptlineSnapshot ~/.promptline.sh airline"
+vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
 
 #YouCompleteMe 설치
 python3  ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer 
