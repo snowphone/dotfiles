@@ -45,7 +45,7 @@ nmap <C-n> :NERDTreeToggle <CR>
 "nerdtree 자동 실행
 "autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -144,6 +144,9 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0
 
+"Git graph
+Plugin 'rbong/vim-flog'
+
 call vundle#end()			" required
 
 filetype plugin indent on	" required
@@ -186,6 +189,11 @@ set fencs=euc-kr,ucs-bom,utf-8
 autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
 "euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
 autocmd BufReadPost * if &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
+
+"Vimdiff시 read only 무시
+if &diff
+	set noreadonly
+endif
 
 "파일이 변경될 때 마다 자동으로 버퍼 갱신
 set autoread
