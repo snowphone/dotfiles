@@ -106,6 +106,11 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 ".ycm_global_ycm_extra_conf.py가 파일 타입을 얻어낼 수 있도록 함
 let g:ycm_extra_conf_vim_data = [ '&filetype' ]
 
+let g:ycm_use_clangd=1
+let g:ycm_clangd_uses_ycmd_caching=0
+let g:ycm_clangd_binary_path=exepath("clangd-8")
+let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+
 "파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
 aug python
 	" ftype/python.vim overwrites this
