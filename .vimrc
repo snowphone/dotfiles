@@ -119,7 +119,7 @@ aug end
 
 
 "bear <make command> 를 이용하여 태그 설정해야 goto 사용 가능
-nmap <F12> :silent! YcmCompleter GoTo <CR>
+nmap <F12> :silent! YcmCompleter GoToDefinitionElseDeclaration <CR>
 
 nmap <F9> :YcmCompleter FixIt<CR>
 
@@ -151,6 +151,9 @@ let g:airline#extensions#tmuxline#enabled = 0
 
 "Git graph
 Plugin 'rbong/vim-flog'
+
+"erlang
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
 
 call vundle#end()			" required
 
@@ -234,6 +237,8 @@ func! Run()
 		:exec '!python3 "%"'
 	elseif &filetype == 'java'
 		!java %<
+	elseif &filetype == 'erlang'
+		!escript % +P
 	elseif &filetype == 'sh'
 		!bash %
 	elseif &filetype == 'tex'
@@ -251,7 +256,7 @@ func! Compile()
 		:exec BuildLaTex()
 	elseif &filetype=='c'
 		silent !clang % -std=c99 -W -Wall -g -lpthread -pthread -lm  -o %<
-	elseif &filetype == 'python' || &filetype == 'sh'
+	elseif &filetype == 'python' || &filetype == 'sh' || &filetype == 'erlang'
 		"echo means do nothing.
 		echo ""
 	elseif &filetype == 'java'
