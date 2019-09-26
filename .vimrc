@@ -223,15 +223,15 @@ nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
 nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 
 func! BuildLaTex()
-	!pdflatex '%<'
+	!lualatex '%<'
 	if !empty(glob("./*.bib"))
 		!bibtex '%<'
-		!pdflatex '%<'
-		!pdflatex '%<'
+		!lualatex '%<'
+		!lualatex '%<'
 	endif
 endfunc
 
-"tex 파일이면 pdflatex로 컴파일, 아닌 경우면 cpp파일로 간주해서 컴파일
+"tex 파일이면 lualatex로 컴파일, 아닌 경우면 cpp파일로 간주해서 컴파일
 func! Run()
 	if &filetype == 'python'
 		:exec '!python3 "%"'
@@ -255,7 +255,7 @@ func! Compile()
 	if &filetype == 'tex'
 		:exec BuildLaTex()
 	elseif &filetype=='c'
-		silent !clang % -std=c99 -W -Wall -g -lpthread -pthread -lm  -o %<
+		silent !clang % -std=c11 -O2 -W -Wall -g -lpthread -pthread -lm  -o %<
 	elseif &filetype == 'python' || &filetype == 'sh' || &filetype == 'erlang'
 		"echo means do nothing.
 		echo ""
