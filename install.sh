@@ -45,7 +45,8 @@ sudo apt install -y \
 	bfs tree \
 	maven transmission-daemon \
 	figlet lolcat img2pdf rename \
-	erlang erlang-dev
+	erlang erlang-dev \
+	texlive-full
 
 #git 설정
 git config --global core.autocrlf input
