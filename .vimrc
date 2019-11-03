@@ -155,6 +155,10 @@ Plugin 'rbong/vim-flog'
 "erlang
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 
+"vim tmux seamless navigation.
+"Ctrl + hjkl to move pane/buffer
+Plugin 'christoomey/vim-tmux-navigator'
+
 call vundle#end()			" required
 
 filetype plugin indent on	" required
