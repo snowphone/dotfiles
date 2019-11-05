@@ -142,9 +142,6 @@ Plugin 'airblade/vim-gitgutter'
 " 써보길
 Plugin 'Lokaltog/vim-easymotion'
 
-"들여쓰기마다 수직선 그어주는 역할
-Plugin 'Yggdroot/indentLine'
-
 "tmux airline
 Plugin 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0
@@ -196,6 +193,8 @@ set shiftwidth=4 " 자동 들여쓰기 4칸
 set ts=4
 set number " 행번호 표시, set nu 도 가능
 set fencs=euc-kr,ucs-bom,utf-8
+set cursorcolumn	" Visualize vertical cursor line
+set cursorline		" Visualize horizontal cursor line
 "set tenc=utf-8	  " 터미널 인코딩
 "newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
 autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
