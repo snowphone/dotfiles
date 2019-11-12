@@ -23,7 +23,7 @@ touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 #링크 설정
-ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ 홍익대학교/ ~/hongik/
+ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
 ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
 ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
 ln -fs /mnt/c/Users/mjo97/Videos/ ~/
