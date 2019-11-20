@@ -77,6 +77,13 @@ ln -fs $(pwd)/.tmux.conf ~/
 #bind key + C-s, bind key + C-r을 이용해 전체 tmux session들을 저장 및 복구할 수 있다.
 git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmuxResurrect/
 
+# Move .snapshot file
+ln -fs $(pwd)/.snapshot ~/.snapshot
+
+# Change PIP mirror to kakao
+mkdir ~/.pip
+ln -fs $(pwd)/pip.conf ~/.pip/pip.conf
+
 
 #vim 설정
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
