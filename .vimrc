@@ -254,8 +254,9 @@ endfunc
 
 func! Compile()
 	write!
-
-	if &filetype == 'tex'
+	if filereadable('./Makefile') || filereadable('./makefile')
+		make
+	elseif &filetype == 'tex'
 		:exec BuildLaTex()
 	elseif &filetype=='c'
 		silent !clang % -std=c11 -O2 -W -Wall -g -lpthread -pthread -lm  -o %<
