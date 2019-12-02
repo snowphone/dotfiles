@@ -223,6 +223,14 @@ nmap <S-n> <S-n>zz
 "fzf 설정
 set rtp+=~/.fzf
 
+" Very magic mode: vim regex follows normal rule, not vim customized rule
+" For examle, normal vim identifies '(' as literal parenthesis but in regex it
+" is evaluated as a capture group.
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+cnoremap s/ s/\v
 
 "key mapping
 let mapleader=","
