@@ -201,6 +201,12 @@ autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | 
 "euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
 autocmd BufReadPost * if &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
 
+" 마지막 편집 위치 복원 기능
+au BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\   exe "norm g`\"" |
+\ endif
+
 "Vimdiff시 read only 무시
 if &diff
 	set noreadonly
