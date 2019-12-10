@@ -40,8 +40,6 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'scrooloose/nerdtree'
 
-nmap <C-n> :NERDTreeToggle <CR>
-
 "nerdtree 자동 실행
 "autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -222,7 +220,7 @@ nmap <S-n> <S-n>zz
 
 "fzf 설정
 set rtp+=~/.fzf
-"nmap <C-n> :FZF <CR>
+nmap <C-n> :FZF <CR>
 
 " Very magic mode: vim regex follows normal rule, not vim customized rule
 " For examle, normal vim identifies '(' as literal parenthesis but in regex it
