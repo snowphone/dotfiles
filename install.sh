@@ -48,6 +48,9 @@ sudo apt install -y \
 	erlang erlang-dev \
 	texlive-full
 
+# Install markdown viewer
+#sudo gem install mdless
+
 #git 설정
 git config --global core.autocrlf input
 git config --global core.eol lf
@@ -84,6 +87,8 @@ ln -fs $(pwd)/.snapshot ~/.snapshot
 mkdir ~/.pip
 ln -fs $(pwd)/pip.conf ~/.pip/pip.conf
 
+# Set ssh host
+ln -fs $(pwd)/ssh_config ~/.ssh/config
 
 #vim 설정
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -91,6 +96,7 @@ vim -c VundleUpdate -c quitall
 
 #Promptline 설정
 vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
+
 
 #YouCompleteMe 설치
 python3  ~/.vim/bundle/YouCompleteMe/install.py --clangd-completer --java-completer
