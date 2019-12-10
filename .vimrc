@@ -222,6 +222,7 @@ nmap <S-n> <S-n>zz
 
 "fzf 설정
 set rtp+=~/.fzf
+"nmap <C-n> :FZF <CR>
 
 " Very magic mode: vim regex follows normal rule, not vim customized rule
 " For examle, normal vim identifies '(' as literal parenthesis but in regex it
@@ -260,6 +261,8 @@ func! Run()
 		!bash %
 	elseif &filetype == 'tex'
 		!/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe '%<.pdf' &
+	elseif &filetype == 'markdown'
+		!mdless '%'
 	else
 		"c, c++
 		!./%<
@@ -268,7 +271,9 @@ endfunc
 
 func! Compile()
 	write!
-	if filereadable('./Makefile') || filereadable('./makefile')
+	if &filetype == 'markdown'
+		echo ""
+	elseif filereadable('./Makefile') || filereadable('./makefile')
 		make
 	elseif &filetype == 'tex'
 		:exec BuildLaTex()

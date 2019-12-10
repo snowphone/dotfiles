@@ -49,7 +49,7 @@ sudo apt install -y \
 	texlive-full
 
 # Install markdown viewer
-#sudo gem install mdless
+sudo gem install mdless
 
 #git 설정
 git config --global core.autocrlf input
