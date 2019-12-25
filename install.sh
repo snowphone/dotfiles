@@ -91,6 +91,14 @@ ln -fs $(pwd)/pip.conf ~/.pip/pip.conf
 # Set ssh host
 ln -fs $(pwd)/ssh_config ~/.ssh/config
 
+# ccls 설치
+git clone --depth=1 --recursive https://github.com/MaskRay/ccls ~/.ccls
+cd ~/.ccls/
+wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04
+sudo cmake --build Release --target install
+
 #vim 설정
 vim -c PlugUpdate -c quitall
 
