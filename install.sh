@@ -43,9 +43,10 @@ sudo apt install -y \
 	python3-dev python3 python3-dev python-pip python3-pip \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
 	bfs tree \
-	maven transmission-daemon \
+	maven transmission-daemon openjdk-11-jdk \
 	figlet lolcat img2pdf rename \
 	erlang erlang-dev \
+	nodejs npm \
 	texlive-full
 
 # Install markdown viewer
@@ -91,14 +92,17 @@ ln -fs $(pwd)/pip.conf ~/.pip/pip.conf
 ln -fs $(pwd)/ssh_config ~/.ssh/config
 
 #vim 설정
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim -c VundleUpdate -c quitall
+vim -c PlugUpdate -c quitall
 
 #Promptline 설정
 vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
 
+# coc.nvim 설정
+ln -sf $(pwd)/coc-settings.json ~/.vim/
+ln -sf $(pwd)/.coc.vimrc ~/
+sudo npm i -g bash-language-server
+pip3 install python-language-server
+vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal' -c quitall
 
-#YouCompleteMe 설치
-python3  ~/.vim/bundle/YouCompleteMe/install.py --clangd-completer --java-completer
-ln -fs ~/dotfiles/.ycm_extra_conf.py ~/.vim/
+
 cd ~

@@ -1,44 +1,21 @@
-" Vundle 자동 설치용
+" Vim-plug 자동 설치용
 " START - Setting up Vundle - the vim plugin bundler
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-	echo "Installing Vundle.."
-	echo ""
-	silent !mkdir -p ~/.vim/bundle
-	silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	let iCanHazVundle=0
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-if iCanHazVundle == 0
-	echo "Installing Bundles, please ignore key map error messages"
-	echo ""
-	:PluginInstall
-endif
-" END - Setting up Vundle - the vim plugin bundler
-
-filetype off				  " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-
-
-
-
-call vundle#begin('~/.vim/bundle/')
+call plug#begin('~/.vim/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
+nmap <C-n> :NERDTreeToggle <CR>
 
 "nerdtree 자동 실행
 "autocmd vimenter * NERDTree
@@ -49,16 +26,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 
 "256색 콘솔에서 gui용 테마 적용을 가능하게 함
-Plugin 'godlygeek/csapprox'
+Plug 'godlygeek/csapprox'
 
 "테마(theme)
-Plugin 'nightsense/carbonized' "적용에 어려움이 있음
-Plugin 'tomasr/molokai'
-Plugin 'vim-scripts/gruvbox'
-Plugin 'float168/vim-colors-cherryblossom'
+Plug 'nightsense/carbonized' "적용에 어려움이 있음
+Plug 'tomasr/molokai'
+Plug 'vim-scripts/gruvbox'
+Plug 'float168/vim-colors-cherryblossom'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1			  " vim-airline 버퍼 목록 켜기
 let g:airline#extensions#tabline#fnamemod = ':t'		  " vim-airline 버퍼 목록 파일명만 출력
 let g:airline#extensions#tabline#buffer_nr_show = 1	   " buffer number를 보여준다
@@ -96,18 +73,13 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-Plugin 'Townk/vim-autoclose'
+Plug 'Townk/vim-autoclose'
 
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+" 여기에 LSP 관련 내용 추가
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Maxattax97/coc-ccls'
+source ~/.coc.vimrc
 
-".ycm_global_ycm_extra_conf.py가 파일 타입을 얻어낼 수 있도록 함
-let g:ycm_extra_conf_vim_data = [ '&filetype' ]
-
-let g:ycm_use_clangd=1
-let g:ycm_clangd_uses_ycmd_caching=0
-let g:ycm_clangd_binary_path=exepath("clangd-8")
-let g:ycm_clangd_args = ['-log=verbose', '-pretty']
 
 "파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
 aug python
@@ -115,57 +87,30 @@ aug python
 	au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
 aug end
 
-
-"bear <make command> 를 이용하여 태그 설정해야 goto 사용 가능
-nmap <F12> :silent! YcmCompleter GoToDefinitionElseDeclaration <CR>
-
-nmap <F9> :YcmCompleter FixIt<CR>
-
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
-Plugin 'operator-user' 	"user defined key binding
-
-Plugin 'uplus/vim-clang-rename'
-au FileType c,cpp nmap <buffer><silent><leader>cr <Plug>(clang_rename-current)
-
 "쉘의 프롬프트를 변경해주는 역할을 한다.
-Plugin 'edkolev/promptline.vim'
-
-
-"현재 커밋 키준으로 변경점을 왼쪽에 +, - ~으로 표시
-Plugin 'airblade/vim-gitgutter'
+Plug 'edkolev/promptline.vim'
 
 " vim의 기본 f 기능을 확장함. <leader><leader> w 혹은 <leader><leader> f를
 " 써보길
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 "tmux airline
-Plugin 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0
 
 "Git graph
-Plugin 'rbong/vim-flog'
+Plug 'rbong/vim-flog'
 
-"erlang
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
 
 "vim tmux seamless navigation.
 "Ctrl + hjkl to move pane/buffer
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
-call vundle#end()			" required
+call plug#end()			" required
 
-filetype plugin indent on	" required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList	   - lists configured plugins
-" :PluginInstall	- installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean	  - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 "set theme
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
@@ -220,7 +165,7 @@ nmap <S-n> <S-n>zz
 
 "fzf 설정
 set rtp+=~/.fzf
-nmap <C-n> :FZF <CR>
+
 
 " Very magic mode: vim regex follows normal rule, not vim customized rule
 " For examle, normal vim identifies '(' as literal parenthesis but in regex it

@@ -1,0 +1,20 @@
+{
+  "languageserver": {
+      "ccls": {
+	        "command": "ccls",
+	        "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+	        "rootPatterns": [".ccls-root", "compile_commands.json"],
+	        "initializationOptions": {
+			         "cache": {
+					            "directory": ".ccls-cache"
+					          }
+			       }
+	      },
+      "bash": {
+	        "command": "bash-language-server",
+	        "args": ["start"],
+	        "filetypes": ["sh"],
+	        "ignoredRootPaths": ["~"]
+	      }
+    }
+}
