@@ -44,7 +44,7 @@ sudo apt install -y \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
 	bfs tree \
 	maven transmission-daemon openjdk-11-jdk \
-	figlet lolcat img2pdf rename \
+	figlet lolcat img2pdf rename screenfetch \
 	erlang erlang-dev \
 	nodejs npm \
 	texlive-full
