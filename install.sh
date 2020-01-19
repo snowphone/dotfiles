@@ -49,6 +49,9 @@ sudo apt install -y \
 	nodejs npm \
 	texlive-full
 
+# Commandline youtube downloader 
+sudo -H pip install --upgrade youtube-dl
+
 # Install markdown viewer
 sudo gem install mdless
 
