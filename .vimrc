@@ -29,7 +29,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 Plug 'godlygeek/csapprox'
 
 "테마(theme)
-Plug 'nightsense/carbonized' "적용에 어려움이 있음
+Plug 'nightsense/carbonized'
 Plug 'tomasr/molokai'
 Plug 'vim-scripts/gruvbox'
 Plug 'float168/vim-colors-cherryblossom'
@@ -43,7 +43,7 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme='bubblegum'
+let g:airline_theme='violet'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -114,8 +114,8 @@ call plug#end()			" required
 "set theme
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
-"set bg=light
-silent! colo molokai
+set bg=dark
+silent! colorscheme gruvbox
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
