@@ -113,7 +113,7 @@ ln -sf $(pwd)/coc-settings.json ~/.vim/
 ln -sf $(pwd)/.coc.vimrc ~/
 sudo npm i -g bash-language-server
 pip3 install python-language-server
-vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal' -c quitall
+vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
 
 
 cd ~

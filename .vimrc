@@ -80,6 +80,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Maxattax97/coc-ccls'
 source ~/.coc.vimrc
 
+Plug 'hyhugh/coc-erlang_ls', {'do': 'yarn install --frozen-lockfile'}
+
 
 "파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
 aug python
@@ -109,6 +111,14 @@ Plug 'rbong/vim-flog'
 "Ctrl + hjkl to move pane/buffer
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'Yggdroot/indentLine'
+let g:indentLine_char = '┆'
+
+"Highlighting for Typescript
+Plug 'leafgarland/typescript-vim'
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+
+
 call plug#end()			" required
 
 "set theme
@@ -136,8 +146,8 @@ set shiftwidth=4 " 자동 들여쓰기 4칸
 set ts=4
 set number " 행번호 표시, set nu 도 가능
 set fencs=euc-kr,ucs-bom,utf-8
-set cursorcolumn	" Visualize vertical cursor line
-set cursorline		" Visualize horizontal cursor line
+"set cursorcolumn	" Visualize vertical cursor line
+"set cursorline		" Visualize horizontal cursor line
 "set tenc=utf-8	  " 터미널 인코딩
 "newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
 autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
