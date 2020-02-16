@@ -49,6 +49,8 @@ sudo apt install -y \
 	nodejs npm \
 	texlive-full
 
+sudo npm install -g typescript pkg ts-node
+
 # Commandline youtube downloader 
 sudo -H pip install --upgrade youtube-dl
 
