@@ -118,6 +118,17 @@ let g:indentLine_char = '┆'
 Plug 'leafgarland/typescript-vim'
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
+"Markdown plugin
+Plug 'junegunn/goyo.vim'
+autocmd FileType markdown Goyo
+
+"Paragraph highlighter
+Plug 'junegunn/limelight.vim'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_ctermfg = 'gray'
+
 
 call plug#end()			" required
 
