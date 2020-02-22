@@ -216,6 +216,8 @@ func! Run()
 		!/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe '%<.pdf' &
 	elseif &filetype == 'markdown'
 		!mdless '%'
+	elseif &filetype == 'typescript'
+		!ts-node %
 	else
 		"c, c++
 		!./%<
@@ -237,6 +239,9 @@ func! Compile()
 		echo ""
 	elseif &filetype == 'java'
 		!javac %
+	elseif &filetype == 'typescript'
+		"Do nothing
+		echo '' 
 	else
 		"c++
 		silent !clang++ -o %< -W -Wall -O2 -pthread -lboost_system -lboost_program_options -lm %
