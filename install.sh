@@ -1,10 +1,8 @@
 #!/bin/bash
 
 #.bashrc 설정
-folder=$(pwd)
 
 ln -fs $(pwd)/.bashrc ~/.bashrc
-source ~/.bashrc
 
 #.vimrc 설정
 ln -fs $(pwd)/.vimrc ~/.vimrc
@@ -44,15 +42,12 @@ sudo apt install -y \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
 	bfs tree \
 	maven transmission-daemon openjdk-11-jdk \
-	figlet lolcat img2pdf rename screenfetch \
+	figlet youtube-dl lolcat img2pdf rename screenfetch \
 	erlang erlang-dev \
-	nodejs npm \
+	nodejs \
 	texlive-full
 
 sudo npm install -g typescript pkg ts-node
-
-# Commandline youtube downloader 
-sudo -H pip install --upgrade youtube-dl
 
 # Install markdown viewer
 sudo gem install mdless
@@ -73,7 +68,6 @@ git config --global difftool.prompt false
 #fzf 설치
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
-source ~/.bashrc
 
 #transmission 설정
 sudo sed -i 's/"rpc-username": "transmission"/"rpc-username": "snowphone"/g' /etc/transmission-daemon/settings.json
@@ -119,3 +113,6 @@ vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab
 
 
 cd ~
+printf "Installation complete
+Execute the following command to refresh bash shell\n
+\tsource ~/.bashrc\n\n"
