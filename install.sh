@@ -1,5 +1,49 @@
 #!/bin/bash
 
+# Auxiliary functions
+
+distribution ()
+{
+	local dtype
+	# Assume unknown
+	dtype="unknown"
+	
+	# First test against Fedora / RHEL / CentOS / generic Redhat derivative
+	if [ -r /etc/rc.d/init.d/functions ]; then
+		source /etc/rc.d/init.d/functions
+		[ zz`type -t passed 2>/dev/null` == "zzfunction" ] && dtype="redhat"
+	
+	# Then test against SUSE (must be after Redhat,
+	# I've seen rc.status on Ubuntu I think? TODO: Recheck that)
+	elif [ -r /etc/rc.status ]; then
+		source /etc/rc.status
+		[ zz`type -t rc_reset 2>/dev/null` == "zzfunction" ] && dtype="suse"
+	
+	# Then test against Debian, Ubuntu and friends
+	elif [ -r /lib/lsb/init-functions ]; then
+		source /lib/lsb/init-functions
+		[ zz`type -t log_begin_msg 2>/dev/null` == "zzfunction" ] && dtype="debian"
+	
+	# Then test against Gentoo
+	elif [ -r /etc/init.d/functions.sh ]; then
+		source /etc/init.d/functions.sh
+		[ zz`type -t ebegin 2>/dev/null` == "zzfunction" ] && dtype="gentoo"
+	
+	# For Mandriva we currently just test if /etc/mandriva-release exists
+	# and isn't empty (TODO: Find a better way :)
+	elif [ -s /etc/mandriva-release ]; then
+		dtype="mandriva"
+
+	# For Slackware we currently just test if /etc/slackware-version exists
+	elif [ -s /etc/slackware-version ]; then
+		dtype="slackware"
+
+	fi
+	echo $dtype
+}
+
+# Prepare phase
+
 if [[ $(whoami) == "root" ]]; then
 	sudo=""
 else
@@ -7,6 +51,16 @@ else
 fi
 
 folder=$(pwd)
+
+dist=$(distribution)
+if [[ $dist == debian ]]; then
+	pkgMngr=apt
+elif [[ $dist == redhat ]]; then
+	pkgMngr=yum
+fi
+
+# Main phase
+
 #.bashrc 설정
 
 ln -fs "$folder"/.bashrc ~/.bashrc
@@ -43,6 +97,7 @@ $sudo apt update
 
 
 #필요한 프로그램 설치
+if [[ $pkgMngr == apt ]]; then
 $sudo apt install -y \
 	build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
 	clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
@@ -54,6 +109,10 @@ $sudo apt install -y \
 	erlang erlang-dev \
 	nodejs npm \
 	texlive-full
+elif [[ $pkgMngr == redhat ]]; then
+	$sudo yum install -y \
+		vim
+fi
 
 $sudo npm install -g typescript pkg ts-node
 
