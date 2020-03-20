@@ -1,11 +1,12 @@
 #!/bin/bash
 
+folder=$(pwd)
 #.bashrc 설정
 
-ln -fs $(pwd)/.bashrc ~/.bashrc
+ln -fs "$folder"/.bashrc ~/.bashrc
 
 #.vimrc 설정
-ln -fs $(pwd)/.vimrc ~/.vimrc
+ln -fs "$folder"/.vimrc ~/.vimrc
 
 #ssh server 설정
 sudo sed -i 's/#\?Port 22/Port 2222/' /etc/ssh/sshd_config
@@ -76,19 +77,19 @@ sudo sed -i 's/"download-dir": ".*"/"download-dir": "\/home\/snowphone\/Videos"/
 sudo sed -i 's/^{/{\n"rpc-whitelist-enabled": true,\n/g' /etc/transmission-daemon/settings.json
 
 #tmux 설정
-ln -fs $(pwd)/.tmux.conf ~/
+ln -fs "$folder"/.tmux.conf ~/
 #bind key + C-s, bind key + C-r을 이용해 전체 tmux session들을 저장 및 복구할 수 있다.
 git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmuxResurrect/
 
 # Move .snapshot file
-ln -fs $(pwd)/.snapshot ~/.snapshot
+ln -fs "$folder"/.snapshot ~/.snapshot
 
 # Change PIP mirror to kakao
 mkdir ~/.pip
-ln -fs $(pwd)/pip.conf ~/.pip/pip.conf
+ln -fs "$folder"/pip.conf ~/.pip/pip.conf
 
 # Set ssh host
-ln -fs $(pwd)/ssh_config ~/.ssh/config
+ln -fs "$folder"/ssh_config ~/.ssh/config
 
 # ccls 설치
 git clone --depth=1 --recursive https://github.com/MaskRay/ccls ~/.ccls
@@ -105,8 +106,8 @@ vim -c PlugUpdate -c quitall
 vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
 
 # coc.nvim 설정
-ln -sf $(pwd)/coc-settings.json ~/.vim/
-ln -sf $(pwd)/.coc.vimrc ~/
+ln -sf "$folder"/coc-settings.json ~/.vim/
+ln -sf "$folder"/.coc.vimrc ~/
 sudo npm i -g bash-language-server
 pip3 install python-language-server
 vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
