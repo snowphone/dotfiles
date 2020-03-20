@@ -66,10 +66,6 @@ git config --global diff.tool vimdiff
 git config --global difftool.prompt false
 
 
-#fzf 설치
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
-
 #transmission 설정
 sudo sed -i 's/"rpc-username": "transmission"/"rpc-username": "snowphone"/g' /etc/transmission-daemon/settings.json
 sudo sed -i 's/"rpc-password": "transmission"/"rpc-password": "gn36kb"/g' /etc/transmission-daemon/settings.json

@@ -129,6 +129,7 @@ autocmd! User GoyoLeave Limelight!
 let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_ctermfg = 'gray'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()			" required
 
