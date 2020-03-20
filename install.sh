@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ $(whoami) == "root" ]]; then
+	sudo=""
+else
+	sudo="sudo"
+fi
+
 folder=$(pwd)
 #.bashrc 설정
 
@@ -9,12 +15,12 @@ ln -fs "$folder"/.bashrc ~/.bashrc
 ln -fs "$folder"/.vimrc ~/.vimrc
 
 #ssh server 설정
-sudo sed -i 's/#\?Port 22/Port 2222/' /etc/ssh/sshd_config
-sudo sed -i 's/UsePrivilegeSeparation */UsePrivilegeSeparation no/' /etc/ssh/sshd_config
-sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+$sudo sed -i 's/#\?Port 22/Port 2222/' /etc/ssh/sshd_config
+$sudo sed -i 's/UsePrivilegeSeparation */UsePrivilegeSeparation no/' /etc/ssh/sshd_config
+$sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
 #sshkey 생성
-sudo ssh-keygen -A
+$sudo ssh-keygen -A
 
 mkdir ~/.ssh/
 chmod 700 ~/.ssh/
@@ -28,16 +34,16 @@ ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
 ln -fs /mnt/c/Users/mjo97/Videos/ ~/
 
 #apt 저장소를 국내로 변경
-sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 
 #apt 저장소 갱신
-sudo apt update
+$sudo apt update
 
 
 #필요한 프로그램 설치
-sudo apt install -y \
+$sudo apt install -y \
 	build-essential clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
 	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
@@ -48,10 +54,10 @@ sudo apt install -y \
 	nodejs npm\
 	texlive-full
 
-sudo npm install -g typescript pkg ts-node
+$sudo npm install -g typescript pkg ts-node
 
 # Install markdown viewer
-sudo gem install mdless
+$sudo gem install mdless
 
 #git 설정
 git config --global core.autocrlf input
@@ -67,10 +73,10 @@ git config --global difftool.prompt false
 
 
 #transmission 설정
-sudo sed -i 's/"rpc-username": "transmission"/"rpc-username": "snowphone"/g' /etc/transmission-daemon/settings.json
-sudo sed -i 's/"rpc-password": "transmission"/"rpc-password": "gn36kb"/g' /etc/transmission-daemon/settings.json
-sudo sed -i 's/"download-dir": ".*"/"download-dir": "\/home\/snowphone\/Videos"/g' /etc/transmission-daemon/settings.json
-sudo sed -i 's/^{/{\n"rpc-whitelist-enabled": true,\n/g' /etc/transmission-daemon/settings.json
+$sudo sed -i 's/"rpc-username": "transmission"/"rpc-username": "snowphone"/g' /etc/transmission-daemon/settings.json
+$sudo sed -i 's/"rpc-password": "transmission"/"rpc-password": "gn36kb"/g' /etc/transmission-daemon/settings.json
+$sudo sed -i 's/"download-dir": ".*"/"download-dir": "\/home\/snowphone\/Videos"/g' /etc/transmission-daemon/settings.json
+$sudo sed -i 's/^{/{\n"rpc-whitelist-enabled": true,\n/g' /etc/transmission-daemon/settings.json
 
 #tmux 설정
 ln -fs "$folder"/.tmux.conf ~/
@@ -93,7 +99,7 @@ cd ~/.ccls/
 wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04
-sudo cmake --build Release --target install
+$sudo cmake --build Release --target install
 
 #vim 설정
 vim -c PlugUpdate -c quitall
@@ -104,7 +110,7 @@ vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
 # coc.nvim 설정
 ln -sf "$folder"/coc-settings.json ~/.vim/
 ln -sf "$folder"/.coc.vimrc ~/
-sudo npm i -g bash-language-server
+$sudo npm i -g bash-language-server
 pip3 install python-language-server
 vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
 
