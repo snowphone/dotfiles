@@ -45,7 +45,7 @@ sudo apt install -y \
 	maven transmission-daemon openjdk-11-jdk \
 	figlet youtube-dl lolcat img2pdf rename screenfetch \
 	erlang erlang-dev \
-	nodejs \
+	nodejs npm\
 	texlive-full
 
 sudo npm install -g typescript pkg ts-node
