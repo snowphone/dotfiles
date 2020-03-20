@@ -52,12 +52,12 @@ fi
 
 folder=$(pwd)
 
-dist=$(distribution)
-if [[ $dist == debian ]]; then
-	pkgMngr=apt
-elif [[ $dist == redhat ]]; then
-	pkgMngr=yum
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+	isWsl=true
+else
+	isWsl=false
 fi
+
 
 # Main phase
 
@@ -82,10 +82,12 @@ touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 #링크 설정
-ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
-ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
-ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
-ln -fs /mnt/c/Users/mjo97/Videos/ ~/
+if [ isWsl == true ]; then
+	ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
+	ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
+	ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
+	ln -fs /mnt/c/Users/mjo97/Videos/ ~/
+fi
 
 #apt 저장소를 국내로 변경
 $sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
@@ -97,21 +99,37 @@ $sudo apt update
 
 
 #필요한 프로그램 설치
-if [[ $pkgMngr == apt ]]; then
+if [[ $(distribution) == apt ]]; then
 $sudo apt install -y \
 	build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
 	clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
-	python3-dev python3 python3-dev python-pip python3-pip \
+	python3-dev python3 python-pip python3-pip \
 	bfs tree \
 	bear gzip sshpass w3m traceroute git-extras \
 	maven transmission-daemon openjdk-11-jdk \
 	cmatrix figlet youtube-dl lolcat img2pdf screenfetch \
 	erlang erlang-dev \
-	nodejs npm \
 	texlive-full
-elif [[ $pkgMngr == redhat ]]; then
+
+	# Using Ubuntu
+	curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+	sudo apt-get install -y nodejs
+
+	# Using Debian, as root
+	curl -sL https://deb.nodesource.com/setup_13.x | bash -
+	apt-get install -y nodejs
+
+elif [[ $(distribution) == redhat ]]; then
+	$sudo yum groupinstall -y "Development Tools"
 	$sudo yum install -y \
-		vim
+	build-essential tar vim git gcc curl wget tmux make gzip zip unzip \
+	clang clang-extra-tools ctags cmake \
+	python3 python3*-devel python3-pip python-pip \
+	tree \
+	gzip \
+	maven java-11-openjdk java-11-openjdk-devel \
+	nodejs npm \
+	texlive-*
 fi
 
 $sudo npm install -g typescript pkg ts-node
