@@ -1,3 +1,13 @@
 Host school
 	HostName linux2.ce.hongik.ac.kr
 	User B611062
+
+Host ecl
+	HostName 143.248.57.11
+	User mjo97
+	Port 61234
+
+Host nas
+	HostName 143.248.57.95
+	User admin
+	Port 61022
