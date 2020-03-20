@@ -44,14 +44,15 @@ $sudo apt update
 
 #필요한 프로그램 설치
 $sudo apt install -y \
-	build-essential clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
+	build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
+	clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
 	python3-dev python3 python3-dev python-pip python3-pip \
-	bear gzip make vim sshpass tmux unzip git zip w3m wget traceroute git-extras \
 	bfs tree \
+	bear gzip sshpass w3m traceroute git-extras \
 	maven transmission-daemon openjdk-11-jdk \
-	figlet youtube-dl lolcat img2pdf rename screenfetch \
+	cmatrix figlet youtube-dl lolcat img2pdf screenfetch \
 	erlang erlang-dev \
-	nodejs npm\
+	nodejs npm \
 	texlive-full
 
 $sudo npm install -g typescript pkg ts-node
