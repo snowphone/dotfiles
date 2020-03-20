@@ -1,5 +1,6 @@
 #!/bin/bash
 
+// TODO: ccls, bfs
 # Prepare phase
 
 ## screenfetch 
