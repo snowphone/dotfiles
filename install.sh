@@ -1,49 +1,26 @@
 #!/bin/bash
 
-# Auxiliary functions
-
-distribution ()
-{
-	local dtype
-	# Assume unknown
-	dtype="unknown"
-	
-	# First test against Fedora / RHEL / CentOS / generic Redhat derivative
-	if [ -r /etc/rc.d/init.d/functions ]; then
-		source /etc/rc.d/init.d/functions
-		[ zz`type -t passed 2>/dev/null` == "zzfunction" ] && dtype="redhat"
-	
-	# Then test against SUSE (must be after Redhat,
-	# I've seen rc.status on Ubuntu I think? TODO: Recheck that)
-	elif [ -r /etc/rc.status ]; then
-		source /etc/rc.status
-		[ zz`type -t rc_reset 2>/dev/null` == "zzfunction" ] && dtype="suse"
-	
-	# Then test against Debian, Ubuntu and friends
-	elif [ -r /lib/lsb/init-functions ]; then
-		source /lib/lsb/init-functions
-		[ zz`type -t log_begin_msg 2>/dev/null` == "zzfunction" ] && dtype="debian"
-	
-	# Then test against Gentoo
-	elif [ -r /etc/init.d/functions.sh ]; then
-		source /etc/init.d/functions.sh
-		[ zz`type -t ebegin 2>/dev/null` == "zzfunction" ] && dtype="gentoo"
-	
-	# For Mandriva we currently just test if /etc/mandriva-release exists
-	# and isn't empty (TODO: Find a better way :)
-	elif [ -s /etc/mandriva-release ]; then
-		dtype="mandriva"
-
-	# For Slackware we currently just test if /etc/slackware-version exists
-	elif [ -s /etc/slackware-version ]; then
-		dtype="slackware"
-
-	fi
-	echo $dtype
-}
-
 # Prepare phase
 
+## screenfetch 
+wget -O screenfetch-dev https://git.io/vaHfR
+chmod +x screenfetch-dev
+
+## Get distribution
+./screenfetch-dev 2> /dev/null | grep -i ubuntu
+if [[ $? -eq 0 ]]
+then
+	dist="debian"
+fi
+
+./screenfetch-dev 2> /dev/null | grep -i centos
+if [[ $? -eq 0 ]]
+then
+	dist="redhat"
+fi
+
+
+## Check for accessibility
 if [[ $(whoami) == "root" ]]; then
 	sudo=""
 else
@@ -52,6 +29,7 @@ fi
 
 folder=$(pwd)
 
+## Check if running in WSL
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 	isWsl=true
 else
@@ -82,7 +60,7 @@ touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 #링크 설정
-if [ isWsl == true ]; then
+if [ $isWsl == true ]; then
 	ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
 	ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
 	ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
@@ -99,7 +77,7 @@ $sudo apt update
 
 
 #필요한 프로그램 설치
-if [[ $(distribution) == apt ]]; then
+if [[ $dist == "debian" ]]; then
 $sudo apt install -y \
 	build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
 	clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
@@ -119,12 +97,12 @@ $sudo apt install -y \
 	curl -sL https://deb.nodesource.com/setup_13.x | bash -
 	apt-get install -y nodejs
 
-elif [[ $(distribution) == redhat ]]; then
+elif [[ $dist == "redhat" ]]; then
 	$sudo yum groupinstall -y "Development Tools"
 	$sudo yum install -y \
-	build-essential tar vim git gcc curl wget tmux make gzip zip unzip \
-	clang clang-extra-tools ctags cmake \
-	python3 python3*-devel python3-pip python-pip \
+	tar vim git gcc curl wget tmux make gzip zip unzip \
+	clang clang-tools-extra ctags cmake \
+	python3 python3*-devel python3-pip \
 	tree \
 	gzip \
 	maven java-11-openjdk java-11-openjdk-devel \
