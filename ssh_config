@@ -11,3 +11,7 @@ Host nas
 	HostName 143.248.57.95
 	User admin
 	Port 61022
+
+Host gpu
+	HostName 143.248.56.91
+	User sixtyfive
