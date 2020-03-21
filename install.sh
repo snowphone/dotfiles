@@ -1,6 +1,6 @@
 #!/bin/bash
 
-// TODO: ccls, bfs
+// TODO: ccls, bfs is not working on CentOS
 # Prepare phase
 
 ## screenfetch 
@@ -69,26 +69,28 @@ if [ $isWsl == true ]; then
 fi
 
 #apt 저장소를 국내로 변경
-$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-
-#apt 저장소 갱신
-$sudo apt update
+if [[ $dist == "debian" ]]; then
+	$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+	$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+	$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+fi
 
 
 #필요한 프로그램 설치
 if [[ $dist == "debian" ]]; then
-$sudo apt install -y \
-	build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
-	clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
-	python3-dev python3 python-pip python3-pip \
-	bfs tree \
-	bear gzip sshpass w3m traceroute git-extras \
-	maven transmission-daemon openjdk-11-jdk \
-	cmatrix figlet youtube-dl lolcat img2pdf screenfetch \
-	erlang erlang-dev \
-	texlive-full
+	#apt 저장소 갱신
+	$sudo apt update
+
+	$sudo apt install -y \
+		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
+		clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
+		python3-dev python3 python-pip python3-pip \
+		bfs tree \
+		bear gzip sshpass w3m traceroute git-extras \
+		maven transmission-daemon openjdk-11-jdk \
+		cmatrix figlet youtube-dl lolcat img2pdf screenfetch \
+		erlang erlang-dev \
+		texlive-full
 
 	# Using Ubuntu
 	curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
