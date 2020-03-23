@@ -5,7 +5,7 @@
 if [[ "$@" == *"--help"*  ||  "$@" == *"-h"* ]]; then
 	printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b]\n"
 	printf "\t--help|-h:\tPrint help message\n"
-	printf "\t--latex|-l:\tInstall texlive-full\n"
+	printf "\t--latex|-l:\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
 	printf "\t--boost|-b:\tInstall libboost-all-dev\n"
 	printf "\n"
 	exit 0
@@ -19,6 +19,19 @@ if [[ "$@" == *"--boost"* || "$@" == *"-b"* ]]; then
 	needBoost=true
 fi
 
+## Check for accessibility
+if [[ $(whoami) == "root" ]]; then
+	sudo=""
+else
+	sudo="sudo"
+fi
+
+$sudo apt install -y wget || $sudo yum install -y wget
+
+## screenfetch 
+wget -O screenfetch-dev https://git.io/vaHfR
+chmod +x screenfetch-dev
+
 
 ## Get distribution
 distData=$(./screenfetch-dev)
@@ -27,24 +40,6 @@ if echo $distData | grep -i ubuntu > /dev/null; then
 elif echo $distData | grep -i centos > /dev/null; then
 	dist="redhat"
 fi
-
-
-## Check for accessibility
-if [[ $(whoami) == "root" ]]; then
-	sudo=""
-else
-	sudo="sudo"
-fi
-
-if [ $dist == "debian" ]; then
-	$sudo apt install -y wget
-elif [ $dist == "redhat" ]; then
-	$sudo yum install -y wget
-fi
-
-## screenfetch 
-wget -O screenfetch-dev https://git.io/vaHfR
-chmod +x screenfetch-dev
 
 folder=$(pwd)
 
@@ -79,7 +74,7 @@ touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 #링크 설정
-if [ $isWsl == true ]; then
+if [[ $isWsl == true ]]; then
 	ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
 	ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
 	ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
@@ -108,14 +103,14 @@ if [[ $dist == "debian" ]]; then
 		maven transmission-daemon openjdk-11-jdk \
 		figlet youtube-dl lolcat img2pdf screenfetch
 
-	if [ $needLatex == true ]; then
+	if [[ -n $needLatex && $needLatex == true ]]; then
 		$sudo apt install -y texlive-full
 	fi
-	if [ $needBoost == true ]; then
+	if [[ -n $needBoost && $needBoost == true ]]; then
 		$sudo apt install -y libboost-all-dev
 	fi
 
-	if [ -z $sudo ];then
+	if [[ -z $sudo ]];then
 		# Using Debian, as root
 		curl -sL https://deb.nodesource.com/setup_13.x | bash -
 		apt-get install -y nodejs
@@ -133,15 +128,15 @@ elif [[ $dist == "redhat" ]]; then
 	clang clang-tools-extra ctags cmake \
 	python3 python3*-devel python3-pip \
 	tree \
-	gzip \
+	gzip gem \
 	maven java-11-openjdk java-11-openjdk-devel \
 	nodejs npm
 
-	if [ $needLatex == true ]; then
+	if [[ -n $needLatex && $needLatex == true ]]; then
 		$sudo yum install -y texlive-*
 	fi
 
-	if [ $needBoost == true ]; then
+	if [[ -n $needBoost && $needBoost == true ]]; then
 		$sudo yum install -y boost-*
 	fi
 fi
@@ -189,6 +184,7 @@ ln -fs "$folder"/ssh_config ~/.ssh/config
 vim -c PlugUpdate -c quitall
 
 #Promptline 설정
+$sudo chmod +w ~
 vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
 
 # coc.nvim 설정
