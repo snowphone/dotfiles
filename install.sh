@@ -1,8 +1,19 @@
 #!/bin/bash
 
+# Auxiliary functions
+
+function contains {
+	# $1: argv(haystack), $2: keyword(needle)
+	local shorten=$(printf "%1c" "$2")
+	if [[ "$1" == *"--$2"*  ||  "$@" == *"-$shorten"* ]]; then
+		return 0
+	fi
+	return 1
+}
+
 # Prepare phase
 
-if [[ "$@" == *"--help"*  ||  "$@" == *"-h"* ]]; then
+if  contains $@, "help"; then
 	printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b]\n"
 	printf "\t--help|-h:\tPrint help message\n"
 	printf "\t--latex|-l:\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
@@ -11,11 +22,11 @@ if [[ "$@" == *"--help"*  ||  "$@" == *"-h"* ]]; then
 	exit 0
 fi
 
-if [[ "$@" == *"--latex"* || "$@" == *"-l"* ]]; then
+if contains $@, "latex"; then
 	needLatex=true
 fi
 
-if [[ "$@" == *"--boost"* || "$@" == *"-b"* ]]; then
+if contains $@, "boost"; then
 	needBoost=true
 fi
 
@@ -96,12 +107,15 @@ if [[ $dist == "debian" ]]; then
 
 	$sudo apt install -y \
 		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
-		clang clangd-9 clang-tools-8 exuberant-ctags cmake clang-format \
+		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
 		bfs tree \
 		bear gzip sshpass w3m traceroute git-extras \
-		maven transmission-daemon openjdk-11-jdk \
+		maven transmission-daemon \
 		figlet youtube-dl lolcat img2pdf screenfetch
+
+	$sudo apt install -y clang-9 clang-tools-9  || $sudo apt install -y clang-8 clang-tools-8
+	$sudo apt install -y  openjdk-11-jdk || $sudo apt install -y openjdk-9-jdk
 
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		$sudo apt install -y texlive-full
