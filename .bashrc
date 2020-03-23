@@ -486,7 +486,7 @@ source ~/.promptline.sh
 
 
 export FZF_DEFAULT_OPTS='-m --border'
-if apt --version > /dev/null; then
+if apt --version &> /dev/null; then
 	# Use bfs only if distribution is ubuntu
 	export FZF_DEFAULT_COMMAND='bfs -L'
 fi
