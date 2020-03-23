@@ -140,6 +140,10 @@ elif [[ $dist == "redhat" ]]; then
 	if [ $needLatex == true ]; then
 		$sudo yum install -y texlive-*
 	fi
+
+	if [ $needBoost == true ]; then
+		$sudo yum install -y boost-*
+	fi
 fi
 
 $sudo npm install -g typescript pkg ts-node
