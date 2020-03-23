@@ -105,14 +105,16 @@ if [[ $dist == "debian" ]]; then
 	#apt 저장소 갱신
 	$sudo apt update
 
-	$sudo apt install -y \
+	for pkg in \
 		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
 		bfs tree htop \
 		bear gzip sshpass w3m traceroute git-extras \
 		maven transmission-daemon \
-		figlet youtube-dl lolcat img2pdf screenfetch
+		figlet youtube-dl lolcat img2pdf screenfetch; do
+		$sudo apt install -qy $pkg
+	done
 
 	$sudo apt install -y clang-9 clang-tools-9  || $sudo apt install -y clang-8 clang-tools-8
 	$sudo apt install -y  openjdk-11-jdk || $sudo apt install -y openjdk-9-jdk
