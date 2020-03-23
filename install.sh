@@ -1,7 +1,20 @@
 #!/bin/bash
 
-// TODO: ccls, bfs is not working on CentOS
+# TODO: bfs is not working on CentOS
 # Prepare phase
+
+if [[ "$@" == *"--help"*  ||  "$@" == *"-h"* ]]; then
+	printf "Usage: $0 [--help|-h] [--latex|-l]\n"
+	printf "\t--help|-h:\tPrint help message\n"
+	printf "\t--latex|-l:\tInstall texlive-full\n"
+	printf "\n"
+	exit 0
+fi
+
+if [[ "$@" == *"--latex"* || "$@" == *"-l"* ]]; then
+	needLatex=true
+fi
+
 
 ## screenfetch 
 wget -O screenfetch-dev https://git.io/vaHfR
@@ -83,8 +96,11 @@ if [[ $dist == "debian" ]]; then
 		bfs tree \
 		bear gzip sshpass w3m traceroute git-extras \
 		maven transmission-daemon openjdk-11-jdk \
-		cmatrix figlet youtube-dl lolcat img2pdf screenfetch \
-		texlive-full
+		cmatrix figlet youtube-dl lolcat img2pdf screenfetch
+
+	if [ $needLatex == true ]; then
+		$sudo apt install -y texlive-full
+	fi
 
 	if [ -z $sudo ];then
 		# Using Debian, as root
@@ -106,8 +122,11 @@ elif [[ $dist == "redhat" ]]; then
 	tree \
 	gzip \
 	maven java-11-openjdk java-11-openjdk-devel \
-	nodejs npm \
-	texlive-*
+	nodejs npm
+
+	if [ $needLatex == true ]; then
+		$sudo yum install -y texlive-*
+	fi
 fi
 
 $sudo npm install -g typescript pkg ts-node
