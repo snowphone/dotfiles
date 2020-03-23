@@ -84,7 +84,6 @@ if [[ $dist == "debian" ]]; then
 		bear gzip sshpass w3m traceroute git-extras \
 		maven transmission-daemon openjdk-11-jdk \
 		cmatrix figlet youtube-dl lolcat img2pdf screenfetch \
-		erlang erlang-dev \
 		texlive-full
 
 	if [ -z $sudo ];then

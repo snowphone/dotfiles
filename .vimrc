@@ -80,8 +80,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Maxattax97/coc-ccls'
 silent! source ~/.coc.vimrc
 
-Plug 'hyhugh/coc-erlang_ls', {'do': 'yarn install --frozen-lockfile'}
-
 
 "파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
 aug python
