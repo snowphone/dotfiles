@@ -109,7 +109,7 @@ if [[ $dist == "debian" ]]; then
 		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
-		bfs tree \
+		bfs tree htop \
 		bear gzip sshpass w3m traceroute git-extras \
 		maven transmission-daemon \
 		figlet youtube-dl lolcat img2pdf screenfetch
@@ -141,7 +141,7 @@ elif [[ $dist == "redhat" ]]; then
 	tar vim git gcc curl wget tmux make gzip zip unzip \
 	clang clang-tools-extra ctags cmake \
 	python3 python3*-devel python3-pip \
-	tree \
+	tree htop \
 	gzip gem \
 	maven java-11-openjdk java-11-openjdk-devel \
 	nodejs npm
