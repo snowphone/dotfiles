@@ -4,9 +4,10 @@
 # Prepare phase
 
 if [[ "$@" == *"--help"*  ||  "$@" == *"-h"* ]]; then
-	printf "Usage: $0 [--help|-h] [--latex|-l]\n"
+	printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b]\n"
 	printf "\t--help|-h:\tPrint help message\n"
 	printf "\t--latex|-l:\tInstall texlive-full\n"
+	printf "\t--boost|-b:\tInstall libboost-all-dev\n"
 	printf "\n"
 	exit 0
 fi
@@ -15,6 +16,9 @@ if [[ "$@" == *"--latex"* || "$@" == *"-l"* ]]; then
 	needLatex=true
 fi
 
+if [[ "$@" == *"--boost"* || "$@" == *"-b"* ]]; then
+	needBoost=true
+fi
 
 ## screenfetch 
 wget -O screenfetch-dev https://git.io/vaHfR
@@ -91,15 +95,18 @@ if [[ $dist == "debian" ]]; then
 
 	$sudo apt install -y \
 		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
-		clang clangd-9 clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
+		clang clangd-9 clang-tools-8 exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
 		bfs tree \
 		bear gzip sshpass w3m traceroute git-extras \
 		maven transmission-daemon openjdk-11-jdk \
-		cmatrix figlet youtube-dl lolcat img2pdf screenfetch
+		figlet youtube-dl lolcat img2pdf screenfetch
 
 	if [ $needLatex == true ]; then
 		$sudo apt install -y texlive-full
+	fi
+	if [ $needBoost == true ]; then
+		$sudo apt install -y libboost-all-dev
 	fi
 
 	if [ -z $sudo ];then
