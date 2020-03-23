@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: bfs is not working on CentOS
 # Prepare phase
 
 if [[ "$@" == *"--help"*  ||  "$@" == *"-h"* ]]; then
@@ -20,9 +19,6 @@ if [[ "$@" == *"--boost"* || "$@" == *"-b"* ]]; then
 	needBoost=true
 fi
 
-## screenfetch 
-wget -O screenfetch-dev https://git.io/vaHfR
-chmod +x screenfetch-dev
 
 ## Get distribution
 distData=$(./screenfetch-dev)
@@ -39,6 +35,16 @@ if [[ $(whoami) == "root" ]]; then
 else
 	sudo="sudo"
 fi
+
+if [ $dist == "debian" ]; then
+	$sudo apt install -y wget
+elif [ $dist == "redhat" ]; then
+	$sudo yum install -y wget
+fi
+
+## screenfetch 
+wget -O screenfetch-dev https://git.io/vaHfR
+chmod +x screenfetch-dev
 
 folder=$(pwd)
 
