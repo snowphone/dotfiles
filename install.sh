@@ -78,7 +78,7 @@ if [[ $dist == "debian" ]]; then
 
 	$sudo apt install -y \
 		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
-		clang clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
+		clang clangd-9 clang-tools-8 exuberant-ctags libboost-all-dev cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
 		bfs tree \
 		bear gzip sshpass w3m traceroute git-extras \
@@ -148,14 +148,6 @@ ln -fs "$folder"/pip.conf ~/.pip/pip.conf
 
 # Set ssh host
 ln -fs "$folder"/ssh_config ~/.ssh/config
-
-# ccls 설치
-git clone --depth=1 --recursive https://github.com/MaskRay/ccls ~/.ccls
-cd ~/.ccls/
-wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04
-$sudo cmake --build Release --target install
 
 #vim 설정
 vim -c PlugUpdate -c quitall
