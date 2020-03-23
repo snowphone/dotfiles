@@ -8,15 +8,10 @@ wget -O screenfetch-dev https://git.io/vaHfR
 chmod +x screenfetch-dev
 
 ## Get distribution
-./screenfetch-dev 2> /dev/null | grep -i ubuntu
-if [[ $? -eq 0 ]]
-then
+distData=$(./screenfetch-dev)
+if echo $distData | grep -i ubuntu > /dev/null; then
 	dist="debian"
-fi
-
-./screenfetch-dev 2> /dev/null | grep -i centos
-if [[ $? -eq 0 ]]
-then
+elif echo $distData | grep -i centos > /dev/null; then
 	dist="redhat"
 fi
 
@@ -31,7 +26,7 @@ fi
 folder=$(pwd)
 
 ## Check if running in WSL
-if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+if df /mnt/c; then
 	isWsl=true
 else
 	isWsl=false
