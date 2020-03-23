@@ -1,8 +1,6 @@
 # dotfiles
 
-실행: 
-###
-cd dotfiles
-
-./install.sh
-###
+## Installation
+~~~bash
+apt update && apt install -y git wget && git clone https://github.com/snowphone/dotfiles ~/.dotfiles && cd ~/.dotfiles && ./install.sh
+~~~
