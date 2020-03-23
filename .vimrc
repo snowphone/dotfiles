@@ -78,7 +78,7 @@ Plug 'Townk/vim-autoclose'
 " 여기에 LSP 관련 내용 추가
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Maxattax97/coc-ccls'
-source ~/.coc.vimrc
+silent! source ~/.coc.vimrc
 
 Plug 'hyhugh/coc-erlang_ls', {'do': 'yarn install --frozen-lockfile'}
 
