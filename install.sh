@@ -86,14 +86,6 @@ $sudo sed -i 's/#\?Port 22/Port 2222/' /etc/ssh/sshd_config
 $sudo sed -i 's/UsePrivilegeSeparation */UsePrivilegeSeparation no/' /etc/ssh/sshd_config
 $sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
-#sshkey 생성
-$sudo ssh-keygen -A
-
-mkdir ~/.ssh/
-chmod 700 ~/.ssh/
-touch ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-
 #링크 설정
 if [[ $isWsl == true ]]; then
 	ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
@@ -108,9 +100,11 @@ if [[ $dist == "debian" ]]; then
 	$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 	$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 
-	if [[ "$distData" == *'Ubuntu 16'* ]]; then
+	version=$(cat /proc/version)
+	if [[ "$version" == *"Ubuntu"* && "$version" == *"16.04"* ]]; then
 		echo "Add a new repository for Vim 8"
-		$sudo apt-get install software-properties-common
+		$sudo apt update
+		$sudo apt-get install -y software-properties-common
 		$sudo apt update
 		$sudo add-apt-repository -y ppa:jonathonf/vim
 	fi
@@ -175,6 +169,14 @@ elif [[ $dist == "redhat" ]]; then
 fi
 
 export_clang
+
+#sshkey 생성
+$sudo ssh-keygen -A
+
+mkdir ~/.ssh/
+chmod 700 ~/.ssh/
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
 
 $sudo npm install -g typescript pkg ts-node
 
