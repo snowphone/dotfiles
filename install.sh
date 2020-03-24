@@ -228,7 +228,7 @@ vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
 ln -sf "$folder"/coc-settings.json ~/.vim/
 ln -sf "$folder"/.coc.vimrc ~/
 $sudo npm i -g bash-language-server
-pip3 install python-language-server
+pip3 install python-language-server pylint rope jedi
 vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
 
 
