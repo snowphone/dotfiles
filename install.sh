@@ -107,6 +107,13 @@ if [[ $dist == "debian" ]]; then
 	$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 	$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 	$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+
+	if [[ "$distData" == *'Ubuntu 16'* ]]; then
+		echo "Add a new repository for Vim 8"
+		$sudo apt-get install software-properties-common
+		$sudo apt update
+		$sudo add-apt-repository -y ppa:jonathonf/vim
+	fi
 fi
 
 
