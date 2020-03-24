@@ -11,6 +11,16 @@ function contains {
 	return 1
 }
 
+function export_clang {
+	if clang-9 --version &> /dev/null; then
+		$sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-9 10
+		$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-9 10
+	elif clang-8 --version &> /dev/null; then
+		$sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-8 10
+		$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 10
+	fi
+}
+
 # Prepare phase
 
 if  contains $@, "help"; then
@@ -156,6 +166,8 @@ elif [[ $dist == "redhat" ]]; then
 		$sudo yum install -y boost-*
 	fi
 fi
+
+export_clang
 
 $sudo npm install -g typescript pkg ts-node
 
