@@ -231,7 +231,9 @@ vim -c "PromptlineSnapshot ~/.promptline.sh airline" -c quitall
 ln -sf "$folder"/coc-settings.json ~/.vim/
 ln -sf "$folder"/.coc.vimrc ~/
 $sudo npm i -g bash-language-server
-pip3 install python-language-server pylint rope jedi
+pip3 install --user 'python-language-server[yapf]' pylint rope jedi yapf
+mkdir -p ~/.config/yapf
+ln -sf "$folder"/py_style ~/.config/yapf/style
 vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
 
 
