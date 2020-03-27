@@ -15,3 +15,7 @@ Host nas
 Host gpu
 	HostName 143.248.56.91
 	User sixtyfive
+
+Host cluster
+	HostName 143.248.56.148
+	User sixtyfive
