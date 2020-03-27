@@ -109,7 +109,8 @@ Plug 'rbong/vim-flog'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'Yggdroot/indentLine'
-let g:indentLine_char = '┆'
+let g:indentLine_char = '┊'
+set list lcs=tab:\┊\ 
 
 "Highlighting for Typescript
 Plug 'leafgarland/typescript-vim'
