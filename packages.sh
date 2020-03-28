@@ -3,12 +3,6 @@
 # Parse arguments
 ALLOWED_DISTS=(debian redhat)
 
-function handle_error {
-	pkgs=$1
-	pkg=$2
-
-}
-
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
@@ -77,6 +71,7 @@ if [[ $dist == "debian" ]]; then
 		echo "Add a new repository named jonathonf/vim"
 		$sudo add-apt-repository -y ppa:jonathonf/vim &> /dev/null
 	fi
+	curl -sL https://deb.nodesource.com/setup_12.x | bash - &> /dev/null
 fi
 
 
@@ -107,9 +102,10 @@ if [[ $dist == "debian" ]]; then
 	fi
 
 
-	while (( ${#pkgs[@]} ))
+	while (( ${#pkgs[@]} )) 	# While !pkgs.empty()
 	do
-		pkg=${pkgs[0]}
+		pkg=${pkgs[0]}			# Get head
+		pkgs=( "${pkgs[@]:1}" )	# Pop head
 
 		printf "Installing $pkg... "
 
@@ -126,7 +122,6 @@ if [[ $dist == "debian" ]]; then
 				pkgs+=("openjdk-9-jdk")
 			fi
 		fi
-		pkgs=( "${pkgs[@]:1}" )
 	done
 elif [[ $dist == "redhat" ]]; then
 	$sudo yum groupinstall -y "Development Tools"
