@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 ./packages.sh "$@" || (echo "Package installation failed" && exit 1)
 ./vim.sh  || (echo "Vim configuration is failed" && exit 1)
 
