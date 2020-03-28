@@ -103,6 +103,7 @@ if [[ $dist == "debian" ]]; then
 	fi
 
 
+	failedList=()
 	while (( ${#pkgs[@]} )) 	# While !pkgs.empty()
 	do
 		pkg=${pkgs[0]}			# Get head
@@ -114,6 +115,7 @@ if [[ $dist == "debian" ]]; then
 			echo "done!"
 		else 
 			echo "failed!"
+			failedList+=($pkg)
 
 			if [[ $pkg == "clang-9" ]]; then
 				pkgs+=("clang-8")
@@ -124,6 +126,11 @@ if [[ $dist == "debian" ]]; then
 			fi
 		fi
 	done
+
+	if [[ ${#failedList[@]} -gt 0 ]]; then
+		echo "${failedList[@]}" >> install_failed.log
+	fi
+
 elif [[ $dist == "redhat" ]]; then
 	$sudo yum groupinstall -y "Development Tools"
 	$sudo yum install -y \
