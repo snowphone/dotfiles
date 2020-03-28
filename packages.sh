@@ -3,6 +3,21 @@
 # Parse arguments
 ALLOWED_DISTS=(debian redhat)
 
+function handle_error {
+	pkgs=$1
+	pkg=$2
+
+	echo "failed!"
+
+	if [[ $pkg == "clang-9" ]]; then
+		pkgs+=("clang-8")
+	elif [[ $pkg == "clang-tools-9" ]]; then
+		pkgs+=("clang-tools-8" "clangd-8")
+	elif [[ $pkg == "openjdk-11-jdk" ]]; then
+		pkgs+=("openjdk-9-jdk")
+	fi
+}
+
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
@@ -104,17 +119,7 @@ if [[ $dist == "debian" ]]; then
 	for pkg in ${pkgs[@]}
 	do
 		printf "Installing $pkg... "
-		($sudo apt install -qy $pkg &> /dev/null && echo "done!") || (isFailed=true; echo "failed!")
-		if [[ $isFailed == true ]]; then
-			if [[ $pkg == "clang-9" ]]; then
-				pkgs+=("clang-8")
-			elif [[ $pkg == "clang-tools-9" ]]; then
-				pkgs+=("clang-tools-8" "clangd-8")
-			elif [[ $pkg == "openjdk-11-jdk" ]]; then
-				pkgs+=("openjdk-9-jdk")
-			fi
-			isFailed=false
-		fi
+		($sudo apt install -qy $pkg &> /dev/null && echo "done!") || handle_error
 	done
 elif [[ $dist == "redhat" ]]; then
 	$sudo yum groupinstall -y "Development Tools"
