@@ -86,7 +86,7 @@ if [[ $dist == "debian" ]]; then
 		figlet youtube-dl lolcat img2pdf screenfetch
 	do
 		printf "Installing $pkg..."
-		($sudo apt install -qy $pkg > dev/null && echo " done!") || echo " failed!"
+		($sudo apt install -qy $pkg &> /dev/null && echo " done!") || echo " failed!"
 	done
 
 	$sudo apt install -y clang-9 clang-tools-9  || $sudo apt install -y clang-8 clang-tools-8
