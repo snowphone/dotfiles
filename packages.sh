@@ -72,7 +72,12 @@ if [[ $dist == "debian" ]]; then
 		$sudo add-apt-repository -y ppa:jonathonf/vim &> /dev/null
 	fi
 	echo "Add a new repository for nodejs"
-	curl -sL https://deb.nodesource.com/setup_12.x | bash - &> /dev/null
+	if [[ -n $sudo ]]; then
+		curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &> /dev/null
+	else
+		curl -sL https://deb.nodesource.com/setup_12.x | bash - &> /dev/null
+	fi
+
 fi
 
 
@@ -120,7 +125,7 @@ if [[ $dist == "debian" ]]; then
 			if [[ $pkg == "clang-9" ]]; then
 				pkgs+=("clang-8")
 			elif [[ $pkg == "clang-tools-9" ]]; then
-				pkgs+=("clang-tools-8" "clangd-8")
+				pkgs+=("clang-tools-8")
 			elif [[ $pkg == "openjdk-11-jdk" ]]; then
 				pkgs+=("openjdk-9-jdk")
 			fi
