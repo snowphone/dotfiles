@@ -65,16 +65,17 @@ if [[ $dist == "debian" ]]; then
 	version=$(cat /proc/version)
 	if [[ "$version" == *"Ubuntu"* && "$version" == *"16.04"* ]]; then
 		echo "Add a new repository for Vim 8"
-		$sudo apt update
-		$sudo apt-get install -y software-properties-common
-		$sudo apt update
-		$sudo add-apt-repository -y ppa:jonathonf/vim
+		echo "Update apt" && $sudo apt update &> /dev/null
+		$sudo apt-get install -y software-properties-common &> /dev/null
+		$sudo apt update &> /dev/null
+		echo "Add a new repository named jonathonf/vim"
+		$sudo add-apt-repository -y ppa:jonathonf/vim &> /dev/null
 	fi
 fi
 
 
 if [[ $dist == "debian" ]]; then
-	$sudo apt update
+	$sudo apt update &> /dev/null
 
 	pkgs=( \
 		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
@@ -147,11 +148,11 @@ elif clang-8 --version &> /dev/null; then
 fi
 
 printf "Installing typescript modules... "
-($sudo npm install -g typescript pkg ts-node && echo "done!") || echo "failed!"
+($sudo npm install -g typescript pkg ts-node &> /dev/null && echo "done!") || echo "failed!"
 
 printf "Installing mdless... "
 # Install markdown viewer
-($sudo gem install mdless && echo "done!") || echo "failed!"
+($sudo gem install mdless &> /dev/null && echo "done!") || echo "failed!"
 
 # Install fzf
 printf "Installing fzf..."

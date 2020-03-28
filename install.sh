@@ -1,13 +1,18 @@
 #!/bin/bash
-set -e
-./packages.sh "$@" || (echo "Package installation failed" && exit 1)
-./vim.sh  || (echo "Vim configuration is failed" && exit 1)
 
-./git.sh # Global git configuration
-./misc.sh # ssh server, transmission, wsl folder linking
-./link.sh # symbolic links
-./tmux.sh # tmuxResurrect and symbolic links about it
-./ssh_key.sh # Generate ssh key
+function die {
+	printf "ERROR: %s\n\n" "$@"
+	exit 1
+}
+
+./packages.sh "$@"	|| die "Package installation failed"
+./vim.sh	|| die "Vim configuration is failed"
+
+./git.sh	|| die "git configuration failed" # Global git configuration
+./misc.sh	|| die "sshd, transmission, and wsl folder aliasing are failed" # ssh server, transmission, wsl folder linking
+./link.sh	|| die "Aliasing config files is failed" # symbolic links
+./tmux.sh	|| die "Failed to setup tmuxResurrect and some config files" # tmuxResurrect and symbolic links about it
+./ssh_key.sh	|| die "Failed to generate ssh key" # Generate ssh key
 
 
 cd ~
