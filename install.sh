@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./packages.sh "$@" || echo "Package installation failed" && exit 1
+./packages.sh "$@" || (echo "Package installation failed" && exit 1)
 
 
 ## Check for accessibility

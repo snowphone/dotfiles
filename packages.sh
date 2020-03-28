@@ -76,44 +76,45 @@ fi
 if [[ $dist == "debian" ]]; then
 	$sudo apt update
 
-	for pkg in \
+	pkgs=( \
 		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
 		bfs tree htop \
 		bear gzip sshpass w3m traceroute git-extras \
 		transmission-daemon \
-		figlet youtube-dl lolcat img2pdf screenfetch
-	do
-		printf "Installing $pkg..."
-		($sudo apt install -qy $pkg &> /dev/null && echo " done!") || echo " failed!"
-	done
-
-	$sudo apt install -y clang-9 clang-tools-9  || $sudo apt install -y clang-8 clang-tools-8
-
+		figlet youtube-dl lolcat img2pdf screenfetch \
+		nodejs npm \
+		clang-9 clang-tools-9
+	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
-		$sudo apt install -y texlive-full
+		pkgs+=(texlive-full)
 	fi
 
 	if [[ -n $needBoost && $needBoost == true ]]; then
-		$sudo apt install -y libboost-all-dev
+		pkgs+=(libboost-all-dev)
 	fi
 
 	if [[ -n $needJava && $needJava == true ]]; then
-		$sudo apat install -y maven 
-		$sudo apt install -y  openjdk-11-jdk || $sudo apt install -y openjdk-9-jdk
+		pkgs+=(maven openjdk-11-jdk)
 	fi
 
-	if [[ -z $sudo ]];then
-		# Using Debian, as root
-		curl -sL https://deb.nodesource.com/setup_13.x | bash -
-		apt-get install -y nodejs
-	else
-		# Using Ubuntu
-		curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-		sudo apt-get install -y nodejs
-	fi
 
+	for pkg in ${pkgs[@]}
+	do
+		printf "Installing $pkg... "
+		($sudo apt install -qy $pkg &> /dev/null && echo "done!") || (isFailed=true; echo "failed!")
+		if [[ $isFailed == true ]]; then
+			if [[ $pkg == "clang-9" ]]; then
+				pkgs+=("clang-8")
+			elif [[ $pkg == "clang-tools-9" ]]; then
+				pkgs+=("clang-tools-8")
+			elif [[ $pkg == "openjdk-11-jdk" ]]; then
+				pkgs+=("openjdk-9-jdk")
+			fi
+			isFailed=false
+		fi
+	done
 elif [[ $dist == "redhat" ]]; then
 	$sudo yum groupinstall -y "Development Tools"
 	$sudo yum install -y \
