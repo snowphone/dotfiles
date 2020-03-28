@@ -14,6 +14,7 @@ else
 fi
 
 folder=$(pwd)
+ln -fs "$folder"/.vimrc ~/.vimrc
 
 #vim 설정
 vim -c PlugUpdate -c quitall

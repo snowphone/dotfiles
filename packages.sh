@@ -71,6 +71,7 @@ if [[ $dist == "debian" ]]; then
 		echo "Add a new repository named jonathonf/vim"
 		$sudo add-apt-repository -y ppa:jonathonf/vim &> /dev/null
 	fi
+	echo "Add a new repository for nodejs"
 	curl -sL https://deb.nodesource.com/setup_12.x | bash - &> /dev/null
 fi
 
@@ -86,7 +87,7 @@ if [[ $dist == "debian" ]]; then
 		bear gzip sshpass w3m traceroute git-extras \
 		transmission-daemon \
 		figlet youtube-dl lolcat img2pdf screenfetch \
-		nodejs npm \
+		nodejs \
 		clang-9 clang-tools-9 clangd-9
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
@@ -131,7 +132,7 @@ elif [[ $dist == "redhat" ]]; then
 		python3 python3*-devel python3-pip \
 		tree htop \
 		gzip gem \
-		nodejs
+		nodejs npm
 
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		$sudo yum install -y texlive-*
@@ -162,8 +163,8 @@ printf "Installing mdless... "
 ($sudo gem install mdless &> /dev/null && echo "done!") || echo "failed!"
 
 # Install fzf
-printf "Installing fzf..."
+printf "Installing fzf... "
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &> /dev/null
 ~/.fzf/install --all &> /dev/null
-printf " done!\n"
+printf "done!\n"
 
