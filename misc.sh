@@ -10,7 +10,7 @@ fi
 folder=$(pwd)
 
 ## Check if running in WSL
-if df /mnt/c; then
+if df /mnt/c &> /dev/null; then
 	isWsl=true
 else
 	isWsl=false
