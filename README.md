@@ -1,29 +1,15 @@
 # dotfiles
 
 ## Installation
-On Ubuntu,
 ~~~bash
-if [[ $(whoami) == "root" ]]; then
-  sudo=""
-else
-  sudo="sudo"
-fi
-
-$sudo apt update && \
-$sudo apt install -y git wget && \
 git clone https://github.com/snowphone/dotfiles ~/.dotfiles && \
-cd ~/.dotfiles && ./install.sh
+cd ~/.dotfiles && ./install.sh -d [debian | redhat] [--java|--latex|--boost]
+~~~
+or
+~~~bash
+cd ~ && \
+curl -L https://github.com/snowphone/dotfiles/tarball/master | tar xz && \
+mv snowphone-dotfiles-* .dotfiles && \
+cd ~/.dotfiles && ./install.sh -d [debian | redhat] [--java|--latex|--boost]
 ~~~
 
-On CentOS
-~~~bash
-if [[ $(whoami) == "root" ]]; then
-  sudo=""
-else
-  sudo="sudo"
-fi
-
-$sudo yum install -y git wget && \
-git clone https://github.com/snowphone/dotfiles ~/.dotfiles && \
-cd ~/.dotfiles && ./install.sh
-~~~
