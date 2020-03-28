@@ -85,7 +85,7 @@ if [[ $dist == "debian" ]]; then
 		transmission-daemon \
 		figlet youtube-dl lolcat img2pdf screenfetch \
 		nodejs npm \
-		clang-9 clang-tools-9
+		clang-9 clang-tools-9 clangd-9
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		pkgs+=(texlive-full)
@@ -108,7 +108,7 @@ if [[ $dist == "debian" ]]; then
 			if [[ $pkg == "clang-9" ]]; then
 				pkgs+=("clang-8")
 			elif [[ $pkg == "clang-tools-9" ]]; then
-				pkgs+=("clang-tools-8")
+				pkgs+=("clang-tools-8" "clangd-8")
 			elif [[ $pkg == "openjdk-11-jdk" ]]; then
 				pkgs+=("openjdk-9-jdk")
 			fi
@@ -146,11 +146,12 @@ elif clang-8 --version &> /dev/null; then
 	$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 10
 fi
 
+printf "Installing typescript modules... "
+($sudo npm install -g typescript pkg ts-node && echo "done!") || echo "failed!"
 
-$sudo npm install -g typescript pkg ts-node
-
+printf "Installing mdless... "
 # Install markdown viewer
-$sudo gem install mdless
+($sudo gem install mdless && echo "done!") || echo "failed!"
 
 # Install fzf
 printf "Installing fzf..."
