@@ -1,65 +1,13 @@
 #!/bin/bash
 
-# Auxiliary functions
+./packages.sh "$@" || echo "Package installation failed" && exit 1
 
-function contains {
-	# $1: argv(haystack), $2: keyword(needle)
-	local shorten=$(printf "%1c" "$2")
-	if [[ "$1" == *"--$2"*  ||  "$@" == *"-$shorten"* ]]; then
-		return 0
-	fi
-	return 1
-}
-
-function export_clang {
-	if clang-9 --version &> /dev/null; then
-		$sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-9 10
-		$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-9 10
-	elif clang-8 --version &> /dev/null; then
-		$sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-8 10
-		$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 10
-	fi
-}
-
-# Prepare phase
-
-if  contains $@, "help"; then
-	printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b]\n"
-	printf "\t--help|-h:\tPrint help message\n"
-	printf "\t--latex|-l:\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
-	printf "\t--boost|-b:\tInstall libboost-all-dev\n"
-	printf "\n"
-	exit 0
-fi
-
-if contains $@, "latex"; then
-	needLatex=true
-fi
-
-if contains $@, "boost"; then
-	needBoost=true
-fi
 
 ## Check for accessibility
 if [[ $(whoami) == "root" ]]; then
 	sudo=""
 else
 	sudo="sudo"
-fi
-
-$sudo apt install -y wget || $sudo yum install -y wget
-
-## screenfetch 
-wget -O screenfetch-dev https://git.io/vaHfR
-chmod +x screenfetch-dev
-
-
-## Get distribution
-distData=$(./screenfetch-dev)
-if echo $distData | grep -i ubuntu > /dev/null; then
-	dist="debian"
-elif echo $distData | grep -i centos > /dev/null; then
-	dist="redhat"
 fi
 
 folder=$(pwd)
@@ -94,81 +42,6 @@ if [[ $isWsl == true ]]; then
 	ln -fs /mnt/c/Users/mjo97/Videos/ ~/
 fi
 
-#apt 저장소를 국내로 변경
-if [[ $dist == "debian" ]]; then
-	$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-	$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-	$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-
-	version=$(cat /proc/version)
-	if [[ "$version" == *"Ubuntu"* && "$version" == *"16.04"* ]]; then
-		echo "Add a new repository for Vim 8"
-		$sudo apt update
-		$sudo apt-get install -y software-properties-common
-		$sudo apt update
-		$sudo add-apt-repository -y ppa:jonathonf/vim
-	fi
-fi
-
-
-#필요한 프로그램 설치
-if [[ $dist == "debian" ]]; then
-	#apt 저장소 갱신
-	$sudo apt update
-
-	for pkg in \
-		build-essential tar vim git gcc curl rename wget tmux make gzip zip unzip \
-		exuberant-ctags cmake clang-format \
-		python3-dev python3 python-pip python3-pip \
-		bfs tree htop \
-		bear gzip sshpass w3m traceroute git-extras \
-		maven transmission-daemon \
-		figlet youtube-dl lolcat img2pdf screenfetch; do
-		$sudo apt install -qy $pkg
-	done
-
-	$sudo apt install -y clang-9 clang-tools-9  || $sudo apt install -y clang-8 clang-tools-8
-	$sudo apt install -y  openjdk-11-jdk || $sudo apt install -y openjdk-9-jdk
-
-	if [[ -n $needLatex && $needLatex == true ]]; then
-		$sudo apt install -y texlive-full
-	fi
-	if [[ -n $needBoost && $needBoost == true ]]; then
-		$sudo apt install -y libboost-all-dev
-	fi
-
-	if [[ -z $sudo ]];then
-		# Using Debian, as root
-		curl -sL https://deb.nodesource.com/setup_13.x | bash -
-		apt-get install -y nodejs
-	else
-		# Using Ubuntu
-		curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-		sudo apt-get install -y nodejs
-	fi
-
-
-elif [[ $dist == "redhat" ]]; then
-	$sudo yum groupinstall -y "Development Tools"
-	$sudo yum install -y \
-	tar vim git gcc curl wget tmux make gzip zip unzip \
-	clang clang-tools-extra ctags cmake \
-	python3 python3*-devel python3-pip \
-	tree htop \
-	gzip gem \
-	maven java-11-openjdk java-11-openjdk-devel \
-	nodejs npm
-
-	if [[ -n $needLatex && $needLatex == true ]]; then
-		$sudo yum install -y texlive-*
-	fi
-
-	if [[ -n $needBoost && $needBoost == true ]]; then
-		$sudo yum install -y boost-*
-	fi
-fi
-
-export_clang
 
 #sshkey 생성
 $sudo ssh-keygen -A
@@ -184,16 +57,7 @@ $sudo npm install -g typescript pkg ts-node
 $sudo gem install mdless
 
 #git 설정
-git config --global core.autocrlf input
-git config --global core.eol lf
-
-git config --global user.name "Junoh Moon"
-git config --global user.email "mjo970625@gmail.com"
-
-git config --global merge.tool vimdiff
-
-git config --global diff.tool vimdiff 
-git config --global difftool.prompt false
+"$folder"/git.sh
 
 # Install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
