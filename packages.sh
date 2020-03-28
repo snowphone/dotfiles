@@ -131,7 +131,7 @@ elif [[ $dist == "redhat" ]]; then
 		python3 python3*-devel python3-pip \
 		tree htop \
 		gzip gem \
-		nodejs npm
+		nodejs
 
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		$sudo yum install -y texlive-*
