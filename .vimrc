@@ -80,12 +80,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 silent! source ~/.coc.vimrc
 
 
-"파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
-aug python
-	" ftype/python.vim overwrites this
-	au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
-aug end
-
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
@@ -185,6 +179,11 @@ nmap <S-n> <S-n>zz
 "fzf 설정
 set rtp+=~/.fzf
 
+
+"파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
+aug python
+	au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+aug end
 
 " Very magic mode: vim regex follows normal rule, not vim customized rule
 " For examle, normal vim identifies '(' as literal parenthesis but in regex it
