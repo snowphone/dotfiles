@@ -66,7 +66,7 @@ fi
 ## Also, print a message(done/failed) 
 measure() {
 	SECONDS=0
-	if $@ &> /dev/null; then
+	if eval $@ &> /dev/null; then
 		echo "😉 ($SECONDS seconds)"
 		return 0
 	else
@@ -79,25 +79,27 @@ measure() {
 # Main phase
 ## Change apt repository to kakao mirror
 if [[ $dist == "debian" ]]; then
-	$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-	$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+	printf "Changing mirror site to much faster one... "
+	measure \
+	$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
+	$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
 	$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 
 	version=$(cat /proc/version)
 	if [[ "$version" == *"Ubuntu"* && "$version" == *"16.04"* ]]; then
 		echo "Add a new repository for Vim 8"
 		printf "Updating apt repository... " 
-		measure $sudo apt update; \
-			$sudo apt-get install -y software-properties-common; \
-			$sudo apt update;
+		measure $sudo apt update\; \
+			$sudo apt-get install -y software-properties-common\; \
+			$sudo apt update
 		printf "Adding a new repository named jonathonf/vim... "
 		measure $sudo add-apt-repository -y ppa:jonathonf/vim
 	fi
 	printf "Adding a new repository for nodejs... "
 	if [[ -n $sudo ]]; then
-		measure curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - 
+		measure curl -sL https://deb.nodesource.com/setup_12.x \| sudo -E bash -
 	else
-		measure curl -sL https://deb.nodesource.com/setup_12.x | bash -
+		measure curl -sL https://deb.nodesource.com/setup_12.x \| bash -
 	fi
 
 fi
@@ -105,7 +107,6 @@ fi
 
 if [[ $dist == "debian" ]]; then
 	pkgs=( \
-		banner \
 		build-essential less tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
@@ -129,11 +130,13 @@ if [[ $dist == "debian" ]]; then
 	fi
 	
 	if [[ -n $needSomeFun && $needSomeFun == true ]]; then
-		$sudo apt-get install -y software-properties-common &> /dev/null
-		$sudo add-apt-repository -y ppa:ytvwld/asciiquarium
+		printf "Adding a repository for some fun things... "
+		measure $sudo apt-get install -y software-properties-common \; \
+			$sudo add-apt-repository -y ppa:ytvwld/asciiquarium
 		pkgs+=( sl figlet lolcat toilet asciiquarium bsdgames )
 	fi
 
+	printf "Apt updating... "
 	measure $sudo apt update
 
 	failedList=()
