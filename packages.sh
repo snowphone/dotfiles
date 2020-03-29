@@ -7,11 +7,12 @@ ALLOWED_DISTS=(debian redhat)
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
-			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--fun|-f]\n"
+			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--fun|-f] [--all|-a]\n"
 			printf "\t-h|--help\tPrint help message\n"
+			printf "\t-a|--all\tInstall everything below\n"
 			printf "\t-l|--latex\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
 			printf "\t-b|--boost\tInstall libboost-all-dev\n"
-			printf "\t-j|--java\tInstall maven and openjdk 11 or 9\n"
+			printf "\t-j|--java\tInstall maven and openjdk 11, 9 or 8\n"
 			printf "\t-f|--fun\tInstall some funny stuffs\n"
 			printf "\n"
 			exit 0
@@ -30,6 +31,12 @@ while [[ $# -gt 0 ]]; do
 			shift
 			;;
 		-f|--fun)
+			needSomeFun=true
+			;;
+		-a|--all)
+			needLatex=true
+			needBoost=true
+			needJava=true
 			needSomeFun=true
 			;;
 		*)
