@@ -1,5 +1,11 @@
 #!/bin/bash
 
+source ./include.sh
+
+
+border "Entering vim plugins installaion phase"
+
+
 if !(npm --version &> /dev/null) || !(python3 -m pip --version &> /dev/null) || !(vim --version &> /dev/null); then
 	echo "To install vim settings, npm, vim, and pip3 is needed"
 	echo "Please install them and run it again"
@@ -31,4 +37,7 @@ python3 -m pip install --user python-language-server[yapf,pylint,rope]
 mkdir -p ~/.config/yapf
 ln -sf "$folder"/py_style ~/.config/yapf/style
 vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
+
+border "Package vim plugins installation phase completed! 😉"
+printf "\n\n"
 

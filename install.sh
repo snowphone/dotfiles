@@ -14,6 +14,6 @@ source ./include.sh
 
 
 cd ~
-border "Installation complete
-Execute the following command to refresh bash shell\n
+border "Installation complete"
+printf "Execute the following command to refresh bash shell\n
 \tsource ~/.bashrc\n\n"
