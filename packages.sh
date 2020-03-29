@@ -89,7 +89,7 @@ if [[ $dist == "debian" ]]; then
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
 		bfs tree htop \
-		bear gzip sshpass w3m traceroute git-extras \
+		bear sshpass w3m traceroute git-extras \
 		transmission-daemon \
 		figlet youtube-dl lolcat img2pdf screenfetch \
 		nodejs \
