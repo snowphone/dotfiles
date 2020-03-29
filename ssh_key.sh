@@ -8,7 +8,7 @@ else
 fi
 
 #sshkey 생성
-$sudo ssh-keygen -A
+$sudo cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 
 mkdir ~/.ssh/
 chmod 700 ~/.ssh/
