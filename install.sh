@@ -5,6 +5,7 @@ die() {
 	exit 1
 }
 
+./packages.sh "$@"	|| die "Package installation failed"
 ./vim.sh			|| die "Vim configuration is failed"
 
 ./git.sh			|| die "git configuration failed" # Global git configuration
