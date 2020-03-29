@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Parse arguments
 ALLOWED_DISTS=(debian redhat)
 
@@ -52,12 +53,28 @@ fi
 
 
 # Auxiliary functions
-## Check for accessibility
+
+## Check for root privilege
 if [[ $(whoami) == "root" ]]; then
 	sudo=""
 else
 	sudo="sudo"
 fi
+
+## It measures time some commands took.
+## It returns 0 if it worked well, -1 else.
+## Also, print a message(done/failed) 
+measure() {
+	SECONDS=0
+	if $@ &> /dev/null; then
+		echo "😉 ($SECONDS seconds)"
+		return 0
+	else
+		echo "😓"
+		return -1
+	fi
+}
+
 
 # Main phase
 ## Change apt repository to kakao mirror
@@ -69,17 +86,18 @@ if [[ $dist == "debian" ]]; then
 	version=$(cat /proc/version)
 	if [[ "$version" == *"Ubuntu"* && "$version" == *"16.04"* ]]; then
 		echo "Add a new repository for Vim 8"
-		echo "Update apt" && $sudo apt update &> /dev/null
-		$sudo apt-get install -y software-properties-common &> /dev/null
-		$sudo apt update &> /dev/null
-		echo "Add a new repository named jonathonf/vim"
-		$sudo add-apt-repository -y ppa:jonathonf/vim &> /dev/null
+		printf "Updating apt repository... " 
+		measure $sudo apt update; \
+			$sudo apt-get install -y software-properties-common; \
+			$sudo apt update;
+		printf "Adding a new repository named jonathonf/vim... "
+		measure $sudo add-apt-repository -y ppa:jonathonf/vim
 	fi
-	echo "Add a new repository for nodejs"
+	printf "Adding a new repository for nodejs... "
 	if [[ -n $sudo ]]; then
-		curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &> /dev/null
+		measure curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - 
 	else
-		curl -sL https://deb.nodesource.com/setup_12.x | bash - &> /dev/null
+		measure curl -sL https://deb.nodesource.com/setup_12.x | bash -
 	fi
 
 fi
@@ -87,6 +105,7 @@ fi
 
 if [[ $dist == "debian" ]]; then
 	pkgs=( \
+		banner \
 		build-essential less tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
@@ -115,7 +134,7 @@ if [[ $dist == "debian" ]]; then
 		pkgs+=( sl figlet lolcat toilet asciiquarium bsdgames )
 	fi
 
-	$sudo apt update &> /dev/null
+	measure $sudo apt update
 
 	failedList=()
 	while (( ${#pkgs[@]} )) 	# While !pkgs.empty()
@@ -125,11 +144,7 @@ if [[ $dist == "debian" ]]; then
 
 		printf "Installing $pkg... "
 
-		SECONDS=0
-		if $sudo apt install -qy $pkg &> /dev/null ; then  
-			echo "done! ($SECONDS seconds)"
-		else 
-			echo "failed!"
+		if ! measure $sudo apt install -qy $pkg; then
 			failedList+=($pkg)
 
 			if [[ $pkg == "clang-9" ]]; then
@@ -138,6 +153,8 @@ if [[ $dist == "debian" ]]; then
 				pkgs+=("clang-tools-8")
 			elif [[ $pkg == "openjdk-11-jdk" ]]; then
 				pkgs+=("openjdk-9-jdk")
+			elif [[ $pkg == "openjdk-9-jdk" ]]; then
+				pkgs+=("openjdk-8-jdk")
 			fi
 		fi
 	done
@@ -177,19 +194,18 @@ elif clang-8 --version &> /dev/null; then
 	$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 10
 fi
 
-SECONDS=0
 printf "Installing typescript modules... "
-($sudo npm install -g typescript pkg ts-node &> /dev/null && echo "done! ($SECONDS seconds)") || echo "failed!"
+measure $sudo npm install -g typescript pkg ts-node 
 
-SECONDS=0
 printf "Installing mdless... "
 # Install markdown viewer
-($sudo gem install mdless &> /dev/null && echo "done! ($SECONDS seconds)") || echo "failed!"
+measure $sudo gem install mdless
 
 # Install fzf
-SECONDS=0
 printf "Installing fzf... "
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &> /dev/null
-~/.fzf/install --all &> /dev/null
-printf "done! ($SECONDS seconds)\n"
+measure git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && \
+~/.fzf/install --all
+
+
+printf "Package installation phase compelted! 😉\n\n"
 
