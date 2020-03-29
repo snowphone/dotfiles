@@ -70,7 +70,7 @@ fi
 
 ## It measures time some commands took.
 ## It returns 0 if it worked well, -1 else.
-## Also, print a message(done/failed) 
+## Also, print a message(done/failed)
 measure() {
 	SECONDS=0
 	if eval $@ &> /dev/null; then
@@ -82,8 +82,27 @@ measure() {
 	fi
 }
 
+## Create a border around a string
+border () {
+    local str="$*"      # Put all arguments into single string
+    local len=${#str}
+    local i
+    for (( i = 0; i < len + 4; ++i )); do
+        printf '#'
+    done
+    printf "\n# $str #\n"
+    for (( i = 0; i < len + 4; ++i )); do
+        printf '#'
+    done
+    echo
+}
+
 
 # Main phase
+
+
+border "Entering package installaion phase"
+
 ## Change apt repository to kakao mirror
 if [[ $dist == "debian" ]]; then
 	printf "Changing mirror site to much faster one... "
@@ -219,5 +238,6 @@ measure git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  \&\& \
 ~/.fzf/install --all
 
 
-printf "Package installation phase compelted! 😉\n\n"
+border "Package installation phase compelted! 😉"
+printf "\n\n"
 
