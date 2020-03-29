@@ -11,10 +11,10 @@ die() {
 measure() {
 	SECONDS=0
 	if eval $@ &> /dev/null; then
-		echo "😄 ($SECONDS seconds)"
+		echo "done 😄 ($SECONDS seconds)"
 		return 0
 	else
-		echo "😰"
+		echo "failed 😰"
 		return -1
 	fi
 }

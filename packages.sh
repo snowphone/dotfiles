@@ -61,8 +61,6 @@ fi
 ###### Parsing is done ######
 
 
-# Auxiliary functions
-
 ## Check for root privilege
 if [[ $(whoami) == "root" ]]; then
 	sudo=""
@@ -70,10 +68,12 @@ else
 	sudo="sudo"
 fi
 
-# Main phase
-
+################################################
+################# Main phase ###################
+################################################
 
 border "Entering package installaion phase"
+
 
 ## Change apt repository to kakao mirror
 if [[ $dist == "debian" ]]; then
@@ -128,7 +128,7 @@ if [[ $dist == "debian" ]]; then
 	fi
 	
 	if [[ -n $needSomeFun && $needSomeFun == true ]]; then
-		printf "Adding a repository for some fun things... "
+		printf "Adding a new repository for some fun things... "
 		measure $sudo apt-get install -y software-properties-common \; \
 			$sudo add-apt-repository -y ppa:ytvwld/asciiquarium
 		pkgs+=( sl figlet lolcat toilet asciiquarium bsdgames )
@@ -210,6 +210,6 @@ measure git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  \&\& \
 ~/.fzf/install --all
 
 
-border "Package installation phase compelted! 😉"
+border "Package installation phase completed! 😉"
 printf "\n\n"
 
