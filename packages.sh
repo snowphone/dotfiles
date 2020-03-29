@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#include functions
+source ./include.sh
 
 # Parse arguments
 ALLOWED_DISTS=(debian redhat)
@@ -67,36 +69,6 @@ if [[ $(whoami) == "root" ]]; then
 else
 	sudo="sudo"
 fi
-
-## It measures time some commands took.
-## It returns 0 if it worked well, -1 else.
-## Also, print a message(done/failed)
-measure() {
-	SECONDS=0
-	if eval $@ &> /dev/null; then
-		echo "😄 ($SECONDS seconds)"
-		return 0
-	else
-		echo "😰"
-		return -1
-	fi
-}
-
-## Create a border around a string
-border () {
-    local str="$*"      # Put all arguments into single string
-    local len=${#str}
-    local i
-    for (( i = 0; i < len + 4; ++i )); do
-        printf '#'
-    done
-    printf "\n# $str #\n"
-    for (( i = 0; i < len + 4; ++i )); do
-        printf '#'
-    done
-    echo
-}
-
 
 # Main phase
 

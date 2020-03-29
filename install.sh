@@ -1,9 +1,7 @@
 #!/bin/bash
 
-die() {
-	printf "ERROR: %s\n\n" "$@"
-	exit 1
-}
+# Include functions
+source ./include.sh
 
 ./packages.sh "$@"	|| die "Package installation failed"
 ./vim.sh			|| die "Vim configuration is failed"
@@ -16,6 +14,6 @@ die() {
 
 
 cd ~
-printf "Installation complete
+border "Installation complete
 Execute the following command to refresh bash shell\n
 \tsource ~/.bashrc\n\n"
