@@ -6,11 +6,12 @@ ALLOWED_DISTS=(debian redhat)
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
-			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j]\n"
+			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--fun|-f]\n"
 			printf "\t-h|--help\tPrint help message\n"
 			printf "\t-l|--latex\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
 			printf "\t-b|--boost\tInstall libboost-all-dev\n"
-			printf "\t-j|--java\tInstall maven and openjdk 11 or 9"
+			printf "\t-j|--java\tInstall maven and openjdk 11 or 9\n"
+			printf "\t-f|--fun\tInstall some funny stuffs\n"
 			printf "\n"
 			exit 0
 			;;
@@ -26,6 +27,9 @@ while [[ $# -gt 0 ]]; do
 		-d|--dist)
 			dist="$2"
 			shift
+			;;
+		-f|--fun)
+			needSomeFun=true
 			;;
 		*)
 			echo "Unknown parameter passed: $1"
@@ -82,8 +86,6 @@ fi
 
 
 if [[ $dist == "debian" ]]; then
-	$sudo apt update &> /dev/null
-
 	pkgs=( \
 		build-essential less tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
@@ -91,7 +93,7 @@ if [[ $dist == "debian" ]]; then
 		bfs tree htop \
 		bear sshpass w3m traceroute git-extras \
 		transmission-daemon \
-		figlet youtube-dl lolcat img2pdf screenfetch \
+		youtube-dl img2pdf screenfetch \
 		nodejs \
 		clang-9 clang-tools-9 clangd-9
 	)
@@ -106,7 +108,14 @@ if [[ $dist == "debian" ]]; then
 	if [[ -n $needJava && $needJava == true ]]; then
 		pkgs+=(maven openjdk-11-jdk)
 	fi
+	
+	if [[ -n $needSomeFun && $needSomeFun == true ]]; then
+		$sudo apt-get install -y software-properties-common &> /dev/null
+		$sudo add-apt-repository -y ppa:ytvwld/asciiquarium
+		pkgs+=( sl figlet lolcat toilet asciiquarium bsdgames )
+	fi
 
+	$sudo apt update &> /dev/null
 
 	failedList=()
 	while (( ${#pkgs[@]} )) 	# While !pkgs.empty()
@@ -116,8 +125,9 @@ if [[ $dist == "debian" ]]; then
 
 		printf "Installing $pkg... "
 
+		SECONDS=0
 		if $sudo apt install -qy $pkg &> /dev/null ; then  
-			echo "done!"
+			echo "done! ($SECONDS seconds)"
 		else 
 			echo "failed!"
 			failedList+=($pkg)
@@ -167,16 +177,19 @@ elif clang-8 --version &> /dev/null; then
 	$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 10
 fi
 
+SECONDS=0
 printf "Installing typescript modules... "
-($sudo npm install -g typescript pkg ts-node &> /dev/null && echo "done!") || echo "failed!"
+($sudo npm install -g typescript pkg ts-node &> /dev/null && echo "done! ($SECONDS seconds)") || echo "failed!"
 
+SECONDS=0
 printf "Installing mdless... "
 # Install markdown viewer
-($sudo gem install mdless &> /dev/null && echo "done!") || echo "failed!"
+($sudo gem install mdless &> /dev/null && echo "done! ($SECONDS seconds)") || echo "failed!"
 
 # Install fzf
+SECONDS=0
 printf "Installing fzf... "
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &> /dev/null
 ~/.fzf/install --all &> /dev/null
-printf "done!\n"
+printf "done! ($SECONDS seconds)\n"
 
