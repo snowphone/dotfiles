@@ -67,10 +67,10 @@ fi
 measure() {
 	SECONDS=0
 	if eval $@ &> /dev/null; then
-		echo "😉 ($SECONDS seconds)"
+		echo "😄 ($SECONDS seconds)"
 		return 0
 	else
-		echo "😓"
+		echo "😰"
 		return -1
 	fi
 }
@@ -81,9 +81,9 @@ measure() {
 if [[ $dist == "debian" ]]; then
 	printf "Changing mirror site to much faster one... "
 	measure \
-	$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
-	$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
-	$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+		$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
+		$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
+		$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 
 	version=$(cat /proc/version)
 	if [[ "$version" == *"Ubuntu"* && "$version" == *"16.04"* ]]; then
@@ -206,7 +206,7 @@ measure $sudo gem install mdless
 
 # Install fzf
 printf "Installing fzf... "
-measure git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && \
+measure git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  \&\& \
 ~/.fzf/install --all
 
 
