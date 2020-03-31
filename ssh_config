@@ -19,3 +19,10 @@ Host gpu
 Host cluster
 	HostName 143.248.56.148
 	User sixtyfive
+
+Host cs492
+	HostName 192.249.19.253
+	User root
+	Port 4522
+	PreferredAuthentications publickey
+	IdentityFile ~/.dotfiles/CS492_key.pem
