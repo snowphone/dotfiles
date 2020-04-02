@@ -21,8 +21,8 @@ Host cluster
 	User sixtyfive
 
 Host cs492
-	HostName 192.249.19.253
+	HostName 192.249.19.250
 	User root
-	Port 4522
+	Port 6822
 	PreferredAuthentications publickey
 	IdentityFile ~/.dotfiles/CS492_key.pem
