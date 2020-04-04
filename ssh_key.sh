@@ -1,17 +1,14 @@
 #!/bin/bash
 
-## Check for accessibility
-if [[ $(whoami) == "root" ]]; then
-	sudo=""
+source ./include.sh
+
+if ls ~/.ssh &> /dev/null; then
+	die "~/.ssh folder already exists. Please check and remove previously installed folder."
 else
-	sudo="sudo"
+	ln -sf $(pwd)/.ssh ~/.ssh
+	chmod 600 ./.ssh/id_rsa
+	chmod 600 ./.ssh/CS492_key.pem
+	touch $(pwd)/.ssh/known_hosts
+	touch $(pwd)/.ssh/authorized_keys
 fi
-
-#sshkey 생성
-$sudo cat /dev/zero | ssh-keygen -q -N "" > /dev/null
-
-mkdir ~/.ssh/
-chmod 700 ~/.ssh/
-touch ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
 
