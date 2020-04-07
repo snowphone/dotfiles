@@ -7,6 +7,6 @@ cd ~/.dotfiles && ./install.sh -d [debian | redhat] [[--java|--latex|--boost|--f
 ~~~
 
 ## Installation of openssh-server on WSL2
-VM-based WSL2 gave us a much faster native filesystem access speed, but also got some drawbacks. One of the drawbacks is isolated network. Thus, we have to run sshd and also forward ports into WSL2's private ip and port.
+VM-based WSL2 gave us a much faster native filesystem access speed, but also got some drawbacks. One of the drawbacks is isolated network. Thus, if you want to run ssh server and access from other hosts, you  have to run ssh daemon after booting and also forward ports into WSL2's private ip and port.
 
-If you want to install ssh server on WSL2 and access it from outside, you just run `./sshd.sh` and follow the instructions.
+If you don't want to think about it, you just run `./sshd.sh` and follow the instructions.
