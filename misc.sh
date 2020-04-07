@@ -20,11 +20,6 @@ fi
 # Main phase
 
 #.bashrc 설정
-#ssh server 설정
-$sudo sed -i 's/#\?Port 22/Port 2222/' /etc/ssh/sshd_config
-$sudo sed -i 's/UsePrivilegeSeparation */UsePrivilegeSeparation no/' /etc/ssh/sshd_config
-$sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-
 #링크 설정
 if [[ $isWsl == true ]]; then
 	ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
