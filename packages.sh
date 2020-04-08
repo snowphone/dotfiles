@@ -116,7 +116,7 @@ if [[ $dist == "debian" ]]; then
 		clang-9 clang-tools-9 clangd-9
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
-		pkgs+=(texlive-full)
+		pkgs+=(texlive-full ttf-mscorefonts-installer)
 	fi
 
 	if [[ -n $needBoost && $needBoost == true ]]; then
@@ -185,6 +185,11 @@ elif [[ $dist == "redhat" ]]; then
 	if [[ -n $needJava && $needJava == true ]]; then
 		$sudo yum install -y maven java-11-openjdk java-11-openjdk-devel
 	fi
+fi
+
+if [[ -n $needLatex && $needLatex == true ]]; then
+	printf "Refreshing fonts... "
+	measure $sudo fc-cache -f -v
 fi
 
 if clang-9 --version &> /dev/null; then
