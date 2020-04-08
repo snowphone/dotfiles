@@ -151,7 +151,7 @@ alias c='clear'
 alias ss='sudo service'
 
 # alias for git
-alias gpull='git pull origin'
+alias gpull='git pull --rebase origin'
 alias gpush='git push origin'
 alias gs='git status'
 alias ga='git add'
