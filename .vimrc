@@ -257,6 +257,10 @@ func! Compile()
 	endif
 endfunc
 
+" Pipe selected visual block to command after bang.
+xnoremap <leader>c <esc>:'<,'>:w !
+
+
 map <F5> :exec Compile()<CR> :exec Run()<CR>
 "c++11로 컴파일 후 실행
 map <F6> :w! <CR>  :!clang++ % -g -o %< -std=c++11 -O2<CR>  :! ./%< <CR>
