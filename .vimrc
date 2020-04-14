@@ -133,6 +133,7 @@ silent! colorscheme gruvbox
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
 set hlsearch
+set lazyredraw
 set ignorecase
 set smartcase
 set autoindent  " 자동 들여쓰기
