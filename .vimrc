@@ -261,6 +261,12 @@ endfunc
 " Pipe selected visual block to command after bang.
 xnoremap <leader>c <esc>:'<,'>:w !
 
+" Store and restore fold status
+augroup remember_folds
+	autocmd!
+	autocmd BufWinLeave * mkview
+	autocmd BufWinEnter * silent! loadview
+augroup END
 
 map <F5> :exec Compile()<CR> :exec Run()<CR>
 "c++11로 컴파일 후 실행
