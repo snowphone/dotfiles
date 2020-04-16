@@ -105,7 +105,7 @@ fi
 
 if [[ $dist == "debian" ]]; then
 	pkgs=( \
-		build-essential less tar vim git gcc curl rename wget tmux make gzip zip unzip \
+		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python-pip python3-pip \
 		bfs tree htop \
