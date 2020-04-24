@@ -16,6 +16,7 @@ while [[ $# -gt 0 ]]; do
 			printf "\t-b|--boost\tInstall libboost-all-dev\n"
 			printf "\t-j|--java\tInstall maven and openjdk 11, 9 or 8\n"
 			printf "\t-f|--fun\tInstall some funny stuffs\n"
+			printf "\t-t|--transmission\tInstall transmission-daemon\n"
 			printf "\n"
 			exit 0
 			;;
@@ -35,11 +36,15 @@ while [[ $# -gt 0 ]]; do
 		-f|--fun)
 			needSomeFun=true
 			;;
+		-t|--transmission)
+			needTransmission=true
+			;;
 		-a|--all)
 			needLatex=true
 			needBoost=true
 			needJava=true
 			needSomeFun=true
+			needTransmission=true
 			;;
 		*)
 			echo "Unknown parameter passed: $1"
@@ -110,7 +115,6 @@ if [[ $dist == "debian" ]]; then
 		python3-dev python3 python3-pip \
 		bfs tree htop \
 		bear sshpass w3m traceroute git-extras \
-		transmission-daemon \
 		img2pdf screenfetch \
 		nodejs \
 		clang-9 clang-tools-9 clangd-9
@@ -126,6 +130,10 @@ if [[ $dist == "debian" ]]; then
 
 	if [[ -n $needJava && $needJava == true ]]; then
 		pkgs+=(maven openjdk-11-jdk)
+	fi
+
+	if [[ -n $needTransmission && $needTransmission == true ]]; then
+		pkgs+=( transmission-daemon )
 	fi
 	
 	if [[ -n $needSomeFun && $needSomeFun == true ]]; then
