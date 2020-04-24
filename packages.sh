@@ -107,11 +107,11 @@ if [[ $dist == "debian" ]]; then
 	pkgs=( \
 		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
-		python3-dev python3 python-pip python3-pip \
+		python3-dev python3 python3-pip \
 		bfs tree htop \
 		bear sshpass w3m traceroute git-extras \
 		transmission-daemon \
-		youtube-dl img2pdf screenfetch \
+		img2pdf screenfetch \
 		nodejs \
 		clang-9 clang-tools-9 clangd-9
 	)
@@ -186,6 +186,8 @@ elif [[ $dist == "redhat" ]]; then
 		$sudo yum install -y maven java-11-openjdk java-11-openjdk-devel
 	fi
 fi
+
+measure pip3 install --user pudb youtube-dl
 
 if [[ -n $needLatex && $needLatex == true ]]; then
 	printf "Refreshing fonts... "
