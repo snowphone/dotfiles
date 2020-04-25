@@ -128,6 +128,7 @@ call plug#end()			" required
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
 set bg=dark
+silent! set termguicolors
 silent! colorscheme gruvbox
 
 syntax on
