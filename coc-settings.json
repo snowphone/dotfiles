@@ -12,5 +12,6 @@
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		}
 	},
-	"python.formatting.provider": "yapf"
+	"python.formatting.provider": "yapf",
+	"python.jediEnabled": false
 }
