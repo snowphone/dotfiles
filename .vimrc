@@ -128,7 +128,12 @@ call plug#end()			" required
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
 set bg=dark
-silent! set termguicolors
+" Enable 24bit true color
+if exists('+termguicolors')
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
 silent! colorscheme gruvbox
 
 syntax on
