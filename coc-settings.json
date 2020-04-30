@@ -12,6 +12,10 @@
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		}
 	},
+
+	"latex.build.args": ["-lualatex", "-pv", "-latexoption=\"-synctex=0\""],
+	"latex.build.onSave": true,
+
 	"python.formatting.provider": "yapf",
 	"python.jediEnabled": false
 }
