@@ -38,6 +38,10 @@ mkdir -p ~/.config/yapf
 ln -sf "$folder"/py_style ~/.config/yapf/style
 vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
 
+# coc-texlab 설정
+## 컴파일시마다 sumatrapdf에게 알려주는 역할
+ln -fs "$folder"/.latexmkrc ~/.latexmkrc
+
 border "Package vim plugins installation phase completed! 😉"
 printf "\n\n"
 

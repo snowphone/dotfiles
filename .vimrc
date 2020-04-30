@@ -176,6 +176,15 @@ if &diff
 	set noreadonly
 endif
 
+" Built-in terminal
+"In terniaml, make it normal mode like vim.
+tnoremap <F1> <C-W>N	
+"Open built-in terminal in vim.
+map <F1> :term<CR>		
+"To paste into the terminal, <C-W>"<register> in insert mode.
+"For example, typing <C-W>"" pastes data into the terminal.
+
+
 "파일이 변경될 때 마다 자동으로 버퍼 갱신
 set autoread
 au CursorHold * checktime
@@ -209,31 +218,21 @@ nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
 nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
 nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 
-func! BuildLaTex()
-	!lualatex '%<'
-	if !empty(glob("./*.bib"))
-		!bibtex '%<'
-		!lualatex '%<'
-		!lualatex '%<'
-	endif
-endfunc
-
-"tex 파일이면 lualatex로 컴파일, 아닌 경우면 cpp파일로 간주해서 컴파일
 func! Run()
 	if &filetype == 'python'
-		:exec '!python3 "%"'
+		:term python3 "%"
 	elseif &filetype == 'java'
-		!java %<
+		term java %<
 	elseif &filetype == 'erlang'
-		!escript % +P
+		term escript % +P
 	elseif &filetype == 'sh'
-		!bash %
+		term bash %
 	elseif &filetype == 'tex'
-		!/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe '%<.pdf' &
+		:
 	elseif &filetype == 'markdown'
-		!mdless '%'
+		term mdless '%'
 	elseif &filetype == 'typescript'
-		!ts-node %
+		term ts-node "%"
 	else
 		"c, c++
 		!./%<
@@ -247,7 +246,7 @@ func! Compile()
 	elseif filereadable('./Makefile') || filereadable('./makefile')
 		make
 	elseif &filetype == 'tex'
-		:exec BuildLaTex()
+		:CocCommand latex.Build
 	elseif &filetype=='c'
 		silent !clang % -std=c11 -O0 -W -Wall -g -lpthread -pthread -lm  -o %<
 	elseif &filetype == 'python' || &filetype == 'sh' || &filetype == 'erlang'
@@ -275,4 +274,4 @@ augroup remember_folds
 	autocmd BufWinEnter * silent! loadview
 augroup END
 
-map <F5> :exec Compile()<CR> :exec Run()<CR>
+map <F5> :call Compile()<CR> :call Run()<CR> 
