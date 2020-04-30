@@ -276,8 +276,3 @@ augroup remember_folds
 augroup END
 
 map <F5> :exec Compile()<CR> :exec Run()<CR>
-"c++11로 컴파일 후 실행
-map <F6> :w! <CR>  :!clang++ % -g -o %< -std=c++11 -O2<CR>  :! ./%< <CR>
-map <F10> :w! <CR> :!g++ -g % -o %<  <CR> :!gdb %< <CR>
-"euc-kr 인코딩을 utf-8로 변환 후 저장
-map <F4> :e ++enc=euc-kr <CR> :set fenc=utf-8 <CR> :w ++enc=utf-8 <CR>
