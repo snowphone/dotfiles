@@ -1,0 +1,12 @@
+[core]
+	autocrlf = input
+	eol = lf
+[user]
+	name = Junoh Moon
+	email = mjo970625@gmail.com
+[merge]
+	tool = vimdiff
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
