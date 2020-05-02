@@ -12,7 +12,7 @@ $(pwd)/link.sh			|| die "Aliasing config files is failed" # symbolic links
 $(pwd)/tmux.sh			|| die "Failed to setup tmuxResurrect and some config files" # tmuxResurrect and symbolic links about it
 
 
-cd ~
+cd $HOME
 border "Installation complete"
 printf "Execute the following command to refresh bash shell\n
-\tsource ~/.bashrc\n\n"
+\tsource $HOME/.bashrc\n\n"
