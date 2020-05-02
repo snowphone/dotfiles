@@ -1,10 +1,10 @@
 #!/bin/bash
 folder=$(pwd)
 
-ln -fs "$folder"/.bashrc ~/.bashrc
-ln -fs "$folder"/.snapshot ~/.snapshot
-ln -fs "$folder"/.gitconfig  ~/.gitconfig
+ln -fs "$folder"/.bashrc $HOME/.bashrc
+ln -fs "$folder"/.snapshot $HOME/.snapshot
+ln -fs "$folder"/.gitconfig  $HOME/.gitconfig
 
-mkdir ~/.pip
-ln -fs "$folder"/pip.conf ~/.pip/pip.conf
+mkdir $HOME/.pip
+ln -fs "$folder"/pip.conf $HOME/.pip/pip.conf
 

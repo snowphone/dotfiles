@@ -22,10 +22,10 @@ fi
 #.bashrc 설정
 #링크 설정
 if [[ $isWsl == true ]]; then
-	ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ ~/kaist
-	ln -fs /mnt/c/Users/mjo97/Downloads/ ~/
-	ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ ~/
-	ln -fs /mnt/c/Users/mjo97/Videos/ ~/
+	ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ $HOME/kaist
+	ln -fs /mnt/c/Users/mjo97/Downloads/ $HOME/
+	ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ $HOME/
+	ln -fs /mnt/c/Users/mjo97/Videos/ $HOME/
 fi
 
 
