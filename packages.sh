@@ -223,10 +223,6 @@ printf "Installing mdless... "
 # Install markdown viewer
 measure $sudo gem install mdless
 
-# Install fzf
-printf "Installing fzf... "
-measure git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  \&\& \
-~/.fzf/install --all
 
 
 border "Package installation phase completed! 😉"
