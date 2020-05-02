@@ -99,6 +99,9 @@ if [[ $dist == "debian" ]]; then
 		measure $sudo add-apt-repository -y ppa:jonathonf/vim
 	fi
 	printf "Adding a new repository for nodejs... "
+	if !(curl --version &> /dev/null); then
+		$sudo apt update &> /dev/null && $sudo apt install -y curl &> /dev/null
+	fi
 	if [[ -n $sudo ]]; then
 		measure curl -sL https://deb.nodesource.com/setup_12.x \| sudo -E bash -
 	else
@@ -116,7 +119,7 @@ if [[ $dist == "debian" ]]; then
 		bfs tree htop \
 		bear sshpass w3m traceroute git-extras \
 		img2pdf screenfetch \
-		nodejs \
+		nodejs npm \
 		clang-9 clang-tools-9 clangd-9
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
