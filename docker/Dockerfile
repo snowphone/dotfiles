@@ -1,12 +1,13 @@
 FROM ubuntu:20.04
 MAINTAINER Junoh Moon
 ENV LANG=C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
 ENV HOME=/root/
 
 ADD ./*  $HOME/.dotfiles/
 RUN cd $HOME/.dotfiles && \
-		./install.sh -d debian --all
+		./install.sh -d debian -b -l -j
 
 WORKDIR $HOME
 ENTRYPOINT $HOME
