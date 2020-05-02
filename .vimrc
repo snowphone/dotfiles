@@ -275,3 +275,46 @@ augroup remember_folds
 augroup END
 
 map <F5> :call Compile()<CR> :call Run()<CR> 
+
+
+
+" The below code is for scrolling pop up (e. g. shift-k to see documentations).
+" In normal mode, press <c-d> or arrow-down key scrolls-down the window and <c-u> or arrow-up key for vice-versa.
+
+func FindCursorPopUp()
+     let radius = get(a:000, 0, 2)
+     let srow = screenrow()
+     let scol = screencol()
+     " it's necessary to test entire rect, as some popup might be quite small
+     for r in range(srow - radius, srow + radius)
+       for c in range(scol - radius, scol + radius)
+         let winid = popup_locate(r, c)
+         if winid != 0
+           return winid
+         endif
+       endfor
+     endfor
+   
+     return 0
+endfunc
+   
+func ScrollPopUp(down)
+     let winid = FindCursorPopUp()
+     if winid == 0
+       return 0
+     endif
+   
+     let pp = popup_getpos(winid)
+     call popup_setoptions( winid,
+           \ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
+   
+     return 1
+endfunc
+
+nnoremap <expr> <C-d> ScrollPopUp(1) ? '<esc>' : '<C-d>'
+nnoremap <expr> <down> ScrollPopUp(1) ? '<esc>' : '<down>'
+
+nnoremap <expr> <C-u> ScrollPopUp(0) ? '<esc>' : '<C-u>'
+nnoremap <expr> <up> ScrollPopUp(0) ? '<esc>' : '<up>'
+
+
