@@ -120,8 +120,8 @@ if [[ $dist == "debian" ]]; then
 		clang-9 clang-tools-9 clangd-9
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
-		pkgs+=(texlive-full )
-		$sudo apt install -y ttf-mscorefonts-installer
+		echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true \| debconf-set-selections
+		pkgs+=(texlive-full ttf-mscorefonts-installer)
 	fi
 
 	if [[ -n $needBoost && $needBoost == true ]]; then
