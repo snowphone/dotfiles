@@ -194,7 +194,8 @@ nmap n nzz
 nmap <S-n> <S-n>zz
 
 "fzf 설정
-set rtp+=~/.fzf
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 
 "파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
