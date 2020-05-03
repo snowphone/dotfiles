@@ -14,16 +14,6 @@ Plug 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 
-Plug 'scrooloose/nerdtree'
-nmap <C-n> :NERDTreeToggle <CR>
-
-"nerdtree 자동 실행
-"autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 
 "256색 콘솔에서 gui용 테마 적용을 가능하게 함
 Plug 'godlygeek/csapprox'
@@ -110,16 +100,15 @@ set list lcs=tab:\┊\
 Plug 'leafgarland/typescript-vim'
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
-""Markdown plugin
-"Plug 'junegunn/goyo.vim'
-"autocmd FileType markdown Goyo
-"
-""Paragraph highlighter
-"Plug 'junegunn/limelight.vim'
-"autocmd! User GoyoEnter Limelight
-"autocmd! User GoyoLeave Limelight!
-"let g:limelight_conceal_guifg = 'DarkGray'
-"let g:limelight_conceal_ctermfg = 'gray'
+
+"fzf 설정
+Plug 'junegunn/fzf', { 'do': './install --all' }
+nmap <C-n> :Files<CR>
+nmap <leader>r :Rg!<CR>
+
+set rtp+=~/.vim/plugged/fzf
+Plug 'junegunn/fzf.vim'
+
 
 
 call plug#end()			" required
@@ -192,11 +181,6 @@ au CursorHold * checktime
 "vim의 검색 기능을 이용할 시 검색 결과를 항상 중앙에 배치한다.
 nmap n nzz
 nmap <S-n> <S-n>zz
-
-"fzf 설정
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 
 "파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
 aug python
@@ -278,44 +262,4 @@ augroup END
 map <F5> :call Compile()<CR> :call Run()<CR> 
 
 
-
-" The below code is for scrolling pop up (e. g. shift-k to see documentations).
-" In normal mode, press <c-d> or arrow-down key scrolls-down the window and <c-u> or arrow-up key for vice-versa.
-
-func FindCursorPopUp()
-     let radius = get(a:000, 0, 2)
-     let srow = screenrow()
-     let scol = screencol()
-     " it's necessary to test entire rect, as some popup might be quite small
-     for r in range(srow - radius, srow + radius)
-       for c in range(scol - radius, scol + radius)
-         let winid = popup_locate(r, c)
-         if winid != 0
-           return winid
-         endif
-       endfor
-     endfor
-   
-     return 0
-endfunc
-   
-func ScrollPopUp(down)
-     let winid = FindCursorPopUp()
-     if winid == 0
-       return 0
-     endif
-   
-     let pp = popup_getpos(winid)
-     call popup_setoptions( winid,
-           \ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
-   
-     return 1
-endfunc
-
-if has('textprop') && has('patch-8.1.1610')
-	nnoremap <expr> <C-d> ScrollPopUp(1) ? '<esc>' : '<C-d>'
-	nnoremap <expr> <down> ScrollPopUp(1) ? '<esc>' : '<down>'
-	nnoremap <expr> <C-u> ScrollPopC-u(0) ? '<esc>' : '<C-u>'
-	nnoremap <expr> <up> ScrollPopUp(0) ? '<esc>' : '<up>'
-endif
 

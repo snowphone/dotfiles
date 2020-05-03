@@ -116,7 +116,7 @@ if [[ $dist == "debian" ]]; then
 		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python3-pip \
-		bfs tree htop \
+		bfs tree htop ripgrep \
 		bear sshpass w3m traceroute git-extras \
 		img2pdf screenfetch \
 		nodejs npm \
