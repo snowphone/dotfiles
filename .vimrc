@@ -312,10 +312,10 @@ func ScrollPopUp(down)
      return 1
 endfunc
 
-nnoremap <expr> <C-d> ScrollPopUp(1) ? '<esc>' : '<C-d>'
-nnoremap <expr> <down> ScrollPopUp(1) ? '<esc>' : '<down>'
-
-nnoremap <expr> <C-u> ScrollPopUp(0) ? '<esc>' : '<C-u>'
-nnoremap <expr> <up> ScrollPopUp(0) ? '<esc>' : '<up>'
-
+if has('textprop') && has('patch-8.1.1610')
+	nnoremap <expr> <C-d> ScrollPopUp(1) ? '<esc>' : '<C-d>'
+	nnoremap <expr> <down> ScrollPopUp(1) ? '<esc>' : '<down>'
+	nnoremap <expr> <C-u> ScrollPopC-u(0) ? '<esc>' : '<C-u>'
+	nnoremap <expr> <up> ScrollPopUp(0) ? '<esc>' : '<up>'
+endif
 
