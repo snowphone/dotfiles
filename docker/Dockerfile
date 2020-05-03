@@ -8,5 +8,5 @@ ADD .  $HOME/.dotfiles
 WORKDIR $HOME/.dotfiles
 RUN ./install.sh --dist debian --boost --latex --java
 
-ENTRYPOINT $HOME
+WORKDIR $HOME
 
