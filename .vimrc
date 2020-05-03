@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/bundle/')
+call plug#begin('~/.vim/plugged/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -194,7 +194,7 @@ nmap n nzz
 nmap <S-n> <S-n>zz
 
 "fzf 설정
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 
