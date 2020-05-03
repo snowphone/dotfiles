@@ -84,7 +84,7 @@ Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 "쉘의 프롬프트를 변경해주는 역할을 한다.
-Plug 'edkolev/promptline.vim'
+Plug 'snowphone/promptline.vim'
 
 " vim의 기본 f 기능을 확장함. <leader><leader> w 혹은 <leader><leader> f를
 " 써보길
