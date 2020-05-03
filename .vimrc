@@ -140,6 +140,7 @@ set nowrapscan " 검색할 때 문서의 끝에서 처음으로 안돌아감
 set nobackup " 백업 파일을 안만듬
 set noswapfile "스왑 파일을 만들지 않는다.
 set visualbell " 키를 잘못눌렀을 때 화면 프레시
+set belloff+=esc
 set ruler " 화면 우측 하단에 현재 커서의 위치(줄,칸) 표시
 set shiftwidth=4 " 자동 들여쓰기 4칸
 set ts=4
