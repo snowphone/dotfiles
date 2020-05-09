@@ -8,5 +8,7 @@ ADD .  $HOME/.dotfiles
 WORKDIR $HOME/.dotfiles
 RUN ./install.sh --dist debian --boost --latex --java
 
+RUN echo "export TERM=xterm-256color" >> $HOME/.bashrc
+
 WORKDIR $HOME
 
