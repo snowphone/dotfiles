@@ -36,7 +36,7 @@ $sudo npm i -g bash-language-server
 python3 -m pip install --user python-language-server[yapf,pylint,rope]
 mkdir -p $HOME/.config/yapf
 ln -sf "$folder"/py_style $HOME/.config/yapf/style
-vim -c 'CocInstall -sync coc-python coc-java coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
+vim -c 'CocInstall -sync coc-python coc-java coc-cmake coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
 
 # coc-texlab 설정
 ## 컴파일시마다 sumatrapdf에게 알려주는 역할
