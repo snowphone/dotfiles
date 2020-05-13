@@ -496,5 +496,5 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 alias sumatrapdf='/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe'
-alias tmux-dev='~/dotfiles/tmux-dev.sh'
+alias tmux-dev='~/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
