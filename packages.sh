@@ -199,6 +199,7 @@ elif [[ $dist == "redhat" ]]; then
 	fi
 fi
 
+printf "Installing python debugger... "
 measure pip3 install --user pudb youtube-dl
 
 if [[ -n $needLatex && $needLatex == true ]]; then
