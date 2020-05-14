@@ -263,4 +263,38 @@ augroup END
 map <F5> :call Compile()<CR> :call Run()<CR> 
 
 
+function FindCursorPopUp()
+	let radius = get(a:000, 0, 2)
+	let srow = screenrow()
+	let scol = screencol()
+	" it's necessary to test entire rect, as some popup might be quite small
+	for r in range(srow - radius, srow + radius)
+		for c in range(scol - radius, scol + radius)
+			let winid = popup_locate(r, c)
+			if winid != 0
+				return winid
+			endif
+		endfor
+	endfor
+
+	return 0
+endfunction
+
+function ScrollPopUp(down)
+	let winid = FindCursorPopUp()
+	if winid == 0
+		return 0
+	endif
+
+	let pp = popup_getpos(winid)
+	call popup_setoptions( winid,
+				\ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
+
+	return 1
+endfunction
+
+if has('textprop') && has('patch-8.1.1610') 
+	nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
+	nnoremap <expr> <c-u> ScrollPopUp(0) ? '<esc>' : '<c-u>'
+endif
 
