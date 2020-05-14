@@ -33,7 +33,7 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme='violet'
+let g:airline_theme='fruit_punch'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
