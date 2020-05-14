@@ -66,7 +66,8 @@ let g:airline_symbols.linenr = ''
 Plug 'Townk/vim-autoclose'
 
 " 여기에 LSP 관련 내용 추가
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 silent! source ~/.coc.vimrc
 
 

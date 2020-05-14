@@ -23,6 +23,8 @@ folder=$(pwd)
 ln -fs "$folder"/.vimrc $HOME/.vimrc
 
 #vim 설정
+printf "Installing yarn... "
+measure $sudo npm install -g yarn
 vim -c PlugUpdate -c quitall
 
 #Promptline 설정
