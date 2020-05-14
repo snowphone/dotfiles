@@ -147,7 +147,6 @@ set shiftwidth=4 " 자동 들여쓰기 4칸
 set ts=4
 set number " 행번호 표시, set nu 도 가능
 set fencs=euc-kr,ucs-bom,utf-8
-set autochdir		" To detect pwd 
 "set cursorcolumn	" Visualize vertical cursor line
 "set cursorline		" Visualize horizontal cursor line
 "set tenc=utf-8	  " 터미널 인코딩
