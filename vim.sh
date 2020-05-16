@@ -34,7 +34,7 @@ vim --not-a-term -c PlugInstall -c quitall
 
 #Promptline 설정
 $sudo chmod +w $HOME
-vim -c "PromptlineSnapshot $HOME/.promptline.sh airline" -c quitall
+rm -f $HOME/.promptline.sh && vim -c "PromptlineSnapshot $HOME/.promptline.sh airline" -c quitall
 
 # coc.nvim 설정
 
