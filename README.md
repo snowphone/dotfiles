@@ -13,5 +13,6 @@ If you don't want to think about it, you just run `./sshd.sh` and follow the ins
 
 ## TODO
 
-- [ ] vim's current working directory
+- [x] vim's current working directory
+- [x] folding
 - [ ] terminal integration
