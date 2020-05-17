@@ -110,7 +110,19 @@ nmap <leader>r :Rg!<CR>
 set rtp+=~/.vim/plugged/fzf
 Plug 'junegunn/fzf.vim'
 
+" ##### Folding #####
 
+" Support python folding
+Plug 'tmhedberg/SimpylFold'
+
+" Fold faster
+Plug 'Konfekt/FastFold'
+ 
+" LaTeX
+Plug 'matze/vim-tex-fold'
+
+set foldmethod=syntax
+"autocmd FileType python,tex set foldmethod=manual 
 
 call plug#end()			" required
 
@@ -252,13 +264,6 @@ endfunc
 
 " Pipe selected visual block to command after bang.
 xnoremap <leader>c <esc>:'<,'>:w !
-
-" Store and restore fold status
-augroup remember_folds
-	autocmd!
-	autocmd BufWinLeave * mkview
-	autocmd BufWinEnter * silent! loadview
-augroup END
 
 map <F5> :call Compile()<CR> :call Run()<CR> 
 
