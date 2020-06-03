@@ -119,7 +119,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
  
 " LaTeX
-Plug 'matze/vim-tex-fold'
+Plug 'vim-latex/vim-latex'
 
 set foldmethod=syntax
 "autocmd FileType python,tex set foldmethod=manual 
