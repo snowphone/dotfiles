@@ -120,7 +120,7 @@ if [[ $dist == "debian" ]]; then
 		python3-dev python3 python3-pip \
 		bfs tree htop ripgrep silversearcher-ag \
 		bear sshpass w3m traceroute git-extras \
-		img2pdf screenfetch \
+		img2pdf neofetch \
 		nodejs npm \
 		clang-9 clang-tools-9 clangd-9
 	)
