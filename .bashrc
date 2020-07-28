@@ -415,7 +415,7 @@ netinfo ()
 
 # IP address lookup
 alias whatismyip="whatsmyip"
-function whatsmyip ()
+whatsmyip ()
 {
 	# Dumps a list of all IP addresses for every device
 	# /sbin/ifconfig |grep -B1 "inet addr" |awk '{ if ( $1 == "inet" ) { print $2 } else if ( $2 == "Link" ) { printf "%s:" ,$1 } }' |awk -F: '{ print $1 ": " $3 }';
@@ -438,13 +438,33 @@ trim()
 # Set the ultimate amazing command prompt
 #######################################################
 
-alias cpu="grep 'cpu ' /proc/stat | awk '{usage=(\$2+\$4)*100/(\$2+\$4+\$5)} END {print usage}' | awk '{printf(\"%.1f\n\", \$1)}'"
+get_cpu_usage() {
+	awk '{
+	u=$2+$4; 
+	t=$2+$4+$5; 
+	if (NR==1){
+		u1=u; 
+		t1=t;
+	} else 
+		print ($2+$4-u1) * 100 / (t-t1) "%"; 
+	}' <(grep 'cpu ' /proc/stat) <(sleep 1;grep 'cpu ' /proc/stat)
+}
 
-function git-branch-name {         
+cpu() {
+
+	local cores=$(cat /proc/cpuinfo | grep 'model name' | wc -l)
+	local usage=$(get_cpu_usage)
+	local model_name=$(grep -Po 'model name\s*: .*' /proc/cpuinfo | grep -Po '(?<=: ).*' | sed -n 1p)
+	local name=$(cat /proc/sys/kernel/hostname)
+
+	printf "%s: %s\t%s (%d)\n" "$name" "$usage" "$model_name" "$cores"
+}
+
+git-branch-name() {         
 	git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3-8
 } 
 
-function git-branch-prompt {
+git-branch-prompt() {
 	local branch=`git-branch-name`
 	if [ $branch ]; then printf " [%s]" $branch; fi
 } 
