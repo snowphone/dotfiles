@@ -7,7 +7,6 @@ if ls $HOME/.ssh &> /dev/null; then
 else
 	ln -sf $(pwd)/.ssh $HOME/.ssh
 	chmod 600 ./.ssh/id_rsa
-	chmod 600 ./.ssh/CS492_key.pem
 	touch $(pwd)/.ssh/known_hosts
 	touch $(pwd)/.ssh/authorized_keys
 fi
