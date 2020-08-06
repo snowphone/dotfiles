@@ -226,6 +226,10 @@ if [[ -n $needTypescript && $needTypescript == true ]]; then
 	measure $sudo npm install -g typescript pkg ts-node 
 fi
 
+printf "Installing rust... "
+measure 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
+
+
 printf "Installing mdless... "
 # Install markdown viewer
 measure $sudo gem install mdless
