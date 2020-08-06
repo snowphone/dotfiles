@@ -89,10 +89,6 @@ let g:airline#extensions#tmuxline#enabled = 0
 Plug 'rbong/vim-flog'
 
 
-"vim tmux seamless navigation.
-"Ctrl + hjkl to move pane/buffer
-Plug 'christoomey/vim-tmux-navigator'
-
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '┊'
 set list lcs=tab:\┊\ 
@@ -123,6 +119,10 @@ Plug 'vim-latex/vim-latex'
 
 set foldmethod=syntax
 "autocmd FileType python,tex set foldmethod=manual 
+
+"vim tmux seamless navigation.
+"Ctrl + hjkl to move pane/buffer
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()			" required
 
