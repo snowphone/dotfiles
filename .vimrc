@@ -231,6 +231,8 @@ func! Run()
 		term mdless '%'
 	elseif &filetype == 'typescript'
 		term ts-node "%"
+	elseif &filetype == 'rust'
+		term cargo run || ./%<
 	else
 		"c, c++
 		!./%<
@@ -240,7 +242,7 @@ endfunc
 func! Compile()
 	write!
 	if &filetype == 'markdown'
-		echo ""
+		"Do nothing
 	elseif filereadable('./Makefile') || filereadable('./makefile')
 		make
 	elseif &filetype == 'tex'
@@ -248,13 +250,14 @@ func! Compile()
 	elseif &filetype=='c'
 		silent !clang % -std=c11 -O0 -W -Wall -g -lpthread -pthread -lm  -o %<
 	elseif &filetype == 'python' || &filetype == 'sh' || &filetype == 'erlang'
-		"echo means do nothing.
-		echo ""
+		"Do nothing
 	elseif &filetype == 'java'
 		!javac %
 	elseif &filetype == 'typescript'
 		"Do nothing
-		echo '' 
+	elseif &filetype == 'rust'
+		"!cargo build || rustc %
+		"Do nothing
 	else
 		"c++
 		silent !clang++ -o %< -W -Wall -O2 -pthread -lboost_system -lboost_program_options -lm %
