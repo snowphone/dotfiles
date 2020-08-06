@@ -54,7 +54,7 @@ ln -sf "$folder"/py_style $HOME/.config/yapf/style
 measure $sudo npm i -g bash-language-server \; \
 	python3 -m pip install --user python-language-server[yapf,pylint,rope] \; \
 	npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
-		coc-python coc-java coc-cmake coc-git coc-markdownlint coc-texlab coc-terminal \
+		coc-python coc-java coc-cmake coc-git coc-markdownlint coc-texlab coc-terminal coc-rust-analyzer \
 		coc-tsserver coc-snippets coc-calc coc-json && \
 
 #vim -c 'CocInstall -sync coc-python coc-java coc-cmake coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
