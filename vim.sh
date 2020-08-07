@@ -51,13 +51,28 @@ ln -sf "$folder"/.coc.vimrc $HOME/
 mkdir -p $HOME/.config/yapf
 ln -sf "$folder"/py_style $HOME/.config/yapf/style
 
+plugins=( \
+		coc-python coc-cmake coc-git coc-markdownlint coc-terminal \
+		coc-snippets coc-calc coc-json \
+)
+if exists javac; then
+	plugins+=(coc-java)
+fi
+if exists rustup; then
+	plugins+=(coc-rust-analyzer)
+fi
+if exists tsc; then
+	plugins+=(coc-tsserver)
+fi
+if exists lualatex; then
+	plugins+=(coc-texlab)
+fi
+
 measure $sudo npm i -g bash-language-server \; \
 	python3 -m pip install --user python-language-server[yapf,pylint,rope] \; \
 	npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
-		coc-python coc-java coc-cmake coc-git coc-markdownlint coc-texlab coc-terminal coc-rust-analyzer \
-		coc-tsserver coc-snippets coc-calc coc-json && \
-
-#vim -c 'CocInstall -sync coc-python coc-java coc-cmake coc-git coc-markdownlint coc-texlab coc-terminal coc-tsserver' -c quitall
+	 ${plugins[@]} \
+	 && \
 
 cd $folder
 
