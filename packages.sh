@@ -9,13 +9,14 @@ ALLOWED_DISTS=(debian redhat)
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
-			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--typescript] [--fun|-f] [--all|-a]\n"
+			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--typescript] [--rust|-r] [--fun|-f] [--all|-a]\n"
 			printf "\t-h|--help\tPrint help message\n"
 			printf "\t-a|--all\tInstall everything below\n"
 			printf "\t-l|--latex\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
 			printf "\t-b|--boost\tInstall libboost-all-dev\n"
-			printf "\t-j|--java\tInstall maven and openjdk 11, 9 or 8\n"
+			printf "\t-j|--java\tInstall maven and openjdk 14, 11, 9 or 8\n"
 			printf "\t--typescript\tInstall typescript\n"
+			printf "\t-r|--rust\tInstall rust\n"
 			printf "\t-f|--fun\tInstall some funny stuffs\n"
 			printf "\t-t|--transmission\tInstall transmission-daemon\n"
 			printf "\n"
@@ -43,6 +44,9 @@ while [[ $# -gt 0 ]]; do
 		--typescript)
 			needTypescript=true
 			;;
+		-r|--rust)
+			needRust=true
+			;;
 		-a|--all)
 			needLatex=true
 			needBoost=true
@@ -50,6 +54,7 @@ while [[ $# -gt 0 ]]; do
 			needSomeFun=true
 			needTransmission=true
 			needTypescript=true
+			needRust=true
 			;;
 		*)
 			echo "Unknown parameter passed: $1"
@@ -98,10 +103,10 @@ if [[ $dist == "debian" ]]; then
 	measure $sudo apt update\; \
 		$sudo apt-get install -y software-properties-common\; \
 		$sudo apt update
-			printf "Adding a new repository named jonathonf/vim... "
-			measure $sudo add-apt-repository -y ppa:jonathonf/vim
-			printf "Adding a new repository for nodejs... "
-			if !(curl --version &> /dev/null); then
+	printf "Adding a new repository named jonathonf/vim... "
+	measure $sudo add-apt-repository -y ppa:jonathonf/vim
+	printf "Adding a new repository for nodejs... "
+	if !(curl --version &> /dev/null); then
 		$sudo apt update &> /dev/null && $sudo apt install -y curl &> /dev/null
 	fi
 	if [[ -n $sudo ]]; then
@@ -110,6 +115,10 @@ if [[ $dist == "debian" ]]; then
 		measure curl -sL https://deb.nodesource.com/setup_12.x \| bash -
 	fi
 
+	if [[ -n $needJava && $needJava == true ]]; then
+		printf "Adding a new repository named for gradle... "
+		measure $sudo add-apt-repository ppa:cwchien/gradle
+	fi
 fi
 
 
@@ -134,7 +143,7 @@ if [[ $dist == "debian" ]]; then
 	fi
 
 	if [[ -n $needJava && $needJava == true ]]; then
-		pkgs+=(maven openjdk-11-jdk)
+		pkgs+=(maven gradle openjdk-14-jdk)
 	fi
 
 	if [[ -n $needTransmission && $needTransmission == true ]]; then
@@ -166,6 +175,8 @@ if [[ $dist == "debian" ]]; then
 				pkgs+=("clang-8")
 			elif [[ $pkg == "clang-tools-9" ]]; then
 				pkgs+=("clang-tools-8")
+			elif [[ $pkg == "openjdk-14-jdk" ]]; then
+				pkgs+=("openjdk-11-jdk")
 			elif [[ $pkg == "openjdk-11-jdk" ]]; then
 				pkgs+=("openjdk-9-jdk")
 			elif [[ $pkg == "openjdk-9-jdk" ]]; then
@@ -226,8 +237,10 @@ if [[ -n $needTypescript && $needTypescript == true ]]; then
 	measure $sudo npm install -g typescript pkg ts-node 
 fi
 
-printf "Installing rust... "
-measure 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
+if [[ -n $needRust && $needRust == true ]]; then
+	printf "Installing rust... "
+	measure 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
+fi
 
 
 printf "Installing mdless... "
