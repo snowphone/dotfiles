@@ -34,3 +34,11 @@ border () {
     echo
 }
 
+exists() {
+	if $@ --version &> /dev/null; then
+		return 0
+	else
+		return -1
+	fi
+}
+
