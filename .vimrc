@@ -69,7 +69,6 @@ Plug 'Townk/vim-autoclose'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 silent! source ~/.coc.vimrc
-inoremap <expr><Esc>[Z pumvisible() ? "\<C-p>" : "\<C-h>"
 
 
 Plug 'luochen1990/rainbow'
