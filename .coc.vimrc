@@ -24,6 +24,8 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Some terminals recognize shift-tab as esc + [Z
+inoremap <expr><Esc>[Z pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -48,7 +50,9 @@ nmap <silent> <F12> <Plug>(coc-definition)
 "nmap <silent> gy <Plug>(coc-type-definition)
 "nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> <S-F12> <Plug>(coc-references)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references
+" Some terminals recognize shift-F12 as ;2~
+nmap <silent> ;2~ <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
