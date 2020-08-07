@@ -3,7 +3,7 @@
 ## Installation
 ~~~bash
 git clone 'https://snowphone:!r2xjagjgh@github.com/snowphone/dotfiles' ~/.dotfiles && \
-cd ~/.dotfiles && ./install.sh -d [debian | redhat] [[--java|--latex|--boost|--fun] | [--all|-a]]
+cd ~/.dotfiles && ./install.sh -d [debian | redhat] [[--java|--latex|--boost|--fun|--typescript|--rust] | [--all|-a]]
 ~~~
 
 ## Installation of openssh-server on WSL2
@@ -15,4 +15,4 @@ If you don't want to think about it, you just run `./sshd.sh` and follow the ins
 
 - [x] vim's current working directory
 - [x] folding
-- [ ] terminal integration
+- [x] terminal integration
