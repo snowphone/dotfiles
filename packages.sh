@@ -9,7 +9,7 @@ ALLOWED_DISTS=(debian redhat)
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
-			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--typescript] [--rust|-r] [--fun|-f] [--all|-a]\n"
+			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--typescript] [--rust|-r] [--misc|-m] [--all|-a]\n"
 			printf "\t-h|--help\tPrint help message\n"
 			printf "\t-a|--all\tInstall everything below\n"
 			printf "\t-l|--latex\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
@@ -17,7 +17,7 @@ while [[ $# -gt 0 ]]; do
 			printf "\t-j|--java\tInstall maven and openjdk 14, 11, 9 or 8\n"
 			printf "\t--typescript\tInstall typescript\n"
 			printf "\t-r|--rust\tInstall rust\n"
-			printf "\t-f|--fun\tInstall some funny stuffs\n"
+			printf "\t-m|--misc\tInstall some miscellaneous stuffs\n"
 			printf "\t-t|--transmission\tInstall transmission-daemon\n"
 			printf "\n"
 			exit 0
@@ -35,8 +35,8 @@ while [[ $# -gt 0 ]]; do
 			dist="$2"
 			shift
 			;;
-		-f|--fun)
-			needSomeFun=true
+		-m|--misc)
+			needMisc=true
 			;;
 		-t|--transmission)
 			needTransmission=true
@@ -51,7 +51,7 @@ while [[ $# -gt 0 ]]; do
 			needLatex=true
 			needBoost=true
 			needJava=true
-			needSomeFun=true
+			needMisc=true
 			needTransmission=true
 			needTypescript=true
 			needRust=true
@@ -129,7 +129,7 @@ if [[ $dist == "debian" ]]; then
 		python3-dev python3 python3-pip \
 		bfs tree htop ripgrep silversearcher-ag \
 		bear sshpass w3m traceroute git-extras \
-		img2pdf neofetch \
+		neofetch \
 		nodejs npm \
 		clang-9 clang-tools-9 clangd-9
 	)
@@ -150,11 +150,11 @@ if [[ $dist == "debian" ]]; then
 		pkgs+=( transmission-daemon )
 	fi
 	
-	if [[ -n $needSomeFun && $needSomeFun == true ]]; then
-		printf "Adding a new repository for some fun things... "
+	if [[ -n $needMisc && $needMisc == true ]]; then
+		printf "Adding a new repository for some miscellaneous things... "
 		measure $sudo apt-get install -y software-properties-common \; \
 			$sudo add-apt-repository -y ppa:ytvwld/asciiquarium
-		pkgs+=( sl figlet lolcat toilet asciiquarium bsdgames )
+		pkgs+=( parallel figlet lolcat toilet img2pdf)
 	fi
 
 	printf "Apt updating... "
