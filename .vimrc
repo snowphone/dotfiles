@@ -182,7 +182,7 @@ endif
 "In terniaml, make it normal mode like vim.
 tnoremap <F1> <C-W>N	
 "Open built-in terminal in vim.
-map <F1> :term<CR>		
+map <F1> :terminal<CR>		
 "To paste into the terminal, <C-W>"<register> in insert mode.
 "For example, typing <C-W>"" pastes data into the terminal.
 
@@ -216,59 +216,70 @@ nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
 nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
 nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 
-func! Run()
-	if &filetype == 'python'
-		:term python3 "%"
-	elseif &filetype == 'java'
-		term java %<
-	elseif &filetype == 'erlang'
-		term escript % +P
-	elseif &filetype == 'sh'
-		term bash %
-	elseif &filetype == 'tex'
-		:
-	elseif &filetype == 'markdown'
-		term mdless '%'
-	elseif &filetype == 'typescript'
-		term ts-node "%"
-	elseif &filetype == 'rust'
-		term cargo run || ./%<
-	else
-		"c, c++
-		!./%<
-	endif
-endfunc
+function Run()
+	let do_nothing_list = ["tex"]
 
-func! Compile()
+	if &filetype == 'python'
+		:terminal python3 "%"
+	elseif &filetype == 'java'
+		terminal java %<
+	elseif &filetype == 'erlang'
+		terminal escript % +P
+	elseif &filetype == 'sh'
+		terminal bash %
+	elseif &filetype == 'markdown'
+		terminal mdless '%'
+	elseif &filetype == 'typescript'
+		terminal ts-node "%"
+	elseif &filetype == 'rust'
+		terminal cargo run || ./%<
+	elseif index(do_nothing_list, &filetype) >= 0
+		" Do nothing
+	elseif index(["c", "cpp"], &filetype) >= 0
+		terminal ./%<
+	else
+		return -1
+	endif
+
+	return v:shell_error
+endfunction
+
+function Compile()
+	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript"]
+
 	write!
-	if &filetype == 'markdown'
-		"Do nothing
-	elseif filereadable('./Makefile') || filereadable('./makefile')
-		make
+	if filereadable('./Makefile') || filereadable('./makefile')
+		silent make
 	elseif &filetype == 'tex'
 		:CocCommand latex.Build
 	elseif &filetype=='c'
-		silent !clang % -std=c11 -O0 -W -Wall -g -lpthread -pthread -lm  -o %<
-	elseif &filetype == 'python' || &filetype == 'sh' || &filetype == 'erlang'
-		"Do nothing
+		 silent !clang -std=c11 -W -Wall -g -O0 % -lpthread  -lm  -o %<
+	elseif &filetype == 'cpp'
+		silent !clang++ -o %< -W -Wall -g -O0 % -lpthread -lm -lboost_system -lboost_program_options
 	elseif &filetype == 'java'
-		!javac %
-	elseif &filetype == 'typescript'
-		"Do nothing
+		silent !javac %
 	elseif &filetype == 'rust'
-		"!cargo build || rustc %
+		silent !cargo build || rustc %
+	elseif index(do_nothing_list, &filetype) >= 0
 		"Do nothing
 	else
-		"c++
-		silent !clang++ -o %< -W -Wall -O2 -pthread -lboost_system -lboost_program_options -lm %
-		redraw!
+		return -1
 	endif
-endfunc
+
+
+	redraw!
+	return v:shell_error
+endfunction
+
+function GotoBash() 
+	!echo ""
+	redraw!
+endfunction
 
 " Pipe selected visual block to command after bang.
 xnoremap <leader>c <esc>:'<,'>:w !
 
-map <F5> :call Compile()<CR> :call Run()<CR> 
+map <F5> : if Compile() == 0 <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
 
 
 function FindCursorPopUp()
