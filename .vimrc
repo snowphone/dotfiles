@@ -220,23 +220,23 @@ function Run()
 	let do_nothing_list = ["tex"]
 
 	if &filetype == 'python'
-		:terminal python3 "%"
+		:terminal python3 "%:p"
 	elseif &filetype == 'java'
-		terminal java %<
+		terminal java "%:r"
 	elseif &filetype == 'erlang'
-		terminal escript % +P
+		terminal escript "%:p" +P
 	elseif &filetype == 'sh'
-		terminal bash %
+		terminal bash "%:p"
 	elseif &filetype == 'markdown'
-		terminal bat %:p
+		terminal bat "%:p"
 	elseif &filetype == 'typescript'
-		terminal ts-node "%"
+		terminal ts-node "%:p"
 	elseif &filetype == 'rust'
-		terminal cargo run || ./%<
+		terminal cargo run || "%:r"
 	elseif index(do_nothing_list, &filetype) >= 0
 		" Do nothing
 	elseif index(["c", "cpp"], &filetype) >= 0
-		terminal ./%<
+		terminal "%:r"
 	else
 		return -1
 	endif
@@ -253,13 +253,13 @@ function Compile()
 	elseif &filetype == 'tex'
 		:CocCommand latex.Build
 	elseif &filetype=='c'
-		 silent !clang -std=c11 -W -Wall -g -O0 % -lpthread  -lm  -o %<
+		 silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:r"
 	elseif &filetype == 'cpp'
-		silent !clang++ -o %< -W -Wall -g -O0 % -lpthread -lm -lboost_system -lboost_program_options
+		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -lboost_system -lboost_program_options -o "%:r"
 	elseif &filetype == 'java'
-		silent !javac %
+		silent !javac "%:p"
 	elseif &filetype == 'rust'
-		silent !cargo build || rustc %
+		silent !cargo build || rustc "%:p"
 	elseif index(do_nothing_list, &filetype) >= 0
 		"Do nothing
 	else
