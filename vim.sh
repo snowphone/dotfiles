@@ -53,7 +53,7 @@ ln -sf "$folder"/py_style $HOME/.config/yapf/style
 
 plugins=( \
 		coc-python coc-cmake coc-git coc-markdownlint coc-terminal \
-		coc-snippets coc-calc coc-json \
+		coc-snippets coc-calc coc-json coc-vimlsp \
 )
 if exists javac; then
 	plugins+=(coc-java)
