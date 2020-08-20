@@ -243,10 +243,11 @@ if [[ -n $needRust && $needRust == true ]]; then
 fi
 
 
-printf "Installing mdless... "
-# Install markdown viewer
-measure $sudo gem install mdless
 
+printf "Installing markdown viewer... "
+mkdir -p $HOME/.bin
+measure curl -L https://github.com/sharkdp/bat/releases/download/v0.15.4/bat-v0.15.4-x86_64-unknown-linux-musl.tar.gz \| tar xvz -C .bin \; \
+	$sudo ln -s $HOME/.bin/bat-v0.15.4-x86_64-unknown-linux-musl/bat /usr/local/bin/
 
 
 border "Package installation phase completed! 😉"
