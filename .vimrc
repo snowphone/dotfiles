@@ -222,7 +222,7 @@ function Run()
 	if &filetype == 'python'
 		:terminal python3 "%:p"
 	elseif &filetype == 'java'
-		terminal java "%:r"
+		terminal java "%:p:r"
 	elseif &filetype == 'erlang'
 		terminal escript "%:p" +P
 	elseif &filetype == 'sh'
@@ -232,11 +232,11 @@ function Run()
 	elseif &filetype == 'typescript'
 		terminal ts-node "%:p"
 	elseif &filetype == 'rust'
-		terminal cargo run || "%:r"
+		terminal cargo run || "%:p:r"
 	elseif index(do_nothing_list, &filetype) >= 0
 		" Do nothing
 	elseif index(["c", "cpp"], &filetype) >= 0
-		terminal "%:r"
+		terminal "%:p:r"
 	else
 		return -1
 	endif
@@ -253,9 +253,9 @@ function Compile()
 	elseif &filetype == 'tex'
 		:CocCommand latex.Build
 	elseif &filetype=='c'
-		 silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:r"
+		 silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
 	elseif &filetype == 'cpp'
-		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -lboost_system -lboost_program_options -o "%:r"
+		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -lboost_system -lboost_program_options -o "%:p:r"
 	elseif &filetype == 'java'
 		silent !javac "%:p"
 	elseif &filetype == 'rust'
