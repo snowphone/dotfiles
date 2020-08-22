@@ -248,12 +248,12 @@ function Compile()
 	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript"]
 
 	write!
-	if filereadable('./Makefile') || filereadable('./makefile')
+	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
 		silent make
 	elseif &filetype == 'tex'
 		:CocCommand latex.Build
 	elseif &filetype=='c'
-		 silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
+		 silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm -lcurl  -o "%:p:r"
 	elseif &filetype == 'cpp'
 		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -lboost_system -lboost_program_options -o "%:p:r"
 	elseif &filetype == 'java'
