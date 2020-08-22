@@ -228,7 +228,7 @@ function Run()
 	elseif &filetype == 'sh'
 		terminal bash "%:p"
 	elseif &filetype == 'markdown'
-		terminal bat "%:p"
+		terminal glow "%:p"
 	elseif &filetype == 'typescript'
 		terminal ts-node "%:p"
 	elseif &filetype == 'rust'
