@@ -21,7 +21,7 @@ Plug 'godlygeek/csapprox'
 "테마(theme)
 Plug 'nightsense/carbonized'
 Plug 'tomasr/molokai'
-Plug 'vim-scripts/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'float168/vim-colors-cherryblossom'
 
 Plug 'vim-airline/vim-airline'
@@ -33,7 +33,7 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme='fruit_punch'
+let g:airline_theme='gruvbox'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -129,13 +129,17 @@ call plug#end()			" required
 "set theme
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
-set bg=dark
+set bg=light
 " Enable 24bit true color
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
+let g:gruvbox_contrast_light='soft'
+let g:gruvbox_contrast_dark='soft'
+let g:gruvbox_improved_strings=1
+let g:gruvbox_improved_warnings=1
 silent! colorscheme gruvbox
 
 syntax on
