@@ -3,7 +3,7 @@
 ## Installation
 ~~~bash
 git clone 'https://snowphone:***REMOVED***@github.com/snowphone/dotfiles' ~/.dotfiles && \
-cd ~/.dotfiles && ./install.sh -d [debian | redhat] [[--java|--latex|--boost|--fun|--typescript|--rust] | [--all|-a]]
+cd ~/.dotfiles && ./install.sh -d [debian | redhat] [[--java|--latex|--boost|--misc|--typescript|--rust] | [--all|-a]]
 ~~~
 
 ## Installation of openssh-server on WSL2
