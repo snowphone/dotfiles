@@ -2,7 +2,7 @@
 
 ## Installation
 ~~~bash
-git clone 'https://snowphone:***REMOVED***@github.com/snowphone/dotfiles' ~/.dotfiles && \
+git clone 'https://snowphone@github.com/snowphone/dotfiles' ~/.dotfiles && \
 cd ~/.dotfiles && ./install.sh -d [debian | redhat] [[--java|--latex|--boost|--misc|--typescript|--rust] | [--all|-a]]
 ~~~
 
