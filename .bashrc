@@ -502,6 +502,10 @@ git-branch-prompt() {
 source ~/.promptline.sh 
 
 
+alias fd=fdfind
+alias sumatrapdf='/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe'
+alias tmux-dev='~/.dotfiles/tmux-dev.sh'
+alias qq='tmux kill-window'
 
 
 
@@ -514,7 +518,13 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Use fd-based completion for the better performance
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
 
-alias sumatrapdf='/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe'
-alias tmux-dev='~/.dotfiles/tmux-dev.sh'
-alias qq='tmux kill-window'
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
