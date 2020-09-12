@@ -215,7 +215,8 @@ fi
 printf "Installing pudb, a python debugger... "
 mkdir $HOME/.pip
 ln -fs "$(pwd)"/pip.conf $HOME/.pip/pip.conf
-measure pip3 install --user pudb youtube-dl
+measure pip3 install --user pudb youtube-dlc
+ln -sf ~/.local/bin/youtube-dlc ~/.local/bin/youtube-dl
 
 if [[ -n $needLatex && $needLatex == true ]]; then
 	printf "Refreshing fonts... "
