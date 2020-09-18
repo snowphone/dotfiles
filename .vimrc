@@ -129,7 +129,7 @@ call plug#end()			" required
 "set theme
 set t_Co=256
 set t_ut= "테마 적용시 뒷 배경을 날리는 역할
-set bg=light
+set bg=dark
 " Enable 24bit true color
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
