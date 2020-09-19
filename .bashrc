@@ -503,7 +503,7 @@ source ~/.promptline.sh
 
 
 alias fd=fdfind
-alias sumatrapdf='/mnt/c/Program\ Files/SumatraPDF/SumatraPDF.exe'
+alias sumatrapdf='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
 alias tmux-dev='~/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
 
