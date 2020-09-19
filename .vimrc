@@ -321,3 +321,8 @@ if has('textprop') && has('patch-8.1.1610')
 	nnoremap <expr> <c-u> ScrollPopUp(0) ? '<esc>' : '<c-u>'
 endif
 
+" FIX: ssh from wsl starting with REPLACE mode
+" https://stackoverflow.com/a/11940894
+if $TERM =~ 'xterm-256color'
+  set noek
+endif
