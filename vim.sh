@@ -52,7 +52,7 @@ mkdir -p $HOME/.config/yapf
 ln -sf "$folder"/py_style $HOME/.config/yapf/style
 
 plugins=( \
-		coc-python coc-cmake coc-git coc-markdownlint coc-terminal \
+		coc-pyright coc-cmake coc-git coc-markdownlint coc-terminal \
 		coc-snippets coc-calc coc-json coc-vimlsp \
 )
 if exists javac; then
@@ -69,7 +69,7 @@ if exists lualatex; then
 fi
 
 measure $sudo npm i -g bash-language-server \; \
-	python3 -m pip install --user python-language-server[yapf,pylint,rope] \; \
+	python3 -m pip install --user yapf \; \
 	npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
 	 ${plugins[@]} \
 	 && \
