@@ -17,5 +17,5 @@
 	"latex.build.onSave": true,
 
 	"python.formatting.provider": "yapf",
-	"python.jediEnabled": false
+	"python.pythonPath": "python3"
 }
