@@ -51,8 +51,8 @@ nmap <silent> <F12> <Plug>(coc-definition)
 "nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> <S-F12> <Plug>(coc-references)
 nmap <silent> gr <Plug>(coc-references
-" Some terminals recognize shift-F12 as ;2~
-nmap <silent> ;2~ <Plug>(coc-references)
+" Some terminals recognize shift-F12 as <esc>[24;2~
+nmap <silent> <ESC>[24;2~ <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
