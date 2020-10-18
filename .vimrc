@@ -283,7 +283,16 @@ endfunction
 " Pipe selected visual block to command after bang.
 xnoremap <leader>c <esc>:'<,'>:w !
 
-map <F5> : if Compile() == 0 <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <C-F5> : if Compile() == 0 <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <ESC>[15;5~ : if Compile() == 0 <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+" In some terminals (e.g. tmux), they cannot understand complex key bindings.
+" So, in this case, we need to find out the complex binding is converted into
+" several keys. 
+" For example, if we want to know byte streams of Ctrl + F5, we
+" just run xxd in bash, press <Ctrl + F5> and enter.
+" Then, 1b5b 3135 3b35 7e0a will be printed. The last 0a is a return key, so
+" remaining 7 bytes are what we wanted. The only left thing is, google ascii
+" table and translate 7 bytes to '<esc>[15;5~'. 
 
 
 function FindCursorPopUp()
