@@ -10,3 +10,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[help]
+	autocorrect = 10
