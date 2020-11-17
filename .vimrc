@@ -102,7 +102,15 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 Plug 'junegunn/fzf', { 'do': './install --all' }
 nmap <C-n> :Files<CR>
 nmap <C-m> :Files ~<CR>
-nmap <leader>r :Rg!<CR>
+
+"key mapping
+let mapleader=","
+
+if executable("rg")
+	nnoremap <leader>r :Rg!<CR>
+else
+	nnoremap <leader>r :Ag!<CR>
+endif
 
 set rtp+=~/.vim/plugged/fzf
 Plug 'junegunn/fzf.vim'
@@ -214,8 +222,6 @@ nnoremap ? ?\v
 vnoremap ? ?\v
 cnoremap s/ s/\v
 
-"key mapping
-let mapleader=","
 nnoremap <leader>q : bp!<CR> " 쉼표 + q : 이전 탭
 nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
 nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
