@@ -101,6 +101,7 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 "fzf 설정
 Plug 'junegunn/fzf', { 'do': './install --all' }
 nmap <C-n> :Files<CR>
+nmap <C-m> :Files ~<CR>
 nmap <leader>r :Rg!<CR>
 
 set rtp+=~/.vim/plugged/fzf
