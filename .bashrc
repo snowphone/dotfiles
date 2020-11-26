@@ -502,7 +502,14 @@ git-branch-prompt() {
 source ~/.promptline.sh 
 
 
-alias fd=fdfind
+if fdfind --version &> /dev/null; then
+	alias fd=fdfind
+elif fd --version &> /dev/null; then
+	alias fd=fd
+else
+	alias fd=find
+fi
+
 alias sumatrapdf='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
 alias tmux-dev='~/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
