@@ -133,6 +133,8 @@ set foldmethod=syntax
 "Ctrl + hjkl to move pane/buffer
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'udalov/kotlin-vim'
+
 call plug#end()			" required
 
 "set theme
