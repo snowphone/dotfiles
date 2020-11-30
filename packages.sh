@@ -254,14 +254,10 @@ fi
 
 
 printf "Installing bat, a markdown viewer... "
-mkdir -p $HOME/.bin
-measure curl -L https://github.com/sharkdp/bat/releases/download/v0.15.4/bat-v0.15.4-x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.bin \; \
-	$sudo ln -sf $HOME/.bin/bat-v0.15.4-x86_64-unknown-linux-musl/bat /usr/local/bin/
-printf "Installing glow, another markdown viewer... "
-mkdir -p $HOME/.bin/glow
-measure curl -L https://github.com/charmbracelet/glow/releases/download/v0.2.0/glow_0.2.0_linux_x86_64.tar.gz \| tar xz -C $HOME/.bin/glow \; \
-	$sudo ln -sf $HOME/.bin/glow/glow /usr/local/bin/
+measure get_latest_from_github sharkdp/bat x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin --strip 1
 
+printf "Installing glow, another markdown viewer... "
+measure get_latest_from_github charmbracelet/glow linux_x86_64.tar.gz \| tar xz -C $HOME/.local/bin
 
 border "Package installation phase completed! 😉"
 printf "\n\n"
