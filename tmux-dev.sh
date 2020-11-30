@@ -1,7 +1,7 @@
 tmux -2  new -s dev \; \
-  send-keys 'neofetch ' C-m \; \
+  send-keys 'cat /run/motd.dynamic ' C-m \; \
   split-window -h -p 65 \; \
-  send-keys "curl wttr.in/Daejeon?2" C-m \; \
+  send-keys "neofetch" C-m \; \
   select-pane -t 0 \; \
   split-window -v -p 30 \; \
   send-keys 'htop -s PERCENT_CPU' C-m \; \
