@@ -42,3 +42,12 @@ exists() {
 	fi
 }
 
+get_latest_from_github() {
+	# $1: user/repo
+	# name_tag_suffix
+curl -s https://api.github.com/repos/$1/releases/latest |
+	grep browser_download_url | 
+	grep -Po 'https://.*?'$2  |
+	xargs curl -L
+}
+
