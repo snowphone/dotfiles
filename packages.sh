@@ -131,6 +131,7 @@ if [[ $dist == "debian" ]]; then
 		bear sshpass w3m traceroute git-extras \
 		neofetch \
 		nodejs npm \
+		poppler-utils \
 		clang-9 clang-tools-9 clangd-9
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
@@ -252,6 +253,8 @@ if [[ -n $needJava && $needJava == true ]]; then
 	rm -rf server server.zip
 fi
 
+printf "Installing ripgrep-all... "
+measure get_latest_from_github phiresky/ripgrep-all x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin --strip 1
 
 printf "Installing bat, a markdown viewer... "
 measure get_latest_from_github sharkdp/bat x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin --strip 1
