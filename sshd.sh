@@ -11,7 +11,8 @@ folder=$(pwd)
 
 # Main phase
 
-$sudo apt install -y openssh-server tee
+$sudo apt install -y openssh-server net-tools
+$sudo ssh-keygen -A
 
 #.bashrc 설정
 #ssh server 설정
