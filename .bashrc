@@ -157,8 +157,9 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit -m'
 alias gb='git branch'
-alias gct='git checkout'
+alias gck='git checkout'
 alias glog='git log --all --decorate --oneline --graph'
+alias gd='git difftool'
 
 
 # Search command line history
