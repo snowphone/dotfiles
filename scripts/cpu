@@ -8,7 +8,7 @@ get_cpu_usage() {
 		u1=u; 
 		t1=t;
 	} else 
-		print ($2+$4-u1) * 100 / (t-t1) "%"; 
+		print ($2+$4-u1) * 100 / (t-t1); 
 	}' <(grep 'cpu ' /proc/stat) <(sleep 1;grep 'cpu ' /proc/stat)
 }
 
@@ -19,7 +19,7 @@ cpu() {
 	local model_name=$(grep -Po 'model name\s*: .*' /proc/cpuinfo | grep -Po '(?<=: ).*' | sed -n 1p)
 	local name=$(cat /proc/sys/kernel/hostname)
 
-	printf "%s: %s\t%s (%d)\n" "$name" "$usage" "$model_name" "$cores"
+	printf "%s:\t%4.1f%%\t%s\t(%d)\n" "$name" "$usage" "$model_name" "$cores"
 }
 
 cpu 
