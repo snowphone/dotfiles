@@ -214,37 +214,10 @@ alias sha256='openssl sha256'
 
 # Others
 alias htop="htop -u $(whoami)"
-calc() {
-	echo "$*" | bc -l
-}
 
 #######################################################
 # SPECIAL FUNCTIONS
 #######################################################
-
-# Extracts any archive(s) (if unp isn't installed)
-extract () {
-	for archive in $*; do
-		if [ -f $archive ] ; then
-			case $archive in
-				*.tar.bz2)   tar xvjf $archive    ;;
-				*.tar.gz)    tar xvzf $archive    ;;
-				*.bz2)       bunzip2 $archive     ;;
-				*.rar)       rar x $archive       ;;
-				*.gz)        gunzip $archive      ;;
-				*.tar)       tar xvf $archive     ;;
-				*.tbz2)      tar xvjf $archive    ;;
-				*.tgz)       tar xvzf $archive    ;;
-				*.zip)       unzip $archive       ;;
-				*.Z)         uncompress $archive  ;;
-				*.7z)        7z x $archive        ;;
-				*)           echo "don't know how to extract '$archive'..." ;;
-			esac
-		else
-			echo "'$archive' is not a valid file!"
-		fi
-	done
-}
 
 # Searches for text in all files in the current folder
 ftext ()
@@ -443,28 +416,6 @@ trim()
 #######################################################
 # Set the ultimate amazing command prompt
 #######################################################
-
-get_cpu_usage() {
-	awk '{
-	u=$2+$4; 
-	t=$2+$4+$5; 
-	if (NR==1){
-		u1=u; 
-		t1=t;
-	} else 
-		print ($2+$4-u1) * 100 / (t-t1) "%"; 
-	}' <(grep 'cpu ' /proc/stat) <(sleep 1;grep 'cpu ' /proc/stat)
-}
-
-cpu() {
-
-	local cores=$(cat /proc/cpuinfo | grep 'model name' | wc -l)
-	local usage=$(get_cpu_usage)
-	local model_name=$(grep -Po 'model name\s*: .*' /proc/cpuinfo | grep -Po '(?<=: ).*' | sed -n 1p)
-	local name=$(cat /proc/sys/kernel/hostname)
-
-	printf "%s: %s\t%s (%d)\n" "$name" "$usage" "$model_name" "$cores"
-}
 
 git-branch-name() {         
 	git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3-8
