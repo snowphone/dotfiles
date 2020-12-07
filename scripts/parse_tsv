@@ -1,0 +1,5 @@
+parse_csv() {
+	column -t -s $'\t'  -n "$@"
+}
+
+parse_csv "$@"
