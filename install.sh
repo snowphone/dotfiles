@@ -1,15 +1,16 @@
 #!/bin/bash
 
+folder=$(dirname $0 | xargs realpath)
 # Include functions
-source $(pwd)/include.sh
+source "$folder"/include.sh
 
-DEBIAN_FRONTEND=noninteractive $(pwd)/packages.sh "$@"	|| die "Package installation failed"
-$(pwd)/vim.sh			|| die "Vim configuration is failed"
+DEBIAN_FRONTEND=noninteractive "$folder"/packages.sh "$@"	|| die "Package installation failed"
+"$folder"/vim.sh			|| die "Vim configuration is failed"
 
-$(pwd)/misc.sh			|| die "sshd, transmission, and wsl folder aliasing are failed" # ssh server, transmission, wsl folder linking
-$(pwd)/ssh_key.sh		|| die "Failed to generate ssh key" # Generate ssh key
-$(pwd)/link.sh			|| die "Aliasing config files is failed" # symbolic links
-$(pwd)/tmux.sh			|| die "Failed to setup tmuxResurrect and some config files" # tmuxResurrect and symbolic links about it
+"$folder"/misc.sh			|| die "sshd, transmission, and wsl folder aliasing are failed" # ssh server, transmission, wsl folder linking
+"$folder"/ssh_key.sh		|| die "Failed to generate ssh key" # Generate ssh key
+"$folder"/link.sh			|| die "Aliasing config files is failed" # symbolic links
+"$folder"/tmux.sh			|| die "Failed to setup tmuxResurrect and some config files" # tmuxResurrect and symbolic links about it
 
 
 cd $HOME

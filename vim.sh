@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ./include.sh
+folder=$(dirname $0 | xargs realpath)
+source "$folder"/include.sh
 
 
 border "Entering vim plugins installaion phase"
@@ -19,7 +20,6 @@ else
 	sudo="sudo"
 fi
 
-folder=$(pwd)
 ln -fs "$folder"/.vimrc $HOME/.vimrc
 
 #vim 설정

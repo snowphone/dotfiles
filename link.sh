@@ -1,5 +1,5 @@
 #!/bin/bash
-folder=$(pwd)
+folder=$(dirname $0 | xargs realpath)
 
 mkdir -p $HOME/.local/bin/
 
