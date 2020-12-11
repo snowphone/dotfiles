@@ -1,7 +1,8 @@
 #!/bin/bash
 
+folder=$(dirname $0 | xargs realpath)
 #include functions
-source ./include.sh
+source "$folder"/include.sh
 
 # Parse arguments
 ALLOWED_DISTS=(debian redhat)

@@ -7,7 +7,7 @@ else
 	sudo="sudo"
 fi
 
-folder=$(pwd)
+folder=$(dirname $0 | xargs realpath)
 
 ## Check if running in WSL
 if df /mnt/c &> /dev/null; then
