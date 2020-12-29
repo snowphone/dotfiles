@@ -90,7 +90,7 @@ alias hlp='less ~/.bashrc_help'
 alias da='date "+%Y-%m-%d %A %T %Z"'
 
 # Alias's to modified commands
-alias cp='cp -i'
+alias cp='rsync -ah --info=progress2'
 alias mv='mv -i'
 alias rm='rm -iv'
 alias mkdir='mkdir -p'
