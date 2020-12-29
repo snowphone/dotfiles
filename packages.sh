@@ -128,7 +128,7 @@ if [[ $dist == "debian" ]]; then
 		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip \
 		exuberant-ctags cmake clang-format \
 		python3-dev python3 python3-pip \
-		bfs tree htop ripgrep silversearcher-ag fd-find \
+		bfs tree htop ripgrep silversearcher-ag fd-find rsync \
 		bear sshpass w3m traceroute git-extras \
 		neofetch \
 		nodejs npm \
