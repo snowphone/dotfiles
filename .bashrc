@@ -161,6 +161,7 @@ alias gb='git branch'
 alias gck='git checkout'
 alias glog='git log --all --decorate --oneline --graph'
 alias gd='git difftool'
+alias grm='git rm $(git ls-files --deleted)'
 
 
 # Search command line history
