@@ -248,10 +248,9 @@ fi
 if [[ -n $needJava && $needJava == true ]]; then
 	# Install kotlin-language-server
 	printf "Installing kotlin-language-server... "
-	measure curl -LO https://github.com/fwcd/kotlin-language-server/releases/latest/download/server.zip '&&' \
-	unzip server.zip '&&' \
-	cp -rf server/* $HOME/.local/ '&&' \
-	rm -rf server server.zip
+	measure get_latest_from_github fwcd/kotlin-language-server server.zip > /tmp/server.zip '&&' \
+	unzip -o /tmp/server.zip '&&' \
+	cp -rf /tmp/server/* $HOME/.local/
 fi
 
 printf "Installing ripgrep-all... "
