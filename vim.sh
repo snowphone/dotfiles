@@ -32,14 +32,9 @@ cd $folder
 
 vim --not-a-term -c PlugInstall -c quitall
 
-#Promptline 설정
 $sudo chmod +w $HOME
-rm -f $HOME/.promptline.sh && vim -c "PromptlineSnapshot $HOME/.promptline.sh jelly" -c quitall
 
 # coc.nvim 설정
-
-
-
 printf "Installing coc plugins... "
 cd ~/.config/coc/extensions
 if [ ! -f package.json ]; then
