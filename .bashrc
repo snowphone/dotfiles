@@ -473,7 +473,7 @@ TRUELINE_SHOW_VIMODE=true
 TRUELINE_WORKING_DIR_SPACE_BETWEEN_PATH_SEPARATOR=true
 TRUELINE_VIMODE_CMD_CURSOR='under'
 TRUELINE_VIMODE_INS_CURSOR='under'
-source .trueline.sh
+source $HOME/.trueline.sh
 
 if fdfind --version &> /dev/null; then
 	alias fd=fdfind
