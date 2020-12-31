@@ -452,14 +452,17 @@ git-branch-prompt() {
 declare -A TRUELINE_SYMBOLS=(
     [git_modified]='✚'
     [git_github]=''
+    [git_gitlab]=''
+    [git_bitbucket]=''
 	[git_ahead]='↑'
 	[git_behind]='↓'
     [segment_separator]=''
     [working_dir_folder]='⋯'
     [working_dir_separator]=''
-    [working_dir_home]='~'
+    [working_dir_home]='⌂'
     [newline]='❯'
     [clock]='🕒'
+	[ssh]='⌁'
 	[bg_jobs]='⏎'
 	[read_only]=''
 )
