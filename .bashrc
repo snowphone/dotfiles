@@ -90,7 +90,10 @@ alias hlp='less ~/.bashrc_help'
 alias da='date "+%Y-%m-%d %A %T %Z"'
 
 # Alias's to modified commands
-alias cp='rsync -ah --info=progress2'
+if rsync --version &> /dev/null; then
+	alias cp='rsync -ah --info=progress2'
+	alias scp='rsync -ah --info=progress2'
+fi
 alias mv='mv -i'
 alias rm='rm -iv'
 alias mkdir='mkdir -p'
@@ -468,6 +471,8 @@ declare -A TRUELINE_SYMBOLS=(
 )
 TRUELINE_SHOW_VIMODE=true
 TRUELINE_WORKING_DIR_SPACE_BETWEEN_PATH_SEPARATOR=true
+TRUELINE_VIMODE_CMD_CURSOR='under'
+TRUELINE_VIMODE_INS_CURSOR='under'
 source .trueline.sh
 
 if fdfind --version &> /dev/null; then
