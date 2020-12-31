@@ -448,19 +448,24 @@ git-branch-prompt() {
 #CYAN="$(echo -e "\033[0;36m")"
 #LIGHTCYAN="$(echo -e "\033[96m")"
 #NOCOLOR="$(echo -e "\033[0m")"
-#
-## Set prompt
-#TIME='${LIGHTGREEN}\d \t${NOCOLOR}'
-#CPU='${LIGHTGREEN}CPU: $(cpu)${NOCOLOR}'
-#USER='${RED}\u${NOCOLOR}'
-#HOST='${RED}\h${NOCOLOR}'
-#LOCATION='${LIGHTCYAN}$(pwd)${NOCOLOR}'
-#BRANCH='${YELLOW}$(git-branch-prompt)${NOCOLOR}'
-#
-#PS1="$TIME|$CPU|$USER@$HOST:$LOCATION$BRANCH\n> "
-#PS2='${LIGHTCYAN}>${NOCOLOR} '
-source ~/.promptline.sh 
 
+declare -A TRUELINE_SYMBOLS=(
+    [git_modified]='✚'
+    [git_github]=''
+	[git_ahead]='↑'
+	[git_behind]='↓'
+    [segment_separator]=''
+    [working_dir_folder]='⋯'
+    [working_dir_separator]=''
+    [working_dir_home]='~'
+    [newline]='❯'
+    [clock]='🕒'
+	[bg_jobs]='⏎'
+	[read_only]=''
+)
+TRUELINE_SHOW_VIMODE=true
+TRUELINE_WORKING_DIR_SPACE_BETWEEN_PATH_SEPARATOR=true
+source .trueline.sh
 
 if fdfind --version &> /dev/null; then
 	alias fd=fdfind
