@@ -508,7 +508,8 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-rga-fzf() {
+# Search all file types including pdf, ppt, and open grepped files
+grepOpen() {
 	RG_PREFIX="rga --files-with-matches"
 	local file
 	file="$(
@@ -518,6 +519,14 @@ rga-fzf() {
 				--bind "change:reload:$RG_PREFIX {q}" \
 				--preview-window="70%:wrap"
 	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
+
+# Search filenames and open them
+findOpen() {
+	local file
+	file="$(fzf)" &&
 	echo "opening $file" &&
 	xdg-open "$file"
 }
