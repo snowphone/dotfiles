@@ -19,7 +19,7 @@ cpu() {
 	local model_name=$(grep -Po 'model name\s*: .*' /proc/cpuinfo | grep -Po '(?<=: ).*' | sed -n 1p)
 	local name=$(cat /proc/sys/kernel/hostname)
 
-	printf "%s:\t%4.1f%%\t%s\t(%d)\n" "$name" "$usage" "$model_name" "$cores"
+	printf "%s\t%4.1f%%\t%s\t(%d)\n" "$name" "$usage" "$model_name" "$cores"
 }
 
 cpu 
