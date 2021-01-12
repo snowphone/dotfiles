@@ -92,8 +92,8 @@ alias da='date "+%Y-%m-%d %A %T %Z"'
 # Alias's to modified commands
 if rsync --version &> /dev/null; then
 	alias cp='rsync -ah --info=progress2'
-	alias scp='rsync -ah --info=progress2'
 fi
+alias scp='scp -r'
 alias mv='mv -i'
 alias rm='rm -iv'
 alias mkdir='mkdir -p'
