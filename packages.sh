@@ -126,14 +126,13 @@ fi
 if [[ $dist == "debian" ]]; then
 	pkgs=( \
 		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip \
-		exuberant-ctags cmake clang-format \
+		exuberant-ctags cmake \
 		python3-dev python3 python3-pip \
 		bfs tree htop ripgrep silversearcher-ag fd-find rsync \
 		bear sshpass w3m traceroute git-extras multitail \
 		neofetch \
 		nodejs npm \
-		poppler-utils \
-		clang-9 clang-tools-9 clangd-9
+		poppler-utils
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | $sudo debconf-set-selections
@@ -173,11 +172,7 @@ if [[ $dist == "debian" ]]; then
 		if ! measure $sudo apt install -qy $pkg; then
 			failedList+=($pkg)
 
-			if [[ $pkg == "clang-9" ]]; then
-				pkgs+=("clang-8")
-			elif [[ $pkg == "clang-tools-9" ]]; then
-				pkgs+=("clang-tools-8")
-			elif [[ $pkg == "openjdk-14-jdk" ]]; then
+			if [[ $pkg == "openjdk-14-jdk" ]]; then
 				pkgs+=("openjdk-11-jdk")
 			elif [[ $pkg == "openjdk-11-jdk" ]]; then
 				pkgs+=("openjdk-9-jdk")
@@ -225,15 +220,23 @@ if [[ -n $needLatex && $needLatex == true ]]; then
 	measure $sudo fc-cache -f -v
 fi
 
-if clang-9 --version &> /dev/null; then
-	printf "Aliasing clang and clangd... "
-	measure $sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-9 10 \; \
-		$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-9 10
-elif clang-8 --version &> /dev/null; then
-	printf "Aliasing clang and clangd... "
-	measure $sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-8 10\; \
-		$sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 10
-fi
+installClangSuite() {
+	for i in $(seq 12 -1 1)
+	do
+		installList=( clang-$i clang-tools-$i clangd-$i clang-format-$i )
+		printf "Installing ${installList[@]}... "
+		measure $sudo apt install -qy ${installList[@]} &&
+		for package in ${installList[@]}
+		do
+			local name=$(echo $package | sed 's/-[0-9]\+//')
+			printf "\n$package is being aliased to $name... "
+			measure $sudo update-alternatives --install /usr/bin/$name $name /usr/bin/$package 10
+		done &&
+			break
+	done
+}
+installClangSuite
+
 
 if [[ -n $needTypescript && $needTypescript == true ]]; then
 	printf "Installing typescript modules... "
