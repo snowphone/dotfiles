@@ -8,6 +8,7 @@
 		},
 		"clangd": {
 			"command": "clangd",
+			"args": ["-cross-file-rename"],
 			"rootPatterns": ["compile_flags.txt", "compile_commands.json"],
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		},
