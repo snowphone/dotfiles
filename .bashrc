@@ -10,6 +10,11 @@ if [ -f /etc/bashrc ]; then
 	 . /etc/bashrc
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [[ -d "$HOME/.local/bin" && ! $PATH =~ "$HOME/.local/bin" ]] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
 	. /usr/share/bash-completion/bash_completion

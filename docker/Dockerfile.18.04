@@ -9,7 +9,6 @@ WORKDIR $HOME/.dotfiles
 RUN ./install.sh --dist debian --latex --java
 
 RUN echo "export TERM=xterm-256color" >> $HOME/.bashrc
-RUN echo ' if [ -d "$HOME/.local/bin" ] ; then PATH="$HOME/.local/bin:$PATH"; fi' >> $HOME/.profile
 
 WORKDIR $HOME
 
