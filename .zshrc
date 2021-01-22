@@ -8,6 +8,7 @@ setopt pushd_silent
 VI_MODE_SET_CURSOR=false
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 
+export EDITOR=vim
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
