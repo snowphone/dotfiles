@@ -173,10 +173,12 @@ set fencs=euc-kr,ucs-bom,utf-8
 "set cursorcolumn	" Visualize vertical cursor line
 "set cursorline		" Visualize horizontal cursor line
 "set tenc=utf-8	  " 터미널 인코딩
-"newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
-autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
-"euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
-autocmd BufReadPost * if &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
+if !&modifiable
+	"newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
+	autocmd BufReadPost * if &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
+	"euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
+	autocmd BufReadPost * if &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
+endif
 
 " 마지막 편집 위치 복원 기능
 au BufReadPost *
