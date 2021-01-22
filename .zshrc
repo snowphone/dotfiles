@@ -44,7 +44,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-autosuggestions
   zgen load unixorn/autoupdate-zgen
   zgen load zsh-users/zsh-completions src
-  zgen load RobSis/zsh-completion-generator
+  zgen load RobSis/zsh-completion-generator		# compgen <program> to parse, and compinit then to apply
   zgen load romkatv/powerlevel10k powerlevel10k
 
 
