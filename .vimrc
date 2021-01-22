@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged/')
 
 Plug 'tpope/vim-fugitive'
 
-" All of your Plugins must be added before the following line
+Plug 'tommcdo/vim-fugitive-blame-ext'
 
 
 "256색 콘솔에서 gui용 테마 적용을 가능하게 함
