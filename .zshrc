@@ -7,6 +7,7 @@ setopt pushd_silent
 
 VI_MODE_SET_CURSOR=false
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZGEN_SYSTEM_UPDATE_DAYS=1
 
 export EDITOR=vim
 
@@ -21,8 +22,6 @@ export FZF_BASE=$HOME/.vim/plugged/fzf
 
 [ ! -d "${HOME}/.zgen" ] && git clone --depth 1 https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 source "${HOME}/.zgen/zgen.zsh" > /dev/null
-
-bindkey '^ ' autosuggest-accept
 
 # if the init script doesn't exist
 if ! zgen saved; then
@@ -47,12 +46,15 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-completions src
   zgen load RobSis/zsh-completion-generator		# compgen <program> to parse, and compinit then to apply
   zgen load romkatv/powerlevel10k powerlevel10k
+  zgen load IngoMeyer441/zsh-easy-motion
 
 
   # generate the init script from plugins above
   zgen save
 fi
 
+bindkey '^ ' autosuggest-accept
+bindkey -M vicmd ' ' vi-easy-motion
 
 
 ########################
