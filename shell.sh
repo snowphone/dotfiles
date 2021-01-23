@@ -12,9 +12,10 @@ else
 fi
 
 changeShell() {
-	local user=$USER
+	local user=$(whoami)
 	local shell=$1
 	local lineNum=$(grep -n $user /etc/passwd | cut -f1 -d:)
+	printf "lineNum: %s\n" "$lineNum"
 	local pattern=$(printf '%ds|%s:.*$|%s:%s|' $lineNum $HOME $HOME $shell)
 	$sudo sed -ie "$pattern" /etc/passwd
 }
