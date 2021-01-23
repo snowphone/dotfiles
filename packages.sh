@@ -125,15 +125,15 @@ fi
 
 if [[ $dist == "debian" ]]; then
 	pkgs=( \
-		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip \
-		zsh python-is-python3 \
-		exuberant-ctags cmake \
-		python3-dev python3 python3-pip \
-		bfs tree htop ripgrep silversearcher-ag fd-find rsync \
-		bear sshpass w3m traceroute git-extras multitail \
-		neofetch \
-		nodejs npm \
-		poppler-utils
+		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip
+		zsh python-is-python3
+		exuberant-ctags cmake
+		python3-dev python3 python3-pip
+		bfs tree htop ripgrep silversearcher-ag fd-find rsync
+		bear sshpass w3m traceroute git-extras multitail
+		neofetch
+		nodejs npm
+		poppler-utils # for parsing and reading PDFs
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | $sudo debconf-set-selections
