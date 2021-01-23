@@ -100,7 +100,8 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 "fzf 설정
 Plug 'junegunn/fzf', { 'do': './install --all' }
-nmap <C-n> :Files<CR>
+nnoremap <C-n> :Files<CR>
+nnoremap <M-n> :FZF ~<CR>
 
 "key mapping
 let mapleader=","
@@ -141,6 +142,12 @@ nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 
 
 Plug 'udalov/kotlin-vim'
+
+Plug 'voldikss/vim-floaterm'
+let g:floaterm_keymap_toggle='<F1>'
+
+Plug 'voldikss/fzf-floaterm'
+
 
 call plug#end()			" required
 
@@ -202,15 +209,6 @@ if &diff
 	set noreadonly
 endif
 
-" Built-in terminal
-"In terniaml, make it normal mode like vim.
-tnoremap <F1> <C-W>N	
-"Open built-in terminal in vim.
-map <F1> :terminal<CR>		
-"To paste into the terminal, <C-W>"<register> in insert mode.
-"For example, typing <C-W>"" pastes data into the terminal.
-
-
 "파일이 변경될 때 마다 자동으로 버퍼 갱신
 set autoread
 au CursorHold * checktime
@@ -242,28 +240,28 @@ function Run()
 	let do_nothing_list = ["tex"]
 
 	if &filetype == 'python'
-		:terminal python3 "%:p"
+		FloatermNew python3 "%:p"
 	elseif &filetype == 'java'
-		terminal java "%:p:r"
+		FloatermNew java "%:p:r"
 	elseif &filetype == 'erlang'
-		terminal escript "%:p" +P
+		FloatermNew escript "%:p" +P
 	elseif &filetype == 'sh'
-		terminal bash "%:p"
+		FloatermNew bash "%:p"
 	elseif &filetype == 'markdown'
-		terminal glow "%:p"
+		FloatermNew glow "%:p"
 	elseif &filetype == 'typescript'
-		terminal ts-node "%:p"
+		FloatermNew ts-node "%:p"
 	elseif &filetype == 'rust'
-		terminal cargo run || "%:p:r"
+		FloatermNew cargo run || "%:p:r"
 	elseif index(do_nothing_list, &filetype) >= 0
 		" Do nothing
 	elseif index(["c", "cpp"], &filetype) >= 0
-		terminal "%:p:r"
+		FloatermNew "%:p:r"
 	else
-		return -1
+		return 0
 	endif
 
-	return v:shell_error
+	return v:shell_error == 0
 endfunction
 
 function Compile()
@@ -273,9 +271,9 @@ function Compile()
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
 		silent make
 	elseif &filetype == 'tex'
-		:CocCommand latex.Build
+		CocCommand latex.Build
 	elseif &filetype=='c'
-		 silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
+		silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
 	elseif &filetype == 'cpp'
 		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -lboost_system -lboost_program_options -o "%:p:r"
 	elseif &filetype == 'java'
@@ -283,14 +281,14 @@ function Compile()
 	elseif &filetype == 'rust'
 		silent !cargo build || rustc "%:p"
 	elseif index(do_nothing_list, &filetype) >= 0
-		"Do nothing
+		return 1
 	else
-		return -1
+		return 0
 	endif
 
 
 	redraw!
-	return v:shell_error
+	return v:shell_error == 0
 endfunction
 
 function GotoBash() 
@@ -301,8 +299,8 @@ endfunction
 " Pipe selected visual block to command after bang.
 xnoremap <leader>c <esc>:'<,'>:w !
 
-nmap <C-F5> : if Compile() == 0 <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
-nmap <ESC>[15;5~ : if Compile() == 0 <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <C-F5>      : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
 " In some terminals (e.g. tmux), they cannot understand complex key bindings.
 " So, in this case, we need to find out the complex binding is converted into
 " several keys. 
@@ -351,5 +349,5 @@ endif
 " FIX: ssh from wsl starting with REPLACE mode
 " https://stackoverflow.com/a/11940894
 if $TERM =~ 'xterm-256color'
-  set noek
+	set noek
 endif
