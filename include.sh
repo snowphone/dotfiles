@@ -9,12 +9,12 @@ die() {
 # It returns 0 if it worked well, -1 else.
 # Also, print a message(done/failed)
 measure() {
-	SECONDS=0
+	local start=$SECONDS
 	if eval $@ &> /dev/null; then
-		echo "done 😄 ($SECONDS seconds)"
+		echo "done ✔ ($(($SECONDS - $start)) seconds)"
 		return 0
 	else
-		echo "failed 😰"
+		echo "failed ❌"
 		return -1
 	fi
 }
