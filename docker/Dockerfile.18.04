@@ -11,7 +11,5 @@ RUN ./install.sh --dist debian --latex --java
 RUN echo "export TERM=xterm-256color" >> $HOME/.bashrc
 
 WORKDIR $HOME
-RUN zsh $HOME/.zshrc
-RUN zsh $HOME/.zgen/init.zsh 
 ENTRYPOINT ["/usr/bin/zsh"]
 

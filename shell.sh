@@ -37,6 +37,8 @@ ln -fs "$folder"/pip.conf $HOME/.pip/pip.conf
 
 if exists zsh; then
 	changeShell $(which zsh)
+	zsh $HOME/.zshrc
+	zsh $HOME/.zgen/init.zsh
 else
 	die "zsh not exists"
 fi
