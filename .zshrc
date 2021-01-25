@@ -110,6 +110,7 @@ alias grm='git rm $(git ls-files --deleted)'
 
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 alias ds="du -sh * ./ | sort -rh " #diskspace
+alias mountedinfo='df -hT'
 alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias tree='tree -CAhF --dirsfirst'
