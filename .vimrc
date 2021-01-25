@@ -14,9 +14,6 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tommcdo/vim-fugitive-blame-ext'
 
-" It enables us to bind Alt to <M>, not <ESC>
-Plug 'vim-utils/vim-alt-mappings'
-
 
 "256색 콘솔에서 gui용 테마 적용을 가능하게 함
 Plug 'godlygeek/csapprox'
@@ -132,14 +129,6 @@ set foldmethod=syntax
 "vim tmux seamless navigation.
 "Ctrl + hjkl to move pane/buffer
 Plug 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
-
 
 Plug 'udalov/kotlin-vim'
 
