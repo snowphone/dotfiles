@@ -225,9 +225,10 @@ installClangSuite() {
 	for i in $(seq 12 -1 1)
 	do
 		installList=( clang-$i clang-tools-$i clangd-$i clang-format-$i )
+		aliasList=( clang-$i clangd-$i clang-format-$i clang++-$i )
 		printf "Installing ${installList[@]}... "
 		measure $sudo apt install -qy ${installList[@]} &&
-		for package in ${installList[@]}
+		for package in ${aliasList[@]}
 		do
 			local name=$(echo $package | sed 's/-[0-9]\+//')
 			printf "\n$package is being aliased to $name... "
