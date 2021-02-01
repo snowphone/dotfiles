@@ -1,4 +1,5 @@
 
+unsetopt BEEP	# disable bell
 setopt correct
 setopt globdots
 setopt histignoredups
