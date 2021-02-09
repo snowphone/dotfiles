@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+# It supports pow, mul, mult keywords
 calc() {
-	echo "$*" | bc -l
+	echo "$*" |  
+		sed 's/pow/^/g' |
+		sed 's/mult\{0,1\}/*/g' | 
+		bc -l
 }
 
 calc "$@"
