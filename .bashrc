@@ -226,7 +226,8 @@ alias sha1='openssl sha1'
 alias sha256='openssl sha256'
 
 # Others
-alias htop="htop -u $(whoami)"
+#alias htop="htop -u $(whoami)"
+alias htop="htop -s PERCENT_CPU"
 
 #######################################################
 # SPECIAL FUNCTIONS

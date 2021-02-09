@@ -115,7 +115,8 @@ alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
 alias mountedinfo='df -hT'
 
-alias htop="htop -u $(whoami)"
+#alias htop="htop -u $(whoami)"
+alias htop="htop -s PERCENT_CPU"
 
 
 if fdfind --version &> /dev/null; then
