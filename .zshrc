@@ -21,6 +21,11 @@ fi
 
 export FZF_BASE=$HOME/.vim/plugged/fzf
 
+if [[ ! $fpath =~ "$HOME/.local/share/completions" ]]; then
+	fpath=($HOME/.local/share/completions $fpath)
+fi
+
+
 [ ! -d "${HOME}/.zgen" ] && git clone --depth 1 https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 source "${HOME}/.zgen/zgen.zsh" > /dev/null
 
