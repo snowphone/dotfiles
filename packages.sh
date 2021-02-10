@@ -125,7 +125,7 @@ fi
 
 if [[ $dist == "debian" ]]; then
 	pkgs=( \
-		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip
+		build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip figlet
 		zsh python-is-python3
 		exuberant-ctags cmake
 		python3-dev python3 python3-pip
@@ -267,21 +267,21 @@ set_completion() {
 }
 
 printf "Installing ripgrep-all... "
-measure get_latest_from_github phiresky/ripgrep-all x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin --strip 1
+measure "get_latest_from_github phiresky/ripgrep-all x86_64-unknown-linux-musl.tar.gz | tar xz -C $HOME/.local/bin --strip 1"
 set_completion rga
 
 printf "Installing bottom... "
-measure get_latest_from_github ClementTsang/bottom x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin 
+measure "get_latest_from_github ClementTsang/bottom x86_64-unknown-linux-musl.tar.gz | tar xz -C $HOME/.local/bin"
 set_completion btm
 
 printf "Installing bat, a markdown viewer... "
-measure get_latest_from_github sharkdp/bat x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin --strip 1
+measure "get_latest_from_github sharkdp/bat x86_64-unknown-linux-musl.tar.gz | tar xz -C $HOME/.local/bin --strip 1"
 set_completion bat
 
 printf "Installing glow, another markdown viewer... "
-measure get_latest_from_github charmbracelet/glow linux_x86_64.tar.gz \| tar xz -C $HOME/.local/bin
+measure "get_latest_from_github charmbracelet/glow linux_x86_64.tar.gz | tar xz -C $HOME/.local/bin"
 set_completion glow
 
-border "Package installation phase completed! 😉"
+figlet "Package installation phase completed! 😉"
 printf "\n\n"
 
