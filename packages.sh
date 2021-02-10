@@ -258,14 +258,29 @@ if [[ -n $needJava && $needJava == true ]]; then
 		cp -rf /tmp/server/* $HOME/.local/
 fi
 
+set_completion() {
+	local prog=$1
+
+	mkdir -p $HOME/.local/share/completions
+	fdfind "${prog}[.]zsh\$" ~/.local/bin --exec ln -sf {} ~/.local/share/completions/_{/.} \;
+	fdfind "^_${prog}\$" ~/.local/bin --exec ln -sf {} ~/.local/share/completions \;
+}
+
 printf "Installing ripgrep-all... "
 measure get_latest_from_github phiresky/ripgrep-all x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin --strip 1
+set_completion rga
+
+printf "Installing bottom... "
+measure get_latest_from_github ClementTsang/bottom x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin 
+set_completion btm
 
 printf "Installing bat, a markdown viewer... "
 measure get_latest_from_github sharkdp/bat x86_64-unknown-linux-musl.tar.gz \| tar xz -C $HOME/.local/bin --strip 1
+set_completion bat
 
 printf "Installing glow, another markdown viewer... "
 measure get_latest_from_github charmbracelet/glow linux_x86_64.tar.gz \| tar xz -C $HOME/.local/bin
+set_completion glow
 
 border "Package installation phase completed! 😉"
 printf "\n\n"
