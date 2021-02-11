@@ -1,5 +1,5 @@
 tmux -2  new -s dev \; \
-  send-keys 'btm || htop || top' C-m \; \
+  send-keys 'gotop -a || htop || top' C-m \; \
   split-window -h -p 65 \; \
   send-keys "neofetch" C-m \; \
   select-pane -t 0 \; \
