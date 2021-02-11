@@ -302,8 +302,47 @@ function GotoBash()
 	redraw!
 endfunction
 
-" Pipe selected visual block to command after bang.
-xnoremap <leader>c <esc>:'<,'>:w !
+" Pipe selected visual block -- CHARACTER WISE -- to command.
+" <C-u> after colon is used to cancel " '<,'> ", and it will be piped to
+" command's stdin.
+xnoremap <leader>c :<C-u> call PipeRangedSelection()<CR>
+
+function! PipeRangedSelection()
+	let cmd = input("Command: ")
+	redraw
+	echo system(cmd, GetVisualSelection(visualmode()))
+endfunction
+
+" Forked from https://stackoverflow.com/a/61486601
+function! GetVisualSelection(mode)
+	" call with visualmode() as the argument
+	let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_end, column_end]     = getpos("'>")[1:2]
+	let lines = getline(line_start, line_end)
+	if a:mode ==# 'v'
+		" Must trim the end before the start, the beginning will shift left.
+		let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+		let lines[0] = lines[0][column_start - 1:]
+	elseif  a:mode ==# 'V'
+		" Line mode no need to trim start or end
+	elseif  a:mode == "\<c-v>"
+		" Block mode, trim every line
+		let new_lines = []
+		let i = 0
+		for line in lines
+			let lines[i] = line[column_start - 1: column_end - (&selection == 'inclusive' ? 1 : 2)]
+			let i = i + 1
+		endfor
+	else
+		return ''
+	endif
+	"for line in lines
+	"    echom line
+	"endfor
+	return join(lines, "\n")
+endfunction
+
+
 
 nmap <C-F5>      : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
 nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
