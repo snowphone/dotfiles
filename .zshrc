@@ -8,7 +8,6 @@ setopt pushd_silent
 
 VI_MODE_SET_CURSOR=false
 ZSH_AUTOSUGGEST_USE_ASYNC=true
-ZGEN_SYSTEM_UPDATE_DAYS=1
 
 export EDITOR=vim
 
