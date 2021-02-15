@@ -5,6 +5,7 @@ calc() {
 	echo "$*" |  
 		sed 's/pow/^/g' |
 		sed 's/mult\{0,1\}/*/g' | 
+		sed 's/times/*/g' | 
 		bc -l
 }
 
