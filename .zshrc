@@ -9,8 +9,6 @@ setopt pushd_silent
 VI_MODE_SET_CURSOR=false
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 
-zstyle -L ':completion:*' special-dirs
-
 export EDITOR=vim
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
