@@ -137,7 +137,7 @@ alias qq='tmux kill-window'
 
 
 
-export FZF_DEFAULT_OPTS='-m --border'
+export FZF_DEFAULT_OPTS='-m'
 if bfs --version &> /dev/null; then
 	# Use bfs only if distribution is ubuntu
 	export FZF_DEFAULT_COMMAND='bfs -L'
