@@ -134,6 +134,7 @@ if [[ $dist == "debian" ]]; then
 		neofetch
 		nodejs npm
 		poppler-utils # for parsing and reading PDFs
+		parallel moreutils num-utils
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | $sudo debconf-set-selections
@@ -156,7 +157,7 @@ if [[ $dist == "debian" ]]; then
 		printf "Adding a new repository for some miscellaneous things... "
 		measure $sudo apt-get install -y software-properties-common \; \
 			$sudo add-apt-repository -y ppa:ytvwld/asciiquarium
-		pkgs+=( parallel figlet lolcat toilet img2pdf)
+		pkgs+=( figlet lolcat toilet img2pdf )
 	fi
 
 	printf "Apt updating... "
