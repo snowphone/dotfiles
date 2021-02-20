@@ -15,6 +15,15 @@ mkdir -p $HOME/.local/bin/
 
 ln -fs "$folder"/scripts/* $HOME/.local/bin/
 
+# Enable parallelism for tar
+ln -sf /usr/bin/lbzip2 $HOME/.local/bin/bzip2
+ln -sf /usr/bin/lbzip2 $HOME/.local/bin/bunzip2
+ln -sf /usr/bin/lbzip2 $HOME/.local/bin/bzcat
+ln -sf /usr/bin/pigz $HOME/.local/bin/gzip
+ln -sf /usr/bin/pigz $HOME/.local/bin/gunzip
+ln -sf /usr/bin/pigz $HOME/.local/bin/gzcat
+ln -sf /usr/bin/pigz $HOME/.local/bin/zcat
+
 
 [ ! -f $HOME/.trueline.sh ] && curl https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o $HOME/.trueline.sh
 ln -fs "$folder"/.bashrc $HOME/.bashrc					# Deprecated: bashrc
