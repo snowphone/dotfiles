@@ -136,6 +136,7 @@ if [[ $dist == "debian" ]]; then
 		poppler-utils # for parsing and reading PDFs
 		parallel moreutils num-utils
 		lbzip2 pigz
+		ffmpeg
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | $sudo debconf-set-selections
