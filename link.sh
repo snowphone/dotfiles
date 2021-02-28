@@ -35,4 +35,5 @@ ln -fs "$folder"/.mailcap.order $HOME/.mailcap.order	# Set higher priority to vi
 
 mkdir -p $HOME/.pip
 ln -fs "$folder"/pip.conf $HOME/.pip/pip.conf
+ln -fs $(which pip3) $HOME/.local/bin/pip
 
