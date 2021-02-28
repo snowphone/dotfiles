@@ -212,11 +212,18 @@ elif [[ $dist == "redhat" ]]; then
 	fi
 fi
 
-printf "Installing pudb, a python debugger... "
 mkdir $HOME/.pip
 ln -fs "$(pwd)"/pip.conf $HOME/.pip/pip.conf
-measure pip3 install --user pudb youtube-dlc
+
+printf "Installing pudb, a python debugger... "
+measure pip3 install --user pudb
+
+printf "Installing youtube-dlc... "
+measure pip3 install --user youtube-dlc
 ln -sf ~/.local/bin/youtube-dlc ~/.local/bin/youtube-dl
+
+printf "Installing caterpillar, an hls downloader... "
+measure pip3 install --user caterpillar-hls 
 
 if [[ -n $needLatex && $needLatex == true ]]; then
 	printf "Refreshing fonts... "
