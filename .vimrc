@@ -281,7 +281,7 @@ function Compile()
 	elseif &filetype=='c'
 		silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
 	elseif &filetype == 'cpp'
-		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -lboost_system -lboost_program_options -o "%:p:r"
+		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -o "%:p:r"
 	elseif &filetype == 'java'
 		silent !javac "%:p"
 	elseif &filetype == 'rust'
