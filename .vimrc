@@ -122,8 +122,10 @@ Plug 'Konfekt/FastFold'
  
 " LaTeX
 Plug 'vim-latex/vim-latex'
-let g:Tex_FoldedEnvironments=',frame,alrogithm'
-let g:Tex_FoldedMisc='item,preamble'
+let g:Tex_FoldedSections=''
+let g:Tex_FoldedEnvironments=''
+let g:Tex_FoldedMisc=''
+Plug 'matze/vim-tex-fold'
 
 set foldmethod=syntax
 "autocmd FileType python,tex set foldmethod=manual 
