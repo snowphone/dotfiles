@@ -98,8 +98,7 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 "fzf 설정
 Plug 'junegunn/fzf', { 'do': './install --all' }
-nnoremap <C-n> :Files<CR>
-nnoremap <M-n> :FZF ~<CR>
+nnoremap <C-m> :Files<CR>
 
 "key mapping
 let mapleader=","
@@ -142,6 +141,15 @@ let g:floaterm_keymap_toggle='<F1>'
 
 Plug 'voldikss/fzf-floaterm'
 
+Plug 'scrooloose/nerdtree'
+nmap <C-n> :NERDTreeToggle <CR>
+
+"nerdtree 자동 실행
+"autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 call plug#end()			" required
 
