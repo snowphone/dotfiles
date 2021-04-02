@@ -1,12 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-# It supports pow, mul, mult keywords
-calc() {
-	echo "$*" |  
-		sed 's/pow/^/g' |
-		sed 's/mult\{0,1\}/*/g' | 
-		sed 's/times/*/g' | 
-		bc -l
-}
+from math import *
+import re
+from sys import argv, exit
 
-calc "$@"
+if not argv[1:]:
+	exit(0)
+line = ' '.join(argv[1:])
+
+line = re.sub("times", "*", line)
+line = re.sub("pow", "**", line)
+line = re.sub(r"\[", "(", line)
+line = re.sub(r"\]", ")", line)
+
+print(eval(line))
