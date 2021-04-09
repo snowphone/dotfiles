@@ -24,6 +24,8 @@ Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'float168/vim-colors-cherryblossom'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'NLKNguyen/papercolor-theme'
+
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -34,7 +36,7 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'spaceduck'
+let g:airline_theme = 'papercolor'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -163,7 +165,7 @@ if exists('+termguicolors')
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
-silent! colorscheme spaceduck
+silent! colorscheme PaperColor
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
