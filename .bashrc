@@ -27,6 +27,9 @@ fi
 # EXPORTS
 #######################################################
 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+
 # Disable the bell
 if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
 
