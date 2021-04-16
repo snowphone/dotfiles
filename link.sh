@@ -32,6 +32,7 @@ ln -fs "$folder"/.zshrc $HOME/.zshrc
 ln -fs "$folder"/.p10k.zsh $HOME/.p10k.zsh
 ln -fs "$folder"/.mailcap $HOME/.mailcap				# Open text files with vim when using xdg-open
 ln -fs "$folder"/.mailcap.order $HOME/.mailcap.order	# Set higher priority to vim
+ln -fs "$folder"/.dircolors $HOME/.dircolors			# Set LS_COLORS
 
 mkdir -p $HOME/.pip
 ln -fs "$folder"/pip.conf $HOME/.pip/pip.conf
