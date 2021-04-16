@@ -22,6 +22,7 @@ elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
+eval "$(dircolors ~/.dircolors)"
 
 #######################################################
 # EXPORTS
