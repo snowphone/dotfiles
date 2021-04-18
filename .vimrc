@@ -256,7 +256,7 @@ function Run()
 	if &filetype == 'python'
 		FloatermNew python3 "%:p"
 	elseif &filetype == 'java'
-		FloatermNew java "%:p:r"
+		FloatermNew java "%:p"
 	elseif &filetype == 'erlang'
 		FloatermNew escript "%:p" +P
 	elseif &filetype == 'sh'
@@ -279,7 +279,7 @@ function Run()
 endfunction
 
 function Compile()
-	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript"]
+	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java"]
 
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
@@ -290,8 +290,6 @@ function Compile()
 		silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
 	elseif &filetype == 'cpp'
 		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -o "%:p:r"
-	elseif &filetype == 'java'
-		silent !javac "%:p"
 	elseif &filetype == 'rust'
 		silent !cargo build || rustc "%:p"
 	elseif index(do_nothing_list, &filetype) >= 0
