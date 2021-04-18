@@ -21,6 +21,16 @@
 	"latex.build.args": ["-lualatex", "-pv", "-latexoption=\"-synctex=0\"", "%f"],
 	"latex.build.onSave": true,
 
+	"java.format.enabled": true,
+	"java.format.comments.enabled": true,
+	"java.format.settings.url": "https://gist.githubusercontent.com/snowphone/3687b5a6bee7ad315cf6417e2cd0dddf/raw/26b97d16e2108032c8abdd8c2e8c92a13211916d/formatting-style.xml",
+	"java.format.settings.profile": "FormattingStyle",
+
+	"java.codeGeneration.toString.codeStyle": "STRING_FORMAT",
+	"java.codeGeneration.useBlocks": true,
+	"java.codeGeneration.hashCodeEquals.useJava7Objects": true,
+	"java.codeGeneration.hashCodeEquals.useInstanceof": true,
+
 	"python.formatting.provider": "yapf",
 	"python.pythonPath": "python3"
 }
