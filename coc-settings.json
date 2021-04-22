@@ -31,6 +31,8 @@
 	"java.codeGeneration.hashCodeEquals.useJava7Objects": true,
 	"java.codeGeneration.hashCodeEquals.useInstanceof": true,
 
+	"rust-analyzer.rustfmt.overrideCommand": ["rustfmt", "--config", "hard_tabs=true"],
+
 	"python.formatting.provider": "yapf",
 	"python.pythonPath": "python3"
 }
