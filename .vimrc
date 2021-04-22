@@ -257,6 +257,8 @@ function Run()
 		FloatermNew python3 "%:p"
 	elseif &filetype == 'java'
 		FloatermNew java "%:p"
+	elseif &filetype == 'go'
+		FloatermNew go run "%:p"
 	elseif &filetype == 'erlang'
 		FloatermNew escript "%:p" +P
 	elseif &filetype == 'sh'
@@ -279,7 +281,7 @@ function Run()
 endfunction
 
 function Compile()
-	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java"]
+	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go"]
 
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
