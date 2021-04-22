@@ -543,3 +543,4 @@ findOpen() {
 	xdg-open "$file"
 }
 
+source "$HOME/.cargo/env"
