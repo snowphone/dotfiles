@@ -21,7 +21,7 @@ $sudo sed -i 's/#\?Port 22/Port 61022/' /etc/ssh/sshd_config
 $sudo sed -i 's/UsePrivilegeSeparation */UsePrivilegeSeparation no/' /etc/ssh/sshd_config
 $sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
-echo "Edit /etc/sudoers to run 'service' command without asking passwords"
+echo "Edited /etc/sudoers to run 'service' command without asking passwords"
 echo '%sudo ALL=NOPASSWD: /usr/sbin/service' | $sudo tee -a /etc/sudoers > /dev/null
 
 echo "Please visit https://github.com/snowphone/WSL2-port-forwarding-guide and follow Instruction section"
