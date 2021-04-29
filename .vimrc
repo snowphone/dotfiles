@@ -97,13 +97,12 @@ set list lcs=tab:\┊\
 Plug 'leafgarland/typescript-vim'
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
+"key mapping
+let mapleader=","
 
 "fzf 설정
 Plug 'junegunn/fzf', { 'do': './install --all' }
-nnoremap <C-m> :Files<CR>
-
-"key mapping
-let mapleader=","
+nnoremap <leader><C-n> :Files<CR>
 
 if executable("rg")
 	nnoremap <leader>r :Rg!<CR>
