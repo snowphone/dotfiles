@@ -111,7 +111,7 @@ alias gb='git branch'
 alias gck='git checkout'
 alias glog='git log --all --decorate --oneline --graph'
 alias gd='git difftool'
-alias grm='git rm $(git ls-files --deleted)'
+alias grm='git rm "$(git ls-files --deleted)"'
 
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 alias ds="du -sh * ./ | sort -rh " #diskspace
