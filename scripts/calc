@@ -6,11 +6,21 @@ from sys import argv, exit
 
 if not argv[1:]:
 	exit(0)
-line = ' '.join(argv[1:])
+
+if argv[1] in ["--exp", "-e"]:
+	scientific = True
+	line = ' '.join(argv[2:])
+else:
+	scientific = False
+	line = ' '.join(argv[1:])
+
 
 line = re.sub("times", "*", line)
 line = re.sub("pow", "**", line)
 line = re.sub(r"\[", "(", line)
 line = re.sub(r"\]", ")", line)
 
-print(eval(line))
+if scientific:
+	print(f"{eval(line):e}")
+else:
+	print(eval(line))
