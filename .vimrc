@@ -122,8 +122,8 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
  
 " LaTeX
-Plug 'vim-latex/vim-latex'
-let g:Tex_FoldedEnvironments='frame,algorithm},algorithmic'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+let g:LatexBox_Folding=1
 
 set foldmethod=syntax
 "autocmd FileType python,tex set foldmethod=manual 
