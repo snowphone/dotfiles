@@ -18,7 +18,7 @@
 		}
 	},
 
-	"latex.build.args": ["-lualatex", "-pv", "-latexoption=\"-synctex=0\"", "%f"],
+	"latex.build.args": ["%f"],
 	"latex.build.onSave": true,
 
 	"java.format.enabled": true,
