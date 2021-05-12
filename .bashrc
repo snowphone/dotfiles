@@ -232,6 +232,9 @@ alias sha256='openssl sha256'
 # Others
 #alias htop="htop -u $(whoami)"
 alias htop="htop -s PERCENT_CPU"
+palette() {
+	for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+}
 
 #######################################################
 # SPECIAL FUNCTIONS
