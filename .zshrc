@@ -12,7 +12,6 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 export EDITOR=vim
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-eval "$(dircolors ~/.dircolors)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -195,3 +194,4 @@ findOpen() {
 if [ -f "$HOME/.cargo/env" ]; then
 	source "$HOME/.cargo/env"
 fi
+eval "$(dircolors ~/.dircolors)"
