@@ -25,6 +25,7 @@ Plug 'morhetz/gruvbox'
 Plug 'float168/vim-colors-cherryblossom'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'arcticicestudio/nord-vim'
 
 
 Plug 'vim-airline/vim-airline'
@@ -34,9 +35,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'		  " vim-airline 버퍼 목록 
 let g:airline#extensions#tabline#buffer_nr_show = 1	   " buffer number를 보여준다
 let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
+" Shape of buffer tabs
+let g:airline#extensions#tabline#left_sep     = '▌'
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'papercolor'
+let g:airline_theme = 'nord'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -161,7 +165,7 @@ if exists('+termguicolors')
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
-silent! colorscheme PaperColor
+silent! colorscheme nord
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
@@ -254,6 +258,8 @@ function Run()
 
 	if &filetype == 'python'
 		FloatermNew python3 "%:p"
+	elseif &filetype == 'ocaml'
+		FloatermNew ocaml "%:p"
 	elseif &filetype == 'java'
 		FloatermNew java "%:p"
 	elseif &filetype == 'go'
@@ -280,7 +286,7 @@ function Run()
 endfunction
 
 function Compile()
-	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go"]
+	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml"]
 
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
