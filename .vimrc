@@ -192,6 +192,13 @@ set fencs=euc-kr,ucs-bom,utf-8
 "set cursorline		" Visualize horizontal cursor line
 "set tenc=utf-8	  " 터미널 인코딩
 
+" In LaTeX mode, enable spellcheck
+" If you want to register user-defined words, press zg on the word.
+aug tex
+	au FileType tex set spell spelllang=en_us
+aug end
+
+
 "https://vim.fandom.com/wiki/Make_buffer_modifiable_state_match_file_readonly_state
 function UpdateModifiable()
 	if !exists("b:setmodifiable")
