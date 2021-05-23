@@ -15,6 +15,11 @@
 		"kotlin": {
 			"command": "kotlin-language-server",
 			"filetypes": ["kotlin", "kt", "kts"]
+		},
+		"ocaml-lsp": {
+			"command": "opam",
+			"args": ["config", "exec", "--", "ocamllsp"],
+			"filetypes": ["ocaml", "reason"]
 		}
 	},
 
