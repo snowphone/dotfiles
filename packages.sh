@@ -137,6 +137,7 @@ if [[ $dist == "debian" ]]; then
 		parallel moreutils num-utils
 		lbzip2 pigz
 		ffmpeg
+		translate-shell
 	)
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | $sudo debconf-set-selections
