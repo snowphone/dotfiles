@@ -102,6 +102,7 @@ alias da='date "+%Y-%m-%d %A %T %Z"'
 if rsync --version &> /dev/null; then
 	alias cp='rsync -ah --info=progress2'
 fi
+
 alias scp='scp -r'
 alias mv='mv -i'
 alias rm='rm -iv'
