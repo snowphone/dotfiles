@@ -32,6 +32,7 @@ ln -fs "$folder"/.zshrc $HOME/.zshrc
 ln -fs "$folder"/.p10k.zsh $HOME/.p10k.zsh
 ln -fs "$folder"/.mailcap $HOME/.mailcap				# Open text files with vim when using xdg-open
 ln -fs "$folder"/.mailcap.order $HOME/.mailcap.order	# Set higher priority to vim
+mkdir -p $HOME/.config/translate-shell
 ln -fs "$folder"/init.trans $HOME/.config/translate-shell/init.trans
 curl -o $HOME/.dircolors https://raw.githubusercontent.com/arcticicestudio/nord-dircolors/develop/src/dir_colors
 
