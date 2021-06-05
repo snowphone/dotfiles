@@ -217,8 +217,10 @@ function UpdateModifiable()
 endfunction
 
 autocmd BufReadPost * call UpdateModifiable()
-"newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
-autocmd BufReadPost * if &modifiable &&  &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
+if index(["dosbatch", "ps1"], &filetype) < 0
+	"newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
+	autocmd BufReadPost * if &modifiable &&  &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
+endif
 "euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
 autocmd BufReadPost * if &modifiable && &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
 
