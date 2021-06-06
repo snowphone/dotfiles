@@ -153,6 +153,34 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+Plug 'coot/CRDispatcher'
+Plug 'coot/EnchantedVim'
+" Since I use incsearch:
+set incsearch
+let g:VeryMagic = 0
+nnoremap / /\v
+nnoremap ? ?\v
+vnoremap / /\v
+vnoremap ? ?\v
+" If I type // or ??, I don't EVER want \v, since I'm repeating the previous
+" search.
+noremap // //
+noremap ?? ??
+" no-magic searching
+noremap /v/ /\V
+noremap ?V? ?\V
+
+let g:VeryMagicSubstituteNormalise = 1
+let g:VeryMagicSubstitute = 1
+let g:VeryMagicGlobal = 1
+let g:VeryMagicVimGrep = 1
+let g:VeryMagicSearchArg = 1
+let g:VeryMagicFunction = 1
+let g:VeryMagicHelpgrep = 1
+let g:VeryMagicRange = 1
+let g:VeryMagicEscapeBackslashesInSearchArg = 1
+let g:SortEditArgs = 1
+
 call plug#end()			" required
 
 "set theme
@@ -247,15 +275,6 @@ nmap <S-n> <S-n>zz
 aug python
 	au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
 aug end
-
-" Very magic mode: vim regex follows normal rule, not vim customized rule
-" For examle, normal vim identifies '(' as literal parenthesis but in regex it
-" is evaluated as a capture group.
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
-cnoremap s/ s/\v
 
 nnoremap <leader>q : bp!<CR> " 쉼표 + q : 이전 탭
 nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
