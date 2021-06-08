@@ -4,15 +4,21 @@ folder=$(dirname $0 | xargs realpath)
 
 source "$folder"/include.sh
 
-if ls $HOME/.ssh &> /dev/null; then
-	die "$HOME/.ssh folder already exists. Please check and remove previously installed folder."
+if [[ -d $HOME/.ssh && ! -L $HOME/.ssh ]]; then
+	rm -rf $HOME/.ssh
 fi
 
-ln -sf "$folder"/.ssh $HOME/.ssh
-chmod 600 ./.ssh/id_rsa
+ln -sf "$folder"/.ssh $HOME/
 touch "$folder"/.ssh/known_hosts
 touch "$folder"/.ssh/authorized_keys
 
 # Simplify ssh-copy-id procedure
 cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+
+chmod 600 ./.ssh/config
+chmod 600 ./.ssh/id_rsa
+chmod 600 ./.ssh/authorized_keys
+chmod 700 $HOME/.ssh
+chmod 700 $folder
+
 
