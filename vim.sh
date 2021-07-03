@@ -60,7 +60,7 @@ if exists tsc; then
 	plugins+=(coc-tsserver)
 fi
 if exists lualatex; then
-	plugins+=(coc-texlab)
+	plugins+=(coc-vimtex)
 fi
 
 measure $sudo npm i -g bash-language-server \; \

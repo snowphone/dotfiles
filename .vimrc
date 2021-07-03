@@ -76,6 +76,20 @@ Plug 'Townk/vim-autoclose'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 silent! source ~/.coc.vimrc
+let g:coc_global_extensions = [
+			\'coc-pyright',
+			\'coc-cmake',
+			\'coc-git',
+			\'coc-markdownlint',
+			\'coc-terminal',
+			\'coc-snippets',
+			\'coc-calc',
+			\'coc-json',
+			\'coc-vimtex',
+			\'coc-java',
+			\'coc-rust-analyzer',
+			\'coc-tsserver',
+			\]
 
 
 Plug 'luochen1990/rainbow'
@@ -126,8 +140,10 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
  
 " LaTeX
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-let g:LatexBox_Folding=1
+Plug 'lervag/vimtex'
+let g:vimtex_fold_enabled=1
+let g:vimtex_quickfix_open_on_warning=0
+let g:vimtex_view_general_viewer='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
 
 set foldmethod=syntax
 "autocmd FileType python,tex set foldmethod=manual 
@@ -320,7 +336,7 @@ function Compile()
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
 		silent make
 	elseif &filetype == 'tex'
-		CocCommand latex.Build
+		VimtexCompile
 	elseif &filetype=='c'
 		silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
 	elseif &filetype == 'cpp'
