@@ -40,7 +40,7 @@ let g:airline#extensions#tabline#left_sep     = '▌'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'nord'
+let g:airline_theme = 'distinguished'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -111,10 +111,6 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '┊'
 set list lcs=tab:\┊\ 
 
-"Highlighting for Typescript
-Plug 'leafgarland/typescript-vim'
-autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
-
 "key mapping
 let mapleader=","
 
@@ -138,7 +134,10 @@ Plug 'tmhedberg/SimpylFold'
 
 " Fold faster
 Plug 'Konfekt/FastFold'
- 
+
+" Support highlighting for lots of languages
+Plug 'sheerun/vim-polyglot'
+
 " LaTeX
 Plug 'lervag/vimtex'
 let g:vimtex_fold_enabled=1
@@ -151,8 +150,6 @@ set foldmethod=syntax
 "vim tmux seamless navigation.
 "Ctrl + hjkl to move pane/buffer
 Plug 'christoomey/vim-tmux-navigator'
-
-Plug 'udalov/kotlin-vim'
 
 Plug 'voldikss/vim-floaterm'
 let g:floaterm_keymap_toggle='<F1>'
@@ -209,7 +206,7 @@ if exists('+termguicolors')
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
-silent! colorscheme nord
+silent! colorscheme spaceduck
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
