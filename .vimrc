@@ -450,3 +450,19 @@ endif
 if $TERM =~ 'xterm-256color'
 	set noek
 endif
+
+highlight Comment cterm=italic gui=italic
+
+highlight Statement cterm=italic gui=italic
+highlight Conditional cterm=italic gui=italic
+highlight Repeat cterm=italic gui=italic
+highlight Label cterm=italic gui=italic
+highlight Operator cterm=italic gui=italic
+highlight Keyword cterm=italic gui=italic
+highlight Exception cterm=italic gui=italic
+
+highlight Type cterm=italic gui=italic
+highlight StorageClass cterm=italic gui=italic
+highlight Structure cterm=italic gui=italic
+highlight Typedef cterm=italic gui=italic
+
