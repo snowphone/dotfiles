@@ -68,6 +68,10 @@ bindkey -M vicmd ' ' vi-easy-motion
 #  My Configuration    #
 ########################
 
+# Disable commit-hash-sort when completing git checkout, diff, and so one.
+zstyle ':completion:*:git-*:*' sort false
+
+
 # set PATH so it includes user's private bin if it exists
 if [[ -d "$HOME/.local/bin" && ! $PATH =~ "$HOME/.local/bin" ]] ; then
     PATH="$HOME/.local/bin:$PATH"
