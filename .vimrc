@@ -73,8 +73,8 @@ let g:airline_symbols.linenr = ''
 Plug 'Townk/vim-autoclose'
 
 " 여기에 LSP 관련 내용 추가
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 silent! source ~/.coc.vimrc
 let g:coc_global_extensions = [
 			\'coc-pyright',
@@ -89,6 +89,12 @@ let g:coc_global_extensions = [
 			\'coc-java',
 			\'coc-rust-analyzer',
 			\'coc-tsserver',
+			\'coc-perl',
+			\'coc-sql',
+			\'coc-sh',
+			\'coc-toml',
+			\'coc-xml',
+			\'coc-yaml',
 			\]
 
 
@@ -143,9 +149,6 @@ Plug 'lervag/vimtex'
 let g:vimtex_fold_enabled=1
 let g:vimtex_quickfix_open_on_warning=0
 let g:vimtex_view_general_viewer='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
-
-set foldmethod=syntax
-"autocmd FileType python,tex set foldmethod=manual 
 
 "vim tmux seamless navigation.
 "Ctrl + hjkl to move pane/buffer
@@ -465,4 +468,6 @@ highlight Type cterm=italic gui=italic
 highlight StorageClass cterm=italic gui=italic
 highlight Structure cterm=italic gui=italic
 highlight Typedef cterm=italic gui=italic
+
+set concealcursor=
 
