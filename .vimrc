@@ -114,6 +114,7 @@ Plug 'rbong/vim-flog'
 
 
 Plug 'Yggdroot/indentLine'
+let g:indentLine_setConceal = 0 " Respect my conceal option!
 let g:indentLine_char = '┊'
 set list lcs=tab:\┊\ 
 
@@ -232,6 +233,9 @@ set shiftwidth=4 " 자동 들여쓰기 4칸
 set ts=4
 set number " 행번호 표시, set nu 도 가능
 set fencs=euc-kr,ucs-bom,utf-8
+set conceallevel=2	" Basically prettify keywords if possible
+set concealcursor=	" Disable syntax for current cursor line
+
 "set cursorcolumn	" Visualize vertical cursor line
 "set cursorline		" Visualize horizontal cursor line
 "set tenc=utf-8	  " 터미널 인코딩
@@ -468,6 +472,4 @@ highlight Type cterm=italic gui=italic
 highlight StorageClass cterm=italic gui=italic
 highlight Structure cterm=italic gui=italic
 highlight Typedef cterm=italic gui=italic
-
-set concealcursor=
 
