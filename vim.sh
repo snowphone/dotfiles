@@ -23,51 +23,17 @@ fi
 ln -fs "$folder"/.vimrc $HOME/.vimrc
 
 #vim 설정
-printf "Installing yarn... "
-measure $sudo npm install -g yarn
-mkdir -p ~/.config/coc/extensions
-git clone https://github.com/neoclide/coc.nvim.git $HOME/.vim/plugged/coc.nvim
-cd $HOME/.vim/plugged/coc.nvim &&  yarn install --frozen-lockfile
-cd $folder
-
+mkdir -p "$HOME"/.config/coc
 vim --not-a-term -c PlugInstall -c quitall
 
 $sudo chmod +w $HOME
-
-# coc.nvim 설정
-printf "Installing coc plugins... "
-cd ~/.config/coc/extensions
-if [ ! -f package.json ]; then
-	echo '{"dependencies":{}}'> package.json
-fi
 
 ln -sf "$folder"/coc-settings.json $HOME/.vim/
 ln -sf "$folder"/.coc.vimrc $HOME/
 mkdir -p $HOME/.config/yapf
 ln -sf "$folder"/py_style $HOME/.config/yapf/style
 
-plugins=( \
-		coc-pyright coc-cmake coc-git coc-markdownlint coc-terminal \
-		coc-snippets coc-calc coc-json coc-vimlsp \
-)
-if exists javac; then
-	plugins+=(coc-java)
-fi
-if exists rustup; then
-	plugins+=(coc-rust-analyzer)
-fi
-if exists tsc; then
-	plugins+=(coc-tsserver)
-fi
-if exists lualatex; then
-	plugins+=(coc-vimtex)
-fi
-
-measure $sudo npm i -g bash-language-server \; \
-	python3 -m pip install --user yapf \; \
-	npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
-	 ${plugins[@]} \
-	 && \
+measure python3 -m pip install --user yapf
 
 cd $folder
 
