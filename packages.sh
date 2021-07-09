@@ -261,14 +261,6 @@ if [[ -n $needRust && $needRust == true ]]; then
 	measure 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
 fi
 
-if [[ -n $needJava && $needJava == true ]]; then
-	# Install kotlin-language-server
-	printf "Installing kotlin-language-server... "
-	measure get_latest_from_github fwcd/kotlin-language-server server.zip '>' /tmp/server.zip '&&' \
-		unzip -o /tmp/server.zip '&&' \
-		cp -rf /tmp/server/* $HOME/.local/
-fi
-
 set_completion() {
 	local prog=$1
 
