@@ -87,6 +87,7 @@ let g:coc_global_extensions = [
 			\'coc-json',
 			\'coc-vimtex',
 			\'coc-java',
+			\'coc-kotlin',
 			\'coc-rust-analyzer',
 			\'coc-tsserver',
 			\'coc-perl',
