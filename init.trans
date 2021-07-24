@@ -1,4 +1,5 @@
 {
 	:verbose false
 	:tl      "ko"
+	:no-ansi 1
 }
