@@ -50,7 +50,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-history-substring-search
   zgen load zsh-users/zsh-autosuggestions
   zgen load unixorn/autoupdate-zgen
-  zgen load zsh-users/zsh-completions src
+  zgen load zsh-users/zsh-completions
   zgen load RobSis/zsh-completion-generator		# compgen <program> to parse, and compinit then to apply
   zgen load romkatv/powerlevel10k powerlevel10k
   zgen load IngoMeyer441/zsh-easy-motion
@@ -141,7 +141,6 @@ else
 	alias fd=find
 fi
 
-alias sumatrapdf='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
 alias tmux-dev='~/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
 
