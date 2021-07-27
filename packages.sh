@@ -135,7 +135,7 @@ if [[ $dist == "debian" ]]; then
 		nodejs npm
 		poppler-utils # for parsing and reading PDFs
 		parallel moreutils num-utils
-		lbzip2 pigz
+		lbzip2 pigz pixz
 		ffmpeg
 		translate-shell
 	)

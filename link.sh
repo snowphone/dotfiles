@@ -23,6 +23,7 @@ ln -sf /usr/bin/pigz $HOME/.local/bin/gzip
 ln -sf /usr/bin/pigz $HOME/.local/bin/gunzip
 ln -sf /usr/bin/pigz $HOME/.local/bin/gzcat
 ln -sf /usr/bin/pigz $HOME/.local/bin/zcat
+ln -sf /usr/bin/pixz $HOME/.local/bin/xz
 
 
 [ ! -f $HOME/.trueline.sh ] && curl https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o $HOME/.trueline.sh
