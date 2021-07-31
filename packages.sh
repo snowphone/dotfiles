@@ -111,9 +111,9 @@ if [[ $dist == "debian" ]]; then
 		$sudo apt update &> /dev/null && $sudo apt install -y curl &> /dev/null
 	fi
 	if [[ -n $sudo ]]; then
-		measure curl -sL https://deb.nodesource.com/setup_12.x \| sudo -E bash -
+		measure curl -sL https://deb.nodesource.com/setup_lts.x \| sudo -E bash -
 	else
-		measure curl -sL https://deb.nodesource.com/setup_12.x \| bash -
+		measure curl -sL https://deb.nodesource.com/setup_lts.x \| bash -
 	fi
 
 	if [[ -n $needJava && $needJava == true ]]; then
