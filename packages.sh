@@ -94,7 +94,9 @@ border "Entering package installaion phase"
 ## Change apt repository to kakao mirror
 if [[ $dist == "debian" ]]; then
 	printf "Set preference to IPv4\n"
-	$sudo sed -iE 's/#\s*(precedence ::ffff:0:0[/]96\s+100)/\1/' /etc/gai.conf 
+	$sudo sed -riE 's/#\s*(precedence ::ffff:0:0[/]96\s+100)/\1/' /etc/gai.conf 
+
+	export DEBIAN_FRONTEND=noninteractive
 
 	printf "Changing mirror site to much faster one... "
 	measure \
@@ -121,7 +123,7 @@ if [[ $dist == "debian" ]]; then
 
 	if [[ -n $needJava && $needJava == true ]]; then
 		printf "Adding a new repository named for gradle... "
-		measure $sudo add-apt-repository ppa:cwchien/gradle
+		measure $sudo add-apt-repository -y ppa:cwchien/gradle
 	fi
 fi
 
