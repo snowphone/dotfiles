@@ -93,6 +93,9 @@ border "Entering package installaion phase"
 
 ## Change apt repository to kakao mirror
 if [[ $dist == "debian" ]]; then
+	printf "Set preference to IPv4\n"
+	$sudo sed -iE 's/#\s*(precedence ::ffff:0:0[/]96\s+100)/\1/' /etc/gai.conf 
+
 	printf "Changing mirror site to much faster one... "
 	measure \
 		$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
