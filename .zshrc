@@ -45,6 +45,8 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/docker
 
+  zgen load lukechilds/zsh-nvm
+  zgen load lukechilds/zsh-better-npm-completion
   zgen load Aloxaf/fzf-tab
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-history-substring-search
