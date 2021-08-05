@@ -10,13 +10,12 @@ ALLOWED_DISTS=(debian redhat)
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
-			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--typescript] [--rust|-r] [--misc|-m] [--all|-a]\n"
+			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--rust|-r] [--misc|-m] [--all|-a]\n"
 			printf "\t-h|--help\tPrint help message\n"
 			printf "\t-a|--all\tInstall everything below\n"
 			printf "\t-l|--latex\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
 			printf "\t-b|--boost\tInstall libboost-all-dev\n"
 			printf "\t-j|--java\tInstall maven and openjdk 14, 11, 9 or 8\n"
-			printf "\t--typescript\tInstall typescript\n"
 			printf "\t-r|--rust\tInstall rust\n"
 			printf "\t-m|--misc\tInstall some miscellaneous stuffs\n"
 			printf "\t-t|--transmission\tInstall transmission-daemon\n"
@@ -42,9 +41,6 @@ while [[ $# -gt 0 ]]; do
 		-t|--transmission)
 			needTransmission=true
 			;;
-		--typescript)
-			needTypescript=true
-			;;
 		-r|--rust)
 			needRust=true
 			;;
@@ -54,7 +50,6 @@ while [[ $# -gt 0 ]]; do
 			needJava=true
 			needMisc=true
 			needTransmission=true
-			needTypescript=true
 			needRust=true
 			;;
 		*)
@@ -111,14 +106,8 @@ if [[ $dist == "debian" ]]; then
 		$sudo apt update
 	printf "Adding a new repository named jonathonf/vim... "
 	measure $sudo add-apt-repository -y ppa:jonathonf/vim
-	printf "Adding a new repository for nodejs... "
 	if !(curl --version &> /dev/null); then
 		$sudo apt update &> /dev/null && $sudo apt install -y curl &> /dev/null
-	fi
-	if [[ -n $sudo ]]; then
-		measure curl -sL https://deb.nodesource.com/setup_lts.x \| sudo -E bash -
-	else
-		measure curl -sL https://deb.nodesource.com/setup_lts.x \| bash -
 	fi
 
 	if [[ -n $needJava && $needJava == true ]]; then
@@ -137,7 +126,6 @@ if [[ $dist == "debian" ]]; then
 		bfs tree htop ripgrep silversearcher-ag fd-find rsync
 		bear sshpass w3m traceroute git-extras multitail
 		neofetch
-		nodejs npm
 		poppler-utils # for parsing and reading PDFs
 		parallel moreutils num-utils
 		lbzip2 pigz pixz
@@ -204,7 +192,6 @@ elif [[ $dist == "redhat" ]]; then
 		python3 python3*-devel python3-pip \
 		tree htop \
 		gzip gem \
-		nodejs npm
 
 	if [[ -n $needLatex && $needLatex == true ]]; then
 		$sudo yum install -y texlive-*
@@ -255,11 +242,6 @@ installClangSuite() {
 }
 installClangSuite
 
-
-if [[ -n $needTypescript && $needTypescript == true ]]; then
-	printf "Installing typescript modules... "
-	measure $sudo npm install -g typescript pkg ts-node 
-fi
 
 if [[ -n $needRust && $needRust == true ]]; then
 	printf "Installing rust... "
