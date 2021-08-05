@@ -320,6 +320,7 @@ function Run()
 	elseif &filetype == 'markdown'
 		FloatermNew glow "%:p"
 	elseif &filetype == 'typescript'
+		let $TS_NODE_TRANSPILE_ONLY='true'
 		FloatermNew ts-node "%:p"
 	elseif &filetype == 'rust'
 		FloatermNew cargo run || "%:p:r"
