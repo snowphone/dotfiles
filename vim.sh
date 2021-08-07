@@ -6,6 +6,11 @@ source "$folder"/include.sh
 
 border "Entering vim plugins installaion phase"
 
+NVM_PATH="$HOME"/.nvm/nvm.sh
+if [ -f $NVM_PATH ]; then
+	source $NVM_PATH
+	echo "Nvm and npm loaded"
+fi
 
 if !(npm --version &> /dev/null) || !(python3 -m pip --version &> /dev/null) || !(vim --version &> /dev/null); then
 	echo "To install vim settings, npm, vim, and pip3 is needed"

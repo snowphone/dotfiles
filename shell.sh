@@ -30,11 +30,11 @@ else
 	die "zsh not exists"
 fi
 
-printf "Installing nodejs via nvm..."
+printf "Installing nodejs via nvm... "
 source "$HOME"/.nvm/nvm.sh
 measure nvm install node
 
-printf "Installing typescript related things..."
+printf "Installing typescript related things... "
 measure npm install -g typescript ts-node pkg tslib
 
 
