@@ -88,30 +88,30 @@ border "Entering package installaion phase"
 
 ## Change apt repository to kakao mirror
 if [[ $dist == "debian" ]]; then
-	printf "Set preference to IPv4\n"
+	printf "IPv4 preferred in apt\n"
 	$sudo sed -riE 's/#\s*(precedence ::ffff:0:0[/]96\s+100)/\1/' /etc/gai.conf 
 
 	export DEBIAN_FRONTEND=noninteractive
 
-	printf "Changing mirror site to much faster one... "
+	printf "Switching apt repositories to those of Kakao... "
 	measure \
 		$sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
 		$sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \; \
 		$sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 
-	echo "Add a new repository for Vim 8"
-	printf "Updating apt repository... " 
+	echo "Add a repository for the latest Vim"
+	printf "  Updating apt repositories... " 
 	measure $sudo apt update\; \
 		$sudo apt-get install -y software-properties-common\; \
 		$sudo apt update
-	printf "Adding a new repository named jonathonf/vim... "
+	printf "  Adding a new repository, jonathonf/vim... "
 	measure $sudo add-apt-repository -y ppa:jonathonf/vim
 	if !(curl --version &> /dev/null); then
 		$sudo apt update &> /dev/null && $sudo apt install -y curl &> /dev/null
 	fi
 
 	if [[ -n $needJava && $needJava == true ]]; then
-		printf "Adding a new repository named for gradle... "
+		printf "Adding a new repository, cwchien/gradle... "
 		measure $sudo add-apt-repository -y ppa:cwchien/gradle
 	fi
 fi
@@ -156,7 +156,7 @@ if [[ $dist == "debian" ]]; then
 		pkgs+=( figlet lolcat toilet img2pdf )
 	fi
 
-	printf "Apt updating... "
+	printf "Updating apt repositories... "
 	measure $sudo apt update
 
 	failedList=()
@@ -229,7 +229,7 @@ installClangSuite() {
 	do
 		installList=( clang-$i clang-tools-$i clangd-$i clang-format-$i )
 		aliasList=( clang-$i clangd-$i clang-format-$i clang++-$i )
-		printf "Installing ${installList[@]}... "
+		printf "Installing ${installList[*]}... "
 		measure $sudo apt install -qy ${installList[@]} &&
 		for package in ${aliasList[@]}
 		do
