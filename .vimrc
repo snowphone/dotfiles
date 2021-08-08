@@ -25,7 +25,8 @@ Plug 'morhetz/gruvbox'
 Plug 'float168/vim-colors-cherryblossom'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'arcticicestudio/nord-vim'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'vigoux/oak'
 
 
 Plug 'vim-airline/vim-airline'
@@ -40,7 +41,7 @@ let g:airline#extensions#tabline#left_sep     = '▌'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'distinguished'
+let g:airline_theme = 'minimalist'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -202,16 +203,17 @@ let g:SortEditArgs = 1
 call plug#end()			" required
 
 "set theme
-set t_Co=256
-set t_ut= "테마 적용시 뒷 배경을 날리는 역할
-set bg=dark
+"set t_Co=256
+"set t_ut= "테마 적용시 뒷 배경을 날리는 역할
+"set bg=light
 " Enable 24bit true color
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
-silent! colorscheme spaceduck
+silent! colorscheme afterglow
+let g:afterglow_inherit_background=1
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
