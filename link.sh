@@ -26,7 +26,7 @@ ln -sf /usr/bin/pigz $HOME/.local/bin/zcat
 ln -sf /usr/bin/pixz $HOME/.local/bin/xz
 
 
-[ ! -f $HOME/.trueline.sh ] && curl https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o $HOME/.trueline.sh
+[ ! -f $HOME/.trueline.sh ] && curl -s https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o $HOME/.trueline.sh
 ln -fs "$folder"/.bashrc $HOME/.bashrc					# Deprecated: bashrc
 ln -fs "$folder"/.gitconfig  $HOME/.gitconfig			# Global git configuration
 ln -fs "$folder"/.zshrc $HOME/.zshrc
@@ -35,7 +35,11 @@ ln -fs "$folder"/.mailcap $HOME/.mailcap				# Open text files with vim when usin
 ln -fs "$folder"/.mailcap.order $HOME/.mailcap.order	# Set higher priority to vim
 mkdir -p $HOME/.config/translate-shell
 ln -fs "$folder"/init.trans $HOME/.config/translate-shell/init.trans
-curl -o $HOME/.dircolors https://raw.githubusercontent.com/huyz/dircolors-solarized/master/dircolors.256dark
+
+curl --silent -o $HOME/.dircolors https://raw.githubusercontent.com/huyz/dircolors-solarized/master/dircolors.256dark
+# In WSL, folders in Windows storage look as OTHER_WRITABLE, so OTHER_WRITABLE is set as same as DIR.
+DIR_COLOR=$(ag -o '(?<=DIR ).+' $HOME/.dircolors)
+sed -i "s/^OTHER_WRITABLE .*/OTHER_WRITABLE $DIR_COLOR/" $HOME/.dircolors
 
 mkdir -p $HOME/.pip
 ln -fs "$folder"/pip.conf $HOME/.pip/pip.conf
