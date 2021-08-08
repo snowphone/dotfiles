@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', { 'tag': '*' }
 
 Plug 'tommcdo/vim-fugitive-blame-ext'
 
