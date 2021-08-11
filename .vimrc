@@ -138,6 +138,8 @@ Plug 'junegunn/fzf.vim'
 
 " ##### Folding #####
 
+set foldmethod=syntax
+
 " Support python folding
 Plug 'tmhedberg/SimpylFold'
 
