@@ -99,13 +99,30 @@ let g:coc_global_extensions = [
 			\'coc-yaml',
 			\]
 
+"key mapping
+let mapleader=","
+
 
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
-" vim의 기본 f 기능을 확장함. <leader><leader> w 혹은 <leader><leader> f를
-" 써보길
+" vim의 기본 f 기능을 확장함. 
+" <leader><leader> s + <1char>: 현재 커서 기준으로 앞뒤에있는 <1char>로 점프
 Plug 'Lokaltog/vim-easymotion'
+let g:EasyMotion_do_mapping = 0
+
+nmap <leader><leader>s <Plug>(easymotion-s)
+xmap <leader><leader>s <Plug>(easymotion-s)
+omap <leader><leader>s <Plug>(easymotion-s)
+
+" Sneak 처럼 두 글자를 인식하여 너무 많은 패턴의 경우의 수를 제한한다.
+nmap <leader><leader>S <Plug>(easymotion-s2)
+xmap <leader><leader>S <Plug>(easymotion-s2)
+omap <leader><leader>S <Plug>(easymotion-s2)
+
+nmap f <Plug>(easymotion-s2)
+xmap f <Plug>(easymotion-s2)
+omap f <Plug>(easymotion-s2)
 
 "tmux airline
 Plug 'edkolev/tmuxline.vim'
@@ -119,9 +136,6 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_setConceal = 0 " Respect my conceal option!
 let g:indentLine_char = '┊'
 set list lcs=tab:\┊\ 
-
-"key mapping
-let mapleader=","
 
 "fzf 설정
 Plug 'junegunn/fzf', { 'do': './install --all' }
