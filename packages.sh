@@ -225,7 +225,8 @@ if [[ -n $needLatex && $needLatex == true ]]; then
 fi
 
 installClangSuite() {
-	for i in $(seq 12 -1 1)
+	latest=13
+	for i in $(seq $latest -1 1)
 	do
 		installList=( clang-$i clang-tools-$i clangd-$i clang-format-$i )
 		aliasList=( clang-$i clangd-$i clang-format-$i clang++-$i )
@@ -235,7 +236,8 @@ installClangSuite() {
 		do
 			local name=$(echo $package | sed 's/-[0-9]\+//')
 			printf "\n$package is being aliased to $name... "
-			measure $sudo update-alternatives --install /usr/bin/$name $name /usr/bin/$package 10
+			priority=$(expr $latest + 1 - $i)
+			measure $sudo update-alternatives --install /usr/bin/$name $name /usr/bin/$package $priority
 		done &&
 			break
 	done
