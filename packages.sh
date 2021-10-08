@@ -128,7 +128,7 @@ if [[ $dist == "debian" ]]; then
 		neofetch
 		poppler-utils # for parsing and reading PDFs
 		parallel moreutils num-utils
-		lbzip2 pigz pixz
+		lbzip2 pigz pixz p7zip-full
 		ffmpeg
 		translate-shell
 	)
