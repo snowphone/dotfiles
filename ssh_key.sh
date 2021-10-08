@@ -21,4 +21,11 @@ chmod 600 ./.ssh/authorized_keys
 chmod 700 $HOME/.ssh
 chmod 700 $folder
 
+# Suppresses no xauth data warning while using ssh -X 
+authPath="$HOME/.Xauthority"
+if [ ! -f $authPath ]; then
+	touch $authPath
+	xauth add :0 . `mcookie`
+fi
+
 
