@@ -23,11 +23,15 @@ changeShell() {
 "$folder"/link.sh
 
 if exists zsh; then
-	changeShell $(which zsh)
-	zsh $HOME/.zshrc
-	zsh $HOME/.zgen/init.zsh
+	if [ $SHELL != $(which zsh) ]; then
+		changeShell $(which zsh)
+		zsh $HOME/.zshrc
+		zsh $HOME/.zgen/init.zsh
+	else
+		echo "zsh is already a default shell"
+	fi
 else
-	die "zsh not exists"
+	die "zsh does not exist"
 fi
 
 printf "Installing nodejs via nvm... "
