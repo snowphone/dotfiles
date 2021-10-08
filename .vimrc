@@ -167,7 +167,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
 let g:vimtex_fold_enabled=1
 let g:vimtex_quickfix_open_on_warning=0
-let g:vimtex_view_general_viewer='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
+"let g:vimtex_view_general_viewer='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
 
 "vim tmux seamless navigation.
 "Ctrl + hjkl to move pane/buffer
