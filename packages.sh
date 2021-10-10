@@ -148,7 +148,17 @@ if [[ $dist == "debian" ]]; then
 	if [[ -n $needTransmission && $needTransmission == true ]]; then
 		pkgs+=( transmission-daemon )
 	fi
-	
+
+	if [ $DISPLAY ]; then
+		printf "X11 supported\n"
+
+		pkgs+=( \
+		evince 
+		nautilus # file explorer
+		mpv
+	)
+	fi
+
 	if [[ -n $needMisc && $needMisc == true ]]; then
 		printf "Adding a new repository for some miscellaneous things... "
 		measure $sudo apt-get install -y software-properties-common \; \
