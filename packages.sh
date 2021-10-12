@@ -153,7 +153,7 @@ if [[ $dist == "debian" ]]; then
 		printf "X11 supported\n"
 
 		pkgs+=( \
-		evince 
+		okular
 		nautilus # file explorer
 		mpv
 	)
