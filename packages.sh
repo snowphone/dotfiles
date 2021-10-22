@@ -292,6 +292,20 @@ printf "Installing glow, another markdown viewer... "
 measure "get_latest_from_github charmbracelet/glow linux_x86_64.tar.gz | tar xz -C $HOME/.local/bin"
 set_completion glow
 
+install_watchman() {
+	zippath=/tmp/watchman.zip
+	get_latest_from_github facebook/watchman -linux.zip > $zippath && 
+		unzip -o $zippath -d /tmp/ && 
+		$sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman
+		$sudo mv /tmp/watchman-*-linux/bin/* /usr/local/bin/ &&
+		$sudo mv /tmp/watchman-*-linux/lib/* /usr/local/lib/ && 
+		$sudo chmod 755 /usr/local/bin/watchman && 
+		$sudo chmod 2777 /usr/local/var/run/watchman
+	return $?
+}
+printf "Installing watchman... "
+measure install_watchman
+
 figlet "Package installation phase completed!"
 printf "\n\n"
 
