@@ -71,7 +71,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-Plug 'Townk/vim-autoclose'
+Plug 'tmsvg/pear-tree'
 
 " 여기에 LSP 관련 내용 추가
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
