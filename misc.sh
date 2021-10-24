@@ -28,6 +28,9 @@ if [[ $isWsl == true ]]; then
 	ln -fs /mnt/c/Users/mjo97/Downloads/ $HOME/
 	ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ $HOME/
 	ln -fs /mnt/c/Users/mjo97/Videos/ $HOME/
+	if [[ ! -L $HOME/winHome ]]; then
+		ln -fs /mnt/c/Users/mjo97/ $HOME/winHome
+	fi
 fi
 
 
