@@ -10,13 +10,14 @@ ALLOWED_DISTS=(debian redhat)
 while [[ $# -gt 0 ]]; do 
 	case $1 in
 		-h|--help)
-			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--rust|-r] [--misc|-m] [--all|-a]\n"
+			printf "Usage: $0 [--help|-h] [--latex|-l] [--boost|-b] [--java|-j] [--rust|-r] [--golang|-g] [--misc|-m] [--all|-a]\n"
 			printf "\t-h|--help\tPrint help message\n"
 			printf "\t-a|--all\tInstall everything below\n"
 			printf "\t-l|--latex\tInstall texlive-full\n\t\t\tIt may require you to interactively input some information\n"
 			printf "\t-b|--boost\tInstall libboost-all-dev\n"
 			printf "\t-j|--java\tInstall maven and openjdk 14, 11, 9 or 8\n"
 			printf "\t-r|--rust\tInstall rust\n"
+			printf "\t-g|--golang\tInstall golang\n"
 			printf "\t-m|--misc\tInstall some miscellaneous stuffs\n"
 			printf "\t-t|--transmission\tInstall transmission-daemon\n"
 			printf "\n"
@@ -44,6 +45,9 @@ while [[ $# -gt 0 ]]; do
 		-r|--rust)
 			needRust=true
 			;;
+		-g|--golang)
+			needGo=true
+			;;
 		-a|--all)
 			needLatex=true
 			needBoost=true
@@ -51,10 +55,12 @@ while [[ $# -gt 0 ]]; do
 			needMisc=true
 			needTransmission=true
 			needRust=true
+			needGo=true
 			;;
 		*)
 			echo "Unknown parameter passed: $1"
 			echo "If you need some help, try $0 --help"
+			exit 1
 			;;
 	esac
 	shift
@@ -147,6 +153,10 @@ if [[ $dist == "debian" ]]; then
 
 	if [[ -n $needTransmission && $needTransmission == true ]]; then
 		pkgs+=( transmission-daemon )
+	fi
+
+	if [[ -n $needGo && $needGo == true ]]; then
+		pkgs+=(golang-go)
 	fi
 
 	if [ $DISPLAY ]; then
