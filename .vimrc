@@ -90,6 +90,7 @@ let g:coc_global_extensions = [
 			\'coc-java',
 			\'coc-kotlin',
 			\'coc-rust-analyzer',
+			\'coc-go',
 			\'coc-tsserver',
 			\'coc-perl',
 			\'coc-sql',
