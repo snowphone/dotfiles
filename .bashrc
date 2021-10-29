@@ -29,6 +29,18 @@ eval "$(dircolors ~/.dircolors)"
 #######################################################
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPATH=$HOME/.local/share/man:/usr/share/man
+
+zsh_completion_path=~/.local/share/zsh/vendor-completions
+bash_completion_path=~/.local/share/bash-completion/completions
+
+if [[ ! $fpath =~ $zsh_completion_path ]]; then
+	fpath=($zsh_completion_path $fpath)
+fi
+
+if [[ ! $FPATH =~ $bash_completion_path ]]; then
+	FPATH=$bash_completion_path:$FPATH
+fi
 
 
 # Disable the bell
@@ -490,14 +502,6 @@ TRUELINE_WORKING_DIR_SPACE_BETWEEN_PATH_SEPARATOR=true
 TRUELINE_VIMODE_CMD_CURSOR='under'
 TRUELINE_VIMODE_INS_CURSOR='under'
 source $HOME/.trueline.sh
-
-if fdfind --version &> /dev/null; then
-	alias fd=fdfind
-elif fd --version &> /dev/null; then
-	alias fd=fd
-else
-	alias fd=find
-fi
 
 alias sumatrapdf='/mnt/c/Users/mjo97/AppData/Local/SumatraPDF/SumatraPDF.exe'
 alias tmux-dev='~/.dotfiles/tmux-dev.sh'

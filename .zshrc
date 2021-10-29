@@ -11,6 +11,7 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 export EDITOR=vim
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPATH=$HOME/.local/share/man:/usr/share/man
 
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -22,10 +23,16 @@ fi
 
 export FZF_BASE=$HOME/.vim/plugged/fzf
 
-if [[ ! $fpath =~ "$HOME/.local/share/completions" ]]; then
-	fpath=($HOME/.local/share/completions $fpath)
+zsh_completion_path=~/.local/share/zsh/vendor-completions
+bash_completion_path=~/.local/share/bash-completion/completions
+
+if [[ ! $fpath =~ $zsh_completion_path ]]; then
+	fpath=($zsh_completion_path $fpath)
 fi
 
+if [[ ! $FPATH =~ $bash_completion_path ]]; then
+	FPATH=$bash_completion_path:$FPATH
+fi
 
 [ ! -d "${HOME}/.zgen" ] && git clone --depth 1 https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 source "${HOME}/.zgen/zgen.zsh" > /dev/null
@@ -134,14 +141,6 @@ palette() {
 }
 
 
-
-if fdfind --version &> /dev/null; then
-	alias fd=fdfind
-elif fd --version &> /dev/null; then
-	alias fd=fd
-else
-	alias fd=find
-fi
 
 alias tmux-dev='~/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
