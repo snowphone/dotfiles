@@ -142,6 +142,7 @@ TRUELINE_VIMODE_CMD_CURSOR='under'
 TRUELINE_VIMODE_INS_CURSOR='under'
 source $HOME/.trueline.sh
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -f "$HOME/.cargo/env" ]; then
 	source "$HOME/.cargo/env"
