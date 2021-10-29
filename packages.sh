@@ -131,7 +131,7 @@ if [[ $dist == "debian" ]]; then
 		python3-dev python3 python3-pip
 		tree htop ripgrep silversearcher-ag rsync
 		bear sshpass w3m traceroute git-extras multitail
-		neofetch
+		neofetch mmv
 		poppler-utils # for parsing and reading PDFs
 		parallel moreutils num-utils
 		lbzip2 pigz pixz p7zip-full
