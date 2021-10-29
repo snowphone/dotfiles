@@ -19,8 +19,10 @@ fi
 
 export FZF_BASE=$HOME/.vim/plugged/fzf
 
-[ ! -d "${HOME}/.zgen" ] && git clone --depth 1 https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-source "${HOME}/.zgen/zgen.zsh" > /dev/null
+[ ! -d "${HOME}/.zgenom" ] && git clone --depth 1 https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+source "${HOME}/.zgenom/zgenom.zsh" > /dev/null
+
+zgenom autoupdate --background
 
 # if the init script doesn't exist
 if ! zgen saved; then
@@ -43,7 +45,6 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-history-substring-search
   zgen load zsh-users/zsh-autosuggestions
-  zgen load unixorn/autoupdate-zgen
   zgen load zsh-users/zsh-completions
   zgen load RobSis/zsh-completion-generator		# compgen <program> to parse, and compinit then to apply
   zgen load romkatv/powerlevel10k powerlevel10k
@@ -52,6 +53,8 @@ if ! zgen saved; then
 
   # generate the init script from plugins above
   zgen save
+
+  zgenom compile "$HOME/.zshrc"
 fi
 
 bindkey '^ ' autosuggest-accept
