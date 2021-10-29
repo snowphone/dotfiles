@@ -96,11 +96,6 @@ fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 
-if [[ $SHELL =~ zsh ]]; then
-	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-elif [[ $SHELL =~ bash ]]; then
-	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-fi
 # Use fd-based completion for the better performance
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
