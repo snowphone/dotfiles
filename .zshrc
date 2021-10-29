@@ -32,10 +32,6 @@ local _save_aliases=$(alias -L)
 # if the init script doesn't exist
 if ! zgen saved; then
 
-  # specify plugins here
-  # If zsh-syntax-highlighting is bundled after zsh-history-substring-search,
-  # they break, so get the order right.
-
   zgen oh-my-zsh
 
   zgen oh-my-zsh plugins/command-not-found
@@ -63,7 +59,9 @@ if ! zgen saved; then
 fi
 
 bindkey '^ ' autosuggest-accept
-bindkey -M vicmd ' ' vi-easy-motion
+
+bindkey -M vicmd ',,' vi-easy-motion	# Bind ,, as a prefix key
+bindkey -M vicmd -r ','					# Unbind ','
 
 
 ########################
