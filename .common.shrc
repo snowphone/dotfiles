@@ -25,7 +25,8 @@ if rsync --version &> /dev/null; then
 	alias cp='rsync -ah --info=progress2'
 fi
 
-alias ll='ls -aFlsh' # long listing format
+alias ls='ls --human-readable --color=always'
+alias ll='ls --human-readable -l --all --classify --size'
 
 alias scp='scp -r'
 alias mv='mv -i'
