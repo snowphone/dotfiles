@@ -2,8 +2,8 @@
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPATH=$HOME/.local/share/man:/usr/share/man:$MANPATH
 
-zsh_completion_path=~/.local/share/zsh/vendor-completions
-bash_completion_path=~/.local/share/bash-completion/completions
+zsh_completion_path=$HOME/.local/share/zsh/vendor-completions
+bash_completion_path=$HOME/.local/share/bash-completion/completions
 
 if [[ ! $fpath =~ $zsh_completion_path ]]; then
 	fpath=($zsh_completion_path $fpath)
@@ -84,17 +84,23 @@ palette() {
 
 
 
-alias tmux-dev='~/.dotfiles/tmux-dev.sh'
+alias tmux-dev='$HOME/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
 
 export FZF_DEFAULT_OPTS='-m'
-if fd --version &> /dev/null; then
+if bfs --version &> /dev/null; then
+	export FZF_DEFAULT_COMMAND='bfs -L'
+elif fd --version &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='fd -L'
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ $SHELL =~ zsh ]]; then
+	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+elif [[ $SHELL =~ bash ]]; then
+	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
 # Use fd-based completion for the better performance
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
@@ -128,4 +134,4 @@ findOpen() {
 	xdg-open "$file"
 }
 
-eval "$(dircolors ~/.dircolors)"
+eval "$(dircolors $HOME/.dircolors)"

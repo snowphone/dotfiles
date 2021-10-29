@@ -129,7 +129,7 @@ if [[ $dist == "debian" ]]; then
 		zsh python-is-python3
 		exuberant-ctags cmake
 		python3-dev python3 python3-pip
-		tree htop ripgrep silversearcher-ag rsync
+		bfs tree htop ripgrep silversearcher-ag rsync
 		bear sshpass w3m traceroute git-extras multitail
 		neofetch mmv
 		poppler-utils # for parsing and reading PDFs
