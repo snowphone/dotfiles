@@ -29,6 +29,7 @@ ln -sf /usr/bin/pixz $HOME/.local/bin/xz
 [ ! -f $HOME/.trueline.sh ] && curl -s https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o $HOME/.trueline.sh
 ln -fs "$folder"/.bashrc $HOME/.bashrc					# Deprecated: bashrc
 ln -fs "$folder"/.gitconfig  $HOME/.gitconfig			# Global git configuration
+ln -fs "$folder"/.common.shrc $HOME/.common.shrc
 ln -fs "$folder"/.zshrc $HOME/.zshrc
 ln -fs "$folder"/.p10k.zsh $HOME/.p10k.zsh
 ln -fs "$folder"/.mailcap $HOME/.mailcap				# Open text files with vim when using xdg-open
