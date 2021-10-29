@@ -129,7 +129,7 @@ if [[ $dist == "debian" ]]; then
 		zsh python-is-python3
 		exuberant-ctags cmake
 		python3-dev python3 python3-pip
-		bfs tree htop ripgrep silversearcher-ag fd-find rsync
+		tree htop ripgrep silversearcher-ag rsync
 		bear sshpass w3m traceroute git-extras multitail
 		neofetch
 		poppler-utils # for parsing and reading PDFs
@@ -270,37 +270,43 @@ if [[ -n $needRust && $needRust == true ]]; then
 	measure 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
 fi
 
-set_completion() {
-	local prog=$1
 
-	mkdir -p $HOME/.local/share/completions
-	if exists fdfind; then
-		fdfind "${prog}[.]zsh\$" ~/.local/bin --exec ln -sf {} ~/.local/share/completions/_{/.} \;
-		fdfind "^_${prog}\$" ~/.local/bin --exec ln -sf {} ~/.local/share/completions \;
-	else
-		fd "${prog}[.]zsh\$" ~/.local/bin --exec ln -sf {} ~/.local/share/completions/_{/.} \;
-		fd "^_${prog}\$" ~/.local/bin --exec ln -sf {} ~/.local/share/completions \;
-	fi
-}
+zsh_completion_path=~/.local/share/zsh/vendor-completions
+bash_completion_path=~/.local/share/bash-completion/completions
+man_path=~/.local/share/man/man1
+
+mkdir -p $zsh_completion_path
+mkdir -p $bash_completion_path
+mkdir -p $man_path
+
+printf "Installing fd... "
+measure "get_latest_from_github sharkdp/fd x86_64-unknown-linux-musl.tar.gz | tar xz -C $HOME/.local/bin --strip 1"
+mv ~/.local/bin/autocomplete/_fd $zsh_completion_path/_fd
+mv ~/.local/bin/autocomplete/fd.bash-completion $bash_completion_path/fd
+mv ~/.local/bin/fd.1 $man_path/fd.1
 
 printf "Installing ripgrep-all... "
 measure "get_latest_from_github phiresky/ripgrep-all x86_64-unknown-linux-musl.tar.gz | tar xz -C $HOME/.local/bin --strip 1"
-set_completion rga
 
 printf "Installing bottom... "
 measure "get_latest_from_github ClementTsang/bottom x86_64-unknown-linux-musl.tar.gz | tar xz -C $HOME/.local/bin"
-set_completion btm
+mv ~/.local/bin/completion/_btm $zsh_completion_path/_btm
+mv ~/.local/bin/completion/btm.bash $bash_completion_path/btm
 
 printf "Installing gotop... "
 measure "get_latest_from_github xxxserxxx/gotop linux_amd64.tgz | tar xz -C $HOME/.local/bin"
 
 printf "Installing bat, a markdown viewer... "
 measure "get_latest_from_github sharkdp/bat x86_64-unknown-linux-musl.tar.gz | tar xz -C $HOME/.local/bin --strip 1"
-set_completion bat
+mv ~/.local/bin/autocomplete/bat.zsh $zsh_completion_path/_bat
+mv ~/.local/bin/autocomplete/bat.bash $bash_completion_path/bat
+mv ~/.local/bin/bat.1 $man_path/bat.1
 
 printf "Installing glow, another markdown viewer... "
 measure "get_latest_from_github charmbracelet/glow linux_x86_64.tar.gz | tar xz -C $HOME/.local/bin"
-set_completion glow
+
+printf "Remove auxiliary files... "
+measure rm -rf ~/.local/bin/autocomplete ~/.local/bin/completion ~/.local/bin/LICENSE* ~/.local/bin/*.md ~/.local/bin/doc
 
 install_watchman() {
 	zippath=/tmp/watchman.zip
