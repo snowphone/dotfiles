@@ -163,10 +163,10 @@ if [[ $dist == "debian" ]]; then
 		printf "X11 supported\n"
 
 		pkgs+=( \
-		okular
-		nautilus # file explorer
-		mpv
-	)
+			mupdf
+			nautilus # file explorer
+			mpv
+		)
 	fi
 
 	if [[ -n $needMisc && $needMisc == true ]]; then
