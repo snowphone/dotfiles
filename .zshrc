@@ -9,6 +9,8 @@ VI_MODE_SET_CURSOR=false
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 
+source $HOME/.common.shrc
+
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -64,8 +66,6 @@ bindkey -M vicmd ' ' vi-easy-motion
 ########################
 #  My Configuration    #
 ########################
-
-source $HOME/.common.shrc
 
 # Disable commit-hash-sort when completing git checkout, diff, and so one.
 zstyle ':completion:*:git-*:*' sort false
