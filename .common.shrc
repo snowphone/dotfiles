@@ -93,8 +93,8 @@ if bfs --version &> /dev/null; then
 elif fd --version &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='fd -L'
 fi
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 
 if [[ $SHELL =~ zsh ]]; then
 	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
