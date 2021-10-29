@@ -26,6 +26,9 @@ source "${HOME}/.zgenom/zgenom.zsh" > /dev/null
 
 zgenom autoupdate --background
 
+# Backup my aliases
+local _save_aliases=$(alias -L)
+
 # if the init script doesn't exist
 if ! zgen saved; then
 
@@ -66,6 +69,11 @@ bindkey -M vicmd ' ' vi-easy-motion
 ########################
 #  My Configuration    #
 ########################
+
+# Restore (override) my aliases
+eval $_save_aliases
+unset _save_aliases
+
 
 # Disable commit-hash-sort when completing git checkout, diff, and so one.
 zstyle ':completion:*:git-*:*' sort false
