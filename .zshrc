@@ -1,4 +1,3 @@
-
 unsetopt BEEP	# disable bell
 setopt correct
 setopt globdots
@@ -9,9 +8,6 @@ setopt pushd_silent
 VI_MODE_SET_CURSOR=false
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 
-export EDITOR=vim
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANPATH=$HOME/.local/share/man:/usr/share/man
 
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -22,17 +18,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export FZF_BASE=$HOME/.vim/plugged/fzf
-
-zsh_completion_path=~/.local/share/zsh/vendor-completions
-bash_completion_path=~/.local/share/bash-completion/completions
-
-if [[ ! $fpath =~ $zsh_completion_path ]]; then
-	fpath=($zsh_completion_path $fpath)
-fi
-
-if [[ ! $FPATH =~ $bash_completion_path ]]; then
-	FPATH=$bash_completion_path:$FPATH
-fi
 
 [ ! -d "${HOME}/.zgen" ] && git clone --depth 1 https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 source "${HOME}/.zgen/zgen.zsh" > /dev/null
@@ -77,117 +62,14 @@ bindkey -M vicmd ' ' vi-easy-motion
 #  My Configuration    #
 ########################
 
+source $HOME/.common.shrc
+
 # Disable commit-hash-sort when completing git checkout, diff, and so one.
 zstyle ':completion:*:git-*:*' sort false
-
-
-# set PATH so it includes user's private bin if it exists
-if [[ -d "$HOME/.local/bin" && ! $PATH =~ "$HOME/.local/bin" ]] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-# Alias's to modified commands
-if rsync --version &> /dev/null; then
-	alias cp='rsync -ah --info=progress2'
-fi
-
-alias ll='ls -aFlsh' # long listing format
 
 alias cd='pushd'
 alias back='popd'
 
-alias scp='scp -r'
-alias mv='mv -i'
-alias rm='rm -iv'
-alias mkdir='mkdir -p'
-alias ps='ps auxf'
-alias ping='ping -c 10'
-alias less='less -R'
-alias lessn='less -R -N'
-alias cls='clear'
-alias vi='vim'
-alias svi='sudo vi'
-alias vis='vim "+set si"'
-alias tmux='tmux -2' 	#force 256 colors
-
-alias c='clear'
-
-alias gpull='git pull --rebase origin'
-alias gpush='git push origin'
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gf='git fetch'
-alias gb='git branch'
-alias gck='git checkout'
-alias glog='git log --all --decorate --oneline --graph'
-alias gd='git difftool'
-alias grm='git add -u'
-
-alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
-alias ds="du -sh * ./ | sort -rh " #diskspace
-alias mountedinfo='df -hT'
-alias folders='du -h --max-depth=1'
-alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
-alias tree='tree -CAhF --dirsfirst'
-alias treed='tree -CAFd'
-alias mountedinfo='df -hT'
-
-#alias htop="htop -u $(whoami)"
-alias htop="htop -s PERCENT_CPU"
-palette() {
-	for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
-}
-
-
-
-alias tmux-dev='~/.dotfiles/tmux-dev.sh'
-alias qq='tmux kill-window'
-
-
-
-export FZF_DEFAULT_OPTS='-m'
-if bfs --version &> /dev/null; then
-	# Use bfs only if distribution is ubuntu
-	export FZF_DEFAULT_COMMAND='bfs -L'
-fi
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Use fd-based completion for the better performance
-_fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
-}
-
-# Search all file types including pdf, ppt, and open grepped files
-grepOpen() {
-	RG_PREFIX="rga --files-with-matches"
-	local file
-	file="$(
-		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
-				--phony -q "$1" \
-				--bind "change:reload:$RG_PREFIX {q}" \
-				--preview-window="70%:wrap"
-	)" &&
-	echo "opening $file" &&
-	xdg-open "$file"
-}
-
-# Search filenames and open them
-findOpen() {
-	local file
-	file="$(fzf)" &&
-	echo "opening $file" &&
-	xdg-open "$file"
-}
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -198,4 +80,3 @@ findOpen() {
 if [ -f "$HOME/.cargo/env" ]; then
 	source "$HOME/.cargo/env"
 fi
-eval "$(dircolors ~/.dircolors)"
