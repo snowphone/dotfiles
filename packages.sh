@@ -232,9 +232,9 @@ ln -fs "$(pwd)"/pip.conf $HOME/.pip/pip.conf
 printf "Installing pudb, a python debugger... "
 measure pip3 install --user pudb
 
-printf "Installing youtube-dlc... "
-measure pip3 install --user youtube-dlc
-ln -sf ~/.local/bin/youtube-dlc ~/.local/bin/youtube-dl
+printf "Installing yt-dlp... "
+measure pip3 install --user yt-dlp
+ln -sf ~/.local/bin/yt-dlp ~/.local/bin/youtube-dl
 
 printf "Installing caterpillar, an hls downloader... "
 measure pip3 install --user caterpillar-hls 
