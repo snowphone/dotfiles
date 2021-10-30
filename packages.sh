@@ -310,12 +310,12 @@ measure rm -rf ~/.local/bin/autocomplete ~/.local/bin/completion ~/.local/bin/LI
 
 install_watchman() {
 	zippath=/tmp/watchman.zip
-	get_latest_from_github facebook/watchman -linux.zip > $zippath && 
-		unzip -o $zippath -d /tmp/ && 
-		$sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman
-		$sudo mv /tmp/watchman-*-linux/bin/* /usr/local/bin/ &&
-		$sudo mv /tmp/watchman-*-linux/lib/* /usr/local/lib/ && 
-		$sudo chmod 755 /usr/local/bin/watchman && 
+	$sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman
+	curl -Ls https://github.com/facebook/watchman/releases/download/v2021.10.18.00/watchman-v2021.10.18.00-linux.zip -o $zippath &&
+		unzip -uo $zippath -d /tmp/  &&
+		$sudo mv /tmp/watchman-v2021.10.18.00-linux/bin/* /usr/local/bin/ &&
+		$sudo mv /tmp/watchman-v2021.10.18.00-linux/lib/* /usr/local/lib/ &&
+		$sudo chmod 755 /usr/local/bin/watchman &&
 		$sudo chmod 2777 /usr/local/var/run/watchman
 	return $?
 }
