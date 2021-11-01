@@ -155,10 +155,6 @@ if [[ $dist == "debian" ]]; then
 		pkgs+=( transmission-daemon )
 	fi
 
-	if [[ -n $needGo && $needGo == true ]]; then
-		pkgs+=(golang-go)
-	fi
-
 	if [ $DISPLAY ]; then
 		printf "X11 supported\n"
 
@@ -304,6 +300,13 @@ mv ~/.local/bin/bat.1 $man_path/bat.1
 
 printf "Installing glow, another markdown viewer... "
 measure "get_latest_from_github charmbracelet/glow linux_x86_64.tar.gz | tar xz -C $HOME/.local/bin"
+
+if [[ -n $needGo && $needGo == true ]]; then
+	printf "Installing golang... "
+	go_ver=$(curl -s 'https://golang.org/VERSION?m=text')
+	measure "curl -s https://dl.google.com/go/$go_ver.linux-amd64.tar.gz | tar xz -C $HOME/.local/ --strip 1"
+fi
+
 
 printf "Remove auxiliary files... "
 measure rm -rf ~/.local/bin/autocomplete ~/.local/bin/completion ~/.local/bin/LICENSE* ~/.local/bin/*.md ~/.local/bin/doc
