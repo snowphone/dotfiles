@@ -160,6 +160,7 @@ if [[ $dist == "debian" ]]; then
 
 		pkgs+=( \
 			mupdf
+			xdotool
 			nautilus # file explorer
 			mpv
 		)
