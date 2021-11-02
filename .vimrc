@@ -229,8 +229,8 @@ if exists('+termguicolors')
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
-silent! colorscheme afterglow
-let g:afterglow_inherit_background=1
+set background=dark
+silent! colorscheme gruvbox
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
