@@ -104,9 +104,6 @@ let g:coc_global_extensions = [
 let mapleader=","
 
 
-Plug 'luochen1990/rainbow'
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-
 " vim의 기본 f 기능을 확장함. 
 " <leader><leader> s + <1char>: 현재 커서 기준으로 앞뒤에있는 <1char>로 점프
 Plug 'Lokaltog/vim-easymotion'
