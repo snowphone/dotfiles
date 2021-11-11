@@ -10,7 +10,7 @@ if [ -f /etc/bashrc ]; then
 	 . /etc/bashrc
 fi
 
-source .common.shrc
+source $HOME/.common.shrc
 
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
