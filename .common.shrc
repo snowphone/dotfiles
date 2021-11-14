@@ -45,6 +45,11 @@ alias psed='perl -pe'	#sed with pcre support
 
 alias c='clear'
 
+# Alias of xdg-open, and ignore stderr
+open() {
+	xdg-open $@ 2> /dev/null
+}
+
 alias gpull='git pull --rebase origin'
 alias gpush='git push origin'
 alias gs='git status'
