@@ -1,2 +1,3 @@
 .ssh/known_hosts
 .ssh/authorized_keys
+**/__pycache__
