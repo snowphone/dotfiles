@@ -13,7 +13,7 @@ class DebianPreparation(Script):
 		self.shell.env["DEBIAN_FRONTEND"] = "noninteractive"
 
 		self.shell.sudo_exec(
-			"IPv4 preferred in apt",
+			"Prioritizing IPv4 in apt",
 			r"""sed -riE 's/#\s*(precedence ::ffff:0:0[/]96\s+100)/\1/' /etc/gai.conf"""
 		)
 		self._add_repositories()
@@ -27,14 +27,15 @@ class DebianPreparation(Script):
 		)
 
 		self.shell.sudo_exec_list(
-			"Updating apt repositores", "apt update",
+			"Updating apt repositores",
+			"apt update",
 			"apt install -y curl software-properties-common", "apt update")
 
 		self.shell.sudo_exec("Adding vim repository",
 							 "add-apt-repository -y ppa:jonathonf/vim")
 
 		if self.args.java:
-			self.shell.sudo_exec("Add a repository for gradle",
+			self.shell.sudo_exec("Adding a repository for gradle",
 								 "add-apt-repository -y ppa:cwchien/gradle")
 		return
 
@@ -102,7 +103,7 @@ class DebianPackageManager(PackageManager):
 				basename = pattern.sub('', pkg)
 				priority = latest + 1 - ver
 				self.shell.sudo_exec(
-					f"{pkg} is being aliased to {basename}",
+					f"{pkg} being aliased to {basename}",
 					f"update-alternatives --install /usr/bin/{basename} {basename} /usr/bin/{pkg} {priority}"
 				)
 			return

@@ -23,7 +23,8 @@ class LinuxAMD64(Script):
 		self.shell.exec("Installing pudb, a python debugger",
 						"pip3 install --user pudb")
 		self.shell.exec_list(
-			"Install yt-dlp", "pip3 install --user yt-dlp",
+			"Installing yt-dlp",
+			"pip3 install --user yt-dlp",
 			f"ln -sf {self.HOME}/.local/bin/yt-dlp {self.HOME}/.local/bin/youtube-dl"
 		)
 
@@ -69,7 +70,7 @@ class LinuxAMD64(Script):
 			)
 
 		self.shell.exec(
-			"Remove auxiliary files",
+			"Removing auxiliary files",
 			f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc"
 		)
 

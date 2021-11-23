@@ -62,7 +62,7 @@ class ShellSwitcher(Script):
 		# | can be used as a separator in sed
 		pattern = f"'{line_num}s|{HOME}:.*$|{HOME}:{new_shell}|'"
 		self.shell.sudo_exec(
-			"Change default shell to zsh",
+			"Changing default shell to zsh",
 			f"sed -ie {pattern} /etc/passwd"
 		)
 

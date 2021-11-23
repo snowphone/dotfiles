@@ -14,13 +14,13 @@ class FileLinker(Script):
 
 		self._mkdir(f"{HOME}/.local/bin/")
 		self.shell.exec(
-			"Link scripts",
+			"Symbolic linking scripts",
 
 			f'ln -fs "{proj_root}"/scripts/* {HOME}/.local/bin/'
 		)
 
 		self.shell.exec_list(
-			"Enable parallelism for tar",
+			"Enabling tar to parallelize archiving files",
 
 			f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bzip2",
 			f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bunzip2",
@@ -35,12 +35,12 @@ class FileLinker(Script):
 		trueline_path = f"{HOME}/.trueline.sh"
 		if not os.path.exists(trueline_path):
 			self.shell.exec(
-				'Download trueline.sh',
+				'Downloading trueline.sh',
 				f'curl -s https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o {trueline_path}'
 			)
 
 		self.shell.exec_list(
-			"Symbolic-link essential files",
+			"Symbolic linking essential files",
 
 			f'ln -fs "{proj_root}"/.bashrc {HOME}/.bashrc',					# Deprecated: bashrc
 			f'ln -fs "{proj_root}"/.gitconfig  {HOME}/.gitconfig',			# Global git configuration
@@ -55,7 +55,7 @@ class FileLinker(Script):
 
 		dir_color_path = f"{HOME}/.dircolors"
 		self.shell.exec(
-			"Use dircolor from dircolors-solarized",
+			"Using dircolor from dircolors-solarized",
 
 			f"curl --silent -o {dir_color_path} https://raw.githubusercontent.com/huyz/dircolors-solarized/master/dircolors.256dark"
 		)
@@ -69,14 +69,14 @@ class FileLinker(Script):
 			dir_color = dir_color.group()
 
 			self.shell.exec(
-				"Set OTHER_WRITABLE same as DIR in WSL",
+				"Setting OTHER_WRITABLE same as DIR in WSL",
 
 				f'sed -i "s/^OTHER_WRITABLE .*/OTHER_WRITABLE {dir_color}/" {HOME}/.dircolors'
 			)
 
 
 		self.shell.exec_list(
-			"Setup pip cache server",
+			"Setting up pip cache server",
 
 			f'mkdir -p {HOME}/.pip',
 			f'ln -fs "$folder"/pip.conf {HOME}/.pip/pip.conf',
