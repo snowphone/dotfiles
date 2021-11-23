@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from argparse import ArgumentParser
 import os
-from os import makedirs
 from pathlib import Path
 
 from script import Script
@@ -10,7 +9,7 @@ import re
 
 class FileLinker(Script):
 	def run(self) -> None:
-		HOME = Path.home()
+		HOME = self.HOME
 		proj_root = Path(__file__).resolve().parents[1]
 
 		self._mkdir(f"{HOME}/.local/bin/")
@@ -90,9 +89,6 @@ class FileLinker(Script):
 			text = f.read()
 		return re.search(r"microsoft|wsl", text, re.IGNORECASE)
 
-
-	def _mkdir(self, path: str):
-		makedirs(path, exist_ok=True)
 
 if __name__ == "__main__":
 	parser = ArgumentParser()

@@ -18,7 +18,7 @@ class Shell:
 							  shell=True,
 							  env=env,
 							  capture_output=True)
-		return proc.returncode == 0, proc.stdout, proc.stderr
+		return proc.returncode == 0, proc.stdout.decode('utf-8').rstrip(), proc.stderr.decode('utf-8').rstrip()
 
 	def exec(self, message: str, command: str):
 		print(f"{message}... ", end='', flush=True)
@@ -42,7 +42,7 @@ class Shell:
 	def sudo_exec_list(self, message: str, *commands: str):
 		return self._run_batch(self.sudo_exec, message, *commands)
 
-	def _run_batch(self, func: Callable[[str, str], Tuple[bool, bytes, bytes]],
+	def _run_batch(self, func: Callable[[str, str], Tuple[bool, str, str]],
 				   message: str, *commands: str):
 		results = True
 		sz = len(commands)

@@ -64,7 +64,6 @@ class LinuxAMD64(Script):
 				'curl -s https://golang.org/VERSION?m=text')
 			if not ok:
 				return
-			go_ver = go_ver.decode("utf-8")
 			self.shell.exec(
 				"Installing golang",
 				f"curl -s https://dl.google.com/go/{go_ver}.linux-amd64.tar.gz | tar xz -C {self.HOME}/.local/ --strip 1"
@@ -74,9 +73,6 @@ class LinuxAMD64(Script):
 			"Remove auxiliary files",
 			f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc"
 		)
-
-	def _mkdir(self, path: str):
-		os.makedirs(path, exist_ok=True)
 
 	def _install_fd(self):
 		self.shell.exec_list(

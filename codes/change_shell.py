@@ -10,7 +10,7 @@ from link_files import FileLinker
 
 class ShellSwitcher(Script):
 	def run(self) -> None:
-		HOME = Path.home()
+		HOME = self.HOME
 
 		FileLinker(self.args).run()
 
@@ -20,7 +20,6 @@ class ShellSwitcher(Script):
 		ok, zsh_path, _ = self.shell.run("which zsh")
 		if not ok:
 			raise RuntimeError("Command 'which zsh' failed")
-		zsh_path = zsh_path.decode("utf-8").strip()
 
 		if os.environ["SHELL"] == zsh_path:
 			print("zsh is already a default shell")
@@ -48,25 +47,20 @@ class ShellSwitcher(Script):
 
 		return
 
-	def _exists(self, cmd: str) -> bool:
-		return self.shell.run(f"{cmd} --version")[0]
-
 	def _switch_to_zsh(self):
-		user = getuser()
-		HOME = Path.home()
+		user = self.USER
+		HOME = self.HOME
 
 		ok, new_shell, _ = self.shell.run("which zsh")
 		if not ok:
 			raise RuntimeError("zsh is not installed")
-		new_shell = new_shell.decode("utf-8").rstrip()
 
-		ok, lineNum, _ = self.shell.run(f"grep -n {user} /etc/passwd | cut -f1 -d:")
+		ok, line_num, _ = self.shell.run(f"grep -n {user} /etc/passwd | cut -f1 -d:")
 		if not ok:
 			raise RuntimeError("Cannot read /etc/passwd")
-		lineNum = int(lineNum.decode("utf-8"))
 
 		# | can be used as a separator in sed
-		pattern = f"'{lineNum}s|{HOME}:.*$|{HOME}:{new_shell}|'"
+		pattern = f"'{line_num}s|{HOME}:.*$|{HOME}:{new_shell}|'"
 		self.shell.sudo_exec(
 			"Change default shell to zsh",
 			f"sed -ie {pattern} /etc/passwd"
