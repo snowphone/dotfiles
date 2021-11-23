@@ -33,10 +33,6 @@ class DebianPreparation(Script):
 
 		self.shell.sudo_exec("Adding vim repository",
 							 "add-apt-repository -y ppa:jonathonf/vim")
-
-		if self.args.java:
-			self.shell.sudo_exec("Adding a repository for gradle",
-								 "add-apt-repository -y ppa:cwchien/gradle")
 		return
 
 
@@ -70,9 +66,6 @@ class DebianPackageManager(PackageManager):
 			pkgs += ["texlive-full", "ttf-mscorefonts-installer"]
 		if self.args.boost:
 			pkgs.append("libboost-all-dev")
-		if self.args.java:
-			# TODO: Change to sdkman
-			pkgs += ["maven", "gradle", "openjdk-14-jdk"]
 		if self.shell.env.get("DISPLAY", False):
 			pkgs += ["mupdf", "xdotool", "nautilus", "mpv"]
 		if self.args.misc:

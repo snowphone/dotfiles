@@ -1,7 +1,7 @@
 
 from argparse import Namespace
-import os
 from pathlib import Path
+
 from script import Script
 
 
@@ -69,6 +69,9 @@ class LinuxAMD64(Script):
 				f"curl -s https://dl.google.com/go/{go_ver}.linux-amd64.tar.gz | tar xz -C {self.HOME}/.local/ --strip 1"
 			)
 
+		if self.args.java:
+			self._install_java()
+
 		self.shell.exec(
 			"Removing auxiliary files",
 			f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc"
@@ -91,6 +94,26 @@ class LinuxAMD64(Script):
 			f"mv {self.HOME}/.local/bin/autocomplete/bat.zsh {self.zsh_completion_path}/_bat",
 			f"mv {self.HOME}/.local/bin/autocomplete/bat.bash {self.bash_completion_path}/bat",
 			f"mv {self.HOME}/.local/bin/bat.1 {self.man_path}/bat.1")
+	
+	def _install_java(self):
+		sdk_path = f"{self.HOME}/.sdkman/bin/sdkman-init.sh"
+
+		def exec_list(msg: str, *cmds: str):
+			sourced_cmds = [ f"/bin/bash -c '. {sdk_path} && {cmd}' " for cmd in cmds ]
+			self.shell.exec_list(msg, *sourced_cmds)
+
+		self.shell.exec(
+			"Downloading sdkman",
+			'curl -s https:"//get.sdkman.io?rcupdate=false" | bash'
+		)
+		exec_list(
+			"Installing java, gradle, maven, and kotlin",
+			"sdk install java",
+			"sdk install gradle",
+			"sdk install maven",
+			"sdk install kotlin"
+		)
+		return
 
 	def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0):
 		cmd = f"""curl -s https://api.github.com/repos/{user_repo}/releases/latest |
