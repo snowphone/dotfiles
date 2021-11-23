@@ -82,12 +82,36 @@ class FileLinker(Script):
 			f'ln -fs "$folder"/pip.conf {HOME}/.pip/pip.conf',
 			f'ln -fs $(which pip3) {HOME}/.local/bin/pip'
 		)
+
+		if self._is_wsl():
+			link_cmds = [
+				f'ln -fs /mnt/c/Users/mjo97/Downloads/ $HOME/',
+				f'ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ $HOME/',
+				f'ln -fs /mnt/c/Users/mjo97/Videos/ $HOME/',
+			]
+			if not os.path.islink(f"{HOME}/kaist"):
+				link_cmds.append(
+					f'ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ {HOME}/kaist'
+				)
+			if not os.path.islink(f"{HOME}/winHome"):
+				link_cmds.append(
+					f'ln -fs /mnt/c/Users/mjo97/ {HOME}/winHome'
+				)
+
+			self.shell.exec_list(
+				"Symbolic linking windows folders",
+				*link_cmds
+			)
+
 		return
 	
 	def _is_wsl(self):
 		with open("/proc/version") as f:
 			text = f.read()
 		return re.search(r"microsoft|wsl", text, re.IGNORECASE)
+
+	def _link_exists(self, path: str) -> bool:
+		pass
 
 
 if __name__ == "__main__":
