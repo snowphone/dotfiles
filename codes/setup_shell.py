@@ -66,10 +66,12 @@ class ShellSwitcher(Script):
 			f"sed -ie {pattern} /etc/passwd"
 		)
 
-if __name__ == "__main__":
-	parser = ArgumentParser()
-	parser.add_argument("--typescript", '-t', action='store_true')
-	args = parser.parse_args()
+def setup_args(parser: ArgumentParser = ArgumentParser()):
+	parser.add_argument("--typescript", '-t', action='store_true', help="install typescript", default=False)
 
-	ShellSwitcher(args).run()
+	return parser
+
+
+if __name__ == "__main__":
+	ShellSwitcher(setup_args().parse_args()).run()
 
