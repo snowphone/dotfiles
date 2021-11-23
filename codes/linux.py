@@ -9,7 +9,6 @@ class LinuxAMD64(Script):
 	def __init__(self, args: Namespace):
 		super().__init__(args)
 		self.HOME = Path.home()
-		self.proj_root = os.path.abspath("../")
 
 		self.zsh_completion_path = f"{self.HOME}/.local/share/zsh/vendor-completions"
 		self.bash_completion_path = f"{self.HOME}/.local/share/bash-completion/completions"

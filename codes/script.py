@@ -11,6 +11,7 @@ class Script:
 		self.args = args
 		self.HOME = Path.home()
 		self.USER = getuser()
+		self.proj_root = Path(__file__).resolve().parents[1]
 	
 	def run(self) -> None:
 		raise NotImplementedError()

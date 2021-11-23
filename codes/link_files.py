@@ -10,7 +10,7 @@ import re
 class FileLinker(Script):
 	def run(self) -> None:
 		HOME = self.HOME
-		proj_root = Path(__file__).resolve().parents[1]
+		proj_root = self.proj_root
 
 		self._mkdir(f"{HOME}/.local/bin/")
 		self.shell.exec(
