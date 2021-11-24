@@ -32,17 +32,17 @@ class ShellSwitcher(Script):
 				f"zsh {HOME}/.zgenom/sources/init.zsh"
 			)
 
-		self.shell.exec(
+		self._sourced_exec(
 			"Installing nodejs lts via nvm",
 
-			f". {HOME}/.nvm/nvm.sh && nvm install --lts",
+			f"nvm install --lts",
 		)
 
 		if self.args.typescript:
-			self.shell.exec(
+			self._sourced_exec(
 				"Installing typescript related things",
 
-				". {HOME}/.nvm/nvm.sh && npm install -g typescript ts-node pkg tslib"
+				"npm install -g typescript ts-node pkg tslib"
 			)
 
 		return
@@ -65,6 +65,9 @@ class ShellSwitcher(Script):
 			"Changing default shell to zsh",
 			f"sed -ie {pattern} /etc/passwd"
 		)
+	
+	def _sourced_exec(self, message: str, cmd: str):
+		return self.shell.exec(message, f"source {self.HOME}/.nvm/nvm.sh && {cmd}")
 
 def setup_args(parser: ArgumentParser = ArgumentParser()):
 	parser.add_argument("--typescript", '-t', action='store_true', help="install typescript", default=False)
