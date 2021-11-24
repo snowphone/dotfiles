@@ -33,9 +33,9 @@ class ShellSwitcher(Script):
 			)
 
 		self.shell.exec(
-			"Installing nodejs via nvm",
+			"Installing nodejs lts via nvm",
 
-			f". {HOME}/.nvm/nvm.sh && nvm install node",
+			f". {HOME}/.nvm/nvm.sh && nvm install --lts",
 		)
 
 		if self.args.typescript:
