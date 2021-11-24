@@ -16,9 +16,11 @@ class Shell:
 	def _execute(self, command: str, env: Dict[str, str]):
 		proc = subprocess.run([command],
 							  shell=True,
+							  executable='/bin/bash',
 							  env=env,
 							  capture_output=True)
-		return proc.returncode == 0, proc.stdout.decode('utf-8').rstrip(), proc.stderr.decode('utf-8').rstrip()
+		return proc.returncode == 0, proc.stdout.decode(
+			'utf-8').rstrip(), proc.stderr.decode('utf-8').rstrip()
 
 	def exec(self, message: str, command: str):
 		print(f"{message}... ", end='', flush=True)
