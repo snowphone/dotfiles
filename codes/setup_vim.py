@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 from script import Script
 
 
 class Vim(Script):
+	def __init__(self, args: Namespace):
+		super().__init__(args)
+		self.nvm_path = f"{self.HOME}/.nvm/nvm.sh"
+
 	def run(self) -> None:
 		for cmd in ["npm", "python3 -m pip", "vim"]:
 			if not self._exists(cmd):
@@ -46,10 +50,15 @@ class Vim(Script):
 		)
 		return
 
+	def _exists(self, cmd: str) -> bool:
+		return super()._exists(self._sourced_cmd(cmd))
+
+	def _sourced_cmd(self, cmd: str):
+		return f"source {self.nvm_path} && {cmd}"
+
 	def _exec(self, message: str, cmd: str):
-		nvm_path = f"{self.HOME}/.nvm/nvm.sh"
-		if self._exists(nvm_path):
-			return self.shell.exec(message, f". {nvm_path} && {cmd}")
+		if self._exists(self.nvm_path):
+			return self.shell.exec(message, self._sourced_cmd(cmd))
 		else:
 			return self.shell.exec(message, cmd)
 
