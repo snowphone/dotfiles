@@ -35,7 +35,7 @@ class SshKey(Script):
 			self.shell.exec_list(
 				'Suppressing no xauth data warning while using ssh -X',
 
-				f"touch {auth_path}"
+				f"touch {auth_path}",
 				f"xauth add :0 . `mcookie`"
 			)
 
