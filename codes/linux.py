@@ -99,7 +99,7 @@ class LinuxAMD64(Script):
 		sdk_path = f"{self.HOME}/.sdkman/bin/sdkman-init.sh"
 
 		def exec_list(msg: str, *cmds: str):
-			sourced_cmds = [ f"/bin/bash -c '. {sdk_path} && {cmd}' " for cmd in cmds ]
+			sourced_cmds = [ f"source {sdk_path} && {cmd}" for cmd in cmds ]
 			self.shell.exec_list(msg, *sourced_cmds)
 
 		self.shell.exec(
