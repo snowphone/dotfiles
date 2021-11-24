@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 from argparse import ArgumentParser
 import os
-from pathlib import Path
+import re
 
 from script import Script
-import re
 
 
 class FileLinker(Script):
@@ -91,7 +90,7 @@ class FileLinker(Script):
 			]
 			if not os.path.islink(f"{HOME}/kaist"):
 				link_cmds.append(
-					f'ln -fs /mnt/c/Users/mjo97/OneDrive\ -\ kaist.ac.kr/ {HOME}/kaist'
+					f"ln -fs '/mnt/c/Users/mjo97/OneDrive - kaist.ac.kr/' {HOME}/kaist"
 				)
 			if not os.path.islink(f"{HOME}/winHome"):
 				link_cmds.append(
@@ -109,10 +108,6 @@ class FileLinker(Script):
 		with open("/proc/version") as f:
 			text = f.read()
 		return re.search(r"microsoft|wsl", text, re.IGNORECASE)
-
-	def _link_exists(self, path: str) -> bool:
-		pass
-
 
 if __name__ == "__main__":
 	parser = ArgumentParser()
