@@ -3,6 +3,7 @@ from argparse import ArgumentParser
 from os import path
 
 from script import Script
+from encryption import read_password
 
 class SshKey(Script):
 	def run(self) -> None:
@@ -15,16 +16,27 @@ class SshKey(Script):
 				f"rm -rf {ssh_dir}"
 			)
 
+		self.shell.exec(
+			"Installing required modules",
+			f'python3 -m pip install -r {self.proj_root}/requirements.txt'
+		)
+		
+		password = read_password()
+		self.shell.exec(
+			"Decrypting id_ed25519",
+			f"SSH_PW='{password}' {self.proj_root}/codes/encryption.py --decrypt"
+		)
+
 		self.shell.exec_list(
 			"Setting up ssh key",
 			f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
 			f'touch "{self.proj_root}"/.ssh/known_hosts',
 			f'touch "{self.proj_root}"/.ssh/authorized_keys',
 
-			f'cat {HOME}/.ssh/id_rsa.pub >> {HOME}/.ssh/authorized_keys', # Simplify ssh-copy-id procedure
+			f'cat {HOME}/.ssh/id_ed25519.pub >> {HOME}/.ssh/authorized_keys', # Simplify ssh-copy-id procedure
 
 			f'chmod 600 {HOME}/.ssh/config',
-			f'chmod 600 {HOME}/.ssh/id_rsa',
+			f'chmod 600 {HOME}/.ssh/id_ed25519',
 			f'chmod 600 {HOME}/.ssh/authorized_keys',
 			f'chmod 700 {HOME}/.ssh',
 			f'chmod 700 {self.proj_root}',
