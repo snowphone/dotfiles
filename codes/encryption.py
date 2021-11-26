@@ -2,6 +2,13 @@
 from argparse import ArgumentParser, Namespace
 import base64
 from os import environ, path
+try:
+	import cryptography
+except ModuleNotFoundError:
+	import subprocess
+	from script import Script
+	subprocess.run(["python3", "-m", "pip", "install", "-r", f"{Script.proj_root}/requirements.txt"])
+
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes

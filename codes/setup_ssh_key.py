@@ -16,20 +16,15 @@ class SshKey(Script):
 				f"rm -rf {ssh_dir}"
 			)
 
-		self.shell.exec(
-			"Installing required modules",
-			f'python3 -m pip install -r {self.proj_root}/requirements.txt'
-		)
-		
 		password = read_password()
-		self.shell.exec(
+		self.shell.exec_list(
 			"Decrypting id_ed25519",
-			f"SSH_PW='{password}' {self.proj_root}/codes/encryption.py --decrypt"
+			f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
+			f"SSH_PW='{password}' {self.proj_root}/codes/encryption.py --decrypt",
 		)
 
 		self.shell.exec_list(
 			"Setting up ssh key",
-			f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
 			f'touch "{self.proj_root}"/.ssh/known_hosts',
 			f'touch "{self.proj_root}"/.ssh/authorized_keys',
 
