@@ -1,6 +1,7 @@
 from getpass import getuser
 import os
 import subprocess
+from sys import stderr
 from time import time
 from typing import Callable, Dict, Tuple
 
@@ -18,9 +19,9 @@ class Shell:
 							  shell=True,
 							  executable='/bin/bash',
 							  env=env,
+							  text=True,
 							  capture_output=True)
-		return proc.returncode == 0, proc.stdout.decode(
-			'utf-8').rstrip(), proc.stderr.decode('utf-8').rstrip()
+		return proc.returncode == 0, proc.stdout.rstrip(), proc.stderr.rstrip()
 
 	def exec(self, message: str, command: str):
 		print(f"{message}... ", end='', flush=True)
@@ -33,6 +34,12 @@ class Shell:
 
 		elapsed_time = (time() - start)
 		print(f"{result} ({elapsed_time:.2f} sec)")
+
+		if not succeeded:
+			print(f"Message: '{message}'", file=stderr)
+			print(f"Command: '{command}'", file=stderr)
+			print(f"STDOUT: {out}", file=stderr)
+			print(f"STDERR: {err}", file=stderr)
 		return succeeded, out, err
 
 	def sudo_exec(self, message: str, command: str):
