@@ -49,7 +49,7 @@ def setup_args(parser: ArgumentParser=ArgumentParser()):
 							default=False)
 		return
 
-	parser.add_argument("--dist",
+	parser.add_argument("--distro",
 						"-d",
 						help="select distribution",
 						choices=["debian", "redhat", "darwin"],
