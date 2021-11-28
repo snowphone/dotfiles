@@ -35,7 +35,7 @@ class LinuxAMD64(Script):
 
 		if self.args.rust:
 			self.shell.exec("Installing rust",
-							'curl https://sh.rustup.rs -sSf | sh -s -- -y')
+							'curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path')
 
 		self._mkdir(self.zsh_completion_path)
 		self._mkdir(self.bash_completion_path)
