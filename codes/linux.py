@@ -83,7 +83,7 @@ class LinuxAMD64(Script):
 			self.github_dl_cmd("sharkdp/fd",
 							   "x86_64-unknown-linux-musl.tar.gz", 1),
 			f"mv {self.HOME}/.local/bin/autocomplete/_fd {self.zsh_completion_path}/_fd",
-			f"mv {self.HOME}/.local/bin/autocomplete/fd.bash-completion {self.bash_completion_path}/fd",
+			f"mv {self.HOME}/.local/bin/autocomplete/fd.bash {self.bash_completion_path}/fd",
 			f"mv {self.HOME}/.local/bin/fd.1 {self.man_path}/fd.1")
 
 	def _install_bat(self):
