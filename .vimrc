@@ -262,9 +262,9 @@ aug tex
 	au FileType tex set spell spelllang=en_us
 aug end
 
-if expand('%:e') == 'shrc'
-	set filetype=sh
-endif
+" Set filetype for custom extensions
+autocmd! BufEnter *.shrc : set filetype=sh
+autocmd! BufEnter *.nsp :set filetype=json
 
 "https://vim.fandom.com/wiki/Make_buffer_modifiable_state_match_file_readonly_state
 function UpdateModifiable()
