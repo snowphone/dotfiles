@@ -264,6 +264,7 @@ aug end
 
 " Set filetype for custom extensions
 autocmd! BufEnter *.shrc : set filetype=sh
+autocmd! BufEnter *.shinit : set filetype=sh
 autocmd! BufEnter *.nsp :set filetype=json
 
 "https://vim.fandom.com/wiki/Make_buffer_modifiable_state_match_file_readonly_state

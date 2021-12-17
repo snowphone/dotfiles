@@ -1,0 +1,115 @@
+# sh (POSIX) compatible configs
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPATH=$HOME/.local/share/man:/usr/share/man:$MANPATH
+
+# set PATH so it includes user's private bin if it exists
+LOCALBIN="$HOME/.local/bin"
+if [ -d $LOCALBIN ] &&  ! expr match "$PATH"  ".*$LOCALBIN.*" > /dev/null; then
+		PATH="$HOME/.local/bin:$PATH" 
+fi
+
+
+export EDITOR=vim
+
+# Alias's to modified commands
+if rsync --version 2>&1 > /dev/null; then
+	alias cp='rsync -ah --info=progress2'
+fi
+
+
+alias ls='ls --human-readable --color=always'
+alias ll='ls --human-readable -l --all --classify --size'
+
+alias scp='scp -r'
+alias mv='mv -i'
+alias rm='rm -iv'
+alias mkdir='mkdir -p'
+alias ps='ps auxf'
+alias ping='ping -c 10'
+alias less='less -R'
+alias lessn='less -R -N'
+alias cls='clear'
+alias vi='vim'
+alias svi='sudo vi'
+alias vis='vim "+set si"'
+alias tmux='tmux -2' 	#force 256 colors
+alias psed='perl -pe'	#sed with pcre support
+
+alias c='clear'
+
+# Alias of xdg-open, and ignore stderr
+open() {
+	xdg-open $@ 2> /dev/null
+}
+
+alias gpull='git pull --rebase origin'
+alias gpush='git push origin'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gf='git fetch'
+alias gb='git branch'
+alias gck='git checkout'
+alias glog='git log --all --decorate --oneline --graph'
+alias gd='git difftool'
+alias grm='git add -u'
+
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+alias ds="du -sh * ./ | sort -rh " #diskspace
+alias mountedinfo='df -hT'
+alias folders='du -h --max-depth=1'
+alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+alias tree='tree -CAhF --dirsfirst'
+alias treed='tree -CAFd'
+alias mountedinfo='df -hT'
+
+# Search files in the current folder
+alias f="find ."
+
+# alias chmod commands
+alias mx='chmod a+x'
+alias 000='chmod -R 000'
+alias 644='chmod -R 644'
+alias 666='chmod -R 666'
+alias 755='chmod -R 755'
+alias 777='chmod -R 777'
+
+#alias htop="htop -u $(whoami)"
+alias htop="htop -s PERCENT_CPU"
+
+
+alias tmux-dev='$HOME/.dotfiles/tmux-dev.sh'
+alias qq='tmux kill-window'
+
+export FZF_DEFAULT_OPTS='-m'
+if bfs --version 2>&1 > /dev/null; then
+	export FZF_DEFAULT_COMMAND='bfs -L'
+elif fd --version 2>&1 > /dev/null; then
+	export FZF_DEFAULT_COMMAND='fd -L'
+fi
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
+
+# Use fd-based completion for the better performance
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+eval "$(dircolors $HOME/.dircolors)"
+
+# Load sdkman
+[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
+
+if [ -f "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
