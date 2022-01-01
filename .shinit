@@ -58,12 +58,26 @@ alias grm='git add -u'
 
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 alias ds="du -sh * ./ | sort -rh " #diskspace
-alias mountedinfo='df -hT'
 alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
-alias mountedinfo='df -hT'
+
+mountedinfo() {
+	case $1 in
+		-h|--help)
+			printf "Shows mounted file system information\n"
+			printf "Usage: $0 [--all]\n"
+			;;
+		-a|--all) 
+			df --human-readable --print-type
+			;;
+		*) 
+			df --human-readable --print-type --type ext4
+			;;
+	esac
+}
+
 
 # Search files in the current folder
 alias f="find ."
