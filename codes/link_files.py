@@ -18,8 +18,6 @@ class FileLinker(Script):
 			f'ln -fs "{proj_root}"/scripts/* {HOME}/.local/bin/'
 		)
 
-		self._set_env()
-
 		self.shell.exec_list(
 			"Enabling tar to parallelize archiving files",
 
@@ -107,16 +105,6 @@ class FileLinker(Script):
 
 		return
 
-	def _set_env(self):
-		with open("/etc/environment") as f:
-			txt = f.read()
-		shinit_variable = r"ENV=$HOME/.shinit"
-		if txt.find(shinit_variable) == -1:
-			self.shell.exec(
-				"Add ENV variable",
-				f"printf '{shinit_variable}' | {self.shell.sudo} tee -a /etc/environment"
-			)
-	
 	def _is_wsl(self):
 		with open("/proc/version") as f:
 			text = f.read()
