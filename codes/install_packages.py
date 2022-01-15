@@ -13,18 +13,18 @@ class Installer(Script):
 		super().__init__(args)
 		self.preparation, \
 			self.package_manager, \
-			self.non_package_manager = self._select_distro(args.dist)
+			self.non_package_manager = self._select_distro(args.distro)
 		return
 
-	def _select_distro(self, dist: str):
+	def _select_distro(self, distro: str):
 		args = self.args
-		if dist == "debian":
+		if distro == "debian":
 			return (DebianPreparation(args), DebianPackageManager(args), LinuxAMD64(args))
-		elif dist == "redhat":
+		elif distro == "redhat":
 			return (RedhatPreparation(args), RedhatPackageManager(args), LinuxAMD64(args))
-		elif dist == "darwin":
+		elif distro == "darwin":
 			pass
-		raise NotImplementedError(f"{dist} is not supported yet")
+		raise NotImplementedError(f"{distro} is not supported yet")
 
 	def run(self):
 		self.preparation.run()
