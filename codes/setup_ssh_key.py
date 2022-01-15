@@ -38,7 +38,7 @@ class SshKey(Script):
 		)
 
 		auth_path = f"{HOME}/.Xauthority"
-		if not path.exists(auth_path):
+		if self.shell.env.get("DISPLAY", False) and not path.exists(auth_path):
 			self.shell.exec_list(
 				'Suppressing no xauth data warning while using ssh -X',
 

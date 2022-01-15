@@ -25,12 +25,13 @@ class ShellSwitcher(Script):
 			print("zsh is already a default shell")
 		else:
 			self._switch_to_zsh()
-			self.shell.exec_list(
-				"Running initialization commands in zsh",
 
-				f"zsh {HOME}/.zshrc",
-				f"zsh {HOME}/.zgenom/sources/init.zsh"
-			)
+		self.shell.exec_list(
+			"Running initialization commands in zsh",
+
+			f"zsh {HOME}/.zshrc",
+			f"zsh {HOME}/.zgenom/sources/init.zsh"
+		)
 
 		self._sourced_exec(
 			"Installing nodejs lts via nvm",

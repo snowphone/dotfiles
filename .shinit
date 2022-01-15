@@ -9,6 +9,12 @@ if [ -d $LOCALBIN ] &&  ! expr match "$PATH"  ".*$LOCALBIN.*" > /dev/null; then
 		PATH="$HOME/.local/bin:$PATH" 
 fi
 
+BREW_PATH=$HOME/.paths
+if [ -f $BREW_PATH ]; then
+	NEW_PATHS=$(cat $BREW_PATH)
+	PATH=$NEW_PATHS:$PATH
+fi
+
 
 export EDITOR=vim
 
@@ -17,9 +23,13 @@ if rsync --version 2>&1 > /dev/null; then
 	alias cp='rsync -ah --info=progress2'
 fi
 
-
-alias ls='ls --human-readable --color=always'
-alias ll='ls --human-readable -l --all --classify --size'
+if [ $(uname) = "Darwin" ]; then
+	alias ls='ls -hG'
+	alias ll='ls -hGlaFs'
+else
+	alias ls='ls --human-readable --color=always'
+	alias ll='ls --human-readable -l --all --classify --size'
+fi
 
 alias scp='scp -r'
 alias mv='mv -i'
@@ -70,6 +80,7 @@ mountedinfo() {
 			printf "Usage: $0 [--all]\n"
 			;;
 		-a|--all) 
+			# Check darwin
 			df --human-readable --print-type
 			;;
 		*) 

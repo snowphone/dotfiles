@@ -1,17 +1,13 @@
 {
 	"languageserver": {
-		"clangd": {
-			"command": "clangd",
-			"args": ["-cross-file-rename"],
-			"rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-			"filetypes": ["c", "cpp", "objc", "objcpp"]
-		},
 		"ocaml-lsp": {
 			"command": "opam",
 			"args": ["config", "exec", "--", "ocamllsp"],
 			"filetypes": ["ocaml", "reason"]
 		}
 	},
+
+	"clangd.arguments": ["-cross-file-rename"],
 
 	"java.format.enabled": true,
 	"java.format.comments.enabled": true,
