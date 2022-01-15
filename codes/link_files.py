@@ -106,9 +106,11 @@ class FileLinker(Script):
 		return
 
 	def _is_wsl(self):
+		if self.args.distro == "darwin":
+			return False
 		with open("/proc/version") as f:
 			text = f.read()
-		return re.search(r"microsoft|wsl", text, re.IGNORECASE)
+		return bool(re.search(r"microsoft|wsl", text, re.IGNORECASE))
 
 if __name__ == "__main__":
 	parser = ArgumentParser()
