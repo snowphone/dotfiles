@@ -12,7 +12,10 @@ class DarwinPreparation(Script):
 		super().__init__(args)
 
 	def run(self):
-		'Installs homebrew'
+		'Installs homebrew if not exists'
+
+		if self._exists("brew"):
+			return
 
 		self.shell.exec("Installing homebrew",
 				 '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null'
