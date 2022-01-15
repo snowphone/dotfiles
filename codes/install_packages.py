@@ -3,6 +3,7 @@ from argparse import ArgumentParser, Namespace
 from argparse import Namespace
 
 from debian import DebianPackageManager, DebianPreparation
+from darwin import DarwinPackageManager, DarwinPreparation, Mac
 from linux import LinuxAMD64
 from redhat import RedhatPackageManager, RedhatPreparation
 from script import Script
@@ -19,11 +20,11 @@ class Installer(Script):
 	def _select_distro(self, dist: str):
 		args = self.args
 		if dist == "debian":
-			return (DebianPreparation(args), DebianPackageManager(args), LinuxAMD64(args))
+			return DebianPreparation(args), DebianPackageManager(args), LinuxAMD64(args)
 		elif dist == "redhat":
 			return (RedhatPreparation(args), RedhatPackageManager(args), LinuxAMD64(args))
 		elif dist == "darwin":
-			pass
+			return DarwinPreparation(args), DarwinPackageManager(args), Mac(args)
 		raise NotImplementedError(f"{dist} is not supported yet")
 
 	def run(self):
@@ -39,6 +40,9 @@ class Installer(Script):
 							f"{self.package_manager.cmd} {pkg}")
 		self.package_manager.do_misc()
 		return
+
+	def _is_m1(self):
+		return self.shell.run("uname -m")[1] == "arm64"
 
 def setup_args(parser: ArgumentParser=ArgumentParser()):
 	def add_flag(long: str, short: str, helpstr: str):
