@@ -9,6 +9,12 @@ if [ -d $LOCALBIN ] &&  ! expr match "$PATH"  ".*$LOCALBIN.*" > /dev/null; then
 		PATH="$HOME/.local/bin:$PATH" 
 fi
 
+BREW_PATH=$HOME/.paths
+if [ -f $BREW_PATH ]; then
+	NEW_PATHS=$(cat $BREW_PATH)
+	PATH=$NEW_PATHS:$PATH
+fi
+
 
 export EDITOR=vim
 

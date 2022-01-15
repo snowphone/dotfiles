@@ -73,7 +73,7 @@ class DarwinPackageManager(PackageManager):
 		HOME = Path.home()
 		self.shell.exec(
 			"Updating PATH",
-			f"echo '{path}' >> {HOME}/.common.shrc"
+			f"printf '%s' '{path}' > {HOME}/.paths"
 		)
 
 
