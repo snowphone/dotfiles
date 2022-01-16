@@ -36,7 +36,7 @@ class DarwinPackageManager(PackageManager):
 			tree htop ripgrep the_silver_searcher rsync
 			bear w3m git-extras multitail
 			neofetch mmv
-			parallel moreutils num-utils
+			parallel sponge coreutils num-utils
 			lbzip2 pigz pixz p7zip
 			ffmpeg
 			translate-shell dict
