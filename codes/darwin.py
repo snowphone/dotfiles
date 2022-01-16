@@ -70,9 +70,9 @@ class DarwinPackageManager(PackageManager):
 			if not ok:
 				print(f"Problem occurred while brew --prefix {pkg}")
 				continue
-			paths.add(path)
+			paths.add(f"{path}/bin")
 
-		path = ":".join(paths) + ":$PATH"
+		path = ":".join(paths)
 		HOME = Path.home()
 		self.shell.exec(
 			"Updating PATH",
