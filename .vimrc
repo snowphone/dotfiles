@@ -424,10 +424,19 @@ function! GetVisualSelection(mode)
 	return join(lines, "\n")
 endfunction
 
+function! Test()
+	wa!
+
+	if &filetype == 'typescript'
+		FloatermNew npm t
+	endif
+endfunction
 
 
 nmap <C-F5>      : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
 nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <leader>t   : call Test() <CR>
+
 " In some terminals (e.g. tmux), they cannot understand complex key bindings.
 " So, in this case, we need to find out the complex binding is converted into
 " several keys. 
