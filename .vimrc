@@ -432,6 +432,8 @@ function! Test()
 	endif
 endfunction
 
+nmap <F9>       <Plug>(coc-codeaction-cursor)
+nmap <ESC>[20~  <Plug>(coc-codeaction-cursor)
 
 nmap <C-F5>      : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
 nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
