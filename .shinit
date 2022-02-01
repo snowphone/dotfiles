@@ -23,7 +23,7 @@ if rsync --version 2>&1 > /dev/null; then
 	alias cp='rsync -ah --info=progress2'
 fi
 
-if [ $(uname) = "Darwin" ]; then
+if [ $(uname) = "Darwin" ] && ! gls --version 2>&1 > /dev/null; then
 	alias ls='ls -hG'
 	alias ll='ls -hGlaFs'
 else
