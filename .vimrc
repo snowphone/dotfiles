@@ -158,6 +158,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
 
 " Support highlighting for lots of languages
+set re=0 " Disable old regex engine for performance
 Plug 'sheerun/vim-polyglot'
 
 " LaTeX
