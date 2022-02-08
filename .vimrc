@@ -149,14 +149,15 @@ set rtp+=~/.vim/plugged/fzf
 Plug 'junegunn/fzf.vim'
 
 " ##### Folding #####
+if !has("nvim")
+	set foldmethod=syntax
 
-set foldmethod=syntax
+	" Support python folding
+	Plug 'tmhedberg/SimpylFold'
 
-" Support python folding
-Plug 'tmhedberg/SimpylFold'
-
-" Fold faster
-Plug 'Konfekt/FastFold'
+	" Fold faster
+	Plug 'Konfekt/FastFold'
+endif
 
 " Support highlighting for lots of languages
 set re=0 " Disable old regex engine for performance
@@ -220,14 +221,22 @@ call plug#end()			" required
 "set theme
 "set t_Co=256
 "set t_ut= "테마 적용시 뒷 배경을 날리는 역할
+
 " Enable 24bit true color
-if exists('+termguicolors')
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-	set termguicolors
+set termguicolors
+
+" Correct RGB escape codes for vim inside tmux
+if !has('nvim') && &term =~ '^\%(screen\|tmux\)'
+  " nvim's tree-sitter has a problem that cannot parse the lines below (t_f8, t_8b).
+  " Thankfully, adding a comment can prevent this odd error.
+  " That's why I added silly comments below.
+  let &t_8f = "\<ESC>[38;2;%lu;%lu;%lum"
+  " above: foreground color (r, g, b) 
+  let &t_8b = "\<ESC>[48;2;%lu;%lu;%lum"
+  " above: background color (r, g, b) 
 endif
 
-" set background=dark " IDK but uncommenting will disable highlighting in nvim
+set background=dark
 silent! colorscheme molokai
 
 syntax on
