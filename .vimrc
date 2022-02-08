@@ -230,6 +230,15 @@ endif
 set background=dark
 silent! colorscheme PaperColor
 
+let g:PaperColor_Theme_Options = {
+	\ 'theme': {
+		\ 'default': {
+			\ 'allow_bold': 1,
+			\ 'allow_italic': 1
+		\ }
+	\ }
+\ }
+
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
 set hlsearch
@@ -450,41 +459,6 @@ nmap <leader>t   : call Test() <CR>
 " remaining 7 bytes are what we wanted. The only left thing is, google ascii
 " table and translate 7 bytes to '<esc>[15;5~'. 
 
-
-function FindCursorPopUp()
-	let radius = get(a:000, 0, 2)
-	let srow = screenrow()
-	let scol = screencol()
-	" it's necessary to test entire rect, as some popup might be quite small
-	for r in range(srow - radius, srow + radius)
-		for c in range(scol - radius, scol + radius)
-			let winid = popup_locate(r, c)
-			if winid != 0
-				return winid
-			endif
-		endfor
-	endfor
-
-	return 0
-endfunction
-
-function ScrollPopUp(down)
-	let winid = FindCursorPopUp()
-	if winid == 0
-		return 0
-	endif
-
-	let pp = popup_getpos(winid)
-	call popup_setoptions( winid,
-				\ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
-
-	return 1
-endfunction
-
-if !has("nvim") && has('textprop') && has('patch-8.1.1610') 
-	nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
-	nnoremap <expr> <c-u> ScrollPopUp(0) ? '<esc>' : '<c-u>'
-endif
 
 " FIX: ssh from wsl starting with REPLACE mode
 " https://stackoverflow.com/a/11940894
