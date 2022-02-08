@@ -31,7 +31,7 @@ class Vim(Script):
 
 		self.shell.exec(
 			"Adding executable permission to HOME",
-			f"chmod +w {HOME}"
+			f"chmod 755 {HOME}"
 		)
 
 		self.shell.exec_list(
