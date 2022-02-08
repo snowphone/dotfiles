@@ -228,7 +228,7 @@ if exists('+termguicolors')
 	set termguicolors
 endif
 set background=dark
-silent! colorscheme gruvbox
+silent! colorscheme PaperColor
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
@@ -481,29 +481,30 @@ function ScrollPopUp(down)
 	return 1
 endfunction
 
-if has('textprop') && has('patch-8.1.1610') 
+if !has("nvim") && has('textprop') && has('patch-8.1.1610') 
 	nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
 	nnoremap <expr> <c-u> ScrollPopUp(0) ? '<esc>' : '<c-u>'
 endif
 
 " FIX: ssh from wsl starting with REPLACE mode
 " https://stackoverflow.com/a/11940894
-if $TERM =~ 'xterm-256color'
-	set noek
+if !has("nvim") && $TERM =~ 'xterm-256color'
+	set noesckeys
 endif
 
-highlight Comment cterm=italic gui=italic
+if !has("nvim")
+	highlight Comment cterm=italic gui=italic
 
-highlight Statement cterm=italic gui=italic
-highlight Conditional cterm=italic gui=italic
-highlight Repeat cterm=italic gui=italic
-highlight Label cterm=italic gui=italic
-highlight Operator cterm=italic gui=italic
-highlight Keyword cterm=italic gui=italic
-highlight Exception cterm=italic gui=italic
+	highlight Statement cterm=italic gui=italic
+	highlight Conditional cterm=italic gui=italic
+	highlight Repeat cterm=italic gui=italic
+	highlight Label cterm=italic gui=italic
+	highlight Operator cterm=italic gui=italic
+	highlight Keyword cterm=italic gui=italic
+	highlight Exception cterm=italic gui=italic
 
-highlight Type cterm=italic gui=italic
-highlight StorageClass cterm=italic gui=italic
-highlight Structure cterm=italic gui=italic
-highlight Typedef cterm=italic gui=italic
-
+	highlight Type cterm=italic gui=italic
+	highlight StorageClass cterm=italic gui=italic
+	highlight Structure cterm=italic gui=italic
+	highlight Typedef cterm=italic gui=italic
+endif

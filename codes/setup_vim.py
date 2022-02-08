@@ -29,7 +29,7 @@ class Vim(Script):
 			"vim --not-a-term -c PlugInstall -c quitall"
 		)
 
-		self.shell.sudo_exec(
+		self.shell.exec(
 			"Adding executable permission to HOME",
 			f"chmod +w {HOME}"
 		)
@@ -47,6 +47,26 @@ class Vim(Script):
 		self.shell.exec(
 			"Installing yapf",
 			"python3 -m pip install --user yapf"
+		)
+
+		if self._exists("nvim"):
+			self._setup_for_nvim()
+
+		return
+
+	def _setup_for_nvim(self):
+		HOME = self.HOME
+		proj_root = self.proj_root
+
+		self.shell.exec_list(
+			"Aliasing files for neovim",
+
+			f'mkdir -p {HOME}/.config/nvim',
+			f'ln -sf "{proj_root}"/coc-settings.json {HOME}/.config/nvim/',
+			f'ln -sf "{proj_root}"/init.vim {HOME}/.config/nvim/',
+			"python3 -m pip install --user neovim",
+			"nvim -c PlugInstall -c quitall" # Install nvim plugins
+			"nvim -c 'TSInstallSync maintained' -c quitall" # Install treesitter plugins
 		)
 		return
 
