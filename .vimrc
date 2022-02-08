@@ -220,24 +220,15 @@ call plug#end()			" required
 "set theme
 "set t_Co=256
 "set t_ut= "테마 적용시 뒷 배경을 날리는 역할
-"set bg=light
 " Enable 24bit true color
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
-set background=dark
-silent! colorscheme PaperColor
 
-let g:PaperColor_Theme_Options = {
-	\ 'theme': {
-		\ 'default': {
-			\ 'allow_bold': 1,
-			\ 'allow_italic': 1
-		\ }
-	\ }
-\ }
+" set background=dark " IDK but uncommenting will disable highlighting in nvim
+silent! colorscheme molokai
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
