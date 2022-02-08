@@ -33,6 +33,9 @@ class DebianPreparation(Script):
 
 		self.shell.sudo_exec("Adding vim repository",
 							 "add-apt-repository -y ppa:jonathonf/vim")
+
+		self.shell.sudo_exec("Adding neovim-nightly repository",
+							 "add-apt-repository -y ppa:neovim-ppa/unstable")
 		return
 
 
@@ -44,7 +47,7 @@ class DebianPackageManager(PackageManager):
 	@property
 	def pkgs(self):
 		pkgs = """
-			build-essential gdb less tar vim git gcc curl rename wget tmux make gzip zip unzip figlet
+			build-essential gdb less tar vim neovim git gcc curl rename wget tmux make gzip zip unzip figlet
 			zsh python-is-python3
 			exuberant-ctags cmake
 			python3-dev python3 python3-pip
