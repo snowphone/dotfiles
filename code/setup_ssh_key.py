@@ -20,7 +20,7 @@ class SshKey(Script):
 		self.shell.exec_list(
 			"Decrypting id_ed25519",
 			f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
-			f"SSH_PW='{password}' {self.proj_root}/codes/encryption.py --decrypt",
+			f"SSH_PW='{password}' {self.proj_root}/code/encryption.py --decrypt",
 		)
 
 		self.shell.exec_list(

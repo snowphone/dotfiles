@@ -6,4 +6,4 @@ export SSH_PW
 
 proj_root=$( d=$(dirname $0); cd "$d" && pwd)
 env python3 -m pip install --user -r $proj_root/requirements.txt
-$proj_root/codes/full_install.py $@
+$proj_root/code/full_install.py $@
