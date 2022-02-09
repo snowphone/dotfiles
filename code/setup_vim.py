@@ -64,9 +64,19 @@ class Vim(Script):
 			f'mkdir -p {HOME}/.config/nvim',
 			f'ln -sf "{proj_root}"/coc-settings.json {HOME}/.config/nvim/',
 			f'ln -sf "{proj_root}"/init.vim {HOME}/.config/nvim/',
-			"python3 -m pip install --user neovim",
-			"nvim --headless -c PlugInstall -c quitall",				# Install nvim plugins
-			"nvim --headless -c 'TSInstallSync maintained' -c quitall"	# Install treesitter plugins
+		)
+
+		self.shell.exec(
+			"Installing pyx, a python utility for neovim",
+			"python3 -m pip install --user neovim"
+		)
+		self.shell.exec(
+			"Installing plugins only for neovim",
+			"nvim --headless -c PlugInstall -c quitall"
+			)
+		self.shell.exec(
+			"Installing tree-sitter grammar",
+			"nvim --headless -c 'TSInstallSync maintained' -c quitall"
 		)
 		return
 
