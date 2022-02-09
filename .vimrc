@@ -149,19 +149,27 @@ set rtp+=~/.vim/plugged/fzf
 Plug 'junegunn/fzf.vim'
 
 " ##### Folding #####
-if !has("nvim")
+if has("nvim")
+	set foldmethod=expr
+	set foldexpr=nvim_treesitter#foldexpr()
+else
 	set foldmethod=syntax
-
 	" Support python folding
 	Plug 'tmhedberg/SimpylFold'
-
 	" Fold faster
 	Plug 'Konfekt/FastFold'
 endif
 
-" Support highlighting for lots of languages
-set re=0 " Disable old regex engine for performance
-Plug 'sheerun/vim-polyglot'
+
+if has("nvim")
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'p00f/nvim-ts-rainbow'
+else
+	" Support highlighting for lots of languages
+	set re=0 " Disable old regex engine for performance
+	Plug 'sheerun/vim-polyglot'
+endif
+
 
 " LaTeX
 Plug 'lervag/vimtex'

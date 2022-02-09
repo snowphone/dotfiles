@@ -1,15 +1,7 @@
-set runtimepath+=~/.vim,~/.vim/after
-set packpath+=~/.vim
+set runtimepath^=~/.vim runtimepath+=~/.vim/afterglow
+let &packpath = &runtimepath
 source ~/.vimrc
 
-
-call plug#begin('~/.vim/plugged/')
-
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'p00f/nvim-ts-rainbow'
-
-
-call plug#end()			" required
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -29,6 +21,3 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
