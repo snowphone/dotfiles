@@ -15,8 +15,10 @@ Plug 'tpope/vim-fugitive', { 'tag': '*' }
 Plug 'tommcdo/vim-fugitive-blame-ext'
 
 
-"256색 콘솔에서 gui용 테마 적용을 가능하게 함
-Plug 'godlygeek/csapprox'
+if !has('nvim')
+  "256색 콘솔에서 gui용 테마 적용을 가능하게 함
+  Plug 'godlygeek/csapprox'
+endif
 
 "테마(theme)
 Plug 'nightsense/carbonized'
@@ -235,6 +237,8 @@ let g:SortEditArgs = 1
 " ##### neovim only #####
 " #######################
 if has("nvim")
+  let g:loaded_clipboard_provider = 1
+
   Plug 'folke/twilight.nvim'
 
   Plug 'lewis6991/spellsitter.nvim'
