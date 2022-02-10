@@ -82,6 +82,7 @@ let g:coc_global_extensions = [
 			\'coc-git',
 			\'coc-markdownlint',
 			\'coc-terminal',
+			\'coc-floaterm',
 			\'coc-snippets',
 			\'coc-calc',
 			\'coc-json',
@@ -148,7 +149,9 @@ endif
 set rtp+=~/.vim/plugged/fzf
 Plug 'junegunn/fzf.vim'
 
-" ##### Folding #####
+" #######################
+" #####   Folding   #####
+" #######################
 if has("nvim")
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()
@@ -161,6 +164,9 @@ else
 endif
 
 
+" #######################
+" # Syntax highlighting #
+" #######################
 if has("nvim")
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
@@ -224,6 +230,17 @@ let g:VeryMagicRange = 1
 let g:VeryMagicEscapeBackslashesInSearchArg = 1
 let g:SortEditArgs = 1
 
+
+" #######################
+" ##### neovim only #####
+" #######################
+if has("nvim")
+  Plug 'folke/twilight.nvim'
+
+  Plug 'lewis6991/spellsitter.nvim'
+  set spell
+endif
+
 call plug#end()			" required
 
 "set theme
@@ -275,10 +292,12 @@ set concealcursor=	" Disable syntax for current cursor line
 "set cursorline		" Visualize horizontal cursor line
 "set tenc=utf-8	  " 터미널 인코딩
 
+set spelllang=en,cjk
+set spellsuggest=best,9
 " In LaTeX mode, enable spellcheck
 " If you want to register user-defined words, press zg on the word.
 aug tex
-	au FileType tex set spell spelllang=en_us
+	au FileType tex set spell
 aug end
 
 " Set filetype for custom extensions
