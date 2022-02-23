@@ -232,6 +232,14 @@ let g:VeryMagicRange = 1
 let g:VeryMagicEscapeBackslashesInSearchArg = 1
 let g:SortEditArgs = 1
 
+Plug 'vim-test/vim-test'
+nmap <silent> <leader>t :TestSuite<CR>
+if has('nvim')
+	let test#strategy = "neovim"
+else
+	let test#strategy = "floaterm"
+endif
+
 
 " #######################
 " ##### neovim only #####
@@ -490,7 +498,6 @@ nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash(
 " In neovim, <C-F5> is mapped to <F29>. To confirm this, try entering <C-F5>
 " in insert mode
 nmap <F29>       : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
-nmap <leader>t   : call Test() <CR>
 
 
 " FIX: ssh from wsl starting with REPLACE mode
