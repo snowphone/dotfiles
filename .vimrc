@@ -478,9 +478,6 @@ nmap <F9>       <Plug>(coc-codeaction-cursor)
 nmap <ESC>[20~  <Plug>(coc-codeaction-cursor)
 
 nmap <C-F5>      : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
-nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
-nmap <leader>t   : call Test() <CR>
-
 " In some terminals (e.g. tmux), they cannot understand complex key bindings.
 " So, in this case, we need to find out the complex binding is converted into
 " several keys. 
@@ -489,6 +486,11 @@ nmap <leader>t   : call Test() <CR>
 " Then, 1b5b 3135 3b35 7e0a will be printed. The last 0a is a return key, so
 " remaining 7 bytes are what we wanted. The only left thing is, google ascii
 " table and translate 7 bytes to '<esc>[15;5~'. 
+nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+" In neovim, <C-F5> is mapped to <F29>. To confirm this, try entering <C-F5>
+" in insert mode
+nmap <F29>       : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <leader>t   : call Test() <CR>
 
 
 " FIX: ssh from wsl starting with REPLACE mode
