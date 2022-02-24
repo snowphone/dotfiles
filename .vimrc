@@ -84,7 +84,6 @@ let g:coc_global_extensions = [
 			\'coc-git',
 			\'coc-markdownlint',
 			\'coc-terminal',
-			\'coc-floaterm',
 			\'coc-snippets',
 			\'coc-calc',
 			\'coc-json',
@@ -189,10 +188,7 @@ let g:vimtex_view_method='mupdf'
 "Ctrl + hjkl to move pane/buffer
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'voldikss/vim-floaterm'
-let g:floaterm_keymap_toggle='<F1>'
-
-Plug 'voldikss/fzf-floaterm'
+Plug 'tpope/vim-dispatch'
 
 Plug 'scrooloose/nerdtree'
 nmap <C-n> :NERDTreeToggle <CR>
@@ -234,11 +230,7 @@ let g:SortEditArgs = 1
 
 Plug 'vim-test/vim-test'
 nmap <silent> <leader>t :TestSuite<CR>
-if has('nvim')
-	let test#strategy = "neovim"
-else
-	let test#strategy = "floaterm"
-endif
+let test#strategy = "dispatch"
 
 
 " #######################
@@ -375,28 +367,28 @@ function Run()
 	let do_nothing_list = ["tex"]
 
 	if &filetype == 'python'
-		FloatermNew python3 "%:p"
+		Dispatch python3 "%:p"
 	elseif &filetype == 'ocaml'
-		FloatermNew ocaml "%:p"
+		Dispatch ocaml "%:p"
 	elseif &filetype == 'java'
-		FloatermNew java "%:p"
+		Dispatch java "%:p"
 	elseif &filetype == 'go'
-		FloatermNew go run "%:p"
+		Dispatch go run "%:p"
 	elseif &filetype == 'erlang'
-		FloatermNew escript "%:p" +P
+		Dispatch escript "%:p" +P
 	elseif &filetype == 'sh'
-		FloatermNew bash "%:p"
+		Dispatch bash "%:p"
 	elseif &filetype == 'markdown'
-		FloatermNew glow "%:p"
+		Dispatch glow "%:p"
 	elseif &filetype == 'typescript'
 		let $TS_NODE_TRANSPILE_ONLY='true'
-		FloatermNew ts-node "%:p"
+		Dispatch ts-node "%:p"
 	elseif &filetype == 'rust'
-		FloatermNew cargo run || "%:p:r"
+		Dispatch cargo run || "%:p:r"
 	elseif index(do_nothing_list, &filetype) >= 0
 		" Do nothing
 	elseif index(["c", "cpp"], &filetype) >= 0
-		FloatermNew "%:p:r"
+		Dispatch "%:p:r"
 	else
 		return 0
 	endif
@@ -472,14 +464,6 @@ function! GetVisualSelection(mode)
 	"    echom line
 	"endfor
 	return join(lines, "\n")
-endfunction
-
-function! Test()
-	wa!
-
-	if &filetype == 'typescript'
-		FloatermNew npm t
-	endif
 endfunction
 
 nmap <F9>       <Plug>(coc-codeaction-cursor)
