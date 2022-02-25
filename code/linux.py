@@ -61,7 +61,7 @@ class LinuxAMD64(Script):
 		if self.args.golang:
 			ok, go_ver, _ = self.shell.exec(
 				"Fetching latest golang version",
-				'curl -s https://golang.org/VERSION?m=text')
+				'curl -Ls https://golang.org/VERSION?m=text')
 			if not ok:
 				return
 			self.shell.exec(
