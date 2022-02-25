@@ -29,7 +29,7 @@ class DebianPreparation(Script):
 		self.shell.sudo_exec_list(
 			"Updating apt repositores",
 			"apt update",
-			"apt install -y curl software-properties-common", "apt update")
+			"apt-get install -y curl software-properties-common", "apt update")
 
 		self.shell.sudo_exec("Adding vim repository",
 							 "add-apt-repository -y ppa:jonathonf/vim")
@@ -42,7 +42,7 @@ class DebianPreparation(Script):
 class DebianPackageManager(PackageManager):
 	@property
 	def cmd(self) -> str:
-		return f"{self.shell.sudo} apt install -qy "
+		return f"{self.shell.sudo} apt-get install -qy "
 
 	@property
 	def pkgs(self):
