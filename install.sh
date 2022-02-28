@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -p 'Enter your password that encrypts your ssh key: ' SSH_PW
+read -s -p 'Enter your password that encrypts your ssh key: ' SSH_PW
 export SSH_PW
 
 
