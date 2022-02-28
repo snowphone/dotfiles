@@ -85,6 +85,7 @@ let g:coc_global_extensions = [
 			\'coc-markdownlint',
 			\'coc-terminal',
 			\'coc-snippets',
+			\'coc-floaterm',
 			\'coc-calc',
 			\'coc-json',
 			\'coc-vimtex',
@@ -188,8 +189,6 @@ let g:vimtex_view_method='mupdf'
 "Ctrl + hjkl to move pane/buffer
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'tpope/vim-dispatch'
-
 Plug 'scrooloose/nerdtree'
 nmap <C-n> :NERDTreeToggle <CR>
 
@@ -230,7 +229,18 @@ let g:SortEditArgs = 1
 
 Plug 'vim-test/vim-test'
 nmap <silent> <leader>t :TestSuite<CR>
-let test#strategy = "dispatch"
+let test#strategy = "floaterm"
+
+Plug 'voldikss/vim-floaterm'
+let g:floaterm_autoclose = 0
+let g:floaterm_width = 1
+let g:floaterm_height = 0.4
+let g:floaterm_wintype = "split"
+let g:floaterm_keymap_toggle='<F1>'
+tnoremap <ESC> <C-\><C-n>
+if has('nvim')
+  autocmd TermOpen * setlocal nonumber norelativenumber
+endif
 
 
 " #######################
@@ -367,28 +377,28 @@ function Run()
 	let do_nothing_list = ["tex"]
 
 	if &filetype == 'python'
-		Dispatch python3 "%:p"
+		FloatermNew python3 "%:p"
 	elseif &filetype == 'ocaml'
-		Dispatch ocaml "%:p"
+		FloatermNew ocaml "%:p"
 	elseif &filetype == 'java'
-		Dispatch java "%:p"
+		FloatermNew java "%:p"
 	elseif &filetype == 'go'
-		Dispatch go run "%:p"
+		FloatermNew go run "%:p"
 	elseif &filetype == 'erlang'
-		Dispatch escript "%:p" +P
+		FloatermNew escript "%:p" +P
 	elseif &filetype == 'sh'
-		Dispatch bash "%:p"
+		FloatermNew bash "%:p"
 	elseif &filetype == 'markdown'
-		Dispatch glow "%:p"
+		FloatermNew glow "%:p"
 	elseif &filetype == 'typescript'
 		let $TS_NODE_TRANSPILE_ONLY='true'
-		Dispatch ts-node "%:p"
+		FloatermNew ts-node "%:p"
 	elseif &filetype == 'rust'
-		Dispatch cargo run || "%:p:r"
+		FloatermNew cargo run || "%:p:r"
 	elseif index(do_nothing_list, &filetype) >= 0
 		" Do nothing
 	elseif index(["c", "cpp"], &filetype) >= 0
-		Dispatch "%:p:r"
+		FloatermNew "%:p:r"
 	else
 		return 0
 	endif
@@ -419,11 +429,6 @@ function Compile()
 
 	redraw!
 	return v:shell_error == 0
-endfunction
-
-function GotoBash() 
-	!echo ""
-	redraw!
 endfunction
 
 " Pipe selected visual block -- CHARACTER WISE -- to command.
@@ -469,7 +474,16 @@ endfunction
 nmap <F9>       <Plug>(coc-codeaction-cursor)
 nmap <ESC>[20~  <Plug>(coc-codeaction-cursor)
 
-nmap <C-F5>      : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+function! CompileAndRun()
+	if Compile()  
+		call Run()
+	else 
+		redraw!
+	endif
+endfunction
+
+" Press <C-F5> or <F5> to run code
+nmap <C-F5>      : call CompileAndRun() <CR>
 " In some terminals (e.g. tmux), they cannot understand complex key bindings.
 " So, in this case, we need to find out the complex binding is converted into
 " several keys. 
@@ -478,10 +492,13 @@ nmap <C-F5>      : if Compile() <bar> call Run() <bar> else <bar> call GotoBash(
 " Then, 1b5b 3135 3b35 7e0a will be printed. The last 0a is a return key, so
 " remaining 7 bytes are what we wanted. The only left thing is, google ascii
 " table and translate 7 bytes to '<esc>[15;5~'. 
-nmap <ESC>[15;5~ : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <ESC>[15;5~ : call CompileAndRun() <CR>
 " In neovim, <C-F5> is mapped to <F29>. To confirm this, try entering <C-F5>
 " in insert mode
-nmap <F29>       : if Compile() <bar> call Run() <bar> else <bar> call GotoBash() <bar> endif <CR>
+nmap <F29>       : call CompileAndRun() <CR>
+
+nmap <F5>        : call CompileAndRun() <CR>
+nmap <ESC>[15~   : call CompileAndRun() <CR>
 
 
 " FIX: ssh from wsl starting with REPLACE mode
