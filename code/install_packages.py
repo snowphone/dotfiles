@@ -24,7 +24,7 @@ class Installer(Script):
 		elif distro == "redhat":
 			return (RedhatPreparation(args), RedhatPackageManager(args), LinuxAMD64(args))
 		elif distro == "darwin":
-			pass
+			return (DarwinPreparation(args), DarwinPackageManager(args), Mac(args))
 		raise NotImplementedError(f"{distro} is not supported yet")
 
 	def run(self):
