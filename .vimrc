@@ -38,12 +38,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'		  " vim-airline 버퍼 목록 
 let g:airline#extensions#tabline#buffer_nr_show = 1	   " buffer number를 보여준다
 let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
-" Shape of buffer tabs
-let g:airline#extensions#tabline#left_sep     = '▌'
-let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'molokai'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
