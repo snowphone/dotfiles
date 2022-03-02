@@ -46,6 +46,11 @@ alias vis='vim "+set si"'
 alias tmux='tmux -2' 	#force 256 colors
 alias psed='perl -pe'	#sed with pcre support
 
+if command -v bat 2>&1 > /dev/null && command -v shuf 2>&1 > /dev/null; then
+	_BAT_AVAILABLE_THEMES=$(\bat --list-themes)
+	export BAT_THEME="$(echo ${_BAT_AVAILABLE_THEMES[@]} | shuf -n1 | tr -d '\n')"
+fi
+
 alias c='clear'
 
 # Alias of xdg-open, and ignore stderr
