@@ -2,10 +2,10 @@
 from argparse import ArgumentParser, Namespace
 from argparse import Namespace
 
-from debian import DebianPackageManager, DebianPreparation
-from darwin import DarwinPackageManager, DarwinPreparation, Mac
-from linux import LinuxAMD64
-from redhat import RedhatPackageManager, RedhatPreparation
+from debian_pkg import DebianPackageManager, DebianPreparation
+from darwin_pkg import DarwinPackageManager, DarwinPreparation, Mac
+from linux_pkg import LinuxAMD64
+from redhat_pkg import RedhatPackageManager, RedhatPreparation
 from script import Script
 
 
