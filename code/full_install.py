@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# -*- coding: future_fstrings -*-
 from argparse import Namespace
 
 import install_packages

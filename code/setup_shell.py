@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# -*- coding: future_fstrings -*-
 from argparse import ArgumentParser
 from getpass import getuser
 import os

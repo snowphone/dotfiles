@@ -1,3 +1,4 @@
+# -*- coding: future_fstrings -*-
 from argparse import Namespace
 from pathlib import Path
 
