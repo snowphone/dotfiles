@@ -19,7 +19,7 @@ fi
 export EDITOR=vim
 
 # Alias's to modified commands
-if rsync --version 2>&1 > /dev/null; then
+if command -v rsync 2>&1 > /dev/null; then
 	alias cp='rsync -ah --info=progress2'
 fi
 
@@ -118,9 +118,9 @@ if command -v nvim &> /dev/null; then
 fi
 
 export FZF_DEFAULT_OPTS='-m'
-if bfs --version 2>&1 > /dev/null; then
+if command -v bfs 2>&1 > /dev/null; then
 	export FZF_DEFAULT_COMMAND='bfs -L'
-elif fd --version 2>&1 > /dev/null; then
+elif command -v fd 2>&1 > /dev/null; then
 	export FZF_DEFAULT_COMMAND='fd -L'
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
