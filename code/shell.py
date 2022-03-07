@@ -1,4 +1,3 @@
-# -*- coding: future_fstrings -*-
 from getpass import getuser
 import os
 import subprocess

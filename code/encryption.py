@@ -1,4 +1,4 @@
-# -*- coding: future_fstrings -*-
+#!/usr/bin/env python3
 from argparse import ArgumentParser, Namespace
 import base64
 from os import environ, path
