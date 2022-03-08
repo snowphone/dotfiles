@@ -230,7 +230,7 @@ let test#strategy = "floaterm"
 
 Plug 'voldikss/vim-floaterm'
 let g:floaterm_autoclose = 0
-let g:floaterm_width = 1
+let g:floaterm_width = 1.0
 let g:floaterm_height = 0.4
 let g:floaterm_wintype = "split"
 let g:floaterm_keymap_toggle='<F1>'
