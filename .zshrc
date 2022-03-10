@@ -28,7 +28,7 @@ source "${HOME}/.zgenom/zgenom.zsh" > /dev/null
 zgenom autoupdate --background
 
 # Backup my aliases
-local _save_aliases=$(alias -L)
+local _save_aliases="$(alias -L)"
 
 # if the init script doesn't exist
 if ! zgen saved; then
@@ -70,7 +70,7 @@ bindkey -M vicmd -r ','					# Unbind ','
 ########################
 
 # Restore (override) my aliases
-eval $_save_aliases
+eval "$_save_aliases"
 unset _save_aliases
 
 
