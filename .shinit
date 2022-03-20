@@ -120,7 +120,7 @@ if command -v nvim &> /dev/null; then
 	alias vim=nvim
 fi
 
-export FZF_DEFAULT_OPTS='-m'
+export FZF_DEFAULT_OPTS='-m --bind=ctrl-space:toggle,tab:down,shift-tab:up'
 if command -v bfs 2>&1 > /dev/null; then
 	export FZF_DEFAULT_COMMAND='bfs -L'
 elif command -v fd 2>&1 > /dev/null; then
