@@ -183,8 +183,17 @@ let g:vimtex_quickfix_open_on_warning=0
 let g:vimtex_view_method='mupdf'
 
 "vim tmux seamless navigation.
-"Ctrl + hjkl to move pane/buffer
+"Alt + hjkl to move pane/buffer
 Plug 'christoomey/vim-tmux-navigator'
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+
 
 Plug 'scrooloose/nerdtree'
 nmap <C-n> :NERDTreeToggle <CR>
