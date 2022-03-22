@@ -96,6 +96,8 @@ let g:coc_global_extensions = [
 			\'coc-toml',
 			\'coc-xml',
 			\'coc-yaml',
+			\'coc-snippets',
+			\'https://github.com/cstrap/python-snippets',
 			\]
 
 "key mapping
