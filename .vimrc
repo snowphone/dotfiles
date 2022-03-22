@@ -64,9 +64,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 " airline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
@@ -307,6 +305,7 @@ set number " 행번호 표시, set nu 도 가능
 set fencs=euc-kr,ucs-bom,utf-8
 set conceallevel=2	" Basically prettify keywords if possible
 set concealcursor=	" Disable syntax for current cursor line
+set signcolumn=auto
 
 "set cursorcolumn	" Visualize vertical cursor line
 "set cursorline		" Visualize horizontal cursor line
