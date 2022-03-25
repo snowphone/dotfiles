@@ -45,8 +45,8 @@ class Vim(Script):
 		)
 
 		self.shell.exec(
-			"Installing yapf",
-			"python3 -m pip install --user yapf"
+			"Installing yapf, rope, and coverage",
+			"python3 -m pip install --user yapf rope coverage"
 		)
 
 		if self._exists("nvim"):

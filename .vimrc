@@ -234,7 +234,7 @@ let g:VeryMagicEscapeBackslashesInSearchArg = 1
 let g:SortEditArgs = 1
 
 Plug 'vim-test/vim-test'
-nmap <silent> <leader>t :TestSuite<CR>
+nmap <silent> <leader>t :TestSuite --verbose<CR>
 let test#strategy = "floaterm"
 
 Plug 'voldikss/vim-floaterm'
@@ -248,6 +248,13 @@ if has('nvim')
   autocmd TermOpen * setlocal nonumber norelativenumber
 endif
 
+" Add maktaba and coverage to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plug 'google/vim-maktaba'
+Plug 'google/vim-coverage'
+" Also add Glaive, which is used to configure coverage's maktaba flags. See
+" `:help :Glaive` for usage.
+Plug 'google/vim-glaive'
 
 " #######################
 " ##### neovim only #####
@@ -262,6 +269,12 @@ if has("nvim")
 endif
 
 call plug#end()			" required
+
+" Another call must be invoked after `call plug#end()`
+call glaive#Install()
+" Optional: Enable coverage's default mappings on the <Leader>C prefix.
+" <leader>Ct to toggle coverage
+Glaive coverage plugin[mappings]
 
 "set theme
 "set t_Co=256
