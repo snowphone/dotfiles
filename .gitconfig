@@ -12,3 +12,8 @@
 	prompt = false
 [help]
 	autocorrect = 10
+# reference: https://www.reddit.com/r/vim/comments/bkz81t/comment/emkges3/?utm_source=share&utm_medium=web2x&context=3
+[difftool "vimdiff"]
+	path = nvim
+[mergetool "vimdiff"]
+	path = nvim
