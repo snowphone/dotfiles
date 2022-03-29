@@ -47,27 +47,6 @@ if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
 " 여기에 LSP 관련 내용 추가
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -491,8 +470,10 @@ function! GetVisualSelection(mode)
 	return join(lines, "\n")
 endfunction
 
-nmap <F9>       <Plug>(coc-codeaction-cursor)
-nmap <ESC>[20~  <Plug>(coc-codeaction-cursor)
+"nmap <F9>       <Plug>(coc-codeaction-cursor)
+"nmap <ESC>[20~  <Plug>(coc-codeaction-cursor)
+nmap <F9>       <Plug>(coc-codeaction-line)
+nmap <ESC>[20~  <Plug>(coc-codeaction-line)
 
 function! CompileAndRun()
 	if Compile()  
