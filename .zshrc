@@ -40,6 +40,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/gradle
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/docker
+  zgen oh-my-zsh plugins/virtualenvwrapper
 
   zgen load lukechilds/zsh-nvm
   zgen load lukechilds/zsh-better-npm-completion
