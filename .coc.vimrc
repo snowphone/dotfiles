@@ -63,6 +63,8 @@ nmap <silent> <S-F12> <Plug>(coc-references)
 nmap <silent> <ESC>[24;2~ <Plug>(coc-references)
 nmap <silent> <F24> <Plug>(coc-references)
 
+" <C-o> to jump back and <C-i> to jump forward
+
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
