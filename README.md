@@ -12,6 +12,11 @@ VM-based WSL2 gave us a much faster native filesystem access speed, but also got
 
 If you don't want to think about it, you just run `./sshd.sh` and follow the instructions.
 
+**CentOS7 Support:**
+
+If you're looking for installing packages on CentOS7 without root privileges, please check out [here](https://gist.github.com/snowphone/f9c612a60aa25dc4940993529532eb97).
+It will replace `install_packages.py`.
+
 ## TODO
 
 ### Optimize PATH
