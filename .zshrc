@@ -9,6 +9,7 @@ VI_MODE_SET_CURSOR=false
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_DISABLE_COMPFIX=true # Disable 'zsh compinit insecure directoreis' warning
 
+export PROMPT_EOL_MARK=''
 
 source $HOME/.common.shrc
 
