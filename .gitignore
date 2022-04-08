@@ -2,3 +2,5 @@
 .ssh/authorized_keys
 .ssh/id_ed25519
 **/__pycache__
+
+.venv/
