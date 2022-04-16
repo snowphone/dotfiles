@@ -21,6 +21,9 @@ if !has('nvim')
 endif
 
 "테마(theme)
+if has('nvim')
+	Plug 'rktjmp/lush.nvim'
+endif
 Plug 'nightsense/carbonized'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
@@ -29,6 +32,7 @@ Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'vigoux/oak'
+Plug 'mcchrish/zenbones.nvim' "https://vimcolorschemes.com/mcchrish/zenbones.nvim
 
 
 Plug 'vim-airline/vim-airline'
@@ -40,7 +44,7 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'molokai'
+let g:airline_theme = 'minimalist'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -275,7 +279,11 @@ if !has('nvim') && &term =~ '^\%(screen\|tmux\)'
 endif
 
 set background=dark
-silent! colorscheme molokai
+if has('nvim')
+	silent! colorscheme zenburned
+else
+	silent! colorscheme PaperColor
+endif
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
