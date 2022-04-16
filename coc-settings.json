@@ -21,6 +21,6 @@
 
 	"rust-analyzer.rustfmt.overrideCommand": ["rustfmt", "--config", "hard_tabs=true"],
 
-	"python.formatting.provider": "yapf",
+	"python.formatting.provider": "black",
 	"python.pythonPath": "python3"
 }
