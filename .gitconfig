@@ -8,6 +8,7 @@
 	tool = vimdiff
 [diff]
 	tool = vimdiff
+	algorithm = patience
 [difftool]
 	prompt = false
 [help]
