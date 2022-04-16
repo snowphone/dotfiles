@@ -5,7 +5,41 @@ source ~/.vimrc
 
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = {
+		"bash",
+		"bibtex",
+		"c",
+		"cmake",
+		"comment",
+		"cpp",
+		"css",
+		"dockerfile",
+		"elixir",
+		"erlang",
+		"go",
+		"gomod",
+		"graphql",
+		"html",
+		"java",
+		"javascript",
+		"jsdoc",
+		"json",
+		"json5",
+		"jsonc",
+		"kotlin",
+		"latex",
+		"lua",
+		"make",
+		"perl",
+		"php",
+		"regex",
+		"rust",
+		"scss",
+		"toml",
+		"typescript",
+		"vim",
+		"yaml",
+    },
     highlight = {
       enable = true,              -- false will disable the whole extension
 	  additional_vim_regex_highlighting = false,
