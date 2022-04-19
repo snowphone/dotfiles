@@ -217,8 +217,9 @@ let g:VeryMagicEscapeBackslashesInSearchArg = 1
 let g:SortEditArgs = 1
 
 Plug 'vim-test/vim-test'
-nmap <silent> <leader>t  :TestNearest --verbose<CR>
-nmap <silent> <leader>T  :TestFile    --verbose<CR>
+" Save file before invoking the test
+nmap <silent> <leader>t  :write! <bar> TestNearest --verbose<CR>
+nmap <silent> <leader>T  :write! <bar> TestFile    --verbose<CR>
 let test#strategy = "floaterm"
 
 Plug 'voldikss/vim-floaterm'
