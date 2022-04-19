@@ -363,6 +363,13 @@ if &diff
 	set noreadonly
 endif
 
+" Disable coc.nvim on diff mode
+" https://github.com/neoclide/coc.nvim/issues/1025#issuecomment-766184176
+augroup disableCocInDiff
+  autocmd!
+  autocmd DiffUpdated * let b:coc_enabled=0
+augroup END
+
 "파일이 변경될 때 마다 자동으로 버퍼 갱신
 set autoread
 au CursorHold * checktime
