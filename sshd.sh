@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## Check for accessibility
 if [[ $(whoami) == "root" ]]; then
