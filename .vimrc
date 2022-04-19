@@ -371,11 +371,6 @@ au CursorHold * checktime
 nmap n nzz
 nmap <S-n> <S-n>zz
 
-"파이썬의 경우 탭 크기를 강제로 4칸으로 고정한다.
-aug python
-	au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
-aug end
-
 nnoremap <leader>q : bp!<CR> " 쉼표 + q : 이전 탭
 nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
 nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
