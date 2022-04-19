@@ -1,4 +1,6 @@
-from argparse import Namespace
+#!/usr/bin/env python3
+
+from argparse import ArgumentParser, Namespace
 from pathlib import Path
 
 from script import Script
@@ -48,6 +50,8 @@ class LinuxAMD64(Script):
 
         self._install_fd()
 
+        self._install_tty_clock()
+
         self.shell.exec(
             "Installing ripgrep-all",
             self.github_dl_cmd(
@@ -85,6 +89,16 @@ class LinuxAMD64(Script):
             "Removing auxiliary files",
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
+
+    def _install_tty_clock(self):
+        self.shell.exec_list(
+            "Installing tty_clock",
+            f"git clone https://github.com/xorg62/tty-clock.git /tmp/tty_clock",
+            f"cd /tmp/tty_clock && make install PREFIX={self.HOME}/.local MANPATH={self.HOME}/.local/share/man/man1",
+            f"cd",
+            f"rm -rf /tmp/tty_clock",
+        )
+        return
 
     def _install_fd(self):
         self.shell.exec_list(
@@ -134,3 +148,13 @@ class LinuxAMD64(Script):
             cmd += f" --strip {strip}"
 
         return cmd
+
+
+if __name__ == "__main__":
+    argparser = ArgumentParser()
+    argparser.add_argument("--latex")
+    argparser.add_argument("--rust")
+    argparser.add_argument("--golang")
+    argparser.add_argument("--java")
+
+    LinuxAMD64(argparser.parse_args()).run()
