@@ -5,48 +5,44 @@ from os import path
 from script import Script
 from encryption import read_password
 
+
 class SshKey(Script):
-	def run(self) -> None:
-		HOME = self.HOME
+    def run(self) -> None:
+        HOME = self.HOME
 
-		ssh_dir = f"{HOME}/.ssh"
-		if path.isdir(ssh_dir) and not path.islink(ssh_dir):
-			self.shell.exec(
-				"Removing existing .ssh folder",
-				f"rm -rf {ssh_dir}"
-			)
+        ssh_dir = f"{HOME}/.ssh"
+        if path.isdir(ssh_dir) and not path.islink(ssh_dir):
+            self.shell.exec("Removing existing .ssh folder", f"rm -rf {ssh_dir}")
 
-		password = read_password()
-		self.shell.exec_list(
-			"Decrypting id_ed25519",
-			f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
-			f"SSH_PW='{password}' {self.proj_root}/code/encryption.py --decrypt",
-		)
+        password = read_password()
+        self.shell.exec_list(
+            "Decrypting id_ed25519",
+            f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
+            f"SSH_PW='{password}' {self.proj_root}/code/encryption.py --decrypt",
+        )
 
-		self.shell.exec_list(
-			"Setting up ssh key",
-			f'touch "{self.proj_root}"/.ssh/known_hosts',
-			f'touch "{self.proj_root}"/.ssh/authorized_keys',
+        self.shell.exec_list(
+            "Setting up ssh key",
+            f'touch "{self.proj_root}"/.ssh/known_hosts',
+            f'touch "{self.proj_root}"/.ssh/authorized_keys',
+            f"cat {HOME}/.ssh/id_ed25519.pub >> {HOME}/.ssh/authorized_keys",  # Simplify ssh-copy-id procedure
+            f"chmod 600 {HOME}/.ssh/config",
+            f"chmod 600 {HOME}/.ssh/id_ed25519",
+            f"chmod 600 {HOME}/.ssh/authorized_keys",
+            f"chmod 700 {HOME}/.ssh",
+            f"chmod 700 {self.proj_root}",
+        )
 
-			f'cat {HOME}/.ssh/id_ed25519.pub >> {HOME}/.ssh/authorized_keys', # Simplify ssh-copy-id procedure
+        auth_path = f"{HOME}/.Xauthority"
+        if self.shell.env.get("DISPLAY", False) and not path.exists(auth_path):
+            self.shell.exec_list(
+                "Suppressing no xauth data warning while using ssh -X",
+                f"touch {auth_path}",
+                f"xauth add :0 . `mcookie`",
+            )
 
-			f'chmod 600 {HOME}/.ssh/config',
-			f'chmod 600 {HOME}/.ssh/id_ed25519',
-			f'chmod 600 {HOME}/.ssh/authorized_keys',
-			f'chmod 700 {HOME}/.ssh',
-			f'chmod 700 {self.proj_root}',
-		)
+        return
 
-		auth_path = f"{HOME}/.Xauthority"
-		if self.shell.env.get("DISPLAY", False) and not path.exists(auth_path):
-			self.shell.exec_list(
-				'Suppressing no xauth data warning while using ssh -X',
-
-				f"touch {auth_path}",
-				f"xauth add :0 . `mcookie`"
-			)
-
-		return
 
 if __name__ == "__main__":
-	SshKey(ArgumentParser().parse_args()).run()
+    SshKey(ArgumentParser().parse_args()).run()
