@@ -19,6 +19,21 @@ palette() {
 	for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
+backup() {
+	case $1 in
+		|-h|--help)
+			printf "Usage: %s files|folders...\n" "$0"
+			return 0
+			;;
+		*)
+			for it in "$@"
+			do
+				cp "${it}"{,.bak}
+			done
+			;;
+	esac
+}
+
 # Search all file types including pdf, ppt, and open grepped files
 grepOpen() {
 	RG_PREFIX="rga --files-with-matches"
