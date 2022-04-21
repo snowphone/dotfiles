@@ -281,7 +281,7 @@ endif
 
 set background=dark
 if has('nvim')
-	silent! colorscheme zenburned
+	silent! colorscheme oak
 else
 	silent! colorscheme PaperColor
 endif
