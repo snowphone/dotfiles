@@ -21,7 +21,7 @@ palette() {
 
 backup() {
 	case $1 in
-		|-h|--help)
+		-h|--help|'')
 			printf "Usage: %s files|folders...\n" "$0"
 			return 0
 			;;
