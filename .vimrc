@@ -280,7 +280,7 @@ if !has('nvim') && &term =~ '^\%(screen\|tmux\)'
 endif
 
 set background=dark
-if has('nvim')
+if has('nvim') && ! &diff
 	silent! colorscheme oak
 else
 	silent! colorscheme PaperColor
