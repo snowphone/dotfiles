@@ -8,7 +8,7 @@
 	tool = vimdiff
 [diff]
 	tool = vimdiff
-	algorithm = histogram
+	algorithm = patience
 [difftool]
 	prompt = false
 [help]

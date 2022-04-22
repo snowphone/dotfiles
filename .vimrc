@@ -541,6 +541,6 @@ if has("patch-8.1.0360") || has("nvim")
 	" Using patience algorithm is supposed to be a better choice than myer, a
 	" default choice.
 	" You may also try histogram algorithm, an improvement of patience.
-    set diffopt+=internal,algorithm:histogram
+    set diffopt+=internal,algorithm:patience
 endif
 
