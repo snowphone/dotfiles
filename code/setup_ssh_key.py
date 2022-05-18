@@ -3,7 +3,6 @@ from argparse import ArgumentParser
 from os import path
 
 from script import Script
-from encryption import read_password
 
 
 class SshKey(Script):
@@ -14,11 +13,17 @@ class SshKey(Script):
         if path.isdir(ssh_dir) and not path.islink(ssh_dir):
             self.shell.exec("Removing existing .ssh folder", f"rm -rf {ssh_dir}")
 
-        password = read_password()
+        # gpg encryption example:
+        # gpg --symmetric --cipher-algo=AES256 $HOME/.ssh/id_ed25519
         self.shell.exec_list(
             "Decrypting id_ed25519",
             f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
-            f"SSH_PW='{password}' {self.proj_root}/code/encryption.py --decrypt",
+            f'''gpg --decrypt \
+                    --yes \
+                    --cipher-algo=AES256 \
+                    --output={self.HOME}/.ssh/id_ed25519 \
+                    {self.HOME}/.ssh/id_ed25519.gpg
+            ''',
         )
 
         self.shell.exec_list(
