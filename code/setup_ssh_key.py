@@ -36,6 +36,7 @@ class SshKey(Script):
             f"chmod 600 {HOME}/.ssh/authorized_keys",
             f"chmod 700 {HOME}/.ssh",
             f"chmod 700 {self.proj_root}",
+            f"chmod 700 {self.HOME}",
         )
 
         auth_path = f"{HOME}/.Xauthority"
