@@ -152,9 +152,9 @@ class LinuxAMD64(Script):
 
 if __name__ == "__main__":
     argparser = ArgumentParser()
-    argparser.add_argument("--latex")
-    argparser.add_argument("--rust")
-    argparser.add_argument("--golang")
-    argparser.add_argument("--java")
+    argparser.add_argument("--latex", action="store_true")
+    argparser.add_argument("--rust", action="store_true")
+    argparser.add_argument("--golang", action="store_true")
+    argparser.add_argument("--java", action="store_true")
 
     LinuxAMD64(argparser.parse_args()).run()
