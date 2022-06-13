@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+from sys import argv, stdin
+from urllib.parse import unquote
+
+
+def main():
+    if argv[1:]:
+        print(unquote(argv[1]))
+    else:
+        print(unquote(stdin.read()))
+
+
+if __name__ == "__main__":
+    main()
