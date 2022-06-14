@@ -32,6 +32,7 @@ lua <<EOF
 			"make",
 			"perl",
 			"php",
+			"python",
 			"regex",
 			"rust",
 			"scss",
