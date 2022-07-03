@@ -136,6 +136,7 @@ Plug 'junegunn/fzf.vim'
 " #######################
 if has("nvim")
 	set foldmethod=expr
+	" :e to recalculate treesitter syntax
 	set foldexpr=nvim_treesitter#foldexpr()
 else
 	set foldmethod=syntax
