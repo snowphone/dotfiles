@@ -37,6 +37,11 @@ class ShellSwitcher(Script):
             f"nvm install --lts",
         )
 
+        self._sourced_exec(
+            "Installing yarn",
+            f"npm install --global yarn",
+        )
+
         if self.args.typescript:
             self._sourced_exec(
                 "Installing typescript related things",

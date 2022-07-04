@@ -144,13 +144,39 @@ class LinuxAMD64(Script):
             "sdk install kotlin",
         )
         return
+    
+    def _install_elixir(self):
+        def exec_list(msg: str, *cmds: str):
+            asdf_path = f"{self.HOME}/.asdf/asdf.sh"
+            sourced_cmds = [f"source {asdf_path} && {cmd}" for cmd in cmds]
+            self.shell.exec_list(msg, *sourced_cmds)
 
-    def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0):
+        exec_list(
+            "Installing elixir",
+
+            "asdf plugin add erlang",
+            "asdf install erlang 23.3.4.15",
+            "asdf global erlang 23.3.4.15",
+
+            "asdf plugin add elixir",
+            "asdf install elixir 1.13",
+            "asdf global elixir 1.13",
+
+            """curl -s https://api.github.com/repos/elixir-lsp/elixir-ls/releases/latest |
+		grep browser_download_url | 
+		grep -Po 'https://.*?'elixir-ls.zip  |
+		xargs curl -L -o /tmp/elixir-ls.zip
+        """,
+            "unzip /tmp/elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release",
+                )
+        return
+
+    def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0, binpath: str = "$HOME/.local/bin"):
         cmd = f"""curl -s https://api.github.com/repos/{user_repo}/releases/latest |
 		grep browser_download_url | 
 		grep -Po 'https://.*?'{suffix}  |
 		xargs curl -L | 
-		tar xz -C {self.HOME}/.local/bin"""
+		tar xz -C {binpath}"""
         if strip:
             cmd += f" --strip {strip}"
 

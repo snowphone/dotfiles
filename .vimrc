@@ -59,6 +59,7 @@ let g:coc_global_extensions = [
 			\'coc-clangd',
 			\'coc-pyright',
 			\'coc-cmake',
+			\'coc-elixir',
 			\'coc-git',
 			\'coc-markdownlint',
 			\'coc-terminal',
@@ -242,6 +243,8 @@ Plug 'google/vim-coverage'
 " `:help :Glaive` for usage.
 Plug 'google/vim-glaive'
 
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
 " #######################
 " ##### neovim only #####
 " #######################
@@ -398,6 +401,8 @@ function Run()
 		FloatermNew go run "%:p"
 	elseif &filetype == 'erlang'
 		FloatermNew escript "%:p" +P
+	elseif &filetype == 'elixir'
+		FloatermNew elixir "%:p"
 	elseif &filetype == 'sh'
 		FloatermNew bash "%:p"
 	elseif &filetype == 'markdown'
@@ -419,7 +424,7 @@ function Run()
 endfunction
 
 function Compile()
-	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml"]
+	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml", "elixir"]
 
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
