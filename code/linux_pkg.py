@@ -90,6 +90,13 @@ class LinuxAMD64(Script):
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
 
+        self.shell.exec(
+            "Installing asdf plugin manager",
+            "git clone https://github.com/asdf-vm/asdf ~/.asdf",
+        )
+
+        return
+
     def _install_tty_clock(self):
         self.shell.exec_list(
             "Installing tty_clock",
