@@ -45,6 +45,16 @@ class Vim(Script):
         if self._exists("nvim"):
             self._setup_for_nvim()
 
+        self.shell.exec_list(
+            "Installing elixir-ls",
+            """curl -s https://api.github.com/repos/elixir-lsp/elixir-ls/releases/latest |
+            grep browser_download_url | 
+            grep -Po 'https://.*?'elixir-ls.zip  |
+            xargs curl -L -o /tmp/elixir-ls.zip
+            """,
+            "unzip -o /tmp/elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release",
+        )
+
         return
 
     def _setup_for_nvim(self):

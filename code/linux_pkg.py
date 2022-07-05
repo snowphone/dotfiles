@@ -90,10 +90,13 @@ class LinuxAMD64(Script):
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
 
-        self.shell.exec(
-            "Installing asdf plugin manager",
-            "git clone https://github.com/asdf-vm/asdf ~/.asdf",
-        )
+        if self.args.elixir:
+            self.shell.exec(
+                "Installing asdf plugin manager",
+                "git clone https://github.com/asdf-vm/asdf ~/.asdf",
+            )
+
+            self._install_elixir()
 
         return
 
@@ -162,12 +165,6 @@ class LinuxAMD64(Script):
             "asdf install elixir 1.13",
             "asdf global elixir 1.13",
 
-            """curl -s https://api.github.com/repos/elixir-lsp/elixir-ls/releases/latest |
-		grep browser_download_url | 
-		grep -Po 'https://.*?'elixir-ls.zip  |
-		xargs curl -L -o /tmp/elixir-ls.zip
-        """,
-            "unzip /tmp/elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release",
                 )
         return
 
@@ -189,5 +186,6 @@ if __name__ == "__main__":
     argparser.add_argument("--rust", action="store_true")
     argparser.add_argument("--golang", action="store_true")
     argparser.add_argument("--java", action="store_true")
+    argparser.add_argument("--elixir", action="store_true")
 
     LinuxAMD64(argparser.parse_args()).run()

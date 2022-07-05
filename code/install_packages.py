@@ -75,6 +75,7 @@ def setup_args(parser: ArgumentParser = ArgumentParser()):
     add_flag("--rust", "-r", "install rust")
     add_flag("--golang", "-g", "install golang")
     add_flag("--misc", "-m", "install some miscellaneous stuffs")
+    add_flag("--elixir", "-e", "install elixir")
 
     return parser
 
