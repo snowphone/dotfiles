@@ -78,6 +78,8 @@ class DebianPackageManager(PackageManager):
             pkgs += ["mupdf", "xdotool", "nautilus", "mpv"]
         if self.args.misc:
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
+        if self.args.elixir:
+            pkgs += ["libssl-dev", "automake", "autoconf", "libncurses5-dev"]
         return pkgs
 
     def do_misc(self):
