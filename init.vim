@@ -45,7 +45,7 @@ lua <<EOF
 			enable = true,							-- false will disable the whole extension
 		additional_vim_regex_highlighting = false,
 		},
-		indent = { enable = false },
+		indent = { enable = true },
 
 		rainbow = {
 			enable = true,

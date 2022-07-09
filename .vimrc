@@ -327,6 +327,14 @@ aug tex
 	au FileType tex set spell
 aug end
 
+aug elixir
+	" tabstop:		Width of tab character.
+	" softtabstop:	Fine tunes the amount of white space to be added.
+	" shiftwidth:	Determines the amount of whitespace to add in normal mode.
+	" expandtab:	Use spaces instead of tabs. 
+	au FileType elixir setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+aug end
+
 " Set filetype for custom extensions
 autocmd! BufEnter *.shrc : set filetype=sh
 autocmd! BufEnter *.shinit : set filetype=sh
