@@ -52,6 +52,7 @@ class Vim(Script):
                 "git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls",
                 "cd ~/.elixir-ls",
                 "mix local.hex --force",
+                "mix local.rebar --force",
                 "mix deps.get",
                 "mix compile",
                 "mix elixir_ls.release -o release",
