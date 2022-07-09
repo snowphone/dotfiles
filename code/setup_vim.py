@@ -45,15 +45,17 @@ class Vim(Script):
         if self._exists("nvim"):
             self._setup_for_nvim()
 
-        self.shell.exec_list(
-            "Installing elixir-ls",
-            """curl -s https://api.github.com/repos/elixir-lsp/elixir-ls/releases/latest |
-            grep browser_download_url | 
-            grep -Po 'https://.*?'elixir-ls.zip  |
-            xargs curl -L -o /tmp/elixir-ls.zip
-            """,
-            "unzip -o /tmp/elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release",
-        )
+        if self.args.elixir:
+            self.shell.exec_list(
+                "Installing elixir-ls",
+
+                "git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls",
+                "cd ~/.elixir-ls",
+                "mix local.hex --force",
+                "mix deps.get",
+                "mix compile",
+                "mix elixir_ls.release -o release",
+            )
 
         return
 
@@ -96,4 +98,6 @@ class Vim(Script):
 
 
 if __name__ == "__main__":
-    Vim(ArgumentParser().parse_args()).run()
+    parser = ArgumentParser()
+    parser.add_argument("--elixir", action="store_true")
+    Vim(parser.parse_args()).run()

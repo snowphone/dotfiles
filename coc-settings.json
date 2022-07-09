@@ -19,6 +19,9 @@
 	"java.codeGeneration.hashCodeEquals.useJava7Objects": true,
 	"java.codeGeneration.hashCodeEquals.useInstanceof": true,
 
+	"elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+	"elixirLS.dialyzerEnabled": false,
+
 	"rust-analyzer.rustfmt.overrideCommand": ["rustfmt", "--config", "hard_tabs=true"],
 
 	"python.formatting.provider": "black",

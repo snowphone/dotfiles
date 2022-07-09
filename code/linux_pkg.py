@@ -158,14 +158,13 @@ class LinuxAMD64(Script):
             "Installing elixir",
 
             "asdf plugin add erlang",
-            "asdf install erlang 23.3.4.15",
-            "asdf global erlang 23.3.4.15",
+            "asdf install erlang 24.3.4.2",
+            "asdf global erlang  24.3.4.2",
 
             "asdf plugin add elixir",
-            "asdf install elixir 1.13",
-            "asdf global elixir 1.13",
-
-                )
+            "asdf install elixir 1.13.4-otp-24",
+            "asdf global elixir 1.13.4-otp-24",
+        )
         return
 
     def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0, binpath: str = "$HOME/.local/bin"):
