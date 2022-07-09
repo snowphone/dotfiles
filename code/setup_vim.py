@@ -46,16 +46,17 @@ class Vim(Script):
             self._setup_for_nvim()
 
         if self.args.elixir:
+            source_cmd = ". $HOME/.asdf/asdf.sh && "
             self.shell.exec_list(
                 "Installing elixir-ls",
 
                 "git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls",
                 "cd ~/.elixir-ls",
-                "mix local.hex --force",
-                "mix local.rebar --force",
-                "mix deps.get",
-                "mix compile",
-                "mix elixir_ls.release -o release",
+                f". {source_cmd} && mix local.hex --force",
+                f". {source_cmd} && mix local.rebar --force",
+                f". {source_cmd} && mix deps.get",
+                f". {source_cmd} && mix compile",
+                f". {source_cmd} && mix elixir_ls.release -o release",
             )
 
         return
