@@ -78,6 +78,12 @@ class FileLinker(Script):
             f"ln -fs $(which pip3) {HOME}/.local/bin/pip",
         )
 
+        if not os.path.islink(f"{HOME}/.clipboard"):
+            self.shell.exec(
+                "Linking .clipboard",
+                f"ln -fs {self.proj_root}/clipboard {HOME}/.clipboard",
+            )
+
         if self._is_wsl():
             link_cmds = [
                 f"ln -fs /mnt/c/Users/mjo97/Downloads/ $HOME/",
