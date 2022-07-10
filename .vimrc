@@ -219,8 +219,13 @@ let g:SortEditArgs = 1
 
 Plug 'vim-test/vim-test'
 " Save file before invoking the test
-nmap <silent> <leader>t  :write! <bar> TestNearest --verbose<CR>
-nmap <silent> <leader>T  :write! <bar> TestFile    --verbose<CR>
+if &filetype == 'python'
+	nmap <silent> <leader>t  :write! <bar> TestNearest --verbose<CR>
+	nmap <silent> <leader>T  :write! <bar> TestFile    --verbose<CR>
+else
+	nmap <silent> <leader>t  :write! <bar> TestNearest <CR>
+	nmap <silent> <leader>T  :write! <bar> TestFile    <CR>
+endif
 let test#strategy = "floaterm"
 
 Plug 'voldikss/vim-floaterm'
