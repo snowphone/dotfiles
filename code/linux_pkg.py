@@ -90,6 +90,16 @@ class LinuxAMD64(Script):
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
 
+        if self.args.elixir:
+            self.shell.exec(
+                "Installing asdf plugin manager",
+                "git clone https://github.com/asdf-vm/asdf ~/.asdf",
+            )
+
+            self._install_elixir()
+
+        return
+
     def _install_tty_clock(self):
         self.shell.exec_list(
             "Installing tty_clock",
@@ -137,13 +147,32 @@ class LinuxAMD64(Script):
             "sdk install kotlin",
         )
         return
+    
+    def _install_elixir(self):
+        def exec_list(msg: str, *cmds: str):
+            asdf_path = f"{self.HOME}/.asdf/asdf.sh"
+            sourced_cmds = [f"source {asdf_path} && {cmd}" for cmd in cmds]
+            self.shell.exec_list(msg, *sourced_cmds)
 
-    def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0):
+        exec_list(
+            "Installing elixir",
+
+            "asdf plugin add erlang",
+            "asdf install erlang 24.3.4.2",
+            "asdf global erlang  24.3.4.2",
+
+            "asdf plugin add elixir",
+            "asdf install elixir 1.13.4-otp-24",
+            "asdf global elixir 1.13.4-otp-24",
+        )
+        return
+
+    def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0, binpath: str = "$HOME/.local/bin"):
         cmd = f"""curl -s https://api.github.com/repos/{user_repo}/releases/latest |
 		grep browser_download_url | 
 		grep -Po 'https://.*?'{suffix}  |
 		xargs curl -L | 
-		tar xz -C {self.HOME}/.local/bin"""
+		tar xz -C {binpath}"""
         if strip:
             cmd += f" --strip {strip}"
 
@@ -156,5 +185,6 @@ if __name__ == "__main__":
     argparser.add_argument("--rust", action="store_true")
     argparser.add_argument("--golang", action="store_true")
     argparser.add_argument("--java", action="store_true")
+    argparser.add_argument("--elixir", action="store_true")
 
     LinuxAMD64(argparser.parse_args()).run()

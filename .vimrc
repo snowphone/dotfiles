@@ -59,6 +59,7 @@ let g:coc_global_extensions = [
 			\'coc-clangd',
 			\'coc-pyright',
 			\'coc-cmake',
+			\'coc-elixir',
 			\'coc-git',
 			\'coc-markdownlint',
 			\'coc-terminal',
@@ -247,6 +248,8 @@ Plug 'google/vim-coverage'
 " `:help :Glaive` for usage.
 Plug 'google/vim-glaive'
 
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
 " #######################
 " ##### neovim only #####
 " #######################
@@ -329,6 +332,14 @@ aug tex
 	au FileType tex set spell
 aug end
 
+aug elixir
+	" tabstop:		Width of tab character.
+	" softtabstop:	Fine tunes the amount of white space to be added.
+	" shiftwidth:	Determines the amount of whitespace to add in normal mode.
+	" expandtab:	Use spaces instead of tabs. 
+	au FileType elixir setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+aug end
+
 " Set filetype for custom extensions
 autocmd! BufEnter *.shrc : set filetype=sh
 autocmd! BufEnter *.shinit : set filetype=sh
@@ -403,6 +414,8 @@ function Run()
 		FloatermNew go run "%:p"
 	elseif &filetype == 'erlang'
 		FloatermNew escript "%:p" +P
+	elseif &filetype == 'elixir'
+		FloatermNew elixir "%:p"
 	elseif &filetype == 'sh'
 		FloatermNew bash "%:p"
 	elseif &filetype == 'markdown'
@@ -424,7 +437,7 @@ function Run()
 endfunction
 
 function Compile()
-	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml"]
+	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml", "elixir"]
 
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"

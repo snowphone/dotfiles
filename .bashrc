@@ -144,3 +144,8 @@ source $HOME/.trueline.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if [ -f ~/.asdf ]; then
+	. $HOME/.asdf/asdf.sh
+	. $HOME/.asdf/completions/asdf.bash
+fi

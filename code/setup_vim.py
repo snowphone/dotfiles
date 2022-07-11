@@ -45,6 +45,20 @@ class Vim(Script):
         if self._exists("nvim"):
             self._setup_for_nvim()
 
+        if self.args.elixir:
+            self.shell.exec_list(
+                "Installing elixir-ls",
+
+                "git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls",
+                "cd ~/.elixir-ls && "
+                ". $HOME/.asdf/asdf.sh && "
+                "mix local.hex --force && "
+                "mix local.rebar --force && "
+                "mix deps.get && "
+                "mix compile && "
+                "mix elixir_ls.release -o release"
+            )
+
         return
 
     def _setup_for_nvim(self):
@@ -86,4 +100,6 @@ class Vim(Script):
 
 
 if __name__ == "__main__":
-    Vim(ArgumentParser().parse_args()).run()
+    parser = ArgumentParser()
+    parser.add_argument("--elixir", action="store_true")
+    Vim(parser.parse_args()).run()
