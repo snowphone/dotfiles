@@ -403,7 +403,7 @@ nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
 nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 
 function Run()
-	let do_nothing_list = ["tex"]
+	let do_nothing_list = ["tex", "mp"]
 
 	if &filetype == 'python'
 		FloatermNew python3 "%:p"
@@ -443,6 +443,8 @@ function Compile()
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
 		silent make
+	elseif &filetype == 'mp'
+		silent !mptopdf "%:p"
 	elseif &filetype == 'tex'
 		VimtexCompile
 	elseif &filetype=='c'
