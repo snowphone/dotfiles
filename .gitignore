@@ -4,3 +4,10 @@
 **/__pycache__
 
 .venv/
+
+config
+!config/nvim/coc-settings.json
+!config/nvim/init.vim
+!config/pypoetry/config.toml
+!config/translate-shell/init.trans
+!config/yapf/style

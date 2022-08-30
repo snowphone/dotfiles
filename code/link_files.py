@@ -46,9 +46,13 @@ class FileLinker(Script):
             f'ln -fs "{proj_root}"/.p10k.zsh {HOME}/.p10k.zsh',
             f'ln -fs "{proj_root}"/.mailcap {HOME}/.mailcap',  # Open text files with vim when using xdg-open
             f'ln -fs "{proj_root}"/.mailcap.order {HOME}/.mailcap.order',  # Set higher priority to vim
-            f"mkdir -p {HOME}/.config/translate-shell",
-            f'ln -fs "{proj_root}"/init.trans {HOME}/.config/translate-shell/init.trans',
         )
+
+        if not os.path.islink(f"{HOME}/.config"):
+            self.shell.exec(
+                f"Aliasing {HOME}/.config",
+                f'ln -fs "{proj_root}"/config {HOME}/.config',
+            )
 
         dir_color_path = f"{HOME}/.dircolors"
         self.shell.exec(

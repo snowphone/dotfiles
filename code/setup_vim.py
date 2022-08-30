@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+import os
 from argparse import ArgumentParser, Namespace
+
 from script import Script
 
 
@@ -21,7 +23,12 @@ class Vim(Script):
             "Symbolic linking .vimrc", f'ln -fs "{proj_root}"/.vimrc {HOME}/.vimrc'
         )
 
-        self._mkdir(f"{HOME}/.config/coc")
+        if not os.path.islink(f"{HOME}/.config"):
+            self.shell.exec(
+                f"Aliasing {HOME}/.config",
+                f'ln -fs "{proj_root}"/config {HOME}/.config',
+            )
+
         self._exec(
             "Installing vim plugins", "vim --not-a-term -c PlugInstall -c quitall"
         )
@@ -30,10 +37,8 @@ class Vim(Script):
 
         self.shell.exec_list(
             "Symbolic linking other files",
-            f'ln -sf "{proj_root}"/coc-settings.json {HOME}/.vim/',
+            f'ln -sf "{proj_root}"/config/nvim/coc-settings.json {HOME}/.vim/',
             f'ln -sf "{proj_root}"/.coc.vimrc {HOME}/',
-            f"mkdir -p {HOME}/.config/yapf",
-            f'ln -sf "{proj_root}"/py_style {HOME}/.config/yapf/style',
             f'ln -fs "{proj_root}"/.latexmkrc {HOME}/.latexmkrc',
         )
 
@@ -64,13 +69,6 @@ class Vim(Script):
     def _setup_for_nvim(self):
         HOME = self.HOME
         proj_root = self.proj_root
-
-        self.shell.exec_list(
-            "Aliasing files for neovim",
-            f"mkdir -p {HOME}/.config/nvim",
-            f'ln -sf "{proj_root}"/coc-settings.json {HOME}/.config/nvim/',
-            f'ln -sf "{proj_root}"/init.vim {HOME}/.config/nvim/',
-        )
 
         self.shell.exec(
             "Installing pyx, a python utility for neovim",
