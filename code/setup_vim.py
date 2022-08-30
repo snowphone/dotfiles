@@ -78,10 +78,6 @@ class Vim(Script):
             "Installing plugins only for neovim",
             "nvim --headless -c PlugInstall -c quitall",
         )
-        self.shell.exec(
-            "Installing tree-sitter grammar",
-            "nvim --headless -c 'TSInstallSync maintained' -c quitall",
-        )
         return
 
     def _exists(self, cmd: str) -> bool:
