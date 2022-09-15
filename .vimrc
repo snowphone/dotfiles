@@ -24,7 +24,6 @@ endif
 if has('nvim')
 	Plug 'rktjmp/lush.nvim'
 endif
-Plug 'nightsense/carbonized'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'float168/vim-colors-cherryblossom'
