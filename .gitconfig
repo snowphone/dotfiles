@@ -1,6 +1,7 @@
 [core]
 	autocrlf = input
 	eol = lf
+	editor = nvim
 [user]
 	name = Junoh Moon
 	email = mjo970625@gmail.com
@@ -18,3 +19,5 @@
 	path = nvim
 [mergetool "vimdiff"]
 	path = nvim
+[sequence]
+	editor = nvim
