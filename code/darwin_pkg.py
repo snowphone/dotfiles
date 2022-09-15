@@ -32,7 +32,7 @@ class DarwinPackageManager(PackageManager):
     @property
     def pkgs(self):
         pkgs = """
-			llvm vim neovim-nightly git rename wget tmux make gzip zip unzip figlet
+			llvm vim neovim git rename wget tmux make gzip zip unzip figlet
 			cmake poppler
 			tree htop ripgrep the_silver_searcher rsync
 			bear w3m git-extras multitail
