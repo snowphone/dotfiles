@@ -290,9 +290,9 @@ endif
 
 set background=dark
 if has('nvim') && ! &diff
-	silent! colorscheme oak
+	silent! colorscheme rosebones
 else
-	silent! colorscheme PaperColor
+	silent! colorscheme nordbones
 endif
 
 syntax on
