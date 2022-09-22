@@ -72,7 +72,7 @@ class Vim(Script):
 
         self.shell.exec(
             "Installing pyx, a python utility for neovim",
-            "python3 -m pip install --user neovim",
+            "python3 -m pip install --user pynvim",
         )
         self.shell.exec(
             "Installing plugins only for neovim",
