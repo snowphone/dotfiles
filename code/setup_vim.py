@@ -29,6 +29,9 @@ class Vim(Script):
                 f'ln -fs "{proj_root}"/config {HOME}/.config',
             )
 
+        if self._exists("nvim"):
+            self._setup_for_nvim()
+
         self._exec(
             "Installing vim plugins", "vim --not-a-term -c PlugInstall -c quitall"
         )
@@ -46,9 +49,6 @@ class Vim(Script):
             "Installing yapf, black, rope, and coverage",
             "python3 -m pip install --user black yapf rope coverage",
         )
-
-        if self._exists("nvim"):
-            self._setup_for_nvim()
 
         if self.args.elixir:
             self.shell.exec_list(
@@ -70,9 +70,12 @@ class Vim(Script):
         HOME = self.HOME
         proj_root = self.proj_root
 
-        self.shell.exec(
-            "Installing plugins only for neovim",
+        self.shell.exec_list(
+            "Installing plugins for neovim",
+
             "nvim --headless -c PlugInstall -c quitall",
+            "nvim --headless -c CocUpdateSync -c quitall",
+            "nvim --headless -c TSUpdateSync -c quitall",
         )
         return
 
