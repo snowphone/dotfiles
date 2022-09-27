@@ -27,5 +27,7 @@
 	"rust-analyzer.rustfmt.overrideCommand": ["rustfmt", "--config", "hard_tabs=true"],
 
 	"python.formatting.provider": "black",
-	"python.pythonPath": "python3"
+	"python.pythonPath": "python3",
+
+	"Lua.telemetry.enable": true
 }

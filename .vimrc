@@ -59,6 +59,7 @@ let g:coc_global_extensions = [
 			\'coc-pyright',
 			\'coc-cmake',
 			\'coc-elixir',
+			\'coc-sumneko-lua',
 			\'coc-git',
 			\'coc-markdownlint',
 			\'coc-terminal',
@@ -135,9 +136,8 @@ Plug 'junegunn/fzf.vim'
 " #####   Folding   #####
 " #######################
 if has("nvim")
-	set foldmethod=expr
-	" :e to recalculate treesitter syntax
-	set foldexpr=nvim_treesitter#foldexpr()
+	Plug 'kevinhwang91/promise-async'
+	Plug 'kevinhwang91/nvim-ufo'
 else
 	set foldmethod=syntax
 	" Support python folding
