@@ -25,8 +25,7 @@ if has('nvim')
 	Plug 'rktjmp/lush.nvim'
 endif
 Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
-Plug 'float168/vim-colors-cherryblossom'
+Plug 'sainnhe/gruvbox-material'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'danilo-augusto/vim-afterglow'
@@ -43,7 +42,7 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'gruvbox_material'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -289,12 +288,15 @@ if !has('nvim') && &term =~ '^\%(screen\|tmux\)'
   " above: background color (r, g, b) 
 endif
 
+let g:gruvbox_material_enable_bold=1
+let g:gruvbox_material_enable_italic=1
+let g:gruvbox_material_background='medium' " hard | medium | soft
+let g:gruvbox_material_foreground='material' " material | mix | original
+let g:gruvbox_material_diagnostic_text_highlight=1
+
 set background=dark
-if has('nvim') && ! &diff
-	silent! colorscheme rosebones
-else
-	silent! colorscheme nordbones
-endif
+silent! colorscheme gruvbox-material
+
 
 syntax on
 set nocompatible " 오리지날 VI와 호환하지 않음
