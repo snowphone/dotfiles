@@ -9,3 +9,5 @@ config/coc
 config/dconf
 config/memos.json
 config/pulse
+config/htop
+config/neofetch
