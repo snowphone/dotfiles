@@ -58,6 +58,8 @@ require('ufo').setup({
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set('n', 'zr', 'ggvGzo<C-o>zz') -- Open folding by one level, go back cursor, and let the cursor on the middle.
+vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, {}) -- Usage: zm, 1zm, 2zm, ...
 vim.keymap.set('n', 'K', peekOrHover)
 
 
