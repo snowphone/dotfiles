@@ -81,6 +81,7 @@ let g:coc_global_extensions = [
 			\'coc-xml',
 			\'coc-yaml',
 			\'coc-snippets',
+			\'https://github.com/rafamadriz/friendly-snippets@main',
 			\'https://github.com/cstrap/python-snippets',
 			\]
 

@@ -71,10 +71,6 @@ class Vim(Script):
         proj_root = self.proj_root
 
         self.shell.exec(
-            "Installing pyx, a python utility for neovim",
-            "python3 -m pip install --user pynvim",
-        )
-        self.shell.exec(
             "Installing plugins only for neovim",
             "nvim --headless -c PlugInstall -c quitall",
         )
