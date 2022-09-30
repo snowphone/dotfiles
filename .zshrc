@@ -43,6 +43,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/docker
   zgen oh-my-zsh plugins/virtualenvwrapper
   zgen oh-my-zsh plugins/asdf
+  zgen oh-my-zsh plugins/poetry
 
   zgen load lukechilds/zsh-nvm
   zgen load lukechilds/zsh-better-npm-completion
