@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case "$(uname -a)" in
+	*WSL*) 
+		exec clip.exe
+		;;
+	*Darwin*) 
+		exec pbcopy
+		;;
+	*)
+		exec xclip
+		;;
+esac
