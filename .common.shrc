@@ -11,6 +11,7 @@ if [[ ! $FPATH =~ $bash_completion_path ]]; then
 	FPATH=$bash_completion_path:$FPATH
 fi
 
+alias ds="{du -sh *; du -sh ./} | sort -rh " #diskspace
 alias normalize_unicode='convmv -f utf-8 -t utf-8 --notest --nfc'
 
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"

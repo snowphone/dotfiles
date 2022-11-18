@@ -11,3 +11,4 @@ config/memos.json
 config/pulse
 config/htop
 config/neofetch
+config/configstore
