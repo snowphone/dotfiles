@@ -48,7 +48,7 @@ alias vis='vim "+set si"'
 alias tmux='tmux -2' 	#force 256 colors
 alias psed='perl -pe'	#sed with pcre support
 alias fd='fd --hidden'	#find dotfiles as well
-alias rg='rg --pcre2'   #Always allow look-ahead/behind
+alias rg='rg --auto-hybrid-regex'   #Always allow look-ahead/behind
 
 if command -v bat 2>&1 > /dev/null && command -v shuf 2>&1 > /dev/null; then
 	_BAT_AVAILABLE_THEMES=$(\bat --list-themes)
