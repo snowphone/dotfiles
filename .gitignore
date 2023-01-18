@@ -12,3 +12,5 @@ config/pulse
 config/htop
 config/neofetch
 config/configstore
+config/karabiner
+config/.DS_Store
