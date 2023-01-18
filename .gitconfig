@@ -2,6 +2,7 @@
 	autocrlf = input
 	eol = lf
 	editor = nvim
+	quotepath = false
 [user]
 	name = Junoh Moon
 	email = mjo970625@gmail.com
