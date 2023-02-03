@@ -55,13 +55,7 @@ alias psed='perl -pe'	#sed with pcre support
 alias fd='fd --hidden'	#find dotfiles as well
 alias rg='rg --auto-hybrid-regex'   #Always allow look-ahead/behind
 
-if command -v bat 2>&1 > /dev/null && command -v shuf 2>&1 > /dev/null; then
-	_BAT_AVAILABLE_THEMES=$(\bat --list-themes)
-	change_bat_theme_randomly() {
-		export BAT_THEME="$(echo ${_BAT_AVAILABLE_THEMES[@]} | shuf -n1 | tr -d '\n')"
-	}
-	change_bat_theme_randomly
-fi
+export BAT_THEME=gruvbox-dark
 
 alias c='clear'
 
