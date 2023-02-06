@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
 
+from decimal import Decimal
 from math import *
 import re
 from sys import argv, exit
 
 if not argv[1:]:
-	exit(0)
+    exit(0)
 
 if argv[1] in ["--exp", "-e"]:
-	scientific = True
-	line = ' '.join(argv[2:])
+    scientific = True
+    line = ' '.join(argv[2:])
 else:
-	scientific = False
-	line = ' '.join(argv[1:])
+    scientific = False
+    line = ' '.join(argv[1:])
 
 
 line = re.sub("times", "*", line)
 line = re.sub("pow", "**", line)
 line = re.sub(r"\[", "(", line)
 line = re.sub(r"\]", ")", line)
+line = re.sub(r"([+-]?\d+[.]?\d*)", r"Decimal('\1')", line)
 
 if scientific:
-	print(f"{eval(line):e}")
+    print(f"{eval(line):e}")
 else:
-	print(eval(line))
+    print(eval(line))
