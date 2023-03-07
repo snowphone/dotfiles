@@ -170,7 +170,7 @@ class LinuxAMD64(Script):
     def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0, binpath: str = "$HOME/.local/bin"):
         cmd = f"""curl -s https://api.github.com/repos/{user_repo}/releases/latest |
 		grep browser_download_url | 
-		grep -Po 'https://.*?'{suffix}  |
+		grep -Pio 'https://.*?'{suffix}  |
 		xargs curl -L | 
 		tar xz -C {binpath}"""
         if strip:
