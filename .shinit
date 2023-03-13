@@ -56,9 +56,7 @@ alias fd='fd --hidden'	#find dotfiles as well
 alias rg='rg --auto-hybrid-regex'   #Always allow look-ahead/behind
 
 if command -v prename 2>&1 > /dev/null; then
-	if ! command -v rename 2>&1 > /dev/null; then
-		alias rename=prename
-	fi
+	alias rename=prename
 fi
 
 export BAT_THEME=gruvbox-dark
