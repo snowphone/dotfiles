@@ -55,6 +55,12 @@ alias psed='perl -pe'	#sed with pcre support
 alias fd='fd --hidden'	#find dotfiles as well
 alias rg='rg --auto-hybrid-regex'   #Always allow look-ahead/behind
 
+if command -v prename 2>&1 > /dev/null; then
+	if ! command -v rename 2>&1 > /dev/null; then
+		alias rename=prename
+	fi
+fi
+
 export BAT_THEME=gruvbox-dark
 
 alias c='clear'

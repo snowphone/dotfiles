@@ -20,7 +20,7 @@ class RedhatPackageManager(PackageManager):
 		clang clang-tools-extra ctags cmake
 		python3 python3*-devel python3-pip
 		tree htop
-		gzip gem
+		gzip gem prename
 		""".split()
 
         if self.args.latex:
