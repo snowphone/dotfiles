@@ -329,6 +329,7 @@ set conceallevel=2	" Basically prettify keywords if possible
 set concealcursor=	" Disable syntax for current cursor line
 set signcolumn=auto
 set guicursor=      " Let vim\neovim respect Terminal's cursor shape
+set mouse=          " Disable mouse
 
 "set cursorcolumn	" Visualize vertical cursor line
 "set cursorline		" Visualize horizontal cursor line
