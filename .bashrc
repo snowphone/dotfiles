@@ -9,7 +9,7 @@ if [ -f /etc/bashrc ]; then
 	 . /etc/bashrc
 fi
 
-source $HOME/.common.shrc
+[ -f $HOME/.common.shrc ] && source $HOME/.common.shrc
 
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -139,6 +139,7 @@ TRUELINE_SHOW_VIMODE=true
 TRUELINE_WORKING_DIR_SPACE_BETWEEN_PATH_SEPARATOR=true
 TRUELINE_VIMODE_CMD_CURSOR='under'
 TRUELINE_VIMODE_INS_CURSOR='under'
+[ ! -f ~/.trueline.sh ] && curl -s https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o ~/.trueline.sh
 source $HOME/.trueline.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
