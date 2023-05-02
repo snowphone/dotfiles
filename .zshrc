@@ -25,6 +25,7 @@ export FZF_BASE=$HOME/.vim/plugged/fzf
 
 [ ! -d "${HOME}/.zgenom" ] && git clone --depth 1 https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 source "${HOME}/.zgenom/zgenom.zsh" > /dev/null
+source "${HOME}/.zgenom/zgen.zsh" > /dev/null
 
 zgenom autoupdate --background
 
