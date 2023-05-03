@@ -70,6 +70,11 @@ class LinuxAMD64(Script):
             self.github_dl_cmd("charmbracelet/glow", "linux_x86_64.tar.gz"),
         )
 
+        self.shell.exec(
+            "Installing the latest stable neovim from Github repo",
+            self.github_dl_cmd("neovim/neovim", "linux64.tar.gz", strip=1, binpath=f"{self.HOME}/.local"),
+        )
+
         if self.args.golang:
             ok, go_ver, _ = self.shell.exec(
                 "Fetching latest golang version",
@@ -147,7 +152,7 @@ class LinuxAMD64(Script):
             "sdk install kotlin",
         )
         return
-    
+
     def _install_elixir(self):
         def exec_list(msg: str, *cmds: str):
             asdf_path = f"{self.HOME}/.asdf/asdf.sh"
@@ -156,21 +161,26 @@ class LinuxAMD64(Script):
 
         exec_list(
             "Installing elixir",
-
             "asdf plugin add erlang",
             "asdf install erlang 24.3.4.2",
             "asdf global erlang  24.3.4.2",
-
             "asdf plugin add elixir",
             "asdf install elixir 1.13.4-otp-24",
             "asdf global elixir 1.13.4-otp-24",
         )
         return
 
-    def github_dl_cmd(self, user_repo: str, suffix: str, strip: int = 0, binpath: str = "$HOME/.local/bin"):
+    def github_dl_cmd(
+        self,
+        user_repo: str,
+        suffix: str,
+        strip: int = 0,
+        binpath: str = "$HOME/.local/bin",
+    ):
         cmd = f"""curl -s https://api.github.com/repos/{user_repo}/releases/latest |
 		grep browser_download_url | 
 		grep -Pio 'https://.*?'{suffix}  |
+        head -n 1 |
 		xargs curl -L | 
 		tar xz -C {binpath}"""
         if strip:
