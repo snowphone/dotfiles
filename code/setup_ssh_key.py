@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import getpass
 from argparse import ArgumentParser
 from os import path
 
@@ -15,15 +16,19 @@ class SshKey(Script):
 
         # gpg encryption example:
         # gpg --symmetric --cipher-algo=AES256 $HOME/.ssh/id_ed25519
+        pw = getpass.getpass()
         self.shell.exec_list(
             "Decrypting id_ed25519",
             f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
-            f'''gpg --decrypt \
+            f'''sudo gpg --decrypt \
+                    --batch \
                     --yes \
                     --cipher-algo=AES256 \
+                    --passphrase="{pw}" \
                     --output={self.HOME}/.ssh/id_ed25519 \
                     {self.HOME}/.ssh/id_ed25519.gpg
             ''',
+            f"sudo chown $(users):$(users) {self.HOME}/.ssh/id_ed25519",
         )
 
         self.shell.exec_list(
