@@ -38,8 +38,8 @@ class DebianPreparation(Script):
         )
 
         self.shell.sudo_exec(
-            "Adding neovim-nightly repository",
-            "add-apt-repository -y ppa:neovim-ppa/unstable",
+            "Adding neovim repository",
+            "add-apt-repository -y ppa:neovim-ppa/stable",
         )
         return
 
