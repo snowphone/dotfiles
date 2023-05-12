@@ -40,7 +40,7 @@ class DarwinPackageManager(PackageManager):
 			parallel sponge coreutils num-utils
 			lbzip2 pigz pixz p7zip
 			ffmpeg
-			translate-shell dict
+			translate-shell dict jq
 
 			yt-dlp fd ripgrep-all gotop bat glow
 			""".split()

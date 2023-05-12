@@ -56,10 +56,10 @@ class DebianPackageManager(PackageManager):
 			zsh python-is-python3
 			exuberant-ctags cmake
 			python3-dev python3 python3-pip
-			bfs tree htop ripgrep silversearcher-ag rsync
+			bfs tree htop ripgrep silversearcher-ag rsync jq
 			bear sshpass w3m traceroute git-extras multitail
 			neofetch mmv
-			poppler-utils
+			poppler-utils mediainfo
 			parallel moreutils num-utils
 			lbzip2 pigz pixz p7zip-full
 			ffmpeg

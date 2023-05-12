@@ -17,7 +17,7 @@ class RedhatPackageManager(PackageManager):
     def pkgs(self):
         pkgs = """
 		tar vim git gcc curl wget tmux make gzip zip unzip
-		clang clang-tools-extra ctags cmake
+		clang clang-tools-extra ctags cmake jq
 		python3 python3*-devel python3-pip
 		tree htop
 		gzip gem prename
