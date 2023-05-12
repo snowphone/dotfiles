@@ -1,3 +1,4 @@
+.ssh/known_hosts.old
 .ssh/known_hosts
 .ssh/authorized_keys
 .ssh/id_ed25519
@@ -14,3 +15,8 @@ config/neofetch
 config/configstore
 config/karabiner
 config/.DS_Store
+config/Google/
+config/calibre/
+config/cava/
+config/commitgpt/
+config/nautilus/
