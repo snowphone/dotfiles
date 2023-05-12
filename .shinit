@@ -6,7 +6,11 @@ export MANPATH=$HOME/.local/share/man:/usr/share/man:$MANPATH
 # set PATH so it includes user's private bin if it exists
 LOCALBIN="$HOME/.local/bin"
 if [ -d $LOCALBIN ] &&  ! expr match "$PATH"  ".*$LOCALBIN.*" > /dev/null; then
-		PATH="$HOME/.local/bin:$PATH" 
+		PATH="$LOCALBIN:$PATH" 
+fi
+SNAPBIN="/snap/bin"
+if [ -d $SNAPBIN ] &&  ! expr match "$PATH"  ".*$SNAPBIN.*" > /dev/null; then
+		PATH="$SNAPBIN:$PATH" 
 fi
 
 BREW_PATH=$HOME/.paths
