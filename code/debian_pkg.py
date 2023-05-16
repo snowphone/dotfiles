@@ -55,7 +55,7 @@ class DebianPackageManager(PackageManager):
 			build-essential gdb less tar vim neovim git gcc curl rename wget tmux make gzip zip unzip figlet
 			zsh python-is-python3
 			exuberant-ctags cmake
-			python3-dev python3 python3-pip
+			python3-dev python3 python3-pip python3-venv
 			bfs tree htop ripgrep silversearcher-ag rsync jq
 			bear sshpass w3m traceroute git-extras multitail
 			neofetch mmv
