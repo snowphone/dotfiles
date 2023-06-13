@@ -26,6 +26,7 @@ fi
 
 export LD_LIBRARY_PATH=$HOME/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 
+[ -n $DISPLAY ] && export XAUTHORITY=$HOME/.Xauthority
 
 export EDITOR=vim
 
@@ -66,6 +67,11 @@ fi
 export BAT_THEME=gruvbox-dark
 
 alias c='clear'
+
+
+ocr() {
+	tesseract -l kor+eng "$@" stdout
+}
 
 # Alias of xdg-open, and ignore stderr
 open() {
