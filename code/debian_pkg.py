@@ -75,7 +75,7 @@ class DebianPackageManager(PackageManager):
         if self.args.boost:
             pkgs.append("libboost-all-dev")
         if self.shell.env.get("DISPLAY", False):
-            pkgs += ["mupdf", "xdotool", "nautilus", "mpv"]
+            pkgs += ["mupdf", "xdotool", "nautilus", "mpv", "firefox", "zathura"]
         if self.args.misc:
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
         if self.args.elixir:
