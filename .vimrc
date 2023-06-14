@@ -421,6 +421,8 @@ function Run()
 		FloatermNew ocaml "%:p"
 	elseif &filetype == 'java'
 		FloatermNew java "%:p"
+	elseif &filetype == 'kotlin'
+		FloatermNew java -jar "%:p:r".jar
 	elseif &filetype == 'go'
 		FloatermNew go run "%:p"
 	elseif &filetype == 'erlang'
@@ -457,6 +459,8 @@ function Compile()
 		silent !mptopdf "%:p"
 	elseif &filetype == 'tex'
 		VimtexCompile
+	elseif &filetype == 'kotlin'
+		silent !kotlinc "%:p" -include-runtime -d "%:p:r".jar
 	elseif &filetype=='c'
 		silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
 	elseif &filetype == 'cpp'
