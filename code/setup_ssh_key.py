@@ -16,7 +16,7 @@ class SshKey(Script):
 
         # gpg encryption example:
         # gpg --symmetric --cipher-algo=AES256 $HOME/.ssh/id_ed25519
-        pw = getpass.getpass()
+        pw = getpass.getpass("SSH encryption key password: ")
         self.shell.exec_list(
             "Decrypting id_ed25519",
             f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
@@ -28,7 +28,7 @@ class SshKey(Script):
                     --output={self.HOME}/.ssh/id_ed25519 \
                     {self.HOME}/.ssh/id_ed25519.gpg
             ''',
-            f"sudo chown $(users):$(users) {self.HOME}/.ssh/id_ed25519",
+            f"sudo chown $(id -un):$(id -gn) {self.HOME}/.ssh/id_ed25519",
         )
 
         self.shell.exec_list(
