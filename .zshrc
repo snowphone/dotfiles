@@ -41,7 +41,6 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/vi-mode
   zgen oh-my-zsh plugins/gradle
   zgen oh-my-zsh plugins/pip
-  zgen oh-my-zsh plugins/docker
   zgen oh-my-zsh plugins/virtualenvwrapper
   zgen oh-my-zsh plugins/asdf
   zgen oh-my-zsh plugins/poetry
