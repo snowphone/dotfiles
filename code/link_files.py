@@ -46,6 +46,7 @@ class FileLinker(Script):
             f'ln -fs "{proj_root}"/.p10k.zsh {HOME}/.p10k.zsh',
             f'ln -fs "{proj_root}"/.mailcap {HOME}/.mailcap',  # Open text files with vim when using xdg-open
             f'ln -fs "{proj_root}"/.mailcap.order {HOME}/.mailcap.order',  # Set higher priority to vim
+            f'ln -fs "{proj_root}"/.ideavimrc {HOME}/.ideavimrc',  # Set higher priority to vim
         )
 
         if not os.path.islink(f"{HOME}/.config"):
