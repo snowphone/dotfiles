@@ -13,6 +13,11 @@ class DebianPreparation(Script):
         self.shell.env["DEBIAN_FRONTEND"] = "noninteractive"
 
         self.shell.sudo_exec(
+            "Hide $HOME/snap folder",
+            "snap set system experimental.hidden-snap-folder=true",
+        )
+
+        self.shell.sudo_exec(
             "Prioritizing IPv4 in apt",
             r"""sed -riE 's/#\s*(precedence ::ffff:0:0[/]96\s+100)/\1/' /etc/gai.conf""",
         )
@@ -75,7 +80,16 @@ class DebianPackageManager(PackageManager):
         if self.args.boost:
             pkgs.append("libboost-all-dev")
         if self.shell.env.get("DISPLAY", False):
-            pkgs += ["mupdf", "xdotool", "nautilus", "mpv", "firefox", "zathura"]
+            pkgs += [
+                "mupdf",
+                "xdotool",
+                "nautilus",
+                "mpv",
+                "firefox",
+                "zathura",
+                "language-pack-ko",
+                "fonts-noto-cjk",
+            ]
         if self.args.misc:
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
         if self.args.elixir:
