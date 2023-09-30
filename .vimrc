@@ -263,7 +263,8 @@ if has("nvim")
   let g:loaded_clipboard_provider = 1
 
   Plug 'folke/twilight.nvim'
-
+  Plug 'f-person/git-blame.nvim'
+  let g:gitblame_message_template = '	<author> • <date> • <summary>'
   Plug 'lewis6991/spellsitter.nvim'
   set spell
 endif
