@@ -575,7 +575,7 @@ if !has("nvim")
 endif
 
 if has("patch-8.1.0360") || has("nvim")
-	" Myer, a default diff alrogithm, sucks
+	" Myer, a default diff algorithm, sucks
 
 	" Turn off whitespaces compare and folding in vimdiff
 	set diffopt+=iwhite
