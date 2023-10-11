@@ -31,10 +31,10 @@ class Vim(Script):
 
         if self._exists("nvim"):
             self._setup_for_nvim()
-
-        self._exec(
-            "Installing vim plugins", "vim --not-a-term -c PlugInstall -c quitall"
-        )
+        else:
+            self._exec(
+                "Installing vim plugins", "vim --not-a-term -c PlugInstall -c quitall"
+            )
 
         self.shell.exec("Adding executable permission to HOME", f"chmod 755 {HOME}")
 
@@ -53,7 +53,6 @@ class Vim(Script):
         if self.args.elixir:
             self.shell.exec_list(
                 "Installing elixir-ls",
-
                 "git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls",
                 "cd ~/.elixir-ls && "
                 ". $HOME/.asdf/asdf.sh && "
@@ -61,7 +60,7 @@ class Vim(Script):
                 "mix local.rebar --force && "
                 "mix deps.get && "
                 "mix compile && "
-                "mix elixir_ls.release -o release"
+                "mix elixir_ls.release -o release",
             )
 
         return
@@ -72,7 +71,6 @@ class Vim(Script):
 
         self.shell.exec_list(
             "Installing plugins for neovim",
-
             "nvim --headless -c PlugInstall -c quitall",
             "nvim --headless -c CocUpdateSync -c quitall",
             "nvim --headless -c TSUpdateSync -c quitall",
