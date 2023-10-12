@@ -68,6 +68,10 @@ class ShellSwitcher(Script):
             "Changing default shell to zsh", f"sed -ie {pattern} /etc/passwd"
         )
 
+        self.shell.exec(
+            "Installing virtualenvwrapper", "python3 -m pip install virtualenvwrapper"
+        )
+
     def _sourced_exec(self, message: str, cmd: str):
         return self.shell.exec(message, f"source {self.HOME}/.nvm/nvm.sh && {cmd}")
 
