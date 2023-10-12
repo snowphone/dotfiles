@@ -18,6 +18,17 @@ If you don't want to think about it, you just run `./sshd.sh` and follow the ins
 If you're looking for installing packages on CentOS7 without root privileges, please check out [here](https://gist.github.com/snowphone/f9c612a60aa25dc4940993529532eb97).
 It will replace `install_packages.py`.
 
+## Switching from Https into Ssh
+
+```sh
+sed -i 's|https://github.com/snowphone/dotfiles|git@github.com:snowphone/dotfiles|' .git/config
+```
+
+## Windows Terminal settings.json and Delugia Font
+
+[settings.json](https://nas.sixtyfive.me/s/botmPZwHwFCtENb)
+[Delugia](https://github.com/adam7/delugia-code/releases)
+
 ## TODO
 
 - [ ] optimizing PATH on brew-ed environment: refusing `brew link <pkg>` on some packages
