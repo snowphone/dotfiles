@@ -19,14 +19,14 @@ class FileLinker(Script):
 
         self.shell.exec_list(
             "Enabling tar to parallelize archiving files",
-            f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bzip2",
-            f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bunzip2",
-            f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bzcat",
-            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/gzip",
-            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/gunzip",
-            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/gzcat",
-            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/zcat",
-            f"ln -sf /usr/bin/pixz {HOME}/.local/bin/xz",
+            f"ln -sf -T /usr/bin/lbzip2 {HOME}/.local/bin/bzip2",
+            f"ln -sf -T /usr/bin/lbzip2 {HOME}/.local/bin/bunzip2",
+            f"ln -sf -T /usr/bin/lbzip2 {HOME}/.local/bin/bzcat",
+            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/gzip",
+            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/gunzip",
+            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/gzcat",
+            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/zcat",
+            f"ln -sf -T /usr/bin/pixz {HOME}/.local/bin/xz",
         )
 
         trueline_path = f"{HOME}/.trueline.sh"
@@ -79,28 +79,28 @@ class FileLinker(Script):
         self.shell.exec_list(
             "Setting up pip cache server",
             f"mkdir -p {HOME}/.pip",
-            f'ln -fs "$folder"/pip.conf {HOME}/.pip/pip.conf',
-            f"ln -fs $(which pip3) {HOME}/.local/bin/pip",
+            f'ln -fs -T "$folder"/pip.conf {HOME}/.pip/pip.conf',
+            f"ln -fs -T $(which pip3) {HOME}/.local/bin/pip",
         )
 
         if not os.path.islink(f"{HOME}/.clipboard"):
             self.shell.exec(
                 "Linking .clipboard",
-                f"ln -fs {self.proj_root}/clipboard {HOME}/.clipboard",
+                f"ln -fs -T {self.proj_root}/clipboard {HOME}/.clipboard",
             )
 
-        if self._is_wsl():
+        if self._is_wsl() and os.path.exists("/mnt/c/Users/mjo97"):
             link_cmds = [
-                f"ln -fs /mnt/c/Users/mjo97/Downloads/ $HOME/",
-                f"ln -fs /mnt/c/Users/mjo97/Dropbox/Documents/ $HOME/",
-                f"ln -fs /mnt/c/Users/mjo97/Videos/ $HOME/",
+                f"ln -fs -T /mnt/c/Users/mjo97/Downloads/ $HOME/",
+                f"ln -fs -T /mnt/c/Users/mjo97/Dropbox/Documents/ $HOME/",
+                f"ln -fs -T /mnt/c/Users/mjo97/Videos/ $HOME/",
             ]
             if not os.path.islink(f"{HOME}/kaist"):
                 link_cmds.append(
-                    f"ln -fs '/mnt/c/Users/mjo97/OneDrive - kaist.ac.kr/' {HOME}/kaist"
+                    f"ln -fs -T '/mnt/c/Users/mjo97/OneDrive - kaist.ac.kr/' {HOME}/kaist"
                 )
             if not os.path.islink(f"{HOME}/winHome"):
-                link_cmds.append(f"ln -fs /mnt/c/Users/mjo97/ {HOME}/winHome")
+                link_cmds.append(f"ln -fs -T /mnt/c/Users/mjo97/ {HOME}/winHome")
 
             self.shell.exec_list("Symbolic linking windows folders", *link_cmds)
 
