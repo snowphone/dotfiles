@@ -88,3 +88,5 @@ transfer() {
 		curl --progress-bar --upload-file "-" "$url/$(urlencode $file_name)" | tee /dev/null
 	fi
 }
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
