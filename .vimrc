@@ -77,6 +77,7 @@ let g:coc_global_extensions = [
 			\'coc-sql',
 			\'coc-sh',
 			\'coc-toml',
+			\'coc-vimlsp',
 			\'coc-xml',
 			\'coc-yaml',
 			\'coc-snippets',
