@@ -1,46 +1,51 @@
 {
-	"suggest.noselect": true,
+	"clangd.arguments": [
+		"-cross-file-rename"
+	],
+	"elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+	"elixirLS.dialyzerEnabled": false,
+	"inlayHint.display": true,
+	"inlayHint.enable": true,
+	"inlayHint.enableParameter": true,
+	"java.codeGeneration.hashCodeEquals.useInstanceof": true,
+	"java.codeGeneration.hashCodeEquals.useJava7Objects": true,
+	"java.codeGeneration.toString.codeStyle": "STRING_FORMAT",
+	"java.codeGeneration.useBlocks": true,
+	"java.format.comments.enabled": true,
+	"java.format.enabled": true,
+	"java.format.settings.profile": "FormattingStyle",
+	"java.format.settings.url": "https://gist.githubusercontent.com/snowphone/3687b5a6bee7ad315cf6417e2cd0dddf/raw/26b97d16e2108032c8abdd8c2e8c92a13211916d/formatting-style.xml",
 	"languageserver": {
 		"ocaml-lsp": {
-			"command": "opam",
 			"args": [
 				"config",
 				"exec",
 				"--",
 				"ocamllsp"
 			],
+			"command": "opam",
 			"filetypes": [
 				"ocaml",
 				"reason"
 			]
 		}
 	},
-	"clangd.arguments": [
-		"-cross-file-rename"
-	],
-	"java.format.enabled": true,
-	"java.format.comments.enabled": true,
-	"java.format.settings.url": "https://gist.githubusercontent.com/snowphone/3687b5a6bee7ad315cf6417e2cd0dddf/raw/26b97d16e2108032c8abdd8c2e8c92a13211916d/formatting-style.xml",
-	"java.format.settings.profile": "FormattingStyle",
-	"java.codeGeneration.toString.codeStyle": "STRING_FORMAT",
-	"java.codeGeneration.useBlocks": true,
-	"java.codeGeneration.hashCodeEquals.useJava7Objects": true,
-	"java.codeGeneration.hashCodeEquals.useInstanceof": true,
-	"elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
-	"elixirLS.dialyzerEnabled": false,
-	"rust-analyzer.rustfmt.overrideCommand": [
-		"rustfmt",
-		"--config",
-		"hard_tabs=true"
-	],
+	"pyright.inlayHints.functionReturnTypes": true,
+	"pyright.inlayHints.variableTypes": true,
+	"pyright.organizeimports.provider": "isort",
 	"python.formatting.provider": "black",
 	"python.pythonPath": "python3",
-	"pyright.organizeimports.provider": "isort",
-	"python.sortImports.path": "isort",
 	"python.sortImports.args": [
 		"--profile=black",
 		"--force-grid-wrap=2",
 		"--multi-line=VERTICAL_HANGING_INDENT",
 	],
-	"snippets.ultisnips.enable": false
+	"python.sortImports.path": "isort",
+	"rust-analyzer.rustfmt.overrideCommand": [
+		"rustfmt",
+		"--config",
+		"hard_tabs=true"
+	],
+	"snippets.ultisnips.enable": false,
+	"suggest.noselect": true
 }
