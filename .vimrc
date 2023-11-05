@@ -266,6 +266,7 @@ if has("nvim")
   Plug 'folke/twilight.nvim'
   Plug 'f-person/git-blame.nvim'
   let g:gitblame_message_template = '	<author> • <date> • <summary>'
+  command -nargs=0 GBlame :GitBlameToggle
   Plug 'lewis6991/spellsitter.nvim'
   set spell
 endif
