@@ -35,6 +35,11 @@ class LinuxAMD64(Script):
         )
 
         self.shell.exec(
+            "Installing tools for python",
+            "pip3 install --user black isort poetry",
+        )
+
+        self.shell.exec(
             "Installing caterpillar, an hls downloader",
             "pip3 install --user caterpillar-hls",
         )
