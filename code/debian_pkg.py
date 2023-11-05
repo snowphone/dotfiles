@@ -1,8 +1,8 @@
-from argparse import Namespace
 import re
+from argparse import Namespace
 
-from script import Script
 from package_manager import PackageManager
+from script import Script
 
 
 class DebianPreparation(Script):
@@ -46,6 +46,11 @@ class DebianPreparation(Script):
             "Adding neovim repository",
             "add-apt-repository -y ppa:neovim-ppa/stable",
         )
+        if self.shell.env.get("DISPLAY", False):
+            self.shell.sudo_exec_list(
+                "Adding gnome-epub-thumbnailer repository",
+                "add-apt-repository -y ppa:ubuntuhandbook1/apps",
+            )
         return
 
 
@@ -80,18 +85,23 @@ class DebianPackageManager(PackageManager):
         if self.args.boost:
             pkgs.append("libboost-all-dev")
         if self.shell.env.get("DISPLAY", False):
+            self.shell.exec(
+                "Download kime deb file",
+                "curl -Lo /tmp/kime.deb https://github.com/Riey/kime/releases/download/v3.0.2/kime_ubuntu-22.04_v3.0.2_amd64.deb",
+            )
             pkgs += [
+                "evince",
                 "mupdf",
                 "xdotool",
                 "nautilus",
                 "mpv",
-                "evince",
                 "firefox",
                 "zathura",
                 "language-pack-ko",
                 "fonts-noto-cjk",
-                "kime",
+                "/tmp/kime.deb",
                 "vivaldi-stable",
+                "gnome-epub-thumbnailer",
             ]
         if self.args.misc:
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
