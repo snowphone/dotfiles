@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
+import os
 from argparse import ArgumentParser
 from getpass import getuser
-import os
 from pathlib import Path
 
-from script import Script
 from link_files import FileLinker
+from script import Script
 
 
 class ShellSwitcher(Script):
@@ -32,22 +32,6 @@ class ShellSwitcher(Script):
             f"zsh {HOME}/.zgenom/sources/init.zsh",
         )
 
-        self._sourced_exec(
-            "Installing nodejs lts via nvm",
-            f"nvm install --lts",
-        )
-
-        self._sourced_exec(
-            "Installing yarn",
-            f"npm install --global yarn",
-        )
-
-        if self.args.typescript:
-            self._sourced_exec(
-                "Installing typescript related things",
-                "npm install -g typescript ts-node pkg tslib",
-            )
-
         return
 
     def _switch_to_zsh(self):
@@ -72,21 +56,6 @@ class ShellSwitcher(Script):
             "Installing virtualenvwrapper", "python3 -m pip install virtualenvwrapper"
         )
 
-    def _sourced_exec(self, message: str, cmd: str):
-        return self.shell.exec(message, f"source {self.HOME}/.nvm/nvm.sh && {cmd}")
-
-
-def setup_args(parser: ArgumentParser = ArgumentParser()):
-    parser.add_argument(
-        "--typescript",
-        "-t",
-        action="store_true",
-        help="install typescript",
-        default=False,
-    )
-
-    return parser
-
 
 if __name__ == "__main__":
-    ShellSwitcher(setup_args().parse_args()).run()
+    ShellSwitcher(ArgumentParser().parse_args()).run()

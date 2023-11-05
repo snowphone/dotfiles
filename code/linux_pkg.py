@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-from argparse import ArgumentParser, Namespace
+from argparse import (
+    ArgumentParser,
+    Namespace,
+)
 from pathlib import Path
 
 from script import Script
@@ -72,7 +75,12 @@ class LinuxAMD64(Script):
 
         self.shell.exec(
             "Installing the latest stable neovim from Github repo",
-            self.github_dl_cmd("neovim/neovim", "linux64.tar.gz", strip=1, binpath=f"{self.HOME}/.local"),
+            self.github_dl_cmd(
+                "neovim/neovim",
+                "linux64.tar.gz",
+                strip=1,
+                binpath=f"{self.HOME}/.local",
+            ),
         )
 
         if self.args.golang:
@@ -103,7 +111,33 @@ class LinuxAMD64(Script):
 
             self._install_elixir()
 
+        self._install_node()
+
         return
+
+    def _install_node(self):
+        self.shell.exec(
+            "Installing nvm",
+            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash",
+        )
+        self._sourced_exec(
+            "Installing nodejs lts via nvm",
+            f"nvm install --lts",
+        )
+        self._sourced_exec(
+            "Installing yarn",
+            f"npm install --global yarn",
+        )
+
+        if self.args.typescript:
+            self._sourced_exec(
+                "Installing typescript related things",
+                "npm install -g typescript ts-node pkg tslib",
+            )
+        return
+
+    def _sourced_exec(self, message: str, cmd: str):
+        return self.shell.exec(message, f"source {self.HOME}/.nvm/nvm.sh && {cmd}")
 
     def _install_tty_clock(self):
         self.shell.exec_list(
@@ -196,5 +230,12 @@ if __name__ == "__main__":
     argparser.add_argument("--golang", action="store_true")
     argparser.add_argument("--java", action="store_true")
     argparser.add_argument("--elixir", action="store_true")
+    argparser.add_argument(
+        "--typescript",
+        "-t",
+        action="store_true",
+        help="install typescript",
+        default=False,
+    )
 
     LinuxAMD64(argparser.parse_args()).run()
