@@ -47,6 +47,7 @@ class FileLinker(Script):
             f'ln -fs "{proj_root}"/.mailcap {HOME}/.mailcap',  # Open text files with vim when using xdg-open
             f'ln -fs "{proj_root}"/.mailcap.order {HOME}/.mailcap.order',  # Set higher priority to vim
             f'ln -fs "{proj_root}"/.ideavimrc {HOME}/.ideavimrc',  # Set higher priority to vim
+            f'ln -fs "{proj_root}"/.xprofile {HOME}/.xprofile',  # Set higher priority to vim
         )
 
         if not os.path.islink(f"{HOME}/.config"):
@@ -57,8 +58,8 @@ class FileLinker(Script):
 
         dir_color_path = f"{HOME}/.dircolors"
         self.shell.exec(
-            "Using dircolor from dircolors-solarized",
-            f"curl --silent -o {dir_color_path} https://raw.githubusercontent.com/huyz/dircolors-solarized/master/dircolors.256dark",
+            "Using dircolor from default",
+            f"dircolors -p > {dir_color_path}"
         )
         if self._is_wsl():
             # In WSL, folders in Windows storage look as OTHER_WRITABLE, so OTHER_WRITABLE is set as same as DIR.
@@ -79,8 +80,8 @@ class FileLinker(Script):
         self.shell.exec_list(
             "Setting up pip cache server",
             f"mkdir -p {HOME}/.pip",
-            f'ln -fs -T "$folder"/pip.conf {HOME}/.pip/pip.conf',
-            f"ln -fs -T $(which pip3) {HOME}/.local/bin/pip",
+            f'ln -nfs "$folder"/pip.conf {HOME}/.pip/pip.conf',
+            f"ln -nfs $(which pip3) {HOME}/.local/bin/pip",
         )
 
         if not os.path.islink(f"{HOME}/.clipboard"):
@@ -91,14 +92,10 @@ class FileLinker(Script):
 
         if self._is_wsl() and os.path.exists("/mnt/c/Users/mjo97"):
             link_cmds = [
-                f"ln -fs -T /mnt/c/Users/mjo97/Downloads/ $HOME/",
-                f"ln -fs -T /mnt/c/Users/mjo97/Dropbox/Documents/ $HOME/",
-                f"ln -fs -T /mnt/c/Users/mjo97/Videos/ $HOME/",
+                f"ln -nfs /mnt/c/Users/mjo97/Downloads/ $HOME/",
+                f"ln -nfs /mnt/c/Users/mjo97/Dropbox/Documents/ $HOME/",
+                f"ln -nfs /mnt/c/Users/mjo97/Videos/ $HOME/",
             ]
-            if not os.path.islink(f"{HOME}/kaist"):
-                link_cmds.append(
-                    f"ln -fs -T '/mnt/c/Users/mjo97/OneDrive - kaist.ac.kr/' {HOME}/kaist"
-                )
             if not os.path.islink(f"{HOME}/winHome"):
                 link_cmds.append(f"ln -fs -T /mnt/c/Users/mjo97/ {HOME}/winHome")
 
