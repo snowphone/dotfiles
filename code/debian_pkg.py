@@ -102,6 +102,9 @@ class DebianPackageManager(PackageManager):
                 "/tmp/kime.deb",
                 "vivaldi-stable",
                 "gnome-epub-thumbnailer",
+                "ffmpegthumbnailer",
+                "gstreamer1.0-libav",
+                "totem",
             ]
         if self.args.misc:
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
