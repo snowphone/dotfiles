@@ -1,3 +1,6 @@
+" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
+" utf-8 byte sequence
+set encoding=utf-8
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
