@@ -85,10 +85,13 @@ class DebianPackageManager(PackageManager):
                 "xdotool",
                 "nautilus",
                 "mpv",
+                "evince",
                 "firefox",
                 "zathura",
                 "language-pack-ko",
                 "fonts-noto-cjk",
+                "kime",
+                "vivaldi-stable",
             ]
         if self.args.misc:
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
@@ -118,7 +121,7 @@ class DebianPackageManager(PackageManager):
         self._install_clang()
 
     def _install_clang(self):
-        latest = 15
+        latest = 20
         for ver in range(latest, 0, -1):
             install_list = [
                 f"clang-{ver}",
