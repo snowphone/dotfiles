@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
-from argparse import ArgumentParser, Namespace
-from argparse import Namespace
+from argparse import (
+    ArgumentParser,
+    Namespace,
+)
 
-from debian_pkg import DebianPackageManager, DebianPreparation
-from darwin_pkg import DarwinPackageManager, DarwinPreparation, Mac
+from darwin_pkg import (
+    DarwinPackageManager,
+    DarwinPreparation,
+    Mac,
+)
+from debian_pkg import (
+    DebianPackageManager,
+    DebianPreparation,
+)
 from linux_pkg import LinuxAMD64
-from redhat_pkg import RedhatPackageManager, RedhatPreparation
+from redhat_pkg import (
+    RedhatPackageManager,
+    RedhatPreparation,
+)
 from script import Script
 
 

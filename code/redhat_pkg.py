@@ -1,4 +1,5 @@
 from argparse import Namespace
+
 from package_manager import PackageManager
 from script import Script
 

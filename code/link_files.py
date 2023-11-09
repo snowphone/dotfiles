@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from argparse import ArgumentParser
 import os
 import re
+from argparse import ArgumentParser
 
 from script import Script
 
@@ -58,8 +58,7 @@ class FileLinker(Script):
 
         dir_color_path = f"{HOME}/.dircolors"
         self.shell.exec(
-            "Using dircolor from default",
-            f"dircolors -p > {dir_color_path}"
+            "Using dircolor from default", f"dircolors -p > {dir_color_path}"
         )
         if self._is_wsl():
             # In WSL, folders in Windows storage look as OTHER_WRITABLE, so OTHER_WRITABLE is set as same as DIR.

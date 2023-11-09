@@ -20,14 +20,14 @@ class SshKey(Script):
         self.shell.exec_list(
             "Decrypting id_ed25519",
             f'ln -sf "{self.proj_root}"/.ssh {HOME}/',
-            f'''sudo gpg --decrypt \
+            f"""sudo gpg --decrypt \
                     --batch \
                     --yes \
                     --cipher-algo=AES256 \
                     --passphrase="{pw}" \
                     --output={self.HOME}/.ssh/id_ed25519 \
                     {self.HOME}/.ssh/id_ed25519.gpg
-            ''',
+            """,
             f"sudo chown $(id -un):$(id -gn) {self.HOME}/.ssh/id_ed25519",
         )
 

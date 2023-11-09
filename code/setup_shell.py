@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import os
 from argparse import ArgumentParser
-from getpass import getuser
-from pathlib import Path
 
 from link_files import FileLinker
 from script import Script

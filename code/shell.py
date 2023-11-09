@@ -1,9 +1,13 @@
-from getpass import getuser
 import os
 import subprocess
+from getpass import getuser
 from sys import stderr
 from time import time
-from typing import Callable, Dict, Tuple
+from typing import (
+    Callable,
+    Dict,
+    Tuple,
+)
 
 
 class Shell:

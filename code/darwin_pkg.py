@@ -1,10 +1,8 @@
 from argparse import Namespace
 from pathlib import Path
 
-from script import Script
-
-from script import Script
 from package_manager import PackageManager
+from script import Script
 
 
 class DarwinPreparation(Script):
