@@ -1,4 +1,5 @@
 source $HOME/.shinit
+[ -s $HOME/.openai.shrc ] && source $HOME/.openai.shrc  # export OPENAI_API_KEY
 
 zsh_completion_path=$HOME/.local/share/zsh/vendor-completions
 bash_completion_path=$HOME/.local/share/bash-completion/completions
