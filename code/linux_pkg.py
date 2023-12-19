@@ -71,6 +71,18 @@ class LinuxAMD64(Script):
             "Installing gotop", self.github_dl_cmd("xxxserxxx/gotop", "linux_amd64.tgz")
         )
 
+        self.shell.exec_list(
+            "Installing btop++",
+            self.github_dl_cmd(
+                "aristocratos/btop",
+                "x86_64-linux-musl.tbz",
+                binpath="/tmp",
+                tar_extract_flags="xj",
+            ),
+            "cd /tmp/btop && make install PREFIX=$HOME/.local",
+            "rm -rf /tmp/btop",
+        )
+
         self._install_bat()
 
         self.shell.exec(
@@ -216,13 +228,14 @@ class LinuxAMD64(Script):
         suffix: str,
         strip: int = 0,
         binpath: str = "$HOME/.local/bin",
+        tar_extract_flags: str = "xz",
     ):
         cmd = f"""curl -s https://api.github.com/repos/{user_repo}/releases/latest |
 		grep browser_download_url | 
 		grep -Pio 'https://.*?'{suffix}  |
         head -n 1 |
 		xargs curl -L | 
-		tar xz -C {binpath}"""
+		tar {tar_extract_flags} -C {binpath}"""
         if strip:
             cmd += f" --strip {strip}"
 
