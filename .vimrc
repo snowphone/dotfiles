@@ -159,7 +159,7 @@ endif
 " #######################
 if has("nvim")
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-	Plug 'p00f/nvim-ts-rainbow'
+	Plug 'HiPhish/rainbow-delimiters.nvim'
 else
 	" Support highlighting for lots of languages
 	set re=0 " Disable old regex engine for performance
