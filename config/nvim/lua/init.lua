@@ -159,4 +159,11 @@ require("nvim-treesitter.configs").setup {
 }
 
 require('rainbow-delimiters.setup').setup {
+	query = {
+		-- Use parentheses by default
+		[''] = 'rainbow-delimiters',
+		-- Use blocks for Lua
+		lua = 'rainbow-blocks',
+		latex = 'rainbow-blocks',
+	},
 }
