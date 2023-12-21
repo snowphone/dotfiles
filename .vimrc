@@ -484,13 +484,39 @@ endfunction
 " Pipe selected visual block -- CHARACTER WISE -- to command.
 " <C-u> after colon is used to cancel " '<,'> ", and it will be piped to
 " command's stdin.
-xnoremap <leader>c :<C-u> call PipeRangedSelection()<CR>
 
-function! PipeRangedSelection()
-	let cmd = input("Command: ")
-	redraw
-	echo system(cmd, GetVisualSelection(visualmode()))
-endfunction
+if has("nvim")
+lua <<EOF
+function PipeRangedSelection()
+    local cmd = vim.fn.input("Command: ")
+	local body = vim.fn.GetVisualSelection(vim.fn.visualmode())
+    vim.cmd("redraw")
+    local fname = os.tmpname()
+    local fp = io.open(fname, "w")
+    fp:write(body)
+    fp:close()
+
+	-- It's like `cmd <tmpfile` and `cat tmpfile | cmd`.
+	-- The former does not need a shell extension so I chose the former one.
+	vim.cmd("let g:floaterm_autoinsert=0")
+	vim.cmd("FloatermNew " .. cmd .. " <" .. fname)
+	vim.cmd("let g:floaterm_autoinsert=1")
+    os.remove(fname)
+end
+EOF
+
+xnoremap <leader>c :<C-u> lua PipeRangedSelection()<CR>
+
+else
+	xnoremap <leader>c :<C-u> call PipeRangedSelection()<CR>
+
+	function! PipeRangedSelection()
+		let cmd = input("Command: ")
+		redraw
+		echo system(cmd, GetVisualSelection(visualmode()))
+	endfunction
+endif
+
 
 " Forked from https://stackoverflow.com/a/61486601
 function! GetVisualSelection(mode)
