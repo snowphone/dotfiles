@@ -84,6 +84,7 @@ alias cd='pushd'
 alias back='popd'
 
 
+command -v kubectl &> /dev/null && source <(kubectl completion zsh)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
