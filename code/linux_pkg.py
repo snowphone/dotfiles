@@ -26,6 +26,15 @@ class LinuxAMD64(Script):
 
         self.shell.run(f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf")
 
+        self.shell.exec(
+            "Installing MinySubtitleConverter",
+            self.github_dl_cmd(
+                "snowphone/MinySubtitleConverter",
+                "linux-amd64.tar.gz",
+            ),
+        )
+        return
+
         self.shell.exec_list(
             "Installing subtitle matcher",
             "rm -rf /tmp/subtitle_matcher",
