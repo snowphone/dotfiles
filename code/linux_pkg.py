@@ -25,6 +25,16 @@ class LinuxAMD64(Script):
         self._mkdir(f"{self.HOME}/.local/bin")
 
         self.shell.run(f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf")
+
+        self.shell.exec_list(
+            "Installing subtitle matcher",
+            "rm -rf /tmp/subtitle_matcher",
+            "git clone https://github.com/snowphone/Subtitle-Matcher.git /tmp/subtitle_matcher",
+            "cd /tmp/subtitle_matcher && make install",
+            "python3 -m pip install tabulate",
+            "rm -rf /tmp/subtitle_matcher",
+        )
+
         self.shell.exec(
             "Installing pudb, a python debugger", "pip3 install --user pudb"
         )
