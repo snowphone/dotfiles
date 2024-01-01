@@ -36,3 +36,4 @@ sed -i 's|https://github.com/snowphone/dotfiles|git@github.com:snowphone/dotfile
 - [ ] gdb
 - [ ] cargo install commitgpt
 - [ ] cargo install macchina
+- [ ] cloudflare
