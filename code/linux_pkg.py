@@ -27,6 +27,11 @@ class LinuxAMD64(Script):
         self.shell.run(f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf")
 
         self.shell.exec(
+            "Installing visidata",
+            "pip3 install --user visidata",
+        )
+
+        self.shell.exec(
             "Installing MinySubtitleConverter",
             self.github_dl_cmd(
                 "snowphone/MinySubtitleConverter",
