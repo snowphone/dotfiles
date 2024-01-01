@@ -33,7 +33,6 @@ class LinuxAMD64(Script):
                 "linux-amd64.tar.gz",
             ),
         )
-        return
 
         self.shell.exec_list(
             "Installing subtitle matcher",
