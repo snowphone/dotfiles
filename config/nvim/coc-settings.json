@@ -46,6 +46,5 @@
 		"--config",
 		"hard_tabs=true"
 	],
-	"snippets.ultisnips.enable": false,
 	"suggest.noselect": true
 }
