@@ -1,13 +1,18 @@
 #!/bin/sh
 
-case "$(uname -a)" in
-	*WSL*) 
-		exec clip.exe
-		;;
-	*Darwin*) 
-		exec pbcopy
-		;;
-	*)
-		exec xclip
-		;;
-esac
+if [ -n "$TMUX" ]; then
+	xargs -0 tmux set-buffer
+else
+
+	case "$(uname -a)" in
+		*WSL*) 
+			exec clip.exe
+			;;
+		*Darwin*) 
+			exec pbcopy
+			;;
+		*)
+			exec xclip
+			;;
+	esac
+fi
