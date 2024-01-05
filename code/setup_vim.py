@@ -43,6 +43,7 @@ class Vim(Script):
 
         self.shell.exec_list(
             "Symbolic linking other files",
+            f'mkdir -p {HOME}/.vim',
             f'ln -sf "{proj_root}"/config/nvim/coc-settings.json {HOME}/.vim/',
             f'ln -sf "{proj_root}"/.coc.vimrc {HOME}/',
             f'ln -fs "{proj_root}"/.latexmkrc {HOME}/.latexmkrc',
