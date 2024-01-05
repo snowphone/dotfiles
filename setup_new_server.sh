@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo apt-get install -y fail2ban xorg
+sudo apt-get install -y fail2ban xorg libssl-dev
 cargo install macchina
 cargo install --git https://github.com/snowphone/CommitGPT
 git clone https://github.com/snowphone/cloudflare-cli && cd cloudflare-cli && make install
