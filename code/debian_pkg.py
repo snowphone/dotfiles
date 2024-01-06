@@ -98,6 +98,7 @@ class DebianPackageManager(PackageManager):
                 "firefox",
                 "zathura",
                 "language-pack-ko",
+                "gpicview",
                 "fonts-noto-cjk",
                 "/tmp/kime.deb",
                 "vivaldi-stable",
