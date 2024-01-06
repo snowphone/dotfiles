@@ -29,6 +29,8 @@ sudo sed -Ezi.orig \
 sudo /usr/lib/update-notifier/update-motd-updates-available --force
 sudo run-parts /etc/update-motd.d
 
+# Graphics card accelerateion (/dev/dri)
+sudo apt install --install-recommends linux-generic-hwe-22.04
 
 # Other
 sudo apt-get install -y \
