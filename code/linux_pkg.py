@@ -52,6 +52,11 @@ class LinuxAMD64(Script):
             "Installing pudb, a python debugger", "pip3 install --user pudb"
         )
         self.shell.exec_list(
+            "Installing yq, an yaml parser",
+            "wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ~/.local/bin/yq",
+            "chmod +x ~/.local/bin/yq",
+        )
+        self.shell.exec_list(
             "Installing yt-dlp",
             "pip3 install --user --force-reinstall https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz",
             f"ln -sf {self.HOME}/.local/bin/yt-dlp {self.HOME}/.local/bin/youtube-dl",
