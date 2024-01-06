@@ -75,6 +75,7 @@ class Vim(Script):
 
         self.shell.exec_list(
             "Installing plugins for neovim",
+            "python3 -m pip install --upgrade pynvim",
             "nvim --headless -c PlugInstall -c quitall",
             "nvim --headless -c CocUpdateSync -c quitall",
             "nvim --headless -c TSUpdateSync -c quitall",
