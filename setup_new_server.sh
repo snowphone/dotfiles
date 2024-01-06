@@ -42,6 +42,9 @@ cargo install macchina
 cargo install --git https://github.com/snowphone/CommitGPT
 git clone https://github.com/snowphone/cloudflare-cli && cd cloudflare-cli && make install
 
+# 부팅시 네트워크 잡느라 너무 느려지는 상황 방지
+systemctl mask systemd-networkd-wait-online.service
+
 timedatectl set-timezone 'Asia/Seoul'
 
 # Fail2ban and sshd
