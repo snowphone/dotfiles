@@ -232,6 +232,11 @@ nmap <silent> <leader>T  :write! <bar> TestFile    <CR>
 aug python
 	autocmd FileType python	nmap <silent> <leader>t  :write! <bar> TestNearest --verbose<CR>
 	autocmd FileType python	nmap <silent> <leader>T  :write! <bar> TestFile    --verbose<CR>
+	autocmd FileType python	set cursorcolumn
+aug end
+
+aug yaml
+	autocmd FileType yaml set cursorcolumn
 aug end
 
 let test#strategy = "floaterm"
