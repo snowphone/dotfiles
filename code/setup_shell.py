@@ -24,6 +24,11 @@ class ShellSwitcher(Script):
         else:
             self._switch_to_zsh()
 
+        self.shell.exec(
+            "Installing virtualenvwrapper",
+            "python3 -m pip install --upgrade virtualenvwrapper",
+        )
+
         self.shell.exec_list(
             "Running initialization commands in zsh",
             f"zsh {HOME}/.zshrc",
@@ -48,10 +53,6 @@ class ShellSwitcher(Script):
         pattern = f"'{line_num}s|{HOME}:.*$|{HOME}:{new_shell}|'"
         self.shell.sudo_exec(
             "Changing default shell to zsh", f"sed -ie {pattern} /etc/passwd"
-        )
-
-        self.shell.exec(
-            "Installing virtualenvwrapper", "python3 -m pip install virtualenvwrapper"
         )
 
 

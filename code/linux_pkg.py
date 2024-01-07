@@ -28,7 +28,7 @@ class LinuxAMD64(Script):
 
         self.shell.exec(
             "Installing visidata",
-            "pip3 install --user visidata",
+            "pip3 install --upgrade visidata",
         )
 
         self.shell.exec(
@@ -44,12 +44,12 @@ class LinuxAMD64(Script):
             "rm -rf /tmp/subtitle_matcher",
             "git clone https://github.com/snowphone/Subtitle-Matcher.git /tmp/subtitle_matcher",
             "cd /tmp/subtitle_matcher && make install",
-            "python3 -m pip install tabulate",
+            "python3 -m pip install --upgrade tabulate",
             "rm -rf /tmp/subtitle_matcher",
         )
 
         self.shell.exec(
-            "Installing pudb, a python debugger", "pip3 install --user pudb"
+            "Installing pudb, a python debugger", "pip3 install --upgrade pudb"
         )
         self.shell.exec_list(
             "Installing yq, an yaml parser",
@@ -64,12 +64,12 @@ class LinuxAMD64(Script):
 
         self.shell.exec(
             "Installing tools for python",
-            "pip3 install --user black isort poetry",
+            "pip3 install --upgrade black isort poetry",
         )
 
         self.shell.exec(
             "Installing caterpillar, an hls downloader",
-            "pip3 install --user caterpillar-hls",
+            "pip3 install --upgrade caterpillar-hls",
         )
         if self.args.latex:
             self.shell.sudo_exec("Refreshing fonts", "fc-cache -f -v")
@@ -113,9 +113,15 @@ class LinuxAMD64(Script):
 
         self._install_bat()
 
-        self.shell.exec(
+        self.shell.exec_list(
             "Installing glow",
             self.github_dl_cmd("charmbracelet/glow", "linux_x86_64.tar.gz"),
+            f"mv {self.HOME}/.local/bin/completions/glow.zsh {self.zsh_completion_path}/_glow",
+            f"mv {self.HOME}/.local/bin/completions/glow.bash {self.bash_completion_path}/glow",
+            f"mv {self.HOME}/.local/bin/manpages/glow.1.gz {self.man_path}/glow.1.gz",
+            f"rm -rf {self.HOME}/.local/bin/completions",
+            f"rm -rf {self.HOME}/.local/bin/manpages",
+
         )
 
         self.shell.exec(
