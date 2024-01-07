@@ -439,6 +439,8 @@ function Run()
 		FloatermNew elixir "%:p"
 	elseif &filetype == 'sh'
 		FloatermNew bash "%:p"
+	elseif &filetype == 'yaml'
+		FloatermNew bash -c 'yq -e .apiVersion < "%:p" &> /dev/null && yq -e .kind < "%:p" &> /dev/null && kubectl apply -f "%:p"'
 	elseif &filetype == 'markdown'
 		FloatermNew glow "%:p"
 	elseif &filetype == 'typescript'
@@ -458,7 +460,7 @@ function Run()
 endfunction
 
 function Compile()
-	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml", "elixir"]
+	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml", "elixir", "yaml"]
 
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
