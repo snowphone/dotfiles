@@ -30,6 +30,12 @@
 			]
 		}
 	},
+	"markdownlint.config": {
+		"default": true,
+		"MD007": {
+			"indent": 4
+		}
+	},
 	"pyright.inlayHints.functionReturnTypes": true,
 	"pyright.inlayHints.variableTypes": true,
 	"pyright.organizeimports.provider": "isort",
