@@ -52,5 +52,8 @@
 		"--config",
 		"hard_tabs=true"
 	],
-	"suggest.noselect": true
+	"suggest.noselect": true,
+	"yaml.schemas": {
+		"kubernetes": "/*.yaml" 
+	}
 }
