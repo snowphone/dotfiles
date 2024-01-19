@@ -20,3 +20,6 @@ config/calibre/
 config/cava/
 config/commitgpt/
 config/nautilus/
+config/k9s/
+config/helm/
+config/gpicview/
