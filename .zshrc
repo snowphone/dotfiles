@@ -85,6 +85,7 @@ alias back='popd'
 
 
 command -v kubectl &> /dev/null && source <(kubectl completion zsh)
+command -v k9s &> /dev/null && source <(k9s completion zsh)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

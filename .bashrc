@@ -142,6 +142,9 @@ TRUELINE_VIMODE_INS_CURSOR='under'
 [ ! -f ~/.trueline.sh ] && curl -s https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o ~/.trueline.sh
 source $HOME/.trueline.sh
 
+command -v kubectl &> /dev/null && source <(kubectl completion bash)
+command -v k9s &> /dev/null && source <(k9s completion bash)
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -f ~/.asdf ]; then
