@@ -36,7 +36,7 @@ raw_response=$(jq -n --arg MODEL "$MODEL" --arg CONTENT "$CONTENT"  '
 resp=$(printf "%s" "$raw_response" | jq -r '.choices[0].message.content')
 
 if [ "$resp" = 'null' ]; then
-	printf "$raw_response" | jq
+	printf "%s" "$raw_response" | jq
 else
-	printf "$resp" | glow
+	printf "%s" "$resp" | glow
 fi
