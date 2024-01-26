@@ -39,6 +39,14 @@ class LinuxAMD64(Script):
             ),
         )
 
+        self.shell.exec(
+            "Installing k9s",
+            self.github_dl_cmd(
+                "derailed/k9s",
+                "Linux_amd64.tar.gz",
+            ),
+        )
+
         self.shell.exec_list(
             "Installing subtitle matcher",
             "rm -rf /tmp/subtitle_matcher",
@@ -121,7 +129,6 @@ class LinuxAMD64(Script):
             f"mv {self.HOME}/.local/bin/manpages/glow.1.gz {self.man_path}/glow.1.gz",
             f"rm -rf {self.HOME}/.local/bin/completions",
             f"rm -rf {self.HOME}/.local/bin/manpages",
-
         )
 
         self.shell.exec(
