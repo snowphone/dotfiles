@@ -141,18 +141,6 @@ class LinuxAMD64(Script):
             ),
         )
 
-        if self.args.golang:
-            ok, go_ver, _ = self.shell.exec(
-                "Fetching latest golang version",
-                "curl -Ls https://golang.org/VERSION?m=text",
-            )
-            if not ok:
-                return
-            self.shell.exec(
-                "Installing golang",
-                f"curl -s https://dl.google.com/go/{go_ver}.linux-amd64.tar.gz | tar xz -C {self.HOME}/.local/ --strip 1",
-            )
-
         if self.args.java:
             self._install_java()
 
@@ -287,7 +275,6 @@ if __name__ == "__main__":
     argparser = ArgumentParser()
     argparser.add_argument("--latex", action="store_true")
     argparser.add_argument("--rust", action="store_true")
-    argparser.add_argument("--golang", action="store_true")
     argparser.add_argument("--java", action="store_true")
     argparser.add_argument("--elixir", action="store_true")
     argparser.add_argument(

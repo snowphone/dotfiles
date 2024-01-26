@@ -43,9 +43,15 @@ class DebianPreparation(Script):
         )
 
         self.shell.sudo_exec(
+            "Adding golang repository",
+            "add-apt-repository -y ppa:longsleep/golang-backports",
+        )
+
+        self.shell.sudo_exec(
             "Adding neovim repository",
             "add-apt-repository -y ppa:neovim-ppa/stable",
         )
+
         if self.shell.env.get("DISPLAY", False):
             self.shell.sudo_exec_list(
                 "Adding gnome-epub-thumbnailer repository",
@@ -129,6 +135,8 @@ class DebianPackageManager(PackageManager):
                 "libncurses-dev",
                 "openjdk-11-jdk",
             ]
+        if self.args.golang:
+            pkgs += ["golang-go"]
         return pkgs
 
     def do_misc(self):
