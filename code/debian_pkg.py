@@ -74,7 +74,7 @@ class DebianPackageManager(PackageManager):
 			python3-dev python3 python3-pip python3-venv
 			bfs tree htop ripgrep silversearcher-ag rsync jq
 			bear sshpass w3m traceroute git-extras multitail
-			neofetch mmv
+			neofetch mmv rar
 			poppler-utils mediainfo
 			parallel moreutils num-utils
 			lbzip2 pigz pixz p7zip-full

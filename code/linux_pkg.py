@@ -31,6 +31,11 @@ class LinuxAMD64(Script):
             "pip3 install --upgrade visidata",
         )
 
+        self.shell.sudo_exec(
+            "Installing tldr",
+            "snap install tldr",
+        )
+
         self.shell.exec(
             "Installing MinySubtitleConverter",
             self.github_dl_cmd(
