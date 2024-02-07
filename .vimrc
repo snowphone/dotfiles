@@ -262,6 +262,9 @@ Plug 'google/vim-glaive'
 
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
+" Markdown renderer
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
 " #######################
 " ##### neovim only #####
 " #######################
@@ -442,7 +445,7 @@ function Run()
 	elseif &filetype == 'yaml'
 		FloatermNew bash -c 'yq -e .apiVersion < "%:p" &> /dev/null && yq -e .kind < "%:p" &> /dev/null && kubectl apply -f "%:p"'
 	elseif &filetype == 'markdown'
-		FloatermNew glow "%:p"
+		:MarkdownPreview
 	elseif &filetype == 'typescript'
 		let $TS_NODE_TRANSPILE_ONLY='true'
 		FloatermNew ts-node "%:p"
