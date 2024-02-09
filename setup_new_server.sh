@@ -75,6 +75,9 @@ if  ! grep 'Port 61022' /etc/ssh/sshd_config &> /dev/null ; then
 	sudo sed -i -r 's/(# *)?Port [0-9]+/Port 61022\nPort 22/' /etc/ssh/sshd_config
 fi
 
+# If LC_ALL is not set, linux `sort` command works not correctly.
+sudo update-locale LC_ALL=C.UTF-8
+
 # Manual things
 cat <<'EOF'
 - Restore crontab and backups created by crontab.
