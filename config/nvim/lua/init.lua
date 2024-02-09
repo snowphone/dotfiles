@@ -103,6 +103,8 @@ require("nvim-treesitter.configs").setup {
 		"latex",
 		"lua",
 		"make",
+		"markdown",
+		"markdown_inline",
 		"perl",
 		"php",
 		"python",
