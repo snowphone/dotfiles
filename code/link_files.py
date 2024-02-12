@@ -96,7 +96,7 @@ class FileLinker(Script):
                 f'ln -fs "{proj_root}"/win_env_conv.shrc {WIN_CONV_PATH}',
             )
 
-        if self._is_wsl() and os.path.exists("/mnt/c/Users/mjo97"):
+        if self._is_wsl() and os.path.exists("/mnt/c/Users"):
             link_cmds = [
                 f"ln -nfs $USERPROFILE/Downloads $HOME/",
                 f"ln -nfs $USERPROFILE/Dropbox/Documents $HOME/",
