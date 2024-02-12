@@ -3,7 +3,7 @@
 ## Installation
 ~~~bash
 git clone 'https://snowphone@github.com/snowphone/dotfiles' ~/.dotfiles && \
-cd ~/.dotfiles && ./install.sh -d [debian | redhat | darwin] [--java|--latex|--boost|--misc|--typescript|--rust]
+cd ~/.dotfiles && ./install.sh -d [debian | redhat | darwin] [--java|--latex|--boost|--misc|--typescript]
 ~~~
 Note that you may need to enter the password to decrypt the ssh key.
 

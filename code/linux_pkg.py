@@ -62,6 +62,16 @@ class LinuxAMD64(Script):
         )
 
         self.shell.exec(
+            "Installing commitgpt",
+            f"source $HOME/.cargo/env && cargo install --git https://github.com/snowphone/CommitGPT",
+        )
+
+        self.shell.exec(
+            "Installing macchina",
+            f"source $HOME/.cargo/env && cargo install macchina",
+        )
+
+        self.shell.exec(
             "Installing pudb, a python debugger", "pip3 install --upgrade pudb"
         )
         self.shell.exec_list(
@@ -87,11 +97,10 @@ class LinuxAMD64(Script):
         if self.args.latex:
             self.shell.sudo_exec("Refreshing fonts", "fc-cache -f -v")
 
-        if self.args.rust:
-            self.shell.exec(
-                "Installing rust",
-                "curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path",
-            )
+        self.shell.exec(
+            "Installing rust",
+            "curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path",
+        )
 
         self._mkdir(self.zsh_completion_path)
         self._mkdir(self.bash_completion_path)
@@ -279,7 +288,6 @@ class LinuxAMD64(Script):
 if __name__ == "__main__":
     argparser = ArgumentParser()
     argparser.add_argument("--latex", action="store_true")
-    argparser.add_argument("--rust", action="store_true")
     argparser.add_argument("--java", action="store_true")
     argparser.add_argument("--elixir", action="store_true")
     argparser.add_argument(

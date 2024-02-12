@@ -38,7 +38,7 @@ class DarwinPackageManager(PackageManager):
 			parallel sponge coreutils num-utils
 			lbzip2 pigz pixz p7zip
 			ffmpeg
-			translate-shell dict jq
+			translate-shell dict jq rust
 
 			yt-dlp fd ripgrep-all gotop bat glow
 			""".split()
@@ -51,8 +51,6 @@ class DarwinPackageManager(PackageManager):
             print("X11 is not suppored")
         if self.args.misc:
             print("Misc is not suppored")
-        if self.args.rust:
-            pkgs.append("rust")
         if self.args.golang:
             pkgs.append("go")
         if self.args.java:
@@ -75,6 +73,15 @@ class DarwinPackageManager(PackageManager):
         HOME = Path.home()
         self.shell.exec("Updating PATH", f"printf '%s' '{path}' > {HOME}/.paths")
 
+        self.shell.exec(
+            "Installing commitgpt",
+            f"source {HOME}/.cargo/env && cargo install --git https://github.com/snowphone/CommitGPT",
+        )
+
+        self.shell.exec(
+            "Installing macchina",
+            f"source $HOME/.cargo/env && cargo install macchina",
+        )
 
 class Mac(Script):
     def __init__(self, args: Namespace):

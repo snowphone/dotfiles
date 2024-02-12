@@ -78,6 +78,7 @@ class DebianPackageManager(PackageManager):
 			poppler-utils mediainfo
 			parallel moreutils num-utils
 			lbzip2 pigz pixz p7zip-full
+            libssl-dev pkg-config
 			ffmpeg
 			translate-shell dict
 			""".split()
