@@ -99,11 +99,19 @@ class FileLinker(Script):
         if self._is_wsl() and os.path.exists("/mnt/c/Users"):
             link_cmds = [
                 f"ln -nfs $USERPROFILE/Downloads $HOME/",
-                f"ln -nfs $USERPROFILE/Dropbox/Documents $HOME/",
                 f"ln -nfs $USERPROFILE/Videos $HOME/",
             ]
+            if os.path.exists("/mnt/c/Users/mjo97"):
+                link_cmds += [
+                    f"ln -nfs $USERPROFILE/Dropbox/Documents $HOME/",
+                ]
+            else:
+                link_cmds += [
+                    f"ln -nfs $USERPROFILE/Documents $HOME/",
+                ]
+
             if not os.path.islink(f"{HOME}/winHome"):
-                link_cmds.append(f"ln -fs -T $USERPROFILE/ {HOME}/winHome")
+                link_cmds.append(f"ln -fs -T $USERPROFILE {HOME}/winHome")
 
             link_cmds = [f"source {WIN_CONV_PATH}; " + it for it in link_cmds]
             self.shell.exec_list("Symbolic linking windows folders", *link_cmds)
