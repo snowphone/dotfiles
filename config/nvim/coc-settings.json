@@ -34,7 +34,9 @@
 		"default": true,
 		"MD007": {
 			"indent": 4
-		}
+		},
+		"MD013": false,
+		"MD036": false
 	},
 	"pyright.inlayHints.functionReturnTypes": true,
 	"pyright.inlayHints.variableTypes": true,
@@ -54,6 +56,6 @@
 	],
 	"suggest.noselect": true,
 	"yaml.schemas": {
-		"kubernetes": "/*.yaml" 
+		"kubernetes": "/*.yaml"
 	}
 }
