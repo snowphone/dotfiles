@@ -144,6 +144,7 @@ source $HOME/.trueline.sh
 
 command -v kubectl &> /dev/null && source <(kubectl completion bash)
 command -v k9s &> /dev/null && source <(k9s completion bash)
+command -v helm &> /dev/null && source <(helm completion bash)
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
