@@ -41,6 +41,8 @@ class DarwinPackageManager(PackageManager):
 			translate-shell dict jq rust
 
 			yt-dlp fd ripgrep-all gotop bat glow
+
+            tldr yq btop bat glow k9s saulpw/vd/visidata yt-dlp
 			""".split()
 
         if self.args.latex:
