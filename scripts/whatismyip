@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 whatismyip() {
-	curl 'https://ipinfo.io/ip'
+	curl -s 'https://ipinfo.io/ip'
 }
 
 whatismyip
