@@ -4,7 +4,7 @@
 SSH_SERVICE_NAME="ssh"
 
 # Define the host to test SSH connectivity.
-HOST_TO_TEST="sixtyfive.me"
+HOST_TO_TEST="sixtyfive@sixtyfive.me"
 
 # Define a port number for SSH (default is 22).
 if [ $# -eq 0 ]; then
@@ -26,10 +26,11 @@ for SSH_PORT in "${SSH_PORTS[@]}"; do
 		sudo systemctl restart "$SSH_SERVICE_NAME"
 
 		curl -H "Title: Restarting ssh daemon" \
-			 -H "X-Priority: high" \
+			 -H "X-Priority: default" \
 			 -d "$msg" \
 			 https://ntfy.sixtyfive.me/nas
 	else
 		logger "[sshd_monitor] SSH connection on $SSH_PORT successful."
 	fi
+	sleep 10
 done
