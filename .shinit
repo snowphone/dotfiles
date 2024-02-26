@@ -165,6 +165,9 @@ if [ -f "$HOME/.cargo/env" ]; then
 	. "$HOME/.cargo/env"
 fi
 
+if [ -d "$HOME/.cargo/bin" ]; then
+	PATH=$PATH:$HOME/.cargo/bin
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 export KUBECONFIG=$HOME/.kube/config
