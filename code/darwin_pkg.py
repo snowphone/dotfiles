@@ -48,7 +48,7 @@ class DarwinPackageManager(PackageManager):
 
 			yt-dlp fd ripgrep-all gotop bat glow
 
-            tldr yq btop bat glow k9s saulpw/vd/visidata yt-dlp
+            tldr yq btop bat glow k9s yt-dlp
 			""".split()
 
         if self.args.latex:
@@ -113,6 +113,11 @@ class Mac(Script):
         self.shell.exec(
             "Installing caterpillar, an hls downloader",
             "pip3 install --user caterpillar-hls",
+        )
+
+        self.shell.exec(
+            "Installing visidata",
+            "pip3 install --user visidata",
         )
 
         self._mkdir(self.zsh_completion_path)
