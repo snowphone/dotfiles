@@ -120,6 +120,8 @@ class Mac(Script):
             "pip3 install --user visidata",
         )
 
+        self._install_node()
+
         self._mkdir(self.zsh_completion_path)
         self._mkdir(self.bash_completion_path)
         self._mkdir(self.man_path)
@@ -128,3 +130,28 @@ class Mac(Script):
             "Removing auxiliary files",
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
+
+    def _install_node(self):
+        self.shell.exec(
+            "Installing nvm",
+            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | PROFILE=/dev/null bash",
+            # Set PROFILE to /dev/null to not update .zshrc or .bashrc
+        )
+        self._sourced_exec(
+            "Installing nodejs lts via nvm",
+            f"nvm install --lts",
+        )
+        self._sourced_exec(
+            "Installing yarn",
+            f"npm install --global yarn",
+        )
+
+        if self.args.typescript:
+            self._sourced_exec(
+                "Installing typescript related things",
+                "npm install -g typescript ts-node pkg tslib",
+            )
+        return
+
+    def _sourced_exec(self, message: str, cmd: str):
+        return self.shell.exec(message, f"source {self.HOME}/.nvm/nvm.sh && {cmd}")
