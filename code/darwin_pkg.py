@@ -49,6 +49,9 @@ class DarwinPackageManager(PackageManager):
 			yt-dlp fd ripgrep-all gotop bat glow
 
             tldr yq btop bat glow k9s yt-dlp
+
+            karabiner-elements firefox microsoft-edge code-cli scroll-reverser
+            iterm2 
 			""".split()
 
         if self.args.latex:
