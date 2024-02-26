@@ -12,6 +12,12 @@ class DarwinPreparation(Script):
     def run(self):
         "Installs homebrew if not exists"
 
+        self._mkdir(f"{self.HOME}/.pip")
+        self.shell.exec(
+                "Symlinking pip.conf",
+                f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf"
+                )
+
         if self._exists("brew"):
             return
 
@@ -77,12 +83,12 @@ class DarwinPackageManager(PackageManager):
 
         self.shell.exec(
             "Installing commitgpt",
-            f"source {HOME}/.cargo/env && cargo install --git https://github.com/snowphone/CommitGPT",
+            f"cargo install --git https://github.com/snowphone/CommitGPT",
         )
 
         self.shell.exec(
             "Installing macchina",
-            f"source $HOME/.cargo/env && cargo install macchina",
+            f"cargo install macchina",
         )
 
 class Mac(Script):
@@ -97,10 +103,8 @@ class Mac(Script):
         self.man_path = f"{self.HOME}/.local/share/man/man1"
 
     def run(self):
-        self._mkdir(f"{self.HOME}/.pip")
         self._mkdir(f"{self.HOME}/.local/bin")
 
-        self.shell.run(f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf")
         self.shell.exec(
             "Installing pudb, a python debugger", "pip3 install --user pudb"
         )
