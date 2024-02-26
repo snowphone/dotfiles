@@ -12,11 +12,11 @@ class DarwinPreparation(Script):
     def run(self):
         "Installs homebrew if not exists"
 
-        self._mkdir(f"{self.HOME}/.pip")
+        self._mkdir(f"{self.HOME}/.config/pip")
         self.shell.exec(
-                "Symlinking pip.conf",
-                f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf"
-                )
+            "Symlinking pip.conf",
+            f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.config/pip/pip.conf",
+        )
 
         if self._exists("brew"):
             return
@@ -90,6 +90,7 @@ class DarwinPackageManager(PackageManager):
             "Installing macchina",
             f"cargo install macchina",
         )
+
 
 class Mac(Script):
     def __init__(self, args: Namespace):
