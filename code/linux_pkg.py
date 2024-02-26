@@ -178,7 +178,7 @@ class LinuxAMD64(Script):
     def _install_node(self):
         self.shell.exec(
             "Installing nvm",
-            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | PROFILE=/dev/null bash",
+            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | PROFILE=/dev/null bash",
             # Set PROFILE to /dev/null to not update .zshrc or .bashrc
         )
         self._sourced_exec(
