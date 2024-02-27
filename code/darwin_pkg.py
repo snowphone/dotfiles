@@ -110,6 +110,11 @@ class Mac(Script):
         self._mkdir(f"{self.HOME}/.local/bin")
 
         self.shell.exec(
+            "Aliasing python to python3",
+            "ln -sf python3 /usr/local/bin/python",
+        )
+
+        self.shell.exec(
             "Installing pudb, a python debugger", "pip3 install --user pudb"
         )
 
