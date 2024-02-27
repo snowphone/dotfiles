@@ -37,7 +37,7 @@ class DarwinPackageManager(PackageManager):
     def pkgs(self):
         pkgs = """
 			llvm vim neovim git rename wget tmux make gzip zip unzip figlet
-			cmake poppler
+			cmake poppler watch
 			tree htop ripgrep the_silver_searcher rsync
 			bear w3m git-extras multitail
 			neofetch mmv
@@ -51,7 +51,7 @@ class DarwinPackageManager(PackageManager):
 
             tldr yq btop bat glow k9s yt-dlp
 
-            karabiner-elements firefox microsoft-edge code-cli scroll-reverser
+            karabiner-elements firefox microsoft-edge code-cli
             iterm2 
 			""".split()
 
