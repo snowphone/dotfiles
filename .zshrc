@@ -44,6 +44,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/virtualenvwrapper
   zgen oh-my-zsh plugins/asdf
   zgen oh-my-zsh plugins/poetry
+  zgen oh-my-zsh plugins/gnu-utils
 
   zgen load lukechilds/zsh-better-npm-completion
   zgen load Aloxaf/fzf-tab
