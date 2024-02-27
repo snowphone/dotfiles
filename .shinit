@@ -38,13 +38,8 @@ if command -v rsync 2>&1 > /dev/null; then
 	alias cp='rsync -ah --info=progress2'
 fi
 
-if [ $(uname) = "Darwin" ]; then
-	alias ls='ls -hG'
-	alias ll='ls -hGlaFs'
-else
-	alias ls='ls --human-readable --color=always'
-	alias ll='ls --human-readable -l --all --classify --size'
-fi
+alias ls='ls --human-readable --color=always'
+alias ll='ls --human-readable -l --all --classify --size'
 
 alias scp='scp -r'
 alias mv='mv -i'
@@ -107,7 +102,6 @@ mountedinfo() {
 			printf "Usage: $0 [--all]\n"
 			;;
 		-a|--all) 
-			# Check darwin
 			df --human-readable --print-type
 			;;
 		*) 
