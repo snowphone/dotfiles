@@ -41,7 +41,7 @@ class DarwinPackageManager(PackageManager):
 			tree htop ripgrep the_silver_searcher rsync
 			bear w3m git-extras multitail
 			neofetch mmv
-			parallel sponge coreutils num-utils
+			parallel sponge coreutils num-utils gnu-sed
 			lbzip2 pigz pixz p7zip
 			ffmpeg
 			translate-shell dict jq rust
@@ -73,7 +73,7 @@ class DarwinPackageManager(PackageManager):
         TODO: Installs gdb
         """
         paths = set()
-        for pkg in self.pkgs:
+        for pkg in frozenset(self.pkgs) & {"java", "gnu-sed"}:
             ok, path, _ = self.shell.run(f"brew --prefix {pkg}")
             if not ok:
                 print(f"Problem occurred while brew --prefix {pkg}")
