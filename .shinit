@@ -5,13 +5,16 @@ export MANPATH=$HOME/.local/share/man:/usr/share/man:$MANPATH
 
 # set PATH so it includes user's private bin if it exists
 LOCALBIN="$HOME/.local/bin"
-if [ -d $LOCALBIN ] &&  ! expr match "$PATH"  ".*$LOCALBIN.*" > /dev/null; then
-		PATH="$LOCALBIN:$PATH" 
-fi
+case "$PATH" in
+	"*$LOCALBIN*") ;;
+	*) PATH="$LOCALBIN:$PATH" ;;
+esac
+
 SNAPBIN="/snap/bin"
-if [ -d $SNAPBIN ] &&  ! expr match "$PATH"  ".*$SNAPBIN.*" > /dev/null; then
-		PATH="$SNAPBIN:$PATH" 
-fi
+case "$PATH" in
+	"*$SNAPBIN*") ;;
+	*) PATH="$SNAPBIN:$PATH"
+esac
 
 BREW_PATH=$HOME/.paths
 if [ -f $BREW_PATH ]; then
@@ -156,7 +159,11 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-eval "$(dircolors $HOME/.dircolors)"
+if command -v gdircolors 2>&1 >/dev/null; then
+	eval "$(gdircolors $HOME/.dircolors)"
+else
+	eval "$(dircolors $HOME/.dircolors)"
+fi
 
 # Load sdkman
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -167,6 +174,7 @@ fi
 
 if [ -d "$HOME/.cargo/bin" ]; then
 	PATH=$PATH:$HOME/.cargo/bin
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
