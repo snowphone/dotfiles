@@ -86,13 +86,13 @@ class DarwinPackageManager(PackageManager):
         self.shell.exec("Updating PATH", f"printf '%s' '{path}' > {HOME}/.paths")
 
         self.shell.exec(
-            "Installing commitgpt",
-            f"cargo install --git https://github.com/snowphone/CommitGPT",
+            "Download karabiner configuration",
+            "curl -Lfo $HOME/.config/karabiner/karabiner.json https://gist.githubusercontent.com/snowphone/e28a836fe694a3e423ab42a37b99ba00/raw/karabiner.json",
         )
 
         self.shell.exec(
-            "Installing macchina",
-            f"cargo install macchina",
+            "Aliasing python to python3",
+            "ln -sf python3 /usr/local/bin/python",
         )
 
 
@@ -111,8 +111,13 @@ class Mac(Script):
         self._mkdir(f"{self.HOME}/.local/bin")
 
         self.shell.exec(
-            "Aliasing python to python3",
-            "ln -sf python3 /usr/local/bin/python",
+            "Installing commitgpt",
+            f"cargo install --git https://github.com/snowphone/CommitGPT",
+        )
+
+        self.shell.exec(
+            "Installing macchina",
+            f"cargo install macchina",
         )
 
         self.shell.exec(
