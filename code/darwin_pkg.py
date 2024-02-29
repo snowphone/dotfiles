@@ -94,11 +94,11 @@ class DarwinPackageManager(PackageManager):
 
         self.shell.exec_list(
             "Downloading iTerm2 config",
-            "mkdir -p '~/Library/Application Support/iTerm2/DynamicProfiles'",
-            """
+            r"mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles",
+            r"""
             cat <(echo '{ "Profiles": [') \
                 <(curl https://gist.githubusercontent.com/snowphone/7f771242e80579b52fbd06c859af3853/raw/Default.json) \
-                <(echo ']}') > '~/Library/Application Support/iTerm2/DynamicProfiles/Default.json'
+                <(echo ']}') > ~/Library/Application\ Support/iTerm2/DynamicProfiles/Default.json
             """,
         )
 
