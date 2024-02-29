@@ -145,6 +145,8 @@ class Mac(Script):
             "pip3 install --user visidata",
         )
 
+        self._install_casks()
+
         self._install_node()
 
         self._mkdir(self.zsh_completion_path)
@@ -155,6 +157,15 @@ class Mac(Script):
             "Removing auxiliary files",
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
+
+    def _install_casks(self):
+        casks = ["visual-studio-code", "xquartz"]
+
+        for cask in casks:
+            self.shell.exec(
+                f"Installing {cask}",
+                f"brew install --cask {cask}",
+            )
 
     def _install_node(self):
         self.shell.exec(
