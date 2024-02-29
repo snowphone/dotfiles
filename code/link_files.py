@@ -19,14 +19,14 @@ class FileLinker(Script):
 
         self.shell.exec_list(
             "Enabling tar to parallelize archiving files",
-            f"ln -sf -T /usr/bin/lbzip2 {HOME}/.local/bin/bzip2",
-            f"ln -sf -T /usr/bin/lbzip2 {HOME}/.local/bin/bunzip2",
-            f"ln -sf -T /usr/bin/lbzip2 {HOME}/.local/bin/bzcat",
-            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/gzip",
-            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/gunzip",
-            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/gzcat",
-            f"ln -sf -T /usr/bin/pigz {HOME}/.local/bin/zcat",
-            f"ln -sf -T /usr/bin/pixz {HOME}/.local/bin/xz",
+            f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bzip2",
+            f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bunzip2",
+            f"ln -sf /usr/bin/lbzip2 {HOME}/.local/bin/bzcat",
+            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/gzip",
+            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/gunzip",
+            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/gzcat",
+            f"ln -sf /usr/bin/pigz {HOME}/.local/bin/zcat",
+            f"ln -sf /usr/bin/pixz {HOME}/.local/bin/xz",
         )
 
         trueline_path = f"{HOME}/.trueline.sh"
