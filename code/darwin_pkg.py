@@ -18,13 +18,13 @@ class DarwinPreparation(Script):
             f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.config/pip/pip.conf",
         )
 
-        if self._exists("brew"):
-            return
+        if not self._exists("brew"):
+            self.shell.exec(
+                "Installing homebrew",
+                '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null',
+            )
 
-        self.shell.exec(
-            "Installing homebrew",
-            '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null',
-        )
+        self.shell.exec("Tap homebrew/cask-fonts", "brew tap homebrew/cask-fonts")
         return
 
 
@@ -53,6 +53,8 @@ class DarwinPackageManager(PackageManager):
 
             karabiner-elements firefox microsoft-edge code-cli
             iterm2 raycast
+
+            font-delugia-complete font-d2coding font-d2coding-nerd-font
 			""".split()
 
         if self.args.latex:
@@ -146,7 +148,6 @@ class Mac(Script):
         )
 
         self._install_casks()
-
         self._install_node()
 
         self._mkdir(self.zsh_completion_path)
@@ -166,6 +167,7 @@ class Mac(Script):
                 f"Installing {cask}",
                 f"brew install --cask {cask}",
             )
+        return
 
     def _install_node(self):
         self.shell.exec(
