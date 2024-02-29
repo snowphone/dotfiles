@@ -52,7 +52,7 @@ class DarwinPackageManager(PackageManager):
             tldr yq btop bat glow k9s yt-dlp
 
             karabiner-elements firefox microsoft-edge
-            iterm2 raycast
+            iterm2 raycast rewind
 
             font-delugia-complete font-d2coding font-d2coding-nerd-font
 			""".split()
