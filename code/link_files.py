@@ -58,7 +58,14 @@ class FileLinker(Script):
 
         dir_color_path = f"{HOME}/.dircolors"
         self.shell.exec(
-            "Using dircolor from default", f"dircolors -p > {dir_color_path}"
+            "Using dircolor from default",
+            f"""
+            if [ $(uname) = 'Darwin' ]; then
+                gdircolors -p > {dir_color_path}
+            else
+                dircolors -p > {dir_color_path}
+            fi
+            """,
         )
         if self._is_wsl():
             # In WSL, folders in Windows storage look as OTHER_WRITABLE, so OTHER_WRITABLE is set as same as DIR.
@@ -86,7 +93,13 @@ class FileLinker(Script):
         if not os.path.islink(f"{HOME}/.clipboard"):
             self.shell.exec(
                 "Linking .clipboard",
-                f"ln -fs -T {self.proj_root}/clipboard {HOME}/.clipboard",
+                f"""
+                if [ $(uname) = 'Darwin' ]; then
+                    gln -fs -T {self.proj_root}/clipboard {HOME}/.clipboard
+                else
+                    ln -fs -T {self.proj_root}/clipboard {HOME}/.clipboard
+                fi
+                """,
             )
 
         WIN_CONV_PATH = f"{HOME}/.win_env_conv.shrc"
