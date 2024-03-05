@@ -39,7 +39,7 @@ class DarwinPackageManager(PackageManager):
 			llvm vim neovim git rename wget tmux make gzip zip unzip figlet
 			cmake poppler watch
 			tree htop ripgrep the_silver_searcher rsync
-			bear w3m git-extras multitail
+			bear w3m git-extras multitail convmv
 			neofetch mmv
 			parallel sponge num-utils
             coreutils gnu-sed gawk gnu-tar grep
