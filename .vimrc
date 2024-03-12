@@ -279,6 +279,8 @@ if has("nvim")
   set spell
 endif
 
+Plug 'github/copilot.vim'
+
 call plug#end()			" required
 
 " Another call must be invoked after `call plug#end()`
