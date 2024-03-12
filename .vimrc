@@ -449,7 +449,7 @@ function Run()
 	elseif &filetype == 'markdown'
 		:MarkdownPreview
 	elseif &filetype == 'typescript'
-		FloatermNew ts-node "%:p"
+		FloatermNew npx ts-node "%:p"
 	elseif &filetype == 'rust'
 		FloatermNew cargo run || "%:p:r"
 	elseif index(do_nothing_list, &filetype) >= 0
