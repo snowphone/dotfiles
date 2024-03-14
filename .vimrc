@@ -435,7 +435,7 @@ function Run()
 	elseif &filetype == 'java'
 		FloatermNew java "%:p"
 	elseif &filetype == 'kotlin'
-		FloatermNew java -jar "%:p:r".jar
+		FloatermNew java -enableassertions -jar "%:p:r".jar
 	elseif &filetype == 'go'
 		FloatermNew go run "%:p"
 	elseif &filetype == 'erlang'
