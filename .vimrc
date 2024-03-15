@@ -300,6 +300,8 @@ function! ToggleCopilot()
 endfunction
 " Bind <M-c> to toggle copilot
 nnoremap <M-c> :call ToggleCopilot()<CR>
+" Even on insert mode, <M-c> will toggle copilot
+inoremap <M-c> <c-o>:call ToggleCopilot()<CR>
 
 call plug#end()			" required
 
