@@ -285,6 +285,22 @@ imap <silent><script><expr> <C-Space> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 " <M-]> or <M-[> to cycle to the suggestions
 
+function! ToggleCopilot()
+	let status_output = execute('Copilot status')
+	let is_enabled = (status_output =~ 'enabled') ? 1 : 0
+
+	if is_enabled
+		let command = 'Copilot disable'
+	else
+		let command = 'Copilot enable'
+	endif
+
+	execute command
+	echo command .. 'd'
+endfunction
+" Bind <M-c> to toggle copilot
+nnoremap <M-c> :call ToggleCopilot()<CR>
+
 call plug#end()			" required
 
 " Another call must be invoked after `call plug#end()`
