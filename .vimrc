@@ -280,6 +280,10 @@ if has("nvim")
 endif
 
 Plug 'github/copilot.vim'
+" Change accept key to <C-Space>
+imap <silent><script><expr> <C-Space> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+" <M-]> or <M-[> to cycle to the suggestions
 
 call plug#end()			" required
 
