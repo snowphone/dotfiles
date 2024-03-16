@@ -274,7 +274,7 @@ if has("nvim")
   Plug 'folke/twilight.nvim'
   Plug 'f-person/git-blame.nvim'
   let g:gitblame_message_template = '	<author> • <date> • <summary>'
-  command -nargs=0 GBlame :GitBlameToggle
+  command! -nargs=0 GBlame :GitBlameToggle
   Plug 'lewis6991/spellsitter.nvim'
   set spell
 endif
@@ -302,6 +302,14 @@ endfunction
 nnoremap <M-c> :call ToggleCopilot()<CR>
 " Even on insert mode, <M-c> will toggle copilot
 inoremap <M-c> <c-o>:call ToggleCopilot()<CR>
+
+
+Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop'] }
+Plug 'skywind3000/asynctasks.vim', {'on': ['AsyncTask', 'AsyncTaskMacro', 'AsyncTaskList', 'AsyncTaskEdit'] }
+let g:asynctasks_term_pos = 'bottom'
+let g:asyncrun_open = 6
+let g:asynctasks_term_focus = 0
+let g:asynctasks_term_rows=15
 
 call plug#end()			" required
 
@@ -392,7 +400,7 @@ autocmd! BufEnter *.shinit : set filetype=sh
 autocmd! BufEnter *.nsp :set filetype=json
 
 "https://vim.fandom.com/wiki/Make_buffer_modifiable_state_match_file_readonly_state
-function UpdateModifiable()
+function! UpdateModifiable()
 	if !exists("b:setmodifiable")
 		let b:setmodifiable = 0
 	endif
@@ -447,73 +455,9 @@ nnoremap <leader>w : bn!<CR> " 쉼표 + w : 다음 탭
 nnoremap <leader>d : bp <BAR> bd #<CR> " 쉼표 + d : 탭 닫기
 nnoremap <leader>e <C-W>w " 쉼표 + w : 다음 창
 
-function Run()
-	let do_nothing_list = ["tex", "mp"]
-
-	if &filetype == 'python'
-		FloatermNew python3 "%:p"
-	elseif &filetype == 'ocaml'
-		FloatermNew ocaml "%:p"
-	elseif &filetype == 'java'
-		FloatermNew java "%:p"
-	elseif &filetype == 'kotlin'
-		FloatermNew java -enableassertions -jar "%:p:r".jar
-	elseif &filetype == 'go'
-		FloatermNew go run "%:p"
-	elseif &filetype == 'erlang'
-		FloatermNew escript "%:p" +P
-	elseif &filetype == 'elixir'
-		FloatermNew elixir "%:p"
-	elseif &filetype == 'sh'
-		FloatermNew bash "%:p"
-	elseif &filetype == 'yaml'
-		FloatermNew bash -c 'yq -e .apiVersion < "%:p" &> /dev/null && yq -e .kind < "%:p" &> /dev/null && kubectl apply -f "%:p"'
-	elseif &filetype == 'markdown'
-		:MarkdownPreview
-	elseif &filetype == 'typescript'
-		FloatermNew npx ts-node "%:p"
-	elseif &filetype == 'rust'
-		FloatermNew cargo run || "%:p:r"
-	elseif index(do_nothing_list, &filetype) >= 0
-		" Do nothing
-	elseif index(["c", "cpp"], &filetype) >= 0
-		FloatermNew "%:p:r"
-	else
-		return 0
-	endif
-
-	return v:shell_error == 0
-endfunction
-
-function Compile()
-	let do_nothing_list = ["markdown", "python", "sh", "erlang", "typescript", "java", "go", "ocaml", "elixir", "yaml"]
-
-	write!
-	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
-		make
-	elseif &filetype == 'mp'
-		!mptopdf "%:p"
-	elseif &filetype == 'tex'
-		VimtexCompile
-	elseif &filetype == 'kotlin'
-		!kotlinc "%:p" -include-runtime -d "%:p:r".jar
-	elseif &filetype=='c'
-		!clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
-	elseif &filetype == 'cpp'
-		!clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -o "%:p:r"
-	elseif &filetype == 'rust'
-		!cargo build || rustc "%:p"
-	elseif index(do_nothing_list, &filetype) >= 0
-		return 1
-	else
-		return 0
-	endif
 
 
-	"redraw!
-	return v:shell_error == 0
-endfunction
-
+" ------------------------------------------------------------------------------
 " Pipe selected visual block -- CHARACTER WISE -- to command.
 " <C-u> after colon is used to cancel " '<,'> ", and it will be piped to
 " command's stdin.
@@ -580,22 +524,15 @@ function! GetVisualSelection(mode)
 	return join(lines, "\n")
 endfunction
 
+" ------------------------------------------------------------------------------
 "nmap <F9>       <Plug>(coc-codeaction-cursor)
 "nmap <ESC>[20~  <Plug>(coc-codeaction-cursor)
 nmap <F9>       <Plug>(coc-codeaction-line)
 nmap <ESC>[20~  <Plug>(coc-codeaction-line)
 
-function CompileAndRun()
-	if Compile()
-		redraw!
-		call Run()
-	else 
-		"Do nothing
-	endif
-endfunction
-
+" ------------------------------------------------------------------------------
 " Press <C-F5> or <F5> to run code
-nmap <C-F5>      : call CompileAndRun() <CR>
+nmap <C-F5>      : AsyncTask fild-build-and-run <CR>
 " In some terminals (e.g. tmux), they cannot understand complex key bindings.
 " So, in this case, we need to find out the complex binding is converted into
 " several keys. 
@@ -604,15 +541,16 @@ nmap <C-F5>      : call CompileAndRun() <CR>
 " Then, 1b5b 3135 3b35 7e0a will be printed. The last 0a is a return key, so
 " remaining 7 bytes are what we wanted. The only left thing is, google ascii
 " table and translate 7 bytes to '<esc>[15;5~'. 
-nmap <ESC>[15;5~ : call CompileAndRun() <CR>
+nmap <ESC>[15;5~ : AsyncTask file-build-and-run <CR>
 " In neovim, <C-F5> is mapped to <F29>. To confirm this, try entering <C-F5>
 " in insert mode
-nmap <F29>       : call CompileAndRun() <CR>
+nmap <F29>       : AsyncTask file-build-and-run <CR>
 
-nmap <F5>        : call CompileAndRun() <CR>
-nmap <ESC>[15~   : call CompileAndRun() <CR>
+nmap <F5>        : AsyncTask file-build-and-run <CR>
+nmap <ESC>[15~   : AsyncTask file-build-and-run <CR>
 
 
+" ------------------------------------------------------------------------------
 " FIX: ssh from wsl starting with REPLACE mode
 " https://stackoverflow.com/a/11940894
 if !has("nvim") && $TERM =~ 'xterm-256color'
