@@ -490,19 +490,19 @@ function Compile()
 
 	write!
 	if (filereadable('./Makefile') || filereadable('./makefile')) && &filetype != "markdown"
-		silent make
+		make
 	elseif &filetype == 'mp'
-		silent !mptopdf "%:p"
+		!mptopdf "%:p"
 	elseif &filetype == 'tex'
 		VimtexCompile
 	elseif &filetype == 'kotlin'
-		silent !kotlinc "%:p" -include-runtime -d "%:p:r".jar
+		!kotlinc "%:p" -include-runtime -d "%:p:r".jar
 	elseif &filetype=='c'
-		silent !clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
+		!clang -std=c11 -W -Wall -g -O0 "%:p" -lpthread  -lm  -o "%:p:r"
 	elseif &filetype == 'cpp'
-		silent !clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -o "%:p:r"
+		!clang++ -W -Wall -g -O0 "%:p" -lpthread -lm -o "%:p:r"
 	elseif &filetype == 'rust'
-		silent !cargo build || rustc "%:p"
+		!cargo build || rustc "%:p"
 	elseif index(do_nothing_list, &filetype) >= 0
 		return 1
 	else
@@ -510,7 +510,7 @@ function Compile()
 	endif
 
 
-	redraw!
+	"redraw!
 	return v:shell_error == 0
 endfunction
 
@@ -585,11 +585,12 @@ endfunction
 nmap <F9>       <Plug>(coc-codeaction-line)
 nmap <ESC>[20~  <Plug>(coc-codeaction-line)
 
-function! CompileAndRun()
-	if Compile()  
+function CompileAndRun()
+	if Compile()
+		redraw!
 		call Run()
 	else 
-		redraw!
+		"Do nothing
 	endif
 endfunction
 
