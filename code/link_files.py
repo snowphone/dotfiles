@@ -48,6 +48,7 @@ class FileLinker(Script):
             f'ln -fs "{proj_root}"/.mailcap.order {HOME}/.mailcap.order',  # Set higher priority to vim
             f'ln -fs "{proj_root}"/.ideavimrc {HOME}/.ideavimrc',  # Set higher priority to vim
             f'ln -fs "{proj_root}"/.xprofile {HOME}/.xprofile',  # Set higher priority to vim
+            f'ln -fs "{proj_root}"/tasks.ini {HOME}/.vim/tasks.ini',
         )
 
         if not os.path.islink(f"{HOME}/.config"):
