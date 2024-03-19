@@ -161,6 +161,7 @@ require("nvim-treesitter.configs").setup {
 			"regex",
 			"rust",
 			"scss",
+			"starlark",
 			"toml",
 			"typescript",
 			"vim",
