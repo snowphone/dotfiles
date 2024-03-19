@@ -1,6 +1,9 @@
 source $HOME/.shinit
 [ -s $HOME/.openai.shrc ] && source $HOME/.openai.shrc  # export OPENAI_API_KEY
 
+# Put all configurations that are not universally applicable into this file.
+[ -s $HOME/.machine_specific.shrc ] && source $HOME/.machine_specific.shrc
+
 zsh_completion_path=$HOME/.local/share/zsh/vendor-completions
 bash_completion_path=$HOME/.local/share/bash-completion/completions
 
