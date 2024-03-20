@@ -49,7 +49,7 @@ class DarwinPackageManager(PackageManager):
 
 			yt-dlp fd ripgrep-all gotop bat glow
 
-            tldr yq btop bat glow k9s yt-dlp
+            tldr yq btop bat glow k9s yt-dlp tty-clock
 
             karabiner-elements firefox microsoft-edge
             iterm2 raycast keka
