@@ -398,6 +398,7 @@ aug end
 autocmd! BufEnter *.shrc : set filetype=sh
 autocmd! BufEnter *.shinit : set filetype=sh
 autocmd! BufEnter *.nsp :set filetype=json
+autocmd! BufEnter coc-settings.json :set filetype=jsonc
 
 "https://vim.fandom.com/wiki/Make_buffer_modifiable_state_match_file_readonly_state
 function! UpdateModifiable()
