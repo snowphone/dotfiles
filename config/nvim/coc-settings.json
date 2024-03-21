@@ -16,6 +16,19 @@
 	"java.format.settings.profile": "FormattingStyle",
 	"java.format.settings.url": "https://gist.githubusercontent.com/snowphone/3687b5a6bee7ad315cf6417e2cd0dddf/raw/26b97d16e2108032c8abdd8c2e8c92a13211916d/formatting-style.xml",
 	"languageserver": {
+		"bazel": {
+			"command": "bazel-lsp",
+			"args": [],
+			"rootPatterns": ["WORKSPACE", "MODULE"],
+			"filetypes": [
+				"bzl",
+				"BUILD",
+				"BUILD.bzl",
+				"BUILD.bazel",
+				"MODULE",
+				"WORKSPACE"
+			],
+		},
 		"ocaml-lsp": {
 			"args": [
 				"config",
