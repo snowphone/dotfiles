@@ -62,9 +62,6 @@ class Installer(Script):
         self.package_manager.do_misc()
         return
 
-    def _is_m1(self):
-        return self.shell.run("uname -m")[1] == "arm64"
-
 
 def setup_args(parser: ArgumentParser = ArgumentParser()):
     def add_flag(long: str, short: str, helpstr: str):

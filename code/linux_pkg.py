@@ -5,11 +5,13 @@ from argparse import (
     Namespace,
 )
 from pathlib import Path
+from sys import stderr
+from util import GithubDownloadable
 
 from script import Script
 
 
-class LinuxAMD64(Script):
+class LinuxAMD64(Script, GithubDownloadable):
     def __init__(self, args: Namespace):
         super().__init__(args)
         self.HOME = Path.home()
@@ -41,6 +43,15 @@ class LinuxAMD64(Script):
             self.github_dl_cmd(
                 "snowphone/MinySubtitleConverter",
                 "linux-amd64.tar.gz",
+            ),
+        )
+
+        self.shell.exec(
+            "Installing bazel-lsp",
+            self.github_dl_single_cmd(
+                "cameron-martin/bazel-lsp",
+                "osx-amd64",
+                f"{self.HOME}/.local/bin/bazel-lsp",
             ),
         )
 
@@ -264,25 +275,6 @@ class LinuxAMD64(Script):
             "asdf global elixir 1.13.4-otp-24",
         )
         return
-
-    def github_dl_cmd(
-        self,
-        user_repo: str,
-        suffix: str,
-        strip: int = 0,
-        binpath: str = "$HOME/.local/bin",
-        tar_extract_flags: str = "xz",
-    ):
-        cmd = f"""curl -s https://api.github.com/repos/{user_repo}/releases/latest |
-		grep browser_download_url | 
-		grep -Pio 'https://.*?'{suffix}  |
-        head -n 1 |
-		xargs curl -L | 
-		tar {tar_extract_flags} -C {binpath}"""
-        if strip:
-            cmd += f" --strip {strip}"
-
-        return cmd
 
 
 if __name__ == "__main__":

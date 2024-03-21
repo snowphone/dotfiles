@@ -3,6 +3,10 @@ from pathlib import Path
 
 from package_manager import PackageManager
 from script import Script
+from util import (
+    GithubDownloadable,
+    is_m1,
+)
 
 
 class DarwinPreparation(Script):
@@ -62,9 +66,9 @@ class DarwinPackageManager(PackageManager):
         if self.args.boost:
             pkgs.append("boost")
         if self.shell.env.get("DISPLAY", False):
-            print("X11 is not suppored")
+            print("X11 is not supported")
         if self.args.misc:
-            print("Misc is not suppored")
+            print("Misc is not supported")
         if self.args.golang:
             pkgs.append("go")
         if self.args.java:
@@ -108,7 +112,7 @@ class DarwinPackageManager(PackageManager):
         )
 
 
-class Mac(Script):
+class Mac(Script, GithubDownloadable):
     def __init__(self, args: Namespace):
         super().__init__(args)
         self.HOME = Path.home()
@@ -144,6 +148,15 @@ class Mac(Script):
         self.shell.exec(
             "Installing visidata",
             "pip3 install --user visidata",
+        )
+
+        self.shell.exec(
+            "Installing bazel-lsp",
+            self.github_dl_single_cmd(
+                "cameron-martin/bazel-lsp",
+                "osx-arm64" if is_m1() else "osx-amd64",
+                f"{self.HOME}/.local/bin/bazel-lsp",
+            ),
         )
 
         self._install_casks()
