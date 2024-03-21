@@ -50,7 +50,7 @@ class LinuxAMD64(Script, GithubDownloadable):
             "Installing bazel-lsp",
             self.github_dl_single_cmd(
                 "cameron-martin/bazel-lsp",
-                "osx-amd64",
+                "linux-amd64",
                 f"{self.HOME}/.local/bin/bazel-lsp",
             ),
         )
