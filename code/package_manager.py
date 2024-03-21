@@ -1,5 +1,5 @@
 from argparse import Namespace
-from typing import List
+from typing import Sequence
 
 from shell import Shell
 
@@ -14,7 +14,7 @@ class PackageManager:
         raise NotImplementedError()
 
     @property
-    def pkgs(self) -> List[str]:
+    def pkgs(self) -> Sequence[str]:
         raise NotImplementedError()
 
     def do_misc(self):
