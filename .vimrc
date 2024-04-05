@@ -229,14 +229,23 @@ Plug 'vim-test/vim-test'
 nmap <silent> <leader>t  :write! <bar> TestNearest <CR>
 nmap <silent> <leader>T  :write! <bar> TestFile    <CR>
 
-aug python
-	autocmd FileType python	nmap <silent> <leader>t  :write! <bar> TestNearest --verbose<CR>
-	autocmd FileType python	nmap <silent> <leader>T  :write! <bar> TestFile    --verbose<CR>
-	autocmd FileType python	set cursorcolumn
+aug indentation
+	autocmd FileType bazel setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+
+	autocmd FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	autocmd FileType typescriptreact setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	autocmd FileType javascriptreact setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 aug end
 
-aug yaml
+aug test_keymap
+	autocmd FileType python	nmap <silent> <leader>t  :write! <bar> TestNearest --verbose<CR>
+	autocmd FileType python	nmap <silent> <leader>T  :write! <bar> TestFile    --verbose<CR>
+aug end
+
+aug vertical_cursor
 	autocmd FileType yaml set cursorcolumn
+	autocmd FileType python	set cursorcolumn
 aug end
 
 let test#strategy = "floaterm"
