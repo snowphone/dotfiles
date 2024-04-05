@@ -287,7 +287,7 @@ let g:copilot_no_tab_map = v:true
 
 function! ToggleCopilot()
 	let status_output = execute('Copilot status')
-	let is_enabled = (status_output =~ 'enabled') ? 1 : 0
+	let is_enabled = (tolower(status_output) =~ 'enabled\|ready') ? 1 : 0
 
 	if is_enabled
 		let command = 'Copilot disable'
