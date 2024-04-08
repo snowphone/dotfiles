@@ -56,7 +56,7 @@ class DarwinPackageManager(PackageManager):
             tldr yq btop bat glow k9s yt-dlp tty-clock
 
             karabiner-elements firefox microsoft-edge
-            iterm2 raycast keka
+            iterm2 raycast keka alacritty
 
             font-delugia-complete font-d2coding font-d2coding-nerd-font
 			""".split()
