@@ -1,0 +1,10 @@
+[shell]
+program = "/bin/zsh"
+args = [ "-l" ]
+
+[window]
+option_as_alt = "Both"
+
+[font]
+normal = { family = "Delugia", style = "Regular" }
+size = 16
