@@ -72,6 +72,7 @@ let g:coc_global_extensions = [
 			\'coc-pairs',
 			\'coc-rust-analyzer',
 			\'coc-go',
+			\'coc-biome',
 			\'coc-tsserver',
 			\'coc-perl',
 			\'coc-sql',

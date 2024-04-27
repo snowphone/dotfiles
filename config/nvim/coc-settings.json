@@ -53,6 +53,7 @@
 	},
 	"pyright.inlayHints.functionReturnTypes": true,
 	"pyright.inlayHints.variableTypes": true,
+	"typescript.format.enable": false,
 	"pyright.organizeimports.provider": "isort",
 	"python.formatting.provider": "black",
 	"python.pythonPath": "python3",

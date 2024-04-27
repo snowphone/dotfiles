@@ -128,8 +128,15 @@ endif
 "nmap <silent> <C-s> <Plug>(coc-range-select)
 "xmap <silent> <C-s> <Plug>(coc-range-select)
 
+function! Formatter()
+	call CocAction('format')
+	if &filetype == 'python'
+		call CocActionAsync('runCommand', 'editor.action.organizeImport')
+	endif
+endfunction
+
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format') | call  CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 Format :call Formatter()
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
