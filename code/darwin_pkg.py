@@ -51,7 +51,7 @@ class DarwinPackageManager(PackageManager):
 			ffmpeg
 			translate-shell dict jq rust
 
-			yt-dlp fd ripgrep-all gotop bat glow
+			yt-dlp fd ripgrep-all gotop bat glow viddy
 
             tldr yq btop bat glow k9s yt-dlp tty-clock
 

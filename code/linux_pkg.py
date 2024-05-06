@@ -5,10 +5,9 @@ from argparse import (
     Namespace,
 )
 from pathlib import Path
-from sys import stderr
-from util import GithubDownloadable
 
 from script import Script
+from util import GithubDownloadable
 
 
 class LinuxAMD64(Script, GithubDownloadable):
@@ -126,6 +125,11 @@ class LinuxAMD64(Script, GithubDownloadable):
             self.github_dl_cmd(
                 "phiresky/ripgrep-all", "x86_64-unknown-linux-musl.tar.gz", 1
             ),
+        )
+
+        self.shell.exec(
+            "Installing viddy",
+            self.github_dl_cmd("sachaos/viddy", "Linux_x86_64.tar.gz"),
         )
 
         self.shell.exec(
