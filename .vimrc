@@ -289,9 +289,20 @@ if has("nvim")
   set spell
 endif
 
+
+" If copilot suggests nothing, trigger the coc suggestion list.
+function! TriggerSuggestion() abort
+	let s = copilot#GetDisplayedSuggestion()
+	if empty(s.text)
+		return coc#refresh()
+	else
+		return copilot#Accept("\<CR>")
+	endif
+endfunction
+
 Plug 'github/copilot.vim'
 " Change accept key to <C-Space>
-imap <silent><script><expr> <C-Space> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-Space> TriggerSuggestion()
 let g:copilot_no_tab_map = v:true
 " <M-]> or <M-[> to cycle to the suggestions
 
