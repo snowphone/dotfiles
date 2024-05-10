@@ -130,9 +130,7 @@ endif
 
 function! Formatter()
 	call CocAction('format')
-	if &filetype == 'python'
-		call CocActionAsync('runCommand', 'editor.action.organizeImport')
-	endif
+	silent call CocActionAsync('runCommand', 'editor.action.organizeImport')
 endfunction
 
 " Use `:Format` to format current buffer
