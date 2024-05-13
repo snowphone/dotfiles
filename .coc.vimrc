@@ -129,8 +129,8 @@ endif
 "xmap <silent> <C-s> <Plug>(coc-range-select)
 
 function! Formatter()
+	silent call CocAction('runCommand', 'editor.action.organizeImport')
 	call CocAction('format')
-	silent call CocActionAsync('runCommand', 'editor.action.organizeImport')
 endfunction
 
 " Use `:Format` to format current buffer
