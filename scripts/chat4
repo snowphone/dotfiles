@@ -5,7 +5,7 @@ if [ -z $OPENAI_API_KEY ]; then
 	exit 1
 fi
 
-DEFAULT_MODEL=gpt-4-turbo-preview
+DEFAULT_MODEL=gpt-4o
 MODEL=${MODEL:-$DEFAULT_MODEL}  # gpt-4-32k, gpt-4, gpt-4-1106-preview
 
 CONTENT="$*"  # Prepend prompt
