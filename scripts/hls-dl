@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if ! ffmpeg -version &> /dev/null; then
+if ! ffmpeg -version &>/dev/null; then
 	printf "Please install ffmpeg\n"
 	exit 1
 elif [[ -z $1 || -z $2 ]]; then
@@ -9,4 +9,3 @@ elif [[ -z $1 || -z $2 ]]; then
 fi
 
 ffmpeg -y -loglevel warning -stats -i "$1" -codec copy "$2"
-

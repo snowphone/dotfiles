@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 
-from sys import stdout, stdin
 import argparse
+from sys import (
+    stdin,
+    stdout,
+)
 
 
 def main(_args):
-	stdout.write(stdin.read())
-	stdout.write("\0")
+    stdout.write(stdin.read())
+    stdout.write("\0")
 
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser()
-	parser.description = "Appends NUL character at the end of the stdin"
+    parser = argparse.ArgumentParser()
+    parser.description = "Appends NUL character at the end of the stdin"
 
-	main(parser.parse_args())
+    main(parser.parse_args())

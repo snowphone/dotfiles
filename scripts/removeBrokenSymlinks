@@ -6,4 +6,3 @@ if [[ -z $1 ]]; then
 fi
 
 find "$1" -xtype l -delete
-

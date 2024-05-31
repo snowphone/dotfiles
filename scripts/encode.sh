@@ -1,15 +1,15 @@
 #!/bin/sh
 
 case $1 in
-	'')
-		echo "No input given"
-		echo "Usage: $0 <file_path>"
-		exit 1
-		;;
-	-h|--help)
-		echo "Usage: $0 <file_path>"
-		exit 0
-		;;
+'')
+	echo "No input given"
+	echo "Usage: $0 <file_path>"
+	exit 1
+	;;
+-h | --help)
+	echo "Usage: $0 <file_path>"
+	exit 0
+	;;
 esac
 
 input="${1}"
@@ -39,4 +39,3 @@ sudo docker run \
 	-c:a copy \
 	-vf 'format=nv12|vaapi,hwupload' \
 	"${output}"
-

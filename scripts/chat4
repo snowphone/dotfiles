@@ -6,20 +6,20 @@ if [ -z $OPENAI_API_KEY ]; then
 fi
 
 DEFAULT_MODEL=gpt-4o
-MODEL=${MODEL:-$DEFAULT_MODEL}  # gpt-4-32k, gpt-4, gpt-4-1106-preview
+MODEL=${MODEL:-$DEFAULT_MODEL} # gpt-4-32k, gpt-4, gpt-4-1106-preview
 
-CONTENT="$*"  # Prepend prompt
+CONTENT="$*" # Prepend prompt
 
-if [ -t 0 ]; then  # STDIN is a terminal (keyboard input)
+if [ -t 0 ]; then # STDIN is a terminal (keyboard input)
 	printf "Enter prompt: "
 	read -r BODY
-else  # "STDIN is piped or redirected from a different source"
+else # "STDIN is piped or redirected from a different source"
 	BODY="$(cat)"
 fi
 
 CONTENT="$CONTENT$BODY"
 
-raw_response=$(jq -n --arg MODEL "$MODEL" --arg CONTENT "$CONTENT"  '
+raw_response=$(jq -n --arg MODEL "$MODEL" --arg CONTENT "$CONTENT" '
 {
 	"model": $MODEL,
 	"messages": [
@@ -31,7 +31,7 @@ raw_response=$(jq -n --arg MODEL "$MODEL" --arg CONTENT "$CONTENT"  '
 }' | curl -s https://api.openai.com/v1/chat/completions \
 	-H "Authorization: Bearer $OPENAI_API_KEY" \
 	-H "Content-Type: application/json" \
-	-d @- )
+	-d @-)
 
 resp=$(printf "%s" "$raw_response" | jq -r '.choices[0].message.content')
 

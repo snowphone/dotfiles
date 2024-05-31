@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-
 # tone: all|casual|informal|formal
 # lang: en-us|en-uk
 # responseLevel: concise|detailed
@@ -13,4 +12,3 @@ curl --silent --show-error 'https://www.doesitsoundnatural.com/api/checkSentence
 	"responseLevel":"concise"
 }
 EOF
-

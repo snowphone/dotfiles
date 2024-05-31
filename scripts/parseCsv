@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 parse_csv() {
-	column -t -s,  -n "$@"
+	column -t -s, -n "$@"
 }
 
 parse_csv "$@"

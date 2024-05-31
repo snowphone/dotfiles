@@ -5,14 +5,14 @@ if [ -n "$TMUX" ]; then
 else
 
 	case "$(uname -a)" in
-		*WSL*) 
-			exec clip.exe
-			;;
-		*Darwin*) 
-			exec pbcopy
-			;;
-		*)
-			exec xclip
-			;;
+	*WSL*)
+		exec clip.exe
+		;;
+	*Darwin*)
+		exec pbcopy
+		;;
+	*)
+		exec xclip
+		;;
 	esac
 fi

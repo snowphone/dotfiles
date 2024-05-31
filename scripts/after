@@ -6,7 +6,7 @@ if [[ -z $1 || -z $2 ]]; then
 	exit 0
 fi
 pid=$1
-shift;
+shift
 
-watch -g ps -opid -p $pid; "$@"
-
+watch -g ps -opid -p $pid
+"$@"

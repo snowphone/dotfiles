@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 
+import re
 from decimal import Decimal
 from math import *
-import re
-from sys import argv, exit
+from sys import (
+    argv,
+    exit,
+)
 
 if not argv[1:]:
     exit(0)
 
 if argv[1] in ["--exp", "-e"]:
     scientific = True
-    line = ' '.join(argv[2:])
+    line = " ".join(argv[2:])
 else:
     scientific = False
-    line = ' '.join(argv[1:])
+    line = " ".join(argv[1:])
 
 
 line = re.sub("times", "*", line)

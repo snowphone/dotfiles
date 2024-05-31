@@ -9,7 +9,10 @@ get_cpu_usage() {
 		t1=t;
 	} else 
 		print ($2+$4-u1) * 100 / (t-t1); 
-	}' <(grep 'cpu ' /proc/stat) <(sleep 1;grep 'cpu ' /proc/stat)
+	}' <(grep 'cpu ' /proc/stat) <(
+		sleep 1
+		grep 'cpu ' /proc/stat
+	)
 }
 
 get_mem_usage() {
@@ -32,15 +35,13 @@ cpu() {
 	printf "%s\t%4.1f%%\t%s\t(%d)\t%s\n" "$name" "$usage" "$model_name" "$cores" "$mem"
 }
 
-
-while [[ $# -gt 0 ]]; do 
+while [[ $# -gt 0 ]]; do
 	case $1 in
-		-v|--verbose)
-			printf "Host\tUsage\tCPU\tCores\tMem Usage\tMem Capacity\n"
-			;;
+	-v | --verbose)
+		printf "Host\tUsage\tCPU\tCores\tMem Usage\tMem Capacity\n"
+		;;
 	esac
 	shift
 done
 
 cpu
-
