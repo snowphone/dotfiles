@@ -71,10 +71,10 @@ ocr() {
 }
 
 check_text_file() {
-	path="$1"
+	filepath="$1"
 
 	# Use the `file` command to check the file type
-	file_output=$(env file --brief --mime-type "$path")
+	file_output=$(file --brief --mime-type "$filepath")
 
 	# Check if the file output contains "text"
 	case "$file_output" in
@@ -93,7 +93,7 @@ check_text_file() {
 open() {
 
 	# If a file is a text file, open it with the editor
-	if check_text_file "$1"; then
+	if check_text_file "$1" > /dev/null; then
 		$EDITOR "$1"
 		return
 	fi
