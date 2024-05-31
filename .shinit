@@ -73,7 +73,11 @@ ocr() {
 
 # Alias of xdg-open, and ignore stderr
 open() {
-	xdg-open $@ 2> /dev/null
+	if [ "$(uname)" = "Darwin" ]; then
+		/usr/bin/open "$@"
+	else
+		xdg-open $@ 2> /dev/null
+	fi
 }
 
 alias gpull='git pull --rebase origin'

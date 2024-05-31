@@ -51,7 +51,7 @@ grepOpen() {
 				--preview-window="70%:wrap"
 	)" &&
 	echo "opening $file" &&
-	xdg-open "$file"
+	open "$file"
 }
 
 # Search filenames and open them
@@ -59,7 +59,7 @@ findOpen() {
 	local file
 	file="$(fzf)" &&
 	echo "opening $file" &&
-	xdg-open "$file"
+	open "$file"
 }
 
 transfer() {
