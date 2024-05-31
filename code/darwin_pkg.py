@@ -48,7 +48,7 @@ class DarwinPackageManager(PackageManager):
 			parallel sponge num-utils
             coreutils gnu-sed gawk gnu-tar grep
 			lbzip2 pigz pixz p7zip
-			ffmpeg
+			ffmpeg shfmt
 			translate-shell dict jq rust
 
 			yt-dlp fd ripgrep-all gotop bat glow viddy

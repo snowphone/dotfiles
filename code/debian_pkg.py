@@ -79,7 +79,7 @@ class DebianPackageManager(PackageManager):
 			parallel moreutils num-utils
 			lbzip2 pigz pixz p7zip-full
             libssl-dev pkg-config
-			ffmpeg
+			ffmpeg shfmt
 			translate-shell dict
 			""".split()
 
