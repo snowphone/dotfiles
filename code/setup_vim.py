@@ -43,7 +43,7 @@ class Vim(Script):
 
         self.shell.exec_list(
             "Symbolic linking other files",
-            f'mkdir -p {HOME}/.vim',
+            f"mkdir -p {HOME}/.vim",
             f'ln -sf "{proj_root}"/config/nvim/coc-settings.json {HOME}/.vim/',
             f'ln -sf "{proj_root}"/.coc.vimrc {HOME}/',
             f'ln -fs "{proj_root}"/.latexmkrc {HOME}/.latexmkrc',
@@ -75,7 +75,7 @@ class Vim(Script):
 
         self.shell.exec_list(
             "Installing plugins for neovim",
-            "python3 -m pip install --upgrade pynvim",
+            "python3 -m pip install --upgrade 'pynvim @ git+https://github.com/neovim/pynvim'",  # At the time of writing, pynvim on pypi does not support python >= 3.12.
             "nvim --headless -c PlugInstall -c quitall",
             "nvim --headless -c CocUpdateSync -c quitall",
             "nvim --headless -c TSUpdateSync -c quitall",
