@@ -6,7 +6,7 @@ iatest=$(expr index "$-" i)
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	 . /etc/bashrc
+	. /etc/bashrc
 fi
 
 [ -f $HOME/.common.shrc ] && source $HOME/.common.shrc
@@ -17,7 +17,6 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
 elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
-
 
 #######################################################
 # EXPORTS
@@ -68,8 +67,6 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-
-
 #######################################################
 # GENERAL ALIAS'S
 #######################################################
@@ -89,14 +86,14 @@ alias back='cd "$OLDPWD"'
 # Set the ultimate amazing command prompt
 #######################################################
 
-git-branch-name() {         
+git-branch-name() {
 	git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3-8
-} 
+}
 
 git-branch-prompt() {
-	local branch=`git-branch-name`
+	local branch=$(git-branch-name)
 	if [ $branch ]; then printf " [%s]" $branch; fi
-} 
+}
 
 ## Define colors
 #LIGHTGRAY="$(echo -e "\033[0;37m")"
@@ -119,18 +116,18 @@ git-branch-prompt() {
 #NOCOLOR="$(echo -e "\033[0m")"
 
 declare -A TRUELINE_SYMBOLS=(
-    [git_modified]='✚'
-    [git_github]=''
-    [git_gitlab]=''
-    [git_bitbucket]=''
+	[git_modified]='✚'
+	[git_github]=''
+	[git_gitlab]=''
+	[git_bitbucket]=''
 	[git_ahead]='↑'
 	[git_behind]='↓'
-    [segment_separator]=''
-    [working_dir_folder]='⋯'
-    [working_dir_separator]=''
-    [working_dir_home]='⌂'
-    [newline]='❯'
-    [clock]='🕒'
+	[segment_separator]=''
+	[working_dir_folder]='⋯'
+	[working_dir_separator]=''
+	[working_dir_home]='⌂'
+	[newline]='❯'
+	[clock]='🕒'
 	[ssh]='⌁'
 	[bg_jobs]='⏎'
 	[read_only]=''
@@ -142,9 +139,9 @@ TRUELINE_VIMODE_INS_CURSOR='under'
 [ ! -f ~/.trueline.sh ] && curl -s https://raw.githubusercontent.com/petobens/trueline/master/trueline.sh -o ~/.trueline.sh
 source $HOME/.trueline.sh
 
-command -v kubectl &> /dev/null && source <(kubectl completion bash)
-command -v k9s &> /dev/null && source <(k9s completion bash)
-command -v helm &> /dev/null && source <(helm completion bash)
+command -v kubectl &>/dev/null && source <(kubectl completion bash)
+command -v k9s &>/dev/null && source <(k9s completion bash)
+command -v helm &>/dev/null && source <(helm completion bash)
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

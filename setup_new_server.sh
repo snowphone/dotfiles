@@ -13,7 +13,6 @@ sudo usermod -aG docker $USER
 newgrp docker
 docker run hello-world
 
-
 # esm 및 기타 이상한 motd 메시지 정리하기:
 sudo apt remove needrestart ubuntu-advantage-tools
 sudo chmod -x /etc/update-motd.d/50-motd-news
@@ -33,11 +32,20 @@ sudo run-parts /etc/update-motd.d
 sudo apt install --install-recommends linux-generic-hwe-22.04
 
 # Other
+: <<'COMMENT'
+| Item            | Description                                         |
+|-----------------|-----------------------------------------------------|
+| libssl-dev      | Prerequisite for commitgpt                          |
+| molly-guard     | Prevent accidental shutdown/reboot                  |
+| network-manager | Wlan support                                        |
+| xorg            | Full ububtu-server image already includes X11 server|
+COMMENT
 sudo apt-get install -y \
-	libssl-dev \		# Prerequisite for commitgpt
-	molly-guard \		# Prevent accidental shutdown/reboot
-	network-manager \	# Wlan support
-	# xorg				# Full ubuntu-server image already includes X11 server
+	libssl-dev \
+	molly-guard \
+	network-manager
+# xorg
+
 cargo install macchina
 cargo install --git https://github.com/snowphone/CommitGPT
 git clone https://github.com/snowphone/cloudflare-cli && cd cloudflare-cli && make install
@@ -71,7 +79,7 @@ EOF
 
 sudo sed 's/(#\*)Port \d+/Port 61022\nPort 22/'
 
-if  ! grep 'Port 61022' /etc/ssh/sshd_config &> /dev/null ; then
+if ! grep 'Port 61022' /etc/ssh/sshd_config &>/dev/null; then
 	sudo sed -i -r 's/(# *)?Port [0-9]+/Port 61022\nPort 22/' /etc/ssh/sshd_config
 fi
 
