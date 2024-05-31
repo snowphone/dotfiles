@@ -6,14 +6,14 @@ export MANPATH=$HOME/.local/share/man:/usr/share/man:$MANPATH
 # set PATH so it includes user's private bin if it exists
 LOCALBIN="$HOME/.local/bin"
 case "$PATH" in
-	"*$LOCALBIN*") ;;
-	*) PATH="$LOCALBIN:$PATH" ;;
+"*$LOCALBIN*") ;;
+*) PATH="$LOCALBIN:$PATH" ;;
 esac
 
 SNAPBIN="/snap/bin"
 case "$PATH" in
-	"*$SNAPBIN*") ;;
-	*) PATH="$SNAPBIN:$PATH"
+"*$SNAPBIN*") ;;
+*) PATH="$SNAPBIN:$PATH" ;;
 esac
 
 BREW_PATH=$HOME/.paths
@@ -21,7 +21,7 @@ if [ -f $BREW_PATH ]; then
 	NEW_PATHS=$(cat $BREW_PATH)
 	PATH=$NEW_PATHS:$PATH
 fi
-if command -v nproc 2>&1 > /dev/null; then
+if command -v nproc 2>&1 >/dev/null; then
 	export HOMEBREW_MAKE_JOBS=$(nproc --all)
 else
 	export HOMEBREW_MAKE_JOBS=4
@@ -34,7 +34,7 @@ export LD_LIBRARY_PATH=$HOME/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 export EDITOR=vim
 
 # Alias's to modified commands
-if command -v rsync 2>&1 > /dev/null; then
+if command -v rsync 2>&1 >/dev/null; then
 	alias cp='rsync -ah --info=progress2'
 fi
 
@@ -53,12 +53,12 @@ alias cls='clear'
 alias vi='vim'
 alias svi='sudo vi'
 alias vis='vim "+set si"'
-alias tmux='tmux -2' 	#force 256 colors
-alias psed='perl -pe'	#sed with pcre support
-alias fd='fd --hidden'	#find dotfiles as well
-alias rg='rg --auto-hybrid-regex'   #Always allow look-ahead/behind
+alias tmux='tmux -2'              #force 256 colors
+alias psed='perl -pe'             #sed with pcre support
+alias fd='fd --hidden'            #find dotfiles as well
+alias rg='rg --auto-hybrid-regex' #Always allow look-ahead/behind
 
-if command -v prename 2>&1 > /dev/null; then
+if command -v prename 2>&1 >/dev/null; then
 	alias rename=prename
 fi
 
@@ -66,17 +66,43 @@ export BAT_THEME=gruvbox-dark
 
 alias c='clear'
 
-
 ocr() {
 	tesseract -l kor+eng "$@" stdout
 }
 
+check_text_file() {
+	path="$1"
+
+	# Use the `file` command to check the file type
+	file_output=$(env file --brief --mime-type "$path")
+
+	# Check if the file output contains "text"
+	case "$file_output" in
+	text/*)
+		echo "The file is a text file."
+		return 0
+		;;
+	*)
+		echo "The file is not a text file."
+		return 1
+		;;
+	esac
+}
+
 # Alias of xdg-open, and ignore stderr
 open() {
+
+	# If a file is a text file, open it with the editor
+	if check_text_file "$1"; then
+		$EDITOR "$1"
+		return
+	fi
+
+	# Use the appropriate command for the platform to open other files
 	if [ "$(uname)" = "Darwin" ]; then
 		/usr/bin/open "$@"
 	else
-		xdg-open $@ 2> /dev/null
+		xdg-open "$@" 2>/dev/null
 	fi
 }
 
@@ -101,19 +127,18 @@ alias treed='tree -CAFd'
 
 mountedinfo() {
 	case $1 in
-		-h|--help)
-			printf "Shows mounted file system information\n"
-			printf "Usage: $0 [--all]\n"
-			;;
-		-a|--all) 
-			df --human-readable --print-type
-			;;
-		*) 
-			df --human-readable --print-type --type ext4
-			;;
+	-h | --help)
+		printf "Shows mounted file system information\n"
+		printf "Usage: $0 [--all]\n"
+		;;
+	-a | --all)
+		df --human-readable --print-type
+		;;
+	*)
+		df --human-readable --print-type --type ext4
+		;;
 	esac
 }
-
 
 # Search files in the current folder
 alias f="find ."
@@ -129,23 +154,22 @@ alias 777='chmod -R 777'
 #alias htop="htop -u $(whoami)"
 alias htop="htop -s PERCENT_CPU"
 
-
 alias tmux-dev='$HOME/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
 
-if command -v nvim &> /dev/null; then
+if command -v nvim &>/dev/null; then
 	alias vim=nvim
 	alias vimdiff='nvim -d'
 fi
 
-if command -v viddy &> /dev/null; then
+if command -v viddy &>/dev/null; then
 	alias watch='viddy -s -d'
 fi
 
 export FZF_DEFAULT_OPTS='-m --bind=ctrl-space:toggle,tab:down,shift-tab:up'
-if command -v bfs 2>&1 > /dev/null; then
+if command -v bfs 2>&1 >/dev/null; then
 	export FZF_DEFAULT_COMMAND='bfs -L'
-elif command -v fd 2>&1 > /dev/null; then
+elif command -v fd 2>&1 >/dev/null; then
 	export FZF_DEFAULT_COMMAND='fd -L'
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
@@ -153,12 +177,12 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 
 # Use fd-based completion for the better performance
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+	fd --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
+	fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 if command -v gdircolors 2>&1 >/dev/null; then
@@ -179,7 +203,7 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export KUBECONFIG=$HOME/.kube/config
 
-command -v javac 2>&1 > /dev/null && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+command -v javac 2>&1 >/dev/null && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
