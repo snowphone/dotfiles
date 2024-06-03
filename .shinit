@@ -82,6 +82,10 @@ check_text_file() {
 		echo "The file is a text file."
 		return 0
 		;;
+	application/json*)
+		echo "The file is a text file."
+		return 0
+		;;
 	*)
 		echo "The file is not a text file."
 		return 1
