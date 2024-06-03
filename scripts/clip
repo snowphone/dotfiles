@@ -1,18 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ -n "$TMUX" ]; then
-	xargs -0 tmux set-buffer
-else
-
+copy_to_clipboard() {
 	case "$(uname -a)" in
 	*WSL*)
-		exec clip.exe
+		clip.exe
 		;;
 	*Darwin*)
-		exec pbcopy
+		pbcopy
 		;;
 	*)
-		exec xclip
+		xclip -selection clipboard
 		;;
 	esac
+}
+
+if [ -n "$TMUX" ]; then
+	tee >(xargs -0 tmux set-buffer) | copy_to_clipboard
+else
+	copy_to_clipboard
 fi
