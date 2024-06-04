@@ -11,8 +11,10 @@ ZSH_DISABLE_COMPFIX=true # Disable 'zsh compinit insecure directoreis' warning
 
 export PROMPT_EOL_MARK=''
 
-source $HOME/.common.shrc
+autoload -Uz compinit
+compinit
 
+source $HOME/.common.shrc
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
