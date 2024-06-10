@@ -388,7 +388,7 @@ set ruler " 화면 우측 하단에 현재 커서의 위치(줄,칸) 표시
 set shiftwidth=4 " 자동 들여쓰기 4칸
 set ts=4
 set number " 행번호 표시, set nu 도 가능
-set fencs=euc-kr,ucs-bom,utf-8
+set fencs=ucs-bom,utf-8,cp949,euc-kr
 set conceallevel=2	" Basically prettify keywords if possible
 set concealcursor=	" Disable syntax for current cursor line
 set signcolumn=auto
@@ -443,8 +443,9 @@ if index(["dosbatch", "ps1"], &filetype) < 0
 	"newline 형식이 dos (<CR><NL>)인경우 unix형식(<NL>)로 변경 후 저장
 	autocmd BufReadPost * if &modifiable &&  &l:ff!="unix" | setlocal ff=unix | %s/\r//ge | write | endif
 endif
-"euc-kr로 입력이 들어온 경우, utf-8로 변환 후 저장.
+"euc-kr 혹은 cp949로 입력이 들어온 경우, utf-8로 변환 후 저장.
 autocmd BufReadPost * if &modifiable && &l:fenc=="euc-kr" | setlocal fenc=utf-8 | write | endif
+autocmd BufReadPost * if &modifiable && &l:fenc=="cp949"  | setlocal fenc=utf-8 | write | endif
 
 " 마지막 편집 위치 복원 기능
 au BufReadPost *
