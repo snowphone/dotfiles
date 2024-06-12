@@ -41,6 +41,12 @@
 				"ocaml",
 				"reason"
 			]
+		},
+		"scheme": {
+			"command": "chicken-lsp-server",
+			"filetypes": [
+				"scheme"
+			]
 		}
 	},
 	"markdownlint.config": {
