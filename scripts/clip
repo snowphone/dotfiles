@@ -15,7 +15,7 @@ copy_to_clipboard() {
 }
 
 if [ -n "$TMUX" ]; then
-	tee >(xargs -0 tmux set-buffer) | copy_to_clipboard
+	tee >(tmux load-buffer -) | copy_to_clipboard
 else
 	copy_to_clipboard
 fi
