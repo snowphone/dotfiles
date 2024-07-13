@@ -1,4 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/_edit_and_capture.sh"
 
 if [ -z $OPENAI_API_KEY ]; then
 	printf "OPENAI_API_KEY is not set!\n"
@@ -12,7 +15,9 @@ CONTENT="$*" # Prepend prompt
 
 if [ -t 0 ]; then # STDIN is a terminal (keyboard input)
 	printf "Enter prompt: "
-	read -r BODY
+	sleep 0.1
+	edit_and_capture BODY
+	echo "$BODY"
 else # "STDIN is piped or redirected from a different source"
 	BODY="$(cat)"
 fi
