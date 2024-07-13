@@ -10,4 +10,4 @@ fi
 
 MODEL=gpt-4o
 
-chat_query
+chat_query "$@"

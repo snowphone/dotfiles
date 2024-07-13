@@ -14,11 +14,12 @@ chat_query() {
 
 	CONTENT="$*" # Prepend prompt
 
+	# If STDIN is a terminal (keyboard input) and there is no content, prompt for more input
 	if [ -t 0 ]; then # STDIN is a terminal (keyboard input)
-		printf "Enter prompt: "
-		sleep 0.1
-		edit_and_capture BODY
-		echo "$BODY"
+		if [ -z "$CONTENT" ]; then
+			edit_and_capture BODY
+			printf "Prompt: %s\n" "$BODY"
+		fi
 	else # "STDIN is piped or redirected from a different source"
 		BODY="$(cat)"
 	fi
