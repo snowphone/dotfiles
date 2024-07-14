@@ -1,4 +1,5 @@
 {
+	"bashIde.shfmt.languageDialect": "bash",
 	"clangd.arguments": [
 		"-cross-file-rename"
 	],
@@ -19,7 +20,10 @@
 		"bazel": {
 			"command": "bazel-lsp",
 			"args": [],
-			"rootPatterns": ["WORKSPACE", "MODULE"],
+			"rootPatterns": [
+				"WORKSPACE",
+				"MODULE"
+			],
 			"filetypes": [
 				"bzl",
 				"BUILD",
