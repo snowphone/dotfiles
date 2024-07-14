@@ -4,12 +4,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/_edit_and_capture.sh"
 
 chat_query() {
-
-	if [ -z $OPENAI_API_KEY ]; then
+	if [ -z "$OPENAI_API_KEY" ]; then
 		printf "OPENAI_API_KEY is not set!\n"
 		exit 1
 	fi
-
 	MODEL=${MODEL:-$DEFAULT_MODEL} # gpt-4-32k, gpt-4, gpt-4-1106-preview
 
 	CONTENT="$*" # Prepend prompt

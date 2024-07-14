@@ -15,10 +15,7 @@ fi
 
 for SSH_PORT in "${SSH_PORTS[@]}"; do
 	# Test SSH connectivity by attempting a connection.
-	ssh -q -p "$SSH_PORT" "$HOST_TO_TEST" exit
-
-	# Check the exit status of the previous SSH command.
-	if [ $? -ne 0 ]; then
+	if ! ssh -q -p "$SSH_PORT" "$HOST_TO_TEST" exit; then # Check the exit status of the previous SSH command.
 		msg="[sshd_monitor] SSH connection on $SSH_PORT failed. Restarting $SSH_SERVICE_NAME..."
 
 		logger "$msg"

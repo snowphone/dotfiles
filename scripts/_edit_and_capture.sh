@@ -3,7 +3,8 @@
 # EDITOR로 부터 입력을 받아서 변수 ($1)에 저장하는 함수
 edit_and_capture() {
 	local __fallback_editor="vi"
-	local temp_file="$(mktemp)"
+	local temp_file
+	temp_file="$(mktemp)"
 
 	# Make sure the temporary file is deleted on exit
 	trap 'rm -f "$temp_file"' EXIT
@@ -16,9 +17,10 @@ edit_and_capture() {
 
 	if [[ -f "$temp_file" ]]; then
 		# Read the file content into the variable
-		local result="$(<"$temp_file")"
+		local result
+		result="$(<"$temp_file")"
 		# Assign to the variable name passed as argument
-		eval $__resultvar="'$result'"
+		eval "$__resultvar"="'$result'"
 	else
 		echo "Temporary file was not created."
 		return 1

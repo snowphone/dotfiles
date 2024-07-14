@@ -7,7 +7,7 @@ from sys import (
 )
 
 
-def main(_args):
+def main(_):
     stdout.write(stdin.read())
     stdout.write("\0")
 

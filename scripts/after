@@ -8,5 +8,5 @@ fi
 pid=$1
 shift
 
-watch -g ps -opid -p $pid
+watch -g ps -opid -p "$pid"
 "$@"

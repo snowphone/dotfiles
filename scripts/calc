@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import re
-from decimal import Decimal
 from math import *
 from sys import (
     argv,

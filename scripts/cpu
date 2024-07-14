@@ -16,21 +16,30 @@ get_cpu_usage() {
 }
 
 get_mem_usage() {
-	local data="$(cat /proc/meminfo)"
-	local total=$(echo "$data" | grep MemTotal | grep -Po '\d+')
-	local available=$(echo "$data" | grep MemAvailable | grep -Po '\d+')
+	local data
+	data="$(cat /proc/meminfo)"
+	local total
+	total=$(echo "$data" | grep MemTotal | grep -Po '\d+')
+	local available
+	available=$(echo "$data" | grep MemAvailable | grep -Po '\d+')
 
-	local usage=$(echo "($total - $available) / $total * 100" | bc -l)
-	printf "%.2f%%\t%.1fGB" "$usage" $(echo "scale=1;$total / 1024 / 1024" | bc -l)
+	local usage
+	usage=$(echo "($total - $available) / $total * 100" | bc -l)
+	printf "%.2f%%\t%.1fGB" "$usage" "$(echo "scale=1;$total / 1024 / 1024" | bc -l)"
 }
 
 cpu() {
 
-	local cores=$(cat /proc/cpuinfo | grep 'model name' | wc -l)
-	local usage=$(get_cpu_usage)
-	local model_name=$(grep -Po 'model name\s*: .*' /proc/cpuinfo | grep -Po '(?<=: ).*' | sed -n 1p)
-	local name=$(cat /proc/sys/kernel/hostname)
-	local mem="$(get_mem_usage)"
+	local cores
+	cores=$(grep </proc/cpuinfo -c 'model name')
+	local usage
+	usage=$(get_cpu_usage)
+	local model_name
+	model_name=$(grep -Po 'model name\s*: .*' /proc/cpuinfo | grep -Po '(?<=: ).*' | sed -n 1p)
+	local name
+	name=$(cat /proc/sys/kernel/hostname)
+	local mem
+	mem="$(get_mem_usage)"
 
 	printf "%s\t%4.1f%%\t%s\t(%d)\t%s\n" "$name" "$usage" "$model_name" "$cores" "$mem"
 }
