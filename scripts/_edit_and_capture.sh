@@ -13,14 +13,14 @@ edit_and_capture() {
 	${EDITOR:-${__fallback_editor}} "$temp_file"
 
 	# Read the content of the temporary file into the provided shell variable
-	local __resultvar=$1
+	local __resultvar="$1"
 
 	if [[ -f "$temp_file" ]]; then
 		# Read the file content into the variable
 		local result
 		result="$(<"$temp_file")"
 		# Assign to the variable name passed as argument
-		eval "$__resultvar"="'$result'"
+		declare -g "$__resultvar=$result"
 	else
 		echo "Temporary file was not created."
 		return 1
