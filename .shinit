@@ -225,3 +225,4 @@ export NVM_DIR="$HOME/.nvm"
 export KUBECONFIG=$HOME/.kube/config
 
 command -v javac 2>&1 >/dev/null && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+
