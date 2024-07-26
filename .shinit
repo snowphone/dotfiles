@@ -17,11 +17,11 @@ case "$PATH" in
 esac
 
 BREW_PATH=$HOME/.paths
-if [ -f $BREW_PATH ]; then
-	NEW_PATHS=$(cat $BREW_PATH)
+if [ -f "$BREW_PATH" ]; then
+	NEW_PATHS=$(cat "$BREW_PATH")
 	PATH=$NEW_PATHS:$PATH
 fi
-if command -v nproc 2>&1 >/dev/null; then
+if command -v nproc >/dev/null 2>&1; then
 	export HOMEBREW_MAKE_JOBS=$(nproc --all)
 else
 	export HOMEBREW_MAKE_JOBS=4
@@ -29,12 +29,12 @@ fi
 
 export LD_LIBRARY_PATH=$HOME/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 
-[ -n $DISPLAY ] && export XAUTHORITY=$HOME/.Xauthority
+[ -n "$DISPLAY" ] && export XAUTHORITY=$HOME/.Xauthority
 
 export EDITOR=vim
 
 # Alias's to modified commands
-if command -v rsync 2>&1 >/dev/null; then
+if command -v rsync >/dev/null 2>&1; then
 	alias cp='rsync -ah --info=progress2'
 fi
 
@@ -58,7 +58,7 @@ alias psed='perl -pe'             #sed with pcre support
 alias fd='fd --hidden'            #find dotfiles as well
 alias rg='rg --auto-hybrid-regex' #Always allow look-ahead/behind
 
-if command -v prename 2>&1 >/dev/null; then
+if command -v prename >/dev/null 2>&1; then
 	alias rename=prename
 fi
 
@@ -133,7 +133,7 @@ mountedinfo() {
 	case $1 in
 	-h | --help)
 		printf "Shows mounted file system information\n"
-		printf "Usage: $0 [--all]\n"
+		printf "Usage: %s [--all]\n" "$0"
 		;;
 	-a | --all)
 		df --human-readable --print-type
@@ -171,7 +171,7 @@ if command -v viddy &>/dev/null; then
 fi
 
 export FZF_DEFAULT_OPTS='-m --bind=ctrl-space:toggle,tab:down,shift-tab:up'
-if command -v bfs 2>&1 >/dev/null; then
+if command -v bfs >/dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND='bfs -L'
 
 	# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
@@ -184,7 +184,7 @@ if command -v bfs 2>&1 >/dev/null; then
 		bfs -E ".git" \
 			-type d -hidden -L . "$1" 2>/dev/null
 	}
-elif command -v fd 2>&1 >/dev/null; then
+elif command -v fd >/dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND='fd -L'
 
 	# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
@@ -216,10 +216,10 @@ _fzf_comprun() {
 	esac
 }
 
-if command -v gdircolors 2>&1 >/dev/null; then
-	eval "$(gdircolors $HOME/.dircolors)"
+if command -v gdircolors >/dev/null 2>&1; then
+	eval "$(gdircolors "$HOME"/.dircolors)"
 else
-	eval "$(dircolors $HOME/.dircolors)"
+	eval "$(dircolors "$HOME"/.dircolors)"
 fi
 
 # Load sdkman
@@ -237,4 +237,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export KUBECONFIG=$HOME/.kube/config
 
-command -v javac 2>&1 >/dev/null && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+command -v javac >/dev/null 2>&1 && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
