@@ -181,12 +181,13 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 
 # Use fd-based completion for the better performance
 _fzf_compgen_path() {
-	fd --hidden --follow --exclude ".git" . "$1"
+	fd --type f --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
 	fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -225,4 +226,3 @@ export NVM_DIR="$HOME/.nvm"
 export KUBECONFIG=$HOME/.kube/config
 
 command -v javac 2>&1 >/dev/null && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
-
