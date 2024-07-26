@@ -173,33 +173,22 @@ fi
 export FZF_DEFAULT_OPTS='-m --bind=ctrl-space:toggle,tab:down,shift-tab:up'
 if command -v bfs >/dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND='bfs -L'
-
-	# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
-	_fzf_compgen_path() {
-		bfs -E ".git" \
-			-type f -hidden -L . "$1" 2>/dev/null
-	}
-	# Invoked when a user types `cd **<tab>`
-	_fzf_compgen_dir() {
-		bfs -E ".git" \
-			-type d -hidden -L . "$1" 2>/dev/null
-	}
 elif command -v fd >/dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND='fd -L'
-
-	# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
-	_fzf_compgen_path() {
-		fd --exclude ".git" \
-			--type f --hidden --follow . "$1" 2>/dev/null
-	}
-	# Invoked when a user types `cd **<tab>`
-	_fzf_compgen_dir() {
-		fd --exclude ".git" \
-			--type d --hidden --follow . "$1" 2>/dev/null
-	}
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
+
+# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
+_fzf_compgen_path() {
+	fd --exclude ".git" --exclude 'node_modules' --exclude '__pycache__' \
+		--type f --hidden --follow . "$1" 2>/dev/null
+}
+# Invoked when a user types `cd **<tab>`
+_fzf_compgen_dir() {
+	fd --exclude ".git" --exclude 'node_modules' --exclude '__pycache__' \
+		--type d --hidden --follow . "$1" 2>/dev/null
+}
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
