@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import re
-from math import *
+from decimal import Decimal  # noqa
+from math import *  # noqa
 from sys import (
     argv,
     exit,
