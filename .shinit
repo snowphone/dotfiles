@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 # sh (POSIX) compatible configs
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -178,32 +179,6 @@ elif command -v fd >/dev/null 2>&1; then
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
-
-# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
-_fzf_compgen_path() {
-	fd --exclude ".git" --exclude 'node_modules' --exclude '__pycache__' \
-		--type f --hidden --follow . "$1" 2>/dev/null
-}
-# Invoked when a user types `cd **<tab>`
-_fzf_compgen_dir() {
-	fd --exclude ".git" --exclude 'node_modules' --exclude '__pycache__' \
-		--type d --hidden --follow . "$1" 2>/dev/null
-}
-
-# Advanced customization of fzf options via _fzf_comprun function
-# - The first argument to the function is the name of the command.
-# - You should make sure to pass the rest of the arguments to fzf.
-_fzf_comprun() {
-	__fzf_comprun__command__=$1
-	shift
-
-	case "$__fzf_comprun__command__" in
-	cd) fzf --preview 'tree -C {} | head -200' "$@" ;;
-	export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
-	ssh) fzf --preview 'dig {}' "$@" ;;
-	*) fzf --preview 'bat -n --color=always {}' "$@" ;;
-	esac
-}
 
 if command -v gdircolors >/dev/null 2>&1; then
 	eval "$(gdircolors "$HOME"/.dircolors)"
