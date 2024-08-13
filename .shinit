@@ -2,7 +2,7 @@
 # sh (POSIX) compatible configs
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANPATH=$HOME/.local/share/man:/usr/share/man:$MANPATH
+export MANPATH="$HOME"/.local/share/man:/usr/share/man:"$MANPATH"
 
 # set PATH so it includes user's private bin if it exists
 LOCALBIN="$HOME/.local/bin"
@@ -28,9 +28,9 @@ else
 	export HOMEBREW_MAKE_JOBS=4
 fi
 
-export LD_LIBRARY_PATH=$HOME/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH="$HOME"/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 
-[ -n "$DISPLAY" ] && export XAUTHORITY=$HOME/.Xauthority
+[ -n "$DISPLAY" ] && export XAUTHORITY="$HOME"/.Xauthority
 
 export EDITOR=vim
 
@@ -162,12 +162,12 @@ alias htop="htop -s PERCENT_CPU"
 alias tmux-dev='$HOME/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
 
-if command -v nvim &>/dev/null; then
+if command -v nvim >/dev/null 2>&1; then
 	alias vim=nvim
 	alias vimdiff='nvim -d'
 fi
 
-if command -v viddy &>/dev/null; then
+if command -v viddy >/dev/null 2>&1; then
 	alias watch='viddy -s -d'
 fi
 
@@ -199,6 +199,6 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-export KUBECONFIG=$HOME/.kube/config
+export KUBECONFIG="$HOME"/.kube/config
 
 command -v javac >/dev/null 2>&1 && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
