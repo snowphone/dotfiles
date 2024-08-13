@@ -173,12 +173,13 @@ fi
 
 export FZF_DEFAULT_OPTS='-m --bind=ctrl-space:toggle,tab:down,shift-tab:up'
 if command -v bfs >/dev/null 2>&1; then
-	export FZF_DEFAULT_COMMAND='bfs -L'
+	export FZF_DEFAULT_COMMAND='bfs -follow'
+	export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -type d 2> /dev/null"
 elif command -v fd >/dev/null 2>&1; then
-	export FZF_DEFAULT_COMMAND='fd -L'
+	export FZF_DEFAULT_COMMAND='fd --follow'
+	export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d 2> /dev/null"
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND 2> /dev/null"
 
 if command -v gdircolors >/dev/null 2>&1; then
 	eval "$(gdircolors "$HOME"/.dircolors)"
