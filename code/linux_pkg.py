@@ -129,7 +129,7 @@ class LinuxAMD64(Script, GithubDownloadable):
 
         self.shell.exec(
             "Installing viddy",
-            self.github_dl_cmd("sachaos/viddy", "Linux_x86_64.tar.gz"),
+            self.github_dl_cmd("sachaos/viddy", "linux-x86_64.tar.gz"),
         )
 
         self.shell.exec(
@@ -152,7 +152,7 @@ class LinuxAMD64(Script, GithubDownloadable):
 
         self.shell.exec_list(
             "Installing glow",
-            self.github_dl_cmd("charmbracelet/glow", "linux_x86_64.tar.gz"),
+            self.github_dl_cmd("charmbracelet/glow", "linux_x86_64.tar.gz", strip=1),
             f"mv {self.HOME}/.local/bin/completions/glow.zsh {self.zsh_completion_path}/_glow",
             f"mv {self.HOME}/.local/bin/completions/glow.bash {self.bash_completion_path}/glow",
             f"mv {self.HOME}/.local/bin/manpages/glow.1.gz {self.man_path}/glow.1.gz",
