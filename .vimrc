@@ -289,7 +289,7 @@ if has("nvim")
   set spell
 
   " yetone/avante.nvim 플러그인
-  Plug 'yetone/avante.nvim', { 'on': 'VeryLazy' }
+  Plug 'yetone/avante.nvim'
   
   " 종속성 플러그인들
   Plug 'nvim-tree/nvim-web-devicons'
