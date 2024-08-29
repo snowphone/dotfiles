@@ -467,18 +467,23 @@ if has("nvim")
 lua <<EOF
 function PipeRangedSelection()
     local cmd = vim.fn.input("Command: ")
-	local body = vim.fn.GetVisualSelection(vim.fn.visualmode())
+    local body = vim.fn.GetVisualSelection(vim.fn.visualmode())
     vim.cmd("redraw")
     local fname = os.tmpname()
     local fp = io.open(fname, "w")
     fp:write(body)
     fp:close()
 
-	-- It's like `cmd <tmpfile` and `cat tmpfile | cmd`.
-	-- The former does not need a shell extension so I chose the former one.
-	vim.cmd("let g:floaterm_autoinsert=0")
-	vim.cmd("FloatermNew " .. cmd .. " <" .. fname)
-	vim.cmd("let g:floaterm_autoinsert=1")
+    -- It's like `cmd <tmpfile` and `cat tmpfile | cmd`.
+    -- The former does not need a shell extension so I chose the former one.
+    vim.cmd("let g:floaterm_autoinsert=0")
+    local result = vim.fn.system(cmd .. " <" .. fname)
+    local status = vim.v.shell_error
+    vim.cmd("FloatermNew " .. cmd .. " <" .. fname)
+    if status == 0 and result == "" then
+        vim.cmd("FloatermHide")
+    end
+    vim.cmd("let g:floaterm_autoinsert=1")
     os.remove(fname)
 end
 EOF
