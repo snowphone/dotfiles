@@ -73,6 +73,22 @@ vim.api.nvim_create_autocmd('BufRead', {
 	end
 })
 
+------------------
+-- avante.nvim
+------------------
+require('avante').setup {
+	provider = "openai",
+	mappings = {
+		submit = {
+			normal = "<CR>",
+			insert = "<CR>",
+		},
+	},
+}
+require('render-markdown').setup {
+	file_types = { "markdown", "Avante" },
+	enable = true,
+}
 
 ------------------
 -- nvim-treesitter
@@ -188,7 +204,7 @@ require('rainbow-delimiters.setup').setup {
 -- Avoid yelling about pynvim
 -----------------------------
 if vim.fn.exists("$VIRTUAL_ENV") == 1 then
-    vim.g.python3_host_prog = vim.fn.substitute(vim.fn.system("which -a python3 | head -n2 | tail -n1"), "\n", "", "g")
+	vim.g.python3_host_prog = vim.fn.substitute(vim.fn.system("which -a python3 | head -n2 | tail -n1"), "\n", "", "g")
 else
-    vim.g.python3_host_prog = vim.fn.substitute(vim.fn.system("which python3"), "\n", "", "g")
+	vim.g.python3_host_prog = vim.fn.substitute(vim.fn.system("which python3"), "\n", "", "g")
 end

@@ -287,42 +287,20 @@ if has("nvim")
   command! -nargs=0 GBlame :GitBlameToggle
   Plug 'lewis6991/spellsitter.nvim'
   set spell
+
+  " yetone/avante.nvim 플러그인
+  Plug 'yetone/avante.nvim', { 'on': 'VeryLazy' }
+  
+  " 종속성 플러그인들
+  Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'stevearc/dressing.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'MunifTanjim/nui.nvim'
+  
+  " MeanderingProgrammer/render-markdown.nvim 플러그인
+  Plug 'MeanderingProgrammer/render-markdown.nvim'
+
 endif
-
-
-" If copilot suggests nothing, trigger the coc suggestion list.
-function! TriggerSuggestion() abort
-	let s = copilot#GetDisplayedSuggestion()
-	if empty(s.text)
-		return coc#refresh()
-	else
-		return copilot#Accept("\<CR>")
-	endif
-endfunction
-
-Plug 'github/copilot.vim'
-" Change accept key to <C-Space>
-imap <silent><script><expr> <C-Space> TriggerSuggestion()
-let g:copilot_no_tab_map = v:true
-" <M-]> or <M-[> to cycle to the suggestions
-
-function! ToggleCopilot()
-	let status_output = execute('Copilot status')
-	let is_enabled = (tolower(status_output) =~ 'enabled\|ready') ? 1 : 0
-
-	if is_enabled
-		let command = 'Copilot disable'
-	else
-		let command = 'Copilot enable'
-	endif
-
-	execute command
-	echo command .. 'd'
-endfunction
-" Bind <M-c> to toggle copilot
-nnoremap <M-c> :call ToggleCopilot()<CR>
-" Even on insert mode, <M-c> will toggle copilot
-inoremap <M-c> <c-o>:call ToggleCopilot()<CR>
 
 
 Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop'] }
