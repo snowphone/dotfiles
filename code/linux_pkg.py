@@ -188,6 +188,15 @@ class LinuxAMD64(Script, GithubDownloadable):
 
         self._install_node()
 
+        self.shell.exec_list(
+            "Installing 7zip",
+            self.dl_cmd(
+            'https://7-zip.org/a/7z2408-linux-x64.tar.xz',
+            ),
+            f'rm -rf {self.HOME}/.local/bin/MANUAL {self.HOME}/.local/bin/readme.txt  {self.HOME}/.local/bin/History.txt {self.HOME}/.local/bin/License.txt {self.HOME}/.locall/bin/7zzs',
+            f'mv -f {self.HOME}/.local/bin/7zz {self.HOME}/.local/bin/7z',
+        )
+
         return
 
     def _install_node(self):
