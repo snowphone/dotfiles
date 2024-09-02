@@ -80,8 +80,8 @@ require('avante').setup {
 	provider = "openai",
 	mappings = {
 		submit = {
-			normal = "<CR>",
-			insert = "<CR>",
+			normal = "<C-j>",
+			insert = "<C-j>",
 		},
 	},
 }
