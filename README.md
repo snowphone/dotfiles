@@ -31,9 +31,5 @@ sed -i 's|https://github.com/snowphone/dotfiles|git@github.com:snowphone/dotfile
 
 ## TODO
 
-- [ ] optimizing PATH on brew-ed environment: refusing `brew link <pkg>` on some packages
-- [ ] GNU coreutils (e.g. ls, df)
-- [ ] gdb
-- [ ] cargo install commitgpt
-- [ ] cargo install macchina
-- [ ] cloudflare
+- [ ] Debugger integration
+- [ ] Cloudflare
