@@ -297,8 +297,21 @@ if has("nvim")
   Plug 'nvim-lua/plenary.nvim'
   Plug 'MunifTanjim/nui.nvim'
   
-  " MeanderingProgrammer/render-markdown.nvim 플러그인
+  " Deps
   Plug 'MeanderingProgrammer/render-markdown.nvim'
+  Plug 'stevearc/dressing.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'MunifTanjim/nui.nvim'
+  
+  " Optional deps
+  Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+  Plug 'HakonHarnes/img-clip.nvim'
+  Plug 'zbirenbaum/copilot.lua'
+  
+  " ``'on': 'AvanteAsk'` removed since it does not work on my environment, in
+  " contraray to the documentation.
+  " https://github.com/yetone/avante.nvim/issues/453
+  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': { -> avante#build() } }
 
 endif
 

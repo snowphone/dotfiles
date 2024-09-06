@@ -76,6 +76,8 @@ vim.api.nvim_create_autocmd('BufRead', {
 ------------------
 -- avante.nvim
 ------------------
+require('avante_lib').load()
+
 require('avante').setup {
 	provider = "openai",
 	mappings = {
