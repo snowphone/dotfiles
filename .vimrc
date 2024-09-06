@@ -288,15 +288,6 @@ if has("nvim")
   Plug 'lewis6991/spellsitter.nvim'
   set spell
 
-  " yetone/avante.nvim 플러그인
-  Plug 'yetone/avante.nvim'
-  
-  " 종속성 플러그인들
-  Plug 'nvim-tree/nvim-web-devicons'
-  Plug 'stevearc/dressing.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'MunifTanjim/nui.nvim'
-  
   " Deps
   Plug 'MeanderingProgrammer/render-markdown.nvim'
   Plug 'stevearc/dressing.nvim'
@@ -304,9 +295,8 @@ if has("nvim")
   Plug 'MunifTanjim/nui.nvim'
   
   " Optional deps
-  Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+  Plug 'nvim-tree/nvim-web-devicons'
   Plug 'HakonHarnes/img-clip.nvim'
-  Plug 'zbirenbaum/copilot.lua'
   
   " ``'on': 'AvanteAsk'` removed since it does not work on my environment, in
   " contraray to the documentation.
