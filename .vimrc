@@ -301,7 +301,7 @@ if has("nvim")
   " ``'on': 'AvanteAsk'` removed since it does not work on my environment, in
   " contraray to the documentation.
   " https://github.com/yetone/avante.nvim/issues/453
-  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': { -> avante#build() } }
+  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': { -> avante#build('source=true') } }
 
 endif
 
