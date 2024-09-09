@@ -1,13 +1,16 @@
 # dotfiles
 
 ## Installation
-~~~bash
+
+```bash
 git clone 'https://snowphone@github.com/snowphone/dotfiles' ~/.dotfiles && \
 cd ~/.dotfiles && ./install.sh -d [debian | redhat | darwin] [--java|--latex|--boost|--misc|--typescript]
-~~~
+```
+
 Note that you may need to enter the password to decrypt the ssh key.
 
 ## How to Install openssh-server on WSL2
+
 VM-based WSL2 gives us much faster native-filesystem-access-speed, but it also has some drawbacks. One of the drawbacks is an isolated network.
 Thus, if you want to run ssh server and access from other hosts, you have to run ssh daemon after bootup and also forward ports.
 
@@ -21,7 +24,7 @@ It will replace `install_packages.py`.
 ## MacOS Support
 
 - iTerm2 [config](https://gist.github.com/snowphone/7f771242e80579b52fbd06c859af3853)
-  - or clone the gist via ssh: `git@gist.github.com:7f771242e80579b52fbd06c859af3853)`
+    - or clone the gist via ssh: `git@gist.github.com:7f771242e80579b52fbd06c859af3853`
 
 ## Switching from Https into Ssh
 
