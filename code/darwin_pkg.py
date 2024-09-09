@@ -82,7 +82,7 @@ class DarwinPackageManager(PackageManager):
         TODO: Installs gdb
         """
         paths = set()
-        for pkg in frozenset(self.pkgs) & {"java", "gnu-sed", "grep", "gnu-tar"}:
+        for pkg in frozenset(self.pkgs) & {"java", "gnu-sed", "grep", "gnu-tar", "coreutils"}:
             ok, path, _ = self.shell.run(f"brew --prefix {pkg}")
             if not ok:
                 print(f"Problem occurred while brew --prefix {pkg}")
