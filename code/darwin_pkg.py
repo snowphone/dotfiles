@@ -31,8 +31,6 @@ class DarwinPreparation(Script):
                 "sudo echo hello",  # To acquire sudo permission
                 '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null',
             )
-
-        self.shell.exec("Tap homebrew/cask-fonts", "brew tap homebrew/cask-fonts")
         return
 
 
