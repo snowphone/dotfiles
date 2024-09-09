@@ -21,12 +21,12 @@ It will replace `install_packages.py`.
 ## MacOS Support
 
 - iTerm2 [config](https://gist.github.com/snowphone/7f771242e80579b52fbd06c859af3853)
-  - or clone the gist via [ssh](git@gist.github.com:7f771242e80579b52fbd06c859af3853)
+  - or clone the gist via ssh: `git@gist.github.com:7f771242e80579b52fbd06c859af3853)`
 
 ## Switching from Https into Ssh
 
 ```sh
-sed -i 's|https://github.com/snowphone/dotfiles|git@github.com:snowphone/dotfiles|' .git/config
+sed -Ei 's|https://(snowphone@)?github.com/snowphone/dotfiles|git@github.com:snowphone/dotfiles|' .git/config
 ```
 
 ## Windows Terminal settings.json and Delugia Font
