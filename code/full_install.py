@@ -3,6 +3,7 @@ from argparse import Namespace
 
 import install_packages
 from install_packages import Installer
+from script import Script
 from setup_shell import ShellSwitcher
 from setup_ssh_key import SshKey
 from setup_tmux import Tmux
@@ -16,7 +17,7 @@ def main(args: Namespace):
         Vim(args),
         SshKey(args),
         Tmux(args),
-    ]
+    ]  # type: list[Script]
     for installer in installer_list:
         installer.run()
 
