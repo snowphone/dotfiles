@@ -29,7 +29,15 @@ class Vim(Script):
         if not os.path.islink(f"{HOME}/.config"):
             self.shell.exec(
                 f"Aliasing {HOME}/.config",
-                f'ln -fs "{proj_root}"/config {HOME}/.config',
+                f'''
+                if [ -L {HOME}/.config ]; then
+                    unlink {HOME}/.config
+                else
+                    rm -rf {HOME}/.config
+                fi
+                    
+                ln -s "{proj_root}"/config {HOME}/.config
+                ''',
             )
 
         if self._exists("nvim"):
