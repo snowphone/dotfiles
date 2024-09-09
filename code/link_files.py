@@ -95,11 +95,12 @@ class FileLinker(Script):
             self.shell.exec(
                 "Linking .clipboard",
                 f"""
-                if [ $(uname) = 'Darwin' ]; then
-                    gln -fs -T {self.proj_root}/clipboard {HOME}/.clipboard
+                if [ -L {HOME}/.clipboard ];then
+                    unlink {HOME}/.clipboard;
                 else
-                    ln -fs -T {self.proj_root}/clipboard {HOME}/.clipboard
-                fi
+                    rm -rf {HOME}/.clipboard;
+                fi && \
+                ln -s {self.proj_root}/clipboard {HOME}/.clipboard
                 """,
             )
 
