@@ -26,8 +26,9 @@ class DarwinPreparation(Script):
         )
 
         if not self._exists("brew"):
-            self.shell.exec(
+            self.shell.exec_list(
                 "Installing homebrew",
+                "sudo echo hello",  # To acquire sudo permission
                 '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null',
             )
 
