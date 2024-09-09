@@ -17,9 +17,15 @@ case "$PATH" in
 *) PATH="$SNAPBIN:$PATH" ;;
 esac
 
-BREW_PATH=$HOME/.paths
-if [ -f "$BREW_PATH" ]; then
-	NEW_PATHS=$(cat "$BREW_PATH")
+M1_SILICON_BREW_PATH="/opt/homebrew/bin"
+case "$PATH" in
+"*$M1_SILICON_BREW_PATH*") ;;
+*) PATH="$M1_SILICON_BREW_PATH:$PATH" ;;
+esac
+
+BREW_PACKAGES_PATH=$HOME/.paths
+if [ -f "$BREW_PACKAGES_PATH" ]; then
+	NEW_PATHS=$(cat "$BREW_PACKAGES_PATH")
 	PATH=$NEW_PATHS:$PATH
 fi
 if command -v nproc >/dev/null 2>&1; then
