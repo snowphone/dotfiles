@@ -23,6 +23,7 @@ endif
 "테마(theme)
 if has('nvim')
 	Plug 'rktjmp/lush.nvim'
+	Plug 'shaunsingh/nord.nvim'
 endif
 Plug 'tomasr/molokai'
 Plug 'sainnhe/gruvbox-material'
@@ -42,7 +43,7 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 set laststatus=2 " turn on bottom bar
 
 let g:airline#extensions#whitespace#enabled = 0 		"Disable trailing whitespace warning
-let g:airline_theme = 'gruvbox_material'
+let g:airline_theme = 'nord_minimal'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -346,7 +347,7 @@ let g:gruvbox_material_foreground='material' " material | mix | original
 let g:gruvbox_material_diagnostic_text_highlight=1
 
 set background=dark
-silent! colorscheme gruvbox-material
+silent! colorscheme nord
 
 
 syntax on
