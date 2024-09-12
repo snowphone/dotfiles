@@ -165,7 +165,6 @@ alias 777='chmod -R 777'
 #alias htop="htop -u $(whoami)"
 alias htop="htop -s PERCENT_CPU"
 
-alias tmux-dev='$HOME/.dotfiles/tmux-dev.sh'
 alias qq='tmux kill-window'
 
 if command -v nvim >/dev/null 2>&1; then

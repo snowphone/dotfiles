@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 tmux -2 new -s dev \; \
 	send-keys 'gotop -a || htop || top' C-m \; \
 	split-window -h -l 65% \; \
