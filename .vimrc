@@ -471,6 +471,9 @@ if has("nvim")
 lua <<EOF
 function PipeRangedSelection()
     local cmd = vim.fn.input("Command: ")
+    if cmd == "" then
+        return
+    end
     local body = vim.fn.GetVisualSelection(vim.fn.visualmode())
     vim.cmd("redraw")
     local fname = os.tmpname()
