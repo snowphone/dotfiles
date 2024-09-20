@@ -28,6 +28,11 @@ class LinuxAMD64(Script, GithubDownloadable):
         self.shell.run(f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf")
 
         self.shell.exec(
+            "Installing rust",
+            "curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path",
+        )
+
+        self.shell.exec(
             "Installing visidata",
             "pip3 install --upgrade visidata",
         )
@@ -106,11 +111,6 @@ class LinuxAMD64(Script, GithubDownloadable):
         )
         if self.args.latex:
             self.shell.sudo_exec("Refreshing fonts", "fc-cache -f -v")
-
-        self.shell.exec(
-            "Installing rust",
-            "curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path",
-        )
 
         self._mkdir(self.zsh_completion_path)
         self._mkdir(self.bash_completion_path)
