@@ -185,6 +185,10 @@ class DebianPackageManager(PackageManager):
         return pkgs
 
     def do_misc(self):
+        self.shell.exec(
+            "Upgrading pip to the latest",
+            "python3 -m pip install --upgrade pip",
+        )
         self._install_clang()
 
     def _install_clang(self):
