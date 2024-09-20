@@ -4,6 +4,8 @@ proj_root=$(
 	d=$(dirname "$0")
 	cd "$d" && pwd
 )
+PATH=$HOME/.local/bin:$PATH
+
 "$proj_root"/code/full_install.py "$@"
 
 cat <<EOF
