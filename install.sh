@@ -11,5 +11,5 @@ PATH=$HOME/.local/bin:$PATH
 cat <<EOF
 Try the below to substitute a github protocol:
 
-sed -Ei 's|https://(snowphone@)?github.com/snowphone/dotfiles|git@github.com:snowphone/dotfiles|' ${proj_root}.git/config
+sed -Ei 's|https://(snowphone@)?github.com/snowphone/dotfiles|git@github.com:snowphone/dotfiles|' ${proj_root}/.git/config
 EOF
