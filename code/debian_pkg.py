@@ -47,11 +47,6 @@ class DebianPreparation(Script):
             "add-apt-repository -y ppa:longsleep/golang-backports",
         )
 
-        self.shell.sudo_exec(
-            "Adding neovim repository",
-            "add-apt-repository -y ppa:neovim-ppa/stable",
-        )
-
         if self.shell.env.get("DISPLAY", False):
             self.shell.sudo_exec_list(
                 "Adding gnome-epub-thumbnailer repository",
@@ -94,7 +89,6 @@ class DebianPackageManager(PackageManager):
             "moreutils",
             "multitail",
             "neofetch",
-            "neovim",
             "num-utils",
             "parallel",
             "pigz",

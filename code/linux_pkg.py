@@ -51,6 +51,16 @@ class LinuxAMD64(Script, GithubDownloadable):
         )
 
         self.shell.exec(
+            "Installing neovim",
+            self.github_dl_cmd(
+                user_repo="neovim/neovim",
+                suffix="linux64.tar.gz",
+                strip=1,
+                binpath="$HOME/.local",
+            ),
+        )
+
+        self.shell.exec(
             "Installing bazel-lsp",
             self.github_dl_single_cmd(
                 "cameron-martin/bazel-lsp",
@@ -191,11 +201,11 @@ class LinuxAMD64(Script, GithubDownloadable):
         self.shell.exec_list(
             "Installing 7zip",
             self.dl_cmd(
-            'https://7-zip.org/a/7z2408-linux-x64.tar.xz',
-            tar_extract_flags='xJ',
+                "https://7-zip.org/a/7z2408-linux-x64.tar.xz",
+                tar_extract_flags="xJ",
             ),
-            f'rm -rf {self.HOME}/.local/bin/MANUAL {self.HOME}/.local/bin/readme.txt  {self.HOME}/.local/bin/History.txt {self.HOME}/.local/bin/License.txt {self.HOME}/.locall/bin/7zzs',
-            f'mv -f {self.HOME}/.local/bin/7zz {self.HOME}/.local/bin/7z',
+            f"rm -rf {self.HOME}/.local/bin/MANUAL {self.HOME}/.local/bin/readme.txt  {self.HOME}/.local/bin/History.txt {self.HOME}/.local/bin/License.txt {self.HOME}/.locall/bin/7zzs",
+            f"mv -f {self.HOME}/.local/bin/7zz {self.HOME}/.local/bin/7z",
         )
 
         return
