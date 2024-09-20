@@ -162,7 +162,7 @@ class DebianPackageManager(PackageManager):
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
         if self.args.elixir:
             pkgs += [
-                libssl-dev",
+                "libssl-dev",
                 "automake",
                 "autoconf",
                 "fop",
