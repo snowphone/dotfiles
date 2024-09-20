@@ -302,7 +302,9 @@ if has("nvim")
   " ``'on': 'AvanteAsk'` removed since it does not work on my environment, in
   " contraray to the documentation.
   " https://github.com/yetone/avante.nvim/issues/453
-  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make', 'on': 'AvanteAsk' }
+  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
+  set laststatus=3
+  autocmd! User avante.nvim lua require('avante_lib').load()
 
 endif
 

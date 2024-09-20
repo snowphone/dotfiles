@@ -85,8 +85,7 @@ require('img-clip').setup({
 		},
 	},
 })
-package.path = string.format("%s;%s/.vim/plugged/avante.nvim/lua/?.lua", package.path, os.getenv("HOME"))
-package.path = string.format("%s;%s/.vim/plugged/avante.nvim/lua/?/init.lua", package.path, os.getenv("HOME"))
+
 require('avante_lib').load()
 
 require('avante').setup {
