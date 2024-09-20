@@ -41,27 +41,70 @@ class DarwinPackageManager(PackageManager):
 
     @property
     def pkgs(self):
-        pkgs = """
-			llvm vim neovim git rename wget tmux make gzip zip unzip figlet
-			cmake poppler watch
-			tree htop ripgrep the_silver_searcher rsync
-			bear w3m git-extras multitail convmv
-			neofetch mmv
-			parallel sponge num-utils
-            coreutils gnu-sed gawk gnu-tar grep
-			lbzip2 pigz pixz p7zip
-			ffmpeg shfmt shellcheck
-			translate-shell dict jq rust
-
-			yt-dlp fd bfs ripgrep-all gotop bat glow viddy
-
-            tldr yq btop bat k9s yt-dlp tty-clock
-
-            karabiner-elements firefox microsoft-edge
-            iterm2 raycast keka libreoffice keepingyouawake adguard
-
-            font-delugia-complete font-d2coding font-d2coding-nerd-font
-			""".split()
+        pkgs = [
+            "bat",
+            "bear",
+            "bfs",
+            "btop",
+            "cmake",
+            "convmv",
+            "coreutils",
+            "dict",
+            "fd",
+            "ffmpeg",
+            "figlet",
+            "font-d2coding",
+            "font-d2coding-nerd-font",
+            "font-delugia-complete",
+            "git",
+            "git-extras",
+            "glow",
+            "gotop",
+            "grep",
+            "gzip",
+            "gawk",
+            "gnu-sed",
+            "gnu-tar",
+            "htop",
+            "jq",
+            "k9s",
+            "lbzip2",
+            "llvm",
+            "make",
+            "mmv",
+            "multitail",
+            "neofetch",
+            "neovim",
+            "num-utils",
+            "parallel",
+            "pigz",
+            "pixz",
+            "poppler",
+            "p7zip",
+            "rename",
+            "ripgrep",
+            "ripgrep-all",
+            "rsync",
+            "rust",
+            "shfmt",
+            "shellcheck",
+            "sponge",
+            "the_silver_searcher",
+            "tmux",
+            "translate-shell",
+            "tree",
+            "tty-clock",
+            "tldr",
+            "unzip",
+            "viddy",
+            "vim",
+            "w3m",
+            "watch",
+            "wget",
+            "yq",
+            "yt-dlp",
+            "zip"
+        ]
 
         if self.args.latex:
             pkgs.append("texlive")
@@ -82,7 +125,13 @@ class DarwinPackageManager(PackageManager):
         TODO: Installs gdb
         """
         paths = set()
-        for pkg in frozenset(self.pkgs) & {"java", "gnu-sed", "grep", "gnu-tar", "coreutils"}:
+        for pkg in frozenset(self.pkgs) & {
+            "java",
+            "gnu-sed",
+            "grep",
+            "gnu-tar",
+            "coreutils",
+        }:
             ok, path, _ = self.shell.run(f"brew --prefix {pkg}")
             if not ok:
                 print(f"Problem occurred while brew --prefix {pkg}")
@@ -184,7 +233,19 @@ class Mac(Script, GithubDownloadable):
         )
 
     def _install_casks(self):
-        casks = ["visual-studio-code", "xquartz"]
+        casks = [
+            "visual-studio-code",
+            "xquartz",
+            "karabiner-elements",
+            "firefox",
+            "microsoft-edge",
+            "iterm2",
+            "raycast",
+            "keka",
+            "libreoffice",
+            "keepingyouawake",
+            "adguard",
+        ]
 
         for cask in casks:
             self.shell.exec(
