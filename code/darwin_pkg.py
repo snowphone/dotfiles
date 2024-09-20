@@ -90,7 +90,7 @@ class DarwinPackageManager(PackageManager):
             "shellcheck",
             "sponge",
             "the_silver_searcher",
-            "tmux",
+            "tmux --HEAD",
             "translate-shell",
             "tree",
             "tty-clock",
