@@ -67,21 +67,65 @@ class DebianPackageManager(PackageManager):
 
     @property
     def pkgs(self):
-        pkgs = """
-			build-essential gdb less tar vim neovim git gcc curl rename wget tmux make gzip zip unzip figlet
-			zsh python-is-python3
-			exuberant-ctags cmake
-			python3-dev python3 python3-pip python3-venv
-			bfs tree htop ripgrep silversearcher-ag rsync jq
-			bear sshpass w3m traceroute git-extras multitail
-			neofetch mmv rar
-			poppler-utils mediainfo
-			parallel moreutils num-utils
-			lbzip2 pigz pixz p7zip-full
-            libssl-dev pkg-config
-			ffmpeg shfmt shellcheck
-			translate-shell dict
-			""".split()
+        pkgs = [
+            "automake",
+            "bear",
+            "bfs",
+            "build-essential",
+            "cmake",
+            "curl",
+            "dict",
+            "exuberant-ctags",
+            "ffmpeg",
+            "figlet",
+            "git",
+            "git-extras",
+            "gzip",
+            "gdb",
+            "gcc",
+            "htop",
+            "jq",
+            "lbzip2",
+            "less",
+            "libssl-dev",
+            "make",
+            "mediainfo",
+            "mmv",
+            "moreutils",
+            "multitail",
+            "neofetch",
+            "neovim",
+            "num-utils",
+            "parallel",
+            "pigz",
+            "pkg-config",
+            "poppler-utils",
+            "p7zip-full",
+            "python3",
+            "python3-dev",
+            "python3-pip",
+            "python3-venv",
+            "python-is-python3",
+            "rar",
+            "rename",
+            "ripgrep",
+            "rsync",
+            "shfmt",
+            "shellcheck",
+            "silversearcher-ag",
+            "sshpass",
+            "tar",
+            "tmux",
+            "translate-shell",
+            "traceroute",
+            "tree",
+            "unzip",
+            "vim",
+            "wget",
+            "w3m",
+            "zip",
+            "zsh",
+        ]
 
         if self.args.latex:
             self.shell.exec(
@@ -118,23 +162,23 @@ class DebianPackageManager(PackageManager):
             pkgs += ["figlet", "lolcat", "toilet", "img2pdf"]
         if self.args.elixir:
             pkgs += [
-                "libssl-dev",
+                libssl-dev",
                 "automake",
-                "m4",
                 "autoconf",
-                "libncurses5-dev",
-                "libwxgtk3.0-gtk3-dev",
-                "libwxgtk-webview3.0-gtk3-dev",
+                "fop",
                 "libgl1-mesa-dev",
                 "libglu1-mesa-dev",
+                "libncurses-dev",
+                "libncurses5-dev",
                 "libpng-dev",
                 "libssh-dev",
+                "libwxgtk-webview3.0-gtk3-dev",
+                "libwxgtk3.0-gtk3-dev",
+                "libxml2-utils",
+                "m4",
+                "openjdk-11-jdk",
                 "unixodbc-dev",
                 "xsltproc",
-                "fop",
-                "libxml2-utils",
-                "libncurses-dev",
-                "openjdk-11-jdk",
             ]
         if self.args.golang:
             pkgs += ["golang-go"]
