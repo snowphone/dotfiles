@@ -87,8 +87,8 @@ class FileLinker(Script):
 
         self.shell.exec_list(
             "Setting up pip cache server",
-            f"mkdir -p {HOME}/.pip",
-            f'ln -nfs "$folder"/pip.conf {HOME}/.pip/pip.conf',
+            f"mkdir -p {HOME}/.config/pip",
+            f'ln -nfs "$folder"/pip.conf {HOME}/.config/pip/pip.conf',
             f"ln -nfs $(which pip3) {HOME}/.local/bin/pip",
         )
 

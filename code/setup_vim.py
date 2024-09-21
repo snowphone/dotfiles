@@ -60,7 +60,7 @@ class Vim(Script):
 
         self.shell.exec(
             "Installing yapf, black, rope, and coverage",
-            "python3 -m pip install --break-system-packages black yapf rope coverage",
+            "python3 -m pip install black yapf rope coverage",
         )
 
         if self.args.elixir:
@@ -89,7 +89,7 @@ class Vim(Script):
 
         self.shell.exec_list(
             "Installing plugins for neovim",
-            "python3 -m pip install --upgrade --break-system-packages 'pynvim @ git+https://github.com/neovim/pynvim'",  # At the time of writing, pynvim on pypi does not support python >= 3.12.
+            "python3 -m pip install --upgrade 'pynvim @ git+https://github.com/neovim/pynvim'",  # At the time of writing, pynvim on pypi does not support python >= 3.12.
             "nvim --headless -c PlugInstall -c quitall",
             "nvim --headless -c CocUpdateSync -c quitall",
             "nvim --headless -c TSUpdateSync -c quitall",

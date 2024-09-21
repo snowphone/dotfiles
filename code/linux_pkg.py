@@ -22,10 +22,10 @@ class LinuxAMD64(Script, GithubDownloadable):
         self.man_path = f"{self.HOME}/.local/share/man/man1"
 
     def run(self):
-        self._mkdir(f"{self.HOME}/.pip")
+        self._mkdir(f"{self.HOME}/.config/pip")
         self._mkdir(f"{self.HOME}/.local/bin")
 
-        self.shell.run(f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.pip/pip.conf")
+        self.shell.run(f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.config/pip/pip.conf")
 
         self.shell.exec(
             "Installing rust",
