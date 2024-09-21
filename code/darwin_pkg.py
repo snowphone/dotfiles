@@ -19,12 +19,6 @@ class DarwinPreparation(Script):
     def run(self):
         "Installs homebrew if not exists"
 
-        self._mkdir(f"{self.HOME}/.config/pip")
-        self.shell.exec(
-            "Symlinking pip.conf",
-            f"ln -fs {self.proj_root}/pip.conf {self.HOME}/.config/pip/pip.conf",
-        )
-
         if not self._exists("brew"):
             self.shell.exec_list(
                 "Installing homebrew",
