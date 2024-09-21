@@ -175,10 +175,6 @@ class Mac(Script, GithubDownloadable):
         self.man_path = f"{self.HOME}/.local/share/man/man1"
 
     def run(self):
-        self.shell.exec(
-            "Upgrading pip to the latest",
-            "python3 -m pip install --upgrade pip",
-        )
         self._mkdir(f"{self.HOME}/.local/bin")
 
         self.shell.exec_list(
