@@ -25,6 +25,8 @@ class ShellSwitcher(Script):
         else:
             self._switch_to_zsh()
 
+        self._color_ls()
+
         self.shell.exec(
             "Installing virtualenvwrapper",
             "python3 -m pip install --upgrade virtualenvwrapper",
