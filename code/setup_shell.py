@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import re
 from argparse import ArgumentParser
 
 from link_files import FileLinker
@@ -37,6 +38,34 @@ class ShellSwitcher(Script):
 
         return
 
+    def _color_ls(self):
+        dir_color_path = f"{self.HOME}/.dircolors"
+        self.shell.exec(
+            "Using dircolor from default",
+            f"""
+            if [ $(uname) = 'Darwin' ]; then
+                gdircolors -p > {dir_color_path}
+            else
+                dircolors -p > {dir_color_path}
+            fi
+            """,
+        )
+        if self._is_wsl():
+            # In WSL, folders in Windows storage look as OTHER_WRITABLE, so OTHER_WRITABLE is set as same as DIR.
+            with open(dir_color_path) as f:
+                text = f.read()
+            dir_color = re.search(r"(?<=DIR ).+", text)
+            if not dir_color:
+                raise RuntimeError(
+                    f"Failed to read DIR attribute from {dir_color_path}"
+                )
+            dir_color = dir_color.group()
+
+            self.shell.exec(
+                "Setting OTHER_WRITABLE same as DIR in WSL",
+                f'sed -i "s/^OTHER_WRITABLE .*/OTHER_WRITABLE {dir_color}/" {self.HOME}/.dircolors',
+            )
+
     def _switch_to_zsh(self):
         user = self.USER
         HOME = self.HOME
@@ -54,6 +83,14 @@ class ShellSwitcher(Script):
         self.shell.sudo_exec(
             "Changing default shell to zsh", f"sed -ie {pattern} /etc/passwd"
         )
+
+    def _is_wsl(self):
+        try:
+            with open("/proc/version") as f:
+                text = f.read()
+            return bool(re.search(r"microsoft|wsl", text, re.IGNORECASE))
+        except:
+            return False
 
 
 if __name__ == "__main__":

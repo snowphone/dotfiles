@@ -58,32 +58,6 @@ class FileLinker(Script):
                 f'ln -fs "{proj_root}"/config {HOME}/.config',
             )
 
-        dir_color_path = f"{HOME}/.dircolors"
-        self.shell.exec(
-            "Using dircolor from default",
-            f"""
-            if [ $(uname) = 'Darwin' ]; then
-                gdircolors -p > {dir_color_path}
-            else
-                dircolors -p > {dir_color_path}
-            fi
-            """,
-        )
-        if self._is_wsl():
-            # In WSL, folders in Windows storage look as OTHER_WRITABLE, so OTHER_WRITABLE is set as same as DIR.
-            with open(dir_color_path) as f:
-                text = f.read()
-            dir_color = re.search(r"(?<=DIR ).+", text)
-            if not dir_color:
-                raise RuntimeError(
-                    f"Failed to read DIR attribute from {dir_color_path}"
-                )
-            dir_color = dir_color.group()
-
-            self.shell.exec(
-                "Setting OTHER_WRITABLE same as DIR in WSL",
-                f'sed -i "s/^OTHER_WRITABLE .*/OTHER_WRITABLE {dir_color}/" {HOME}/.dircolors',
-            )
 
         self.shell.exec_list(
             "Setting up pip cache server",
