@@ -58,7 +58,7 @@ class DebianPreparation(Script):
 class DebianPackageManager(PackageManager):
     @property
     def cmd(self) -> str:
-        return f"{self.shell.sudo} apt-get install -qy "
+        return f"yes | {self.shell.sudo} apt-get install -qy "
 
     @property
     def pkgs(self):
