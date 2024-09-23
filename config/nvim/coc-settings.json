@@ -18,12 +18,8 @@
 	"java.format.settings.url": "https://gist.githubusercontent.com/snowphone/3687b5a6bee7ad315cf6417e2cd0dddf/raw/26b97d16e2108032c8abdd8c2e8c92a13211916d/formatting-style.xml",
 	"languageserver": {
 		"bazel": {
-			"command": "bazel-lsp",
 			"args": [],
-			"rootPatterns": [
-				"WORKSPACE",
-				"MODULE"
-			],
+			"command": "bazel-lsp",
 			"filetypes": [
 				"bzl",
 				"BUILD",
@@ -32,6 +28,10 @@
 				"MODULE",
 				"WORKSPACE"
 			],
+			"rootPatterns": [
+				"WORKSPACE",
+				"MODULE"
+			]
 		},
 		"ocaml-lsp": {
 			"args": [
@@ -54,23 +54,22 @@
 		}
 	},
 	"markdownlint.config": {
-		"default": true,
 		"MD007": {
 			"indent": 4
 		},
 		"MD013": false,
-		"MD036": false
+		"MD036": false,
+		"default": true
 	},
 	"pyright.inlayHints.functionReturnTypes": true,
 	"pyright.inlayHints.variableTypes": true,
-	"typescript.format.enable": false,
 	"pyright.organizeimports.provider": "isort",
 	"python.formatting.provider": "black",
 	"python.pythonPath": "python3",
 	"python.sortImports.args": [
 		"--profile=black",
 		"--force-grid-wrap=2",
-		"--multi-line=VERTICAL_HANGING_INDENT",
+		"--multi-line=VERTICAL_HANGING_INDENT"
 	],
 	"python.sortImports.path": "isort",
 	"rust-analyzer.rustfmt.overrideCommand": [
@@ -79,6 +78,7 @@
 		"hard_tabs=true"
 	],
 	"suggest.noselect": true,
+	"typescript.format.enable": false,
 	"workspace.ignoredFolders": [
 		"$HOME/.cargo/**",
 		"$HOME/.rustup/**",
