@@ -57,6 +57,7 @@ class DarwinPackageManager(PackageManager):
             "grep",
             "gzip",
             "gawk",
+            "gnu-getopt",
             "gnu-sed",
             "gnu-tar",
             "htop",
@@ -122,6 +123,7 @@ class DarwinPackageManager(PackageManager):
         for pkg in frozenset(self.pkgs) & {
             "java",
             "gnu-sed",
+            "gnu-getopt",
             "grep",
             "gnu-tar",
             "coreutils",
