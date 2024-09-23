@@ -79,6 +79,13 @@
 		"hard_tabs=true"
 	],
 	"suggest.noselect": true,
+	"workspace.ignoredFolders": [
+		"$HOME/.cargo/**",
+		"$HOME/.rustup/**",
+		"$HOME/pkg/mod/**",
+		"$HOMEBREW_PREFIX/**"
+	],
+	"workspace.workspaceFolderFallbackCwd": true,
 	"yaml.schemas": {
 		"kubernetes": "/*.yaml"
 	}
