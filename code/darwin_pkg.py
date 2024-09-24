@@ -242,6 +242,7 @@ class Mac(Script, GithubDownloadable):
             "keepingyouawake",
             "adguard",
             "rectnagle",
+            "itsycal",
         ]
 
         for cask in casks:
