@@ -241,6 +241,7 @@ class Mac(Script, GithubDownloadable):
             "libreoffice",
             "keepingyouawake",
             "adguard",
+            "rectnagle",
         ]
 
         for cask in casks:
