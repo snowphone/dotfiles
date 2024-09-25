@@ -241,7 +241,6 @@ class Mac(Script, GithubDownloadable):
             "libreoffice",
             "keepingyouawake",
             "adguard",
-            "rectnagle",
             "itsycal",
         ]
 
