@@ -99,15 +99,15 @@ let g:EasyMotion_do_mapping = 0
 nmap <leader><leader>s <Plug>(easymotion-s)
 xmap <leader><leader>s <Plug>(easymotion-s)
 omap <leader><leader>s <Plug>(easymotion-s)
+nmap f <Plug>(easymotion-s)
+xmap f <Plug>(easymotion-s)
+omap f <Plug>(easymotion-s)
 
 " Sneak 처럼 두 글자를 인식하여 너무 많은 패턴의 경우의 수를 제한한다.
 nmap <leader><leader>S <Plug>(easymotion-s2)
 xmap <leader><leader>S <Plug>(easymotion-s2)
 omap <leader><leader>S <Plug>(easymotion-s2)
 
-nmap f <Plug>(easymotion-s2)
-xmap f <Plug>(easymotion-s2)
-omap f <Plug>(easymotion-s2)
 
 "tmux airline
 Plug 'edkolev/tmuxline.vim'
