@@ -349,7 +349,7 @@ let g:gruvbox_material_foreground='material' " material | mix | original
 let g:gruvbox_material_diagnostic_text_highlight=1
 
 set background=dark
-silent! colorscheme nord
+silent! colorscheme zenbones
 
 
 syntax on
