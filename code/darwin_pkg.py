@@ -236,6 +236,7 @@ class Mac(Script, GithubDownloadable):
             "firefox",
             "microsoft-edge",
             "iterm2",
+            "iina",
             "raycast",
             "keka",
             "libreoffice",
