@@ -3,6 +3,10 @@
 	"clangd.arguments": [
 		"-cross-file-rename"
 	],
+	"clangd.fallbackFlags": [
+		"-std=c++17",
+		"-std=c++11"
+	],
 	"elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
 	"elixirLS.dialyzerEnabled": false,
 	"inlayHint.display": true,
