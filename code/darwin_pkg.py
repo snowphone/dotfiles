@@ -243,6 +243,7 @@ class Mac(Script, GithubDownloadable):
             "keepingyouawake",
             "adguard",
             "itsycal",
+            "--no-quarantine middleclick",
         ]
 
         for cask in casks:
