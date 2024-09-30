@@ -232,6 +232,7 @@ class Mac(Script, GithubDownloadable):
         casks = [
             "visual-studio-code",
             "xquartz",
+            "rectangle",
             "karabiner-elements",
             "firefox",
             "microsoft-edge",
