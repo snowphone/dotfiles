@@ -230,20 +230,20 @@ class Mac(Script, GithubDownloadable):
 
     def _install_casks(self):
         casks = [
-            "visual-studio-code",
-            "xquartz",
-            "rectangle",
-            "karabiner-elements",
+            "adguard",
             "firefox",
-            "microsoft-edge",
-            "iterm2",
+            "itsycal",
             "iina",
-            "raycast",
+            "iterm2",
+            "karabiner-elements",
+            "keepingyouawake",
             "keka",
             "libreoffice",
-            "keepingyouawake",
-            "adguard",
-            "itsycal",
+            "microsoft-edge",
+            "raycast",
+            "rectangle",
+            "visual-studio-code",
+            "xquartz",
             "--no-quarantine middleclick",
         ]
 
