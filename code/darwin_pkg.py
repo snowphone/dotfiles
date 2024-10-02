@@ -155,7 +155,7 @@ class DarwinPackageManager(PackageManager):
 
         self.shell.exec(
             "Aliasing python to python3",
-            "ln -sf /usr/local/bin/python3 /usr/local/bin/python",
+            "ln -sf $(which python3) $(which python3 | sed 's/python3/python/')",
         )
 
 
