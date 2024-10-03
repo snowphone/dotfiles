@@ -3175,6 +3175,28 @@
 					"ignore": false,
 					"mouse_flip_horizontal_wheel": true,
 					"mouse_flip_vertical_wheel": true
+				},
+				{
+					"identifiers": {
+						"is_keyboard": true,
+						"is_pointing_device": true,
+						"product_id": 24801,
+						"vendor_id": 6127
+					},
+					"ignore": false,
+					"mouse_flip_horizontal_wheel": true,
+					"mouse_flip_vertical_wheel": true
+				},
+				{
+					"identifiers": {
+						"is_keyboard": true,
+						"is_pointing_device": true,
+						"product_id": 149,
+						"vendor_id": 5426
+					},
+					"ignore": false,
+					"mouse_flip_horizontal_wheel": true,
+					"mouse_flip_vertical_wheel": true
 				}
 			],
 			"fn_function_keys": [
