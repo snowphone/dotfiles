@@ -228,6 +228,13 @@ class Mac(Script, GithubDownloadable):
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
 
+        self.shell.exec(
+            "Importing itsycal configuration",
+            f"defaults import com.mowglii.ItsycalApp {self.HOME}/.config/itsycal/config.plist",
+        )
+        return
+
+
     def _install_casks(self):
         casks = [
             "adguard",

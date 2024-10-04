@@ -1,0 +1,13 @@
+{
+    ClockFormat = "E MMM d";
+    HideIcon = 1;
+    MenuBarIconType = 1;
+    "NSStatusItem Preferred Position ItsycalStatusItem" = 149;
+    SUHasLaunchedBefore = 1;
+    SULastCheckTime = "2024-10-02 11:52:37 +0000";
+    SelectedCalendars =     (
+        "60E30853-8F68-475F-A5F8-876252B822DD",
+        "B23678D8-B8AD-4EBA-90DF-7A6ACEFCC9EC"
+    );
+    ShowEventDays = 7;
+}
