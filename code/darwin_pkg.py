@@ -228,11 +228,24 @@ class Mac(Script, GithubDownloadable):
             f"rm -rf {self.HOME}/.local/bin/autocomplete {self.HOME}/.local/bin/completion {self.HOME}/.local/bin/LICENSE* {self.HOME}/.local/bin/*.md {self.HOME}/.local/bin/doc",
         )
 
+        self._setup_configs()
+        return
+
+    def _setup_configs(self):
         self.shell.exec(
             "Importing itsycal configuration",
             f"defaults import com.mowglii.ItsycalApp {self.HOME}/.config/itsycal/config.plist",
         )
-        return
+        self.shell.exec(
+                "Importing iterm2 configuration",
+                """
+                defaults write com.googlecode.iterm2 PrefsCustomFolder -string '~/.config/iterm2/sync'
+                defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+                defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2 # Save config automatically
+                defaults write com.googlecode.iterm2 SUEnableAutomaticChecks -bool true  # Enable auto update
+                defaults write com.googlecode.iterm2 PreventEscapeSequenceFromClearingHistory -bool false  # Clear command clears scroll history
+                """
+                )
 
 
     def _install_casks(self):
