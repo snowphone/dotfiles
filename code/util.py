@@ -15,7 +15,7 @@ class GithubDownloadable:
         strip: int = 0,
         binpath: str = "$HOME/.local/bin",
         tar_extract_flags: str = "xz",
-        ):
+    ):
         cmd = f"""curl -L {link} |
 		tar {tar_extract_flags} -C {binpath}"""
         if strip:
@@ -33,8 +33,8 @@ class GithubDownloadable:
     ):
         link = self.get_download_link(user_repo, suffix)
         if not link:
-            return 'false'  # Returns `false` command to fail fast
-        return self.dl_cmd( link, strip, binpath,tar_extract_flags)
+            return "false"  # Returns `false` command to fail fast
+        return self.dl_cmd(link, strip, binpath, tar_extract_flags)
 
     def github_dl_single_cmd(self, user_repo: str, suffix: str, fullpath: str):
         """

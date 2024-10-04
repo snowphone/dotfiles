@@ -98,7 +98,7 @@ class DarwinPackageManager(PackageManager):
             "wget",
             "yq",
             "yt-dlp",
-            "zip"
+            "zip",
         ]
 
         if self.args.latex:
@@ -237,16 +237,15 @@ class Mac(Script, GithubDownloadable):
             f"defaults import com.mowglii.ItsycalApp {self.HOME}/.config/itsycal/config.plist",
         )
         self.shell.exec(
-                "Importing iterm2 configuration",
-                """
+            "Importing iterm2 configuration",
+            """
                 defaults write com.googlecode.iterm2 PrefsCustomFolder -string '~/.config/iterm2/sync'
                 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
                 defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2 # Save config automatically
                 defaults write com.googlecode.iterm2 SUEnableAutomaticChecks -bool true  # Enable auto update
                 defaults write com.googlecode.iterm2 PreventEscapeSequenceFromClearingHistory -bool false  # Clear command clears scroll history
-                """
-                )
-
+                """,
+        )
 
     def _install_casks(self):
         casks = [

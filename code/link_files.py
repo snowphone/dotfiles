@@ -48,7 +48,7 @@ class FileLinker(Script):
             f'ln -fs "{proj_root}"/.mailcap.order {HOME}/.mailcap.order',  # Set higher priority to vim
             f'ln -fs "{proj_root}"/.ideavimrc {HOME}/.ideavimrc',  # Set higher priority to vim
             f'ln -fs "{proj_root}"/.xprofile {HOME}/.xprofile',  # Set higher priority to vim
-            f'mkdir -p {HOME}/.vim',
+            f"mkdir -p {HOME}/.vim",
             f'ln -fs "{proj_root}"/tasks.ini {HOME}/.vim/tasks.ini',
         )
 
@@ -58,9 +58,8 @@ class FileLinker(Script):
                 f'ln -fs "{proj_root}"/config {HOME}/.config',
             )
 
-
         self.shell.exec(
-                "pip links to pip3",
+            "pip links to pip3",
             f"ln -nfs $(which pip3) {HOME}/.local/bin/pip",
         )
 
