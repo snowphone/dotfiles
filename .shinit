@@ -29,16 +29,18 @@ if [ -f "$BREW_PACKAGES_PATH" ]; then
 	PATH=$NEW_PATHS:$PATH
 fi
 if command -v nproc >/dev/null 2>&1; then
-	export HOMEBREW_MAKE_JOBS=$(nproc --all)
+	HOMEBREW_MAKE_JOBS="$(nproc --all)"
 else
-	export HOMEBREW_MAKE_JOBS=4
+	HOMEBREW_MAKE_JOBS=4
 fi
+export HOMEBREW_MAKE_JOBS
 
 export LD_LIBRARY_PATH="$HOME"/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 
 [ -n "$DISPLAY" ] && export XAUTHORITY="$HOME"/.Xauthority
 
-export EDITOR=vim
+EDITOR="$(command -v nvim || command -v vim || printf 'vi')"
+export EDITOR
 
 # Alias's to modified commands
 if command -v rsync >/dev/null 2>&1; then
@@ -130,7 +132,11 @@ alias glog='git log --all --decorate --oneline --graph'
 alias gd='git difftool'
 alias grm='git add -u'
 
-alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+countfiles() {
+	for t in files links directories; do
+		printf "%d\t%s\n" "$(find . -type "$(echo "$t" | cut -c1)" | wc -l)" "$t"
+	done 2>/dev/null
+}
 alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias tree='tree -CAhF --dirsfirst'

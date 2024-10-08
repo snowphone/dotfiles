@@ -19,8 +19,6 @@ fi
 alias ds="{du -sh *; du -sh ./} | sort -rh " #diskspace
 alias normalize_unicode='convmv -f utf-8 -t utf-8 --notest --nfc'
 
-alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
-
 palette() {
 	for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
