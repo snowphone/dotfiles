@@ -250,6 +250,7 @@ class Mac(Script, GithubDownloadable):
     def _install_casks(self):
         casks = [
             "adguard",
+            "calibre",
             "firefox",
             "itsycal",
             "iina",
