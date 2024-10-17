@@ -23,8 +23,7 @@ It will replace `install_packages.py`.
 
 ## MacOS Support
 
-- iTerm2 [config](https://gist.github.com/snowphone/7f771242e80579b52fbd06c859af3853)
-    - or clone the gist via ssh: `git@gist.github.com:7f771242e80579b52fbd06c859af3853`
+- XCode installation: [XcodesApp](https://github.com/XcodesOrg/XcodesApp)
 
 ## Switching from Https into Ssh
 
