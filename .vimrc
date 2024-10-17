@@ -171,6 +171,9 @@ endif
 
 " LaTeX
 Plug 'lervag/vimtex'
+if has("nvim")
+	let g:vimtex_syntax_enabled = 0 "Since neovim uses treesitter
+endif
 let g:vimtex_fold_enabled=1
 let g:vimtex_quickfix_open_on_warning=0
 let g:vimtex_view_method='zathura'
