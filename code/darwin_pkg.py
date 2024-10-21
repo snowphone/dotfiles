@@ -143,16 +143,6 @@ class DarwinPackageManager(PackageManager):
             "curl -Lfo ~/.config/karabiner/karabiner.json https://gist.githubusercontent.com/snowphone/e28a836fe694a3e423ab42a37b99ba00/raw/karabiner.json",
         )
 
-        self.shell.exec_list(
-            "Downloading iTerm2 config",
-            r"mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles",
-            r"""
-            cat <(echo '{ "Profiles": [') \
-                <(curl https://gist.githubusercontent.com/snowphone/7f771242e80579b52fbd06c859af3853/raw/Default.json) \
-                <(echo ']}') > ~/Library/Application\ Support/iTerm2/DynamicProfiles/Default.json
-            """,
-        )
-
         self.shell.exec(
             "Aliasing python to python3",
             "ln -sf $(which python3) $(which python3 | sed 's/python3/python/')",
