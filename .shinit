@@ -214,3 +214,13 @@ export NVM_DIR="$HOME/.nvm"
 export KUBECONFIG="$HOME"/.kube/config
 
 command -v javac >/dev/null 2>&1 && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+
+unset LC_ALL
+export LC_MESSAGES="en_US.UTF-8"
+
+export LANG="ko_KR.UTF-8"
+export LC_COLLATE="ko_KR.UTF-8"
+export LC_CTYPE="ko_KR.UTF-8"
+export LC_MONETARY="ko_KR.UTF-8"
+export LC_NUMERIC="ko_KR.UTF-8"
+export LC_TIME="ko_KR.UTF-8"
