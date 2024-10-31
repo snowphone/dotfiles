@@ -95,7 +95,7 @@
 						]
 					},
 					{
-						"description": "R_Option	➜ 한영전환",
+						"description": "R_Option ➜ 한영전환",
 						"manipulators": [
 							{
 								"from": {
@@ -121,7 +121,7 @@
 						]
 					},
 					{
-						"description": "R_Command	➜ 한영전환",
+						"description": "R_Command ➜ 한영전환",
 						"manipulators": [
 							{
 								"conditions": [
