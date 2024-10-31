@@ -242,6 +242,7 @@ class Mac(Script, GithubDownloadable):
             "adguard",
             "calibre",
             "firefox",
+            "gureumkim",  # 한국어 입력기
             "itsycal",
             "iina",
             "iterm2",
