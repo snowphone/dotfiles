@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 # sh (POSIX) compatible configs
 
+export LC_CTYPE=en_US.UTF-8  # For k9s ascii diagram
+
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPATH="$HOME"/.local/share/man:/usr/share/man:"$MANPATH"
 
