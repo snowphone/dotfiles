@@ -95,7 +95,7 @@
 						]
 					},
 					{
-						"description": "R_Option    ➜ 한영전환",
+						"description": "R_Option	➜ 한영전환",
 						"manipulators": [
 							{
 								"from": {
@@ -121,7 +121,7 @@
 						]
 					},
 					{
-						"description": "R_Command    ➜ 한영전환",
+						"description": "R_Command	➜ 한영전환",
 						"manipulators": [
 							{
 								"conditions": [
@@ -219,40 +219,6 @@
 											"left_command"
 										],
 										"pointing_button": "button1"
-									}
-								],
-								"type": "basic"
-							}
-						]
-					},
-					{
-						"description": "Change Won (₩) to grave accent (`) in Korean layout.",
-						"manipulators": [
-							{
-								"conditions": [
-									{
-										"input_sources": [
-											{
-												"language": "ko"
-											}
-										],
-										"type": "input_source_if"
-									}
-								],
-								"from": {
-									"key_code": "grave_accent_and_tilde",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
-								},
-								"to": [
-									{
-										"key_code": "grave_accent_and_tilde",
-										"modifiers": [
-											"option"
-										]
 									}
 								],
 								"type": "basic"
@@ -2061,7 +2027,7 @@
 									"key_code": "s",
 									"modifiers": {
 										"mandatory": [
-											"command"
+											"left_command"
 										]
 									}
 								},
@@ -2687,47 +2653,6 @@
 								"to": [
 									{
 										"shell_command": "open -a 'Activity Monitor.app'"
-									}
-								],
-								"type": "basic"
-							}
-						]
-					},
-					{
-						"description": "PC-Style Browser open location (Ctrl+L)",
-						"manipulators": [
-							{
-								"conditions": [
-									{
-										"bundle_identifiers": [
-											"^org\\.mozilla\\.firefox$",
-											"^org\\.mozilla\\.nightly$",
-											"^com\\.microsoft\\.Edge",
-											"^com\\.microsoft\\.edgemac",
-											"^com\\.google\\.Chrome$",
-											"^com\\.brave\\.Browser$",
-											"^com\\.apple\\.Safari$"
-										],
-										"type": "frontmost_application_if"
-									}
-								],
-								"from": {
-									"key_code": "l",
-									"modifiers": {
-										"mandatory": [
-											"control"
-										],
-										"optional": [
-											"any"
-										]
-									}
-								},
-								"to": [
-									{
-										"key_code": "l",
-										"modifiers": [
-											"left_command"
-										]
 									}
 								],
 								"type": "basic"
