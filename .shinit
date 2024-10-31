@@ -46,7 +46,11 @@ export EDITOR
 
 # Alias's to modified commands
 if command -v rsync >/dev/null 2>&1; then
-	alias cp='rsync -ah --info=progress2'
+	alias cp='rsync -ah --info=progress2 --old-args'
+	# `--old-args` is added for rsync > 3.2.4.
+	# Whereas the latest rsync does not need double-escape backslashes to handle remote paths,
+	# zsh-provided completion file still assume rsync need double-escaped baskslashes.
+	# Please refer to https://askubuntu.com/a/1495090 for more details.
 fi
 
 alias ls='ls --human-readable --color=always'
