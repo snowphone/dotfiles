@@ -108,6 +108,21 @@ check_text_file() {
 	esac
 }
 
+mkrand() {
+	# Create a new directory with a name based on the current time and a random suffix,
+	# then change into that directory.
+
+	current_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+	random_suffix=$(tr -dc 'a-zA-Z' </dev/urandom | head -c 4)
+
+	folder_name="${current_time}_${random_suffix}"
+
+	mkdir "${folder_name}";
+	cd "${folder_name}" || exit 1
+}
+
+
 # Alias of xdg-open, and ignore stderr
 open() {
 
