@@ -3053,6 +3053,16 @@
 					"ignore": false,
 					"mouse_flip_horizontal_wheel": true,
 					"mouse_flip_vertical_wheel": true
+				},
+				{
+					"identifiers": {
+						"device_address": "d6-6f-1d-c9-65-2b",
+						"is_keyboard": true,
+						"is_pointing_device": true
+					},
+					"ignore": false,
+					"mouse_flip_horizontal_wheel": true,
+					"mouse_flip_vertical_wheel": true
 				}
 			],
 			"fn_function_keys": [
