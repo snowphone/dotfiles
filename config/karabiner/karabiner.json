@@ -2139,7 +2139,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "software_function": { "open_application": { "bundle_identifier": "com.apple.Finder" } } }],
+                                "to": [{ "shell_command": "/usr/bin/open ~" }],
                                 "type": "basic"
                             }
                         ]
