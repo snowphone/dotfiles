@@ -112,9 +112,9 @@ mkrand() {
 	# Create a new directory with a name based on the current time and a random suffix,
 	# then change into that directory.
 
-	current_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+	current_time=$(date -u +"%Y-%m-%d")
 
-	random_suffix=$(tr -dc 'a-zA-Z' </dev/urandom | head -c 4)
+	random_suffix=$(tr -dc 'a-zA-Z' </dev/urandom | head -c 6)
 
 	folder_name="${current_time}_${random_suffix}"
 
