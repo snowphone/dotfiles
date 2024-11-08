@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 # sh (POSIX) compatible configs
 
-export LC_CTYPE=en_US.UTF-8  # For k9s ascii diagram
-
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPATH="$HOME"/.local/share/man:/usr/share/man:"$MANPATH"
 
@@ -241,7 +239,7 @@ export LC_MESSAGES="en_US.UTF-8"
 
 export LANG="ko_KR.UTF-8"
 export LC_COLLATE="ko_KR.UTF-8"
-export LC_CTYPE="ko_KR.UTF-8"
+export LC_CTYPE=en_US.UTF-8  # For k9s ascii diagram
 export LC_MONETARY="ko_KR.UTF-8"
 export LC_NUMERIC="ko_KR.UTF-8"
 export LC_TIME="ko_KR.UTF-8"
