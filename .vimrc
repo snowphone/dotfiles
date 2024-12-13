@@ -6,6 +6,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+"key mapping
+let mapleader=","
+
 call plug#begin('~/.vim/plugged/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -86,27 +89,6 @@ let g:coc_global_extensions = [
 			\'https://github.com/cstrap/python-snippets',
 			\'https://github.com/rafamadriz/friendly-snippets@main',
 			\]
-
-"key mapping
-let mapleader=","
-
-
-" vim의 기본 f 기능을 확장함. 
-" <leader><leader> s + <1char>: 현재 커서 기준으로 앞뒤에있는 <1char>로 점프
-Plug 'Lokaltog/vim-easymotion'
-let g:EasyMotion_do_mapping = 0
-
-nmap <leader><leader>s <Plug>(easymotion-s)
-xmap <leader><leader>s <Plug>(easymotion-s)
-omap <leader><leader>s <Plug>(easymotion-s)
-nmap f <Plug>(easymotion-s)
-xmap f <Plug>(easymotion-s)
-omap f <Plug>(easymotion-s)
-
-" Sneak 처럼 두 글자를 인식하여 너무 많은 패턴의 경우의 수를 제한한다.
-nmap <leader><leader>S <Plug>(easymotion-s2)
-xmap <leader><leader>S <Plug>(easymotion-s2)
-omap <leader><leader>S <Plug>(easymotion-s2)
 
 
 "tmux airline
@@ -309,6 +291,21 @@ if has("nvim")
   set laststatus=3
   autocmd! User avante.nvim lua require('avante_lib').load()
 
+  " vim의 기본 f 기능을 확장함. 
+  " <leader><leader> s + <1char>: 현재 커서 기준으로 앞뒤에있는 <1char>로 점프
+  Plug 'smoka7/hop.nvim'
+  
+  nmap <leader><leader>s :HopChar1<CR>
+  xmap <leader><leader>s :HopChar1<CR>
+  omap <leader><leader>s :HopChar1<CR>
+  nmap f :HopChar1<CR>
+  xmap f :HopChar1<CR>
+  omap f :HopChar1<CR>
+  
+  " Sneak 처럼 두 글자를 인식하여 너무 많은 패턴의 경우의 수를 제한한다.
+  nmap <leader><leader>S :HopChar2<CR>
+  xmap <leader><leader>S :HopChar2<CR>
+  omap <leader><leader>S :HopChar2<CR>
 endif
 
 

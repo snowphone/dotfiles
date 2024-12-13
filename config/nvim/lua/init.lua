@@ -213,6 +213,13 @@ require('rainbow-delimiters.setup').setup {
 }
 
 -----------------------------
+-- hop.nvim (easymotion)
+-----------------------------
+require('hop').setup({
+	case_insensitive = false,
+})
+
+-----------------------------
 -- Avoid yelling about pynvim
 -----------------------------
 if vim.fn.exists("$VIRTUAL_ENV") == 1 then
@@ -220,3 +227,4 @@ if vim.fn.exists("$VIRTUAL_ENV") == 1 then
 else
 	vim.g.python3_host_prog = vim.fn.substitute(vim.fn.system("which python3"), "\n", "", "g")
 end
+
