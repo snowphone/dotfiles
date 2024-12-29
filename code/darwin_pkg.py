@@ -36,6 +36,7 @@ class DarwinPackageManager(PackageManager):
     @property
     def pkgs(self):
         pkgs = [
+            "bash",
             "bat",
             "bear",
             "bfs",
