@@ -8,4 +8,4 @@ if [ -z "$OPENAI_API_KEY" ]; then
 	exit 1
 fi
 
-MODEL=gpt-4o-mini chat_query "$@"
+MODEL=${MODEL:-gpt-4o-mini} chat_query "$@"
