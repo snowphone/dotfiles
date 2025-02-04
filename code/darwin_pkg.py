@@ -77,6 +77,7 @@ class DarwinPackageManager(PackageManager):
             "pixz",
             "poppler",
             "p7zip",
+            "qpdf",
             "rename",
             "ripgrep",
             "ripgrep-all",

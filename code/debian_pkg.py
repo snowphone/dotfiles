@@ -100,6 +100,7 @@ class DebianPackageManager(PackageManager):
             "python3-pip",
             "python3-venv",
             "python-is-python3",
+            "qpdf",
             "rar",
             "rename",
             "ripgrep",
