@@ -47,15 +47,6 @@ class LinuxAMD64(Script, GithubDownloadable):
             ),
         )
 
-        self.shell.exec(
-            "Installing neovim",
-            self.github_dl_cmd(
-                user_repo="neovim/neovim",
-                suffix="linux64.tar.gz",
-                strip=1,
-                binpath="$HOME/.local",
-            ),
-        )
 
         self.shell.exec(
             "Installing bazel-lsp",
@@ -171,7 +162,7 @@ class LinuxAMD64(Script, GithubDownloadable):
             "Installing the latest stable neovim from Github repo",
             self.github_dl_cmd(
                 "neovim/neovim",
-                "linux64.tar.gz",
+                suffix="linux-x86_64.tar.gz",
                 strip=1,
                 binpath=f"{self.HOME}/.local",
             ),
