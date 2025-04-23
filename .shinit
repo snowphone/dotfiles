@@ -221,6 +221,12 @@ fi
 # Load sdkman
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
 
+[ -d "$HOME/.pyenv" ] && {
+	eval "$(pyenv init -)"
+	eval "$(pyenv init --path)"
+	eval "$(pyenv virtualenv-init -)"
+}
+
 if [ -f "$HOME/.cargo/env" ]; then
 	. "$HOME/.cargo/env"
 fi
