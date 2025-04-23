@@ -1,7 +1,25 @@
-let mapleader=","
-nmap <leader><leader>s :action KJumpAction<cr>
-nmap <leader><leader>w :action KJumpAction.Word0<cr>
-nmap <leader><leader>l :action KJumpAction.Line<cr>
-
 set visualbell
 set noerrorbells
+
+" Leader 키를 콤마(,)로 설정
+let mapleader = ','
+
+" easymotion 플러그인 에뮬레이션 활성화
+set easymotion
+set matchit
+
+" ,,s 키를 HopChar1과 유사한 기능(단일 문자 검색)에 매핑
+nmap <leader><leader>s <Plug>(easymotion-s)
+xmap <leader><leader>s <Plug>(easymotion-s)
+omap <leader><leader>s <Plug>(easymotion-s)
+
+" f 키를 HopChar1과 유사한 기능(단일 문자 검색)에 매핑 (기본 f 동작을 덮어씀)
+nmap f <Plug>(easymotion-s)
+xmap f <Plug>(easymotion-s)
+omap f <Plug>(easymotion-s)
+
+" ,,S 키를 HopChar2와 유사한 기능(두 문자 검색)에 매핑
+nmap <leader><leader>S <Plug>(easymotion-s2)
+xmap <leader><leader>S <Plug>(easymotion-s2)
+omap <leader><leader>S <Plug>(easymotion-s2)
+
