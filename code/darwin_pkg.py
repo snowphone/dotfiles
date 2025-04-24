@@ -141,11 +141,6 @@ class DarwinPackageManager(PackageManager):
         self.shell.exec("Updating PATH", f"printf '%s' '{path}' > {HOME}/.paths")
 
         self.shell.exec(
-            "Download karabiner configuration",
-            "curl -Lfo ~/.config/karabiner/karabiner.json https://gist.githubusercontent.com/snowphone/e28a836fe694a3e423ab42a37b99ba00/raw/karabiner.json",
-        )
-
-        self.shell.exec(
             "Aliasing python to python3",
             "ln -sf $(which python3) $(which python3 | sed 's/python3/python/')",
         )
