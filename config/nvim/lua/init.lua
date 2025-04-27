@@ -90,6 +90,9 @@ require('avante_lib').load()
 
 require('avante').setup {
 	provider = "openai",
+	openai = {
+		model = "gpt-4.1",
+	},
 	mappings = {
 		submit = {
 			normal = "<C-j>",
