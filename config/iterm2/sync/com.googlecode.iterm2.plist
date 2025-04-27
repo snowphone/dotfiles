@@ -317,7 +317,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>50000</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -338,6 +338,8 @@
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
+			<key>Set Local Environment Vars</key>
+			<integer>1</integer>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Silence Bell</key>
@@ -417,5 +419,7 @@
 	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 </dict>
 </plist>
