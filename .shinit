@@ -117,10 +117,9 @@ mkrand() {
 
 	folder_name="${current_time}_${random_suffix}"
 
-	mkdir "${folder_name}";
+	mkdir "${folder_name}"
 	cd "${folder_name}" || exit 1
 }
-
 
 # Alias of xdg-open, and ignore stderr
 open() {
@@ -221,12 +220,6 @@ fi
 # Load sdkman
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[ -d "$HOME/.pyenv" ] && {
-	eval "$(pyenv init -)"
-	eval "$(pyenv init --path)"
-	eval "$(pyenv virtualenv-init -)"
-}
-
 if [ -f "$HOME/.cargo/env" ]; then
 	. "$HOME/.cargo/env"
 fi
@@ -246,7 +239,7 @@ export LC_MESSAGES="en_US.UTF-8"
 
 export LANG="ko_KR.UTF-8"
 export LC_COLLATE="ko_KR.UTF-8"
-export LC_CTYPE=en_US.UTF-8  # For k9s ascii diagram
+export LC_CTYPE=en_US.UTF-8 # For k9s ascii diagram
 export LC_MONETARY="ko_KR.UTF-8"
 export LC_NUMERIC="ko_KR.UTF-8"
 export LC_TIME="ko_KR.UTF-8"
