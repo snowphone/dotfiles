@@ -1,14 +1,3 @@
 #!/usr/bin/env sh
 
-# tone: all|casual|informal|formal
-# lang: en-us|en-uk
-# responseLevel: concise|detailed
-
-curl --silent --show-error 'https://www.doesitsoundnatural.com/api/checkSentence' --data @- <<EOF
-{
-	"msg":"$(cat)",
-	"tone":"all",
-	"lang":"en-us",
-	"responseLevel":"concise"
-}
-EOF
+chat4 "Does the following sound natural?"
