@@ -237,22 +237,38 @@ class Mac(Script, GithubDownloadable):
     def _install_casks(self):
         casks = [
             "adguard",
+            "android-platform-tools",
+            "appcleaner",
+            "balenaetcher",  # iso to usb
             "calibre",
+            "cursor",
+            "cyberduck",  # sftp/nextcloud client
+            "docker",
+            "easyfind",  # everything alternative
             "firefox",
-            "gureumkim",  # 한국어 입력기
-            "itsycal",
+            "font-d2coding",
+            "font-d2coding-nerd-font",
+            "font-delugia-complete",
+            "gureumkim",
             "iina",
             "iterm2",
+            "itsycal",
+            "jetbrains-toolbox",
             "karabiner-elements",
             "keepingyouawake",
             "keka",
+            "krita",  # mspaint alternative
             "libreoffice",
             "microsoft-edge",
+            "--no-quarantine middleclick",
+            "musicbrainz-picard",  # music metadata editor
+            "notion",
+            "qview",
             "raycast",
             "rectangle",
             "visual-studio-code",
+            "wine-stable",
             "xquartz",
-            "--no-quarantine middleclick",
         ]
 
         for cask in casks:
