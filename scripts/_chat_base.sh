@@ -24,25 +24,22 @@ chat_query() {
 
 	CONTENT="$CONTENT$BODY"
 
-	raw_response=$(jq -n --arg MODEL "$MODEL" --arg CONTENT "$CONTENT" '
-{
-	"model": $MODEL,
-	"messages": [
-	{
-		"role": "user",
-		"content": $CONTENT
-	}
-	]
-}' | curl -s https://api.openai.com/v1/chat/completions \
-		-H "Authorization: Bearer $OPENAI_API_KEY" \
-		-H "Content-Type: application/json" \
-		-d @-)
-
-	resp=$(printf "%s" "$raw_response" | jq -r '.choices[0].message.content')
-
-	if [ "$resp" = 'null' ]; then
-		printf "%s" "$raw_response" | jq
-	else
-		printf "%s" "$resp" | glow
-	fi
+	jq -n --arg MODEL "$MODEL" --arg CONTENT "$CONTENT" '
+    {
+	  "model": $MODEL,
+	  "messages": [
+	  {
+	  	"role": "user",
+	  	"content": $CONTENT
+	  }
+	  ],
+	  stream: true
+    }' |
+		curl -s https://api.openai.com/v1/chat/completions \
+			-H "Authorization: Bearer $OPENAI_API_KEY" \
+			-H "Content-Type: application/json" \
+			-d @- |
+		stdbuf -o0 sed -n 's/^data: //p' |
+		stdbuf -o0 grep -v "^\[DONE\]" |
+		stdbuf -o0 jq -j '.choices[0].delta.content // empty'
 }
