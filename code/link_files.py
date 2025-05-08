@@ -103,6 +103,16 @@ class FileLinker(Script):
             link_cmds = [f"source {WIN_CONV_PATH}; " + it for it in link_cmds]
             self.shell.exec_list("Symbolic linking windows folders", *link_cmds)
 
+        self.shell.exec_list(
+            "Aliasing configuration for Cursor IDE",
+            f"mkdir -p $HOME/.cursor/extensions",
+            rf"mkdir -p $HOME/Library/Application\ Support/Cursor/User",
+            f"ln -sf {self.proj_root}/config/Cursor/extensions.json $HOME/.cursor/extensions/extensions.json",
+            f"ln -sf {self.proj_root}/config/Cursor/mcp.json $HOME/.cursor/mcp.json",
+            rf"ln -sf {self.proj_root}/config/Cursor/User/keybindings.json $HOME/Library/Application\ Support/Cursor/User/keybindings.json",
+            rf"ln -sf {self.proj_root}/config/Cursor/User/settings.json $HOME/Library/Application\ Support/Cursor/User/settings.json",
+        )
+
         return
 
     def _is_wsl(self):
