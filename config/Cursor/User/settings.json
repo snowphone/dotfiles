@@ -4,5 +4,7 @@
     "cursor.diffs.useCharacterLevelDiffs": true,
     "git.openRepositoryInParentFolders": "always",
     "window.newWindowProfile": "Default",
-    "workbench.iconTheme": "vs-nomo-dark"
+    "workbench.iconTheme": "vs-nomo-dark",
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "vim.foldfix": true
 }

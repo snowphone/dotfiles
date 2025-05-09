@@ -294,8 +294,6 @@
 		"version": "0.2.36",
 		"location": {
 			"$mid": 1,
-			"fsPath": "/Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36",
-			"external": "file:///Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36",
 			"path": "/Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36",
 			"scheme": "file"
 		},
@@ -307,6 +305,108 @@
 			"id": "c86bc8a9-fd3b-44db-b28a-2d146cb78d3c",
 			"publisherId": "11fffb01-8ad1-43db-902d-06159b6d504a",
 			"publisherDisplayName": "fwcd",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-vscode-remote.remote-ssh-edit",
+			"uuid": "bfeaf631-bcff-4908-93ed-fda4ef9a0c5c"
+		},
+		"version": "0.87.0",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-ssh-edit-0.87.0",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-vscode-remote.remote-ssh-edit-0.87.0",
+		"metadata": {
+			"installedTimestamp": 1746755111966,
+			"pinned": false,
+			"source": "gallery",
+			"id": "bfeaf631-bcff-4908-93ed-fda4ef9a0c5c",
+			"publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+			"publisherDisplayName": "ms-vscode-remote",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-vscode.remote-explorer",
+			"uuid": "11858313-52cc-4e57-b3e4-d7b65281e34b"
+		},
+		"version": "0.4.3",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-vscode.remote-explorer-0.4.3",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-vscode.remote-explorer-0.4.3",
+		"metadata": {
+			"installedTimestamp": 1746755111966,
+			"pinned": false,
+			"source": "gallery",
+			"id": "11858313-52cc-4e57-b3e4-d7b65281e34b",
+			"publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+			"publisherDisplayName": "ms-vscode",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-vscode-remote.remote-ssh",
+			"uuid": "607fd052-be03-4363-b657-2bd62b83d28a"
+		},
+		"version": "0.113.1",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-ssh-0.113.1",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-vscode-remote.remote-ssh-0.113.1",
+		"metadata": {
+			"installedTimestamp": 1746755111965,
+			"pinned": false,
+			"source": "gallery",
+			"id": "607fd052-be03-4363-b657-2bd62b83d28a",
+			"publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+			"publisherDisplayName": "ms-vscode-remote",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-vscode-remote.remote-containers",
+			"uuid": "93ce222b-5f6f-49b7-9ab1-a0463c6238df"
+		},
+		"version": "0.394.0",
+		"location": {
+			"$mid": 1,
+			"fsPath": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
+			"external": "file:///Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-vscode-remote.remote-containers-0.394.0",
+		"metadata": {
+			"installedTimestamp": 1746795570755,
+			"pinned": false,
+			"source": "gallery",
+			"id": "93ce222b-5f6f-49b7-9ab1-a0463c6238df",
+			"publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+			"publisherDisplayName": "ms-vscode-remote",
 			"targetPlatform": "undefined",
 			"updated": false,
 			"isPreReleaseVersion": false,
