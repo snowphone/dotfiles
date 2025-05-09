@@ -1,1 +1,316 @@
-[{"identifier":{"id":"ms-python.debugpy","uuid":"4bd5d2c9-9d65-401a-b0b2-7498d9f17615"},"version":"2024.6.0","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/ms-python.debugpy-2024.6.0-darwin-arm64","scheme":"file"},"relativeLocation":"ms-python.debugpy-2024.6.0-darwin-arm64","metadata":{"installedTimestamp":1745454832440,"pinned":false,"source":"gallery","id":"4bd5d2c9-9d65-401a-b0b2-7498d9f17615","publisherId":"998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8","publisherDisplayName":"ms-python","targetPlatform":"darwin-arm64","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"ms-python.python","uuid":"f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5"},"version":"2024.12.3","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/ms-python.python-2024.12.3-darwin-arm64","scheme":"file"},"relativeLocation":"ms-python.python-2024.12.3-darwin-arm64","metadata":{"installedTimestamp":1745454832440,"pinned":false,"source":"gallery","id":"f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5","publisherId":"998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8","publisherDisplayName":"ms-python","targetPlatform":"darwin-arm64","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"ms-python.vscode-pylance","uuid":"364d2426-116a-433a-a5d8-a5098dc3afbd"},"version":"2024.8.1","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/ms-python.vscode-pylance-2024.8.1","scheme":"file"},"relativeLocation":"ms-python.vscode-pylance-2024.8.1","metadata":{"installedTimestamp":1745454832440,"pinned":false,"source":"gallery","id":"364d2426-116a-433a-a5d8-a5098dc3afbd","publisherId":"998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8","publisherDisplayName":"ms-python","targetPlatform":"undefined","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"ms-azuretools.vscode-docker","uuid":"0479fc1c-3d67-49f9-b087-fb9069afe48f"},"version":"1.29.6","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/ms-azuretools.vscode-docker-1.29.6","scheme":"file"},"relativeLocation":"ms-azuretools.vscode-docker-1.29.6","metadata":{"isApplicationScoped":false,"isMachineScoped":false,"isBuiltin":false,"installedTimestamp":1745916475648,"pinned":false,"source":"gallery","id":"0479fc1c-3d67-49f9-b087-fb9069afe48f","publisherId":"52b787f2-79a9-4f32-99b4-393afe3005d3","publisherDisplayName":"Microsoft","targetPlatform":"undefined","updated":true,"isPreReleaseVersion":false,"hasPreReleaseVersion":false,"preRelease":false}},{"identifier":{"id":"docker.docker","uuid":"aa98a064-0f79-4961-a4b7-78df16d547ee"},"version":"0.6.0","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/docker.docker-0.6.0-darwin-arm64","scheme":"file"},"relativeLocation":"docker.docker-0.6.0-darwin-arm64","metadata":{"isApplicationScoped":false,"isMachineScoped":false,"isBuiltin":false,"installedTimestamp":1745995747505,"pinned":false,"source":"gallery","id":"aa98a064-0f79-4961-a4b7-78df16d547ee","publisherId":"58585719-0451-4361-90b6-0b2eee07534d","publisherDisplayName":"Docker","targetPlatform":"darwin-arm64","updated":true,"isPreReleaseVersion":false,"hasPreReleaseVersion":false,"preRelease":false}},{"identifier":{"id":"vscodevim.vim","uuid":"d96e79c6-8b25-4be3-8545-0e0ecefcae03"},"version":"1.29.0","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.0","scheme":"file"},"relativeLocation":"vscodevim.vim-1.29.0","metadata":{"installedTimestamp":1746677569006,"pinned":false,"source":"gallery","id":"d96e79c6-8b25-4be3-8545-0e0ecefcae03","publisherId":"5d63889b-1b67-4b1f-8350-4f1dce041a26","publisherDisplayName":"vscodevim","targetPlatform":"undefined","updated":true,"isPreReleaseVersion":false,"hasPreReleaseVersion":false,"isApplicationScoped":false,"isMachineScoped":false,"isBuiltin":false,"preRelease":false}},{"identifier":{"id":"davidanson.vscode-markdownlint","uuid":"daf8b44d-8aae-4da2-80c5-1f770219f643"},"version":"0.59.0","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/davidanson.vscode-markdownlint-0.59.0","scheme":"file"},"relativeLocation":"davidanson.vscode-markdownlint-0.59.0","metadata":{"installedTimestamp":1746681200795,"pinned":false,"source":"gallery","id":"daf8b44d-8aae-4da2-80c5-1f770219f643","publisherId":"2e4d1cda-6ef0-4e42-a352-ab540afe8ff0","publisherDisplayName":"DavidAnson","targetPlatform":"undefined","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"redhat.vscode-yaml","uuid":"2061917f-f76a-458a-8da9-f162de22b97e"},"version":"1.18.0","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/redhat.vscode-yaml-1.18.0","scheme":"file"},"relativeLocation":"redhat.vscode-yaml-1.18.0","metadata":{"installedTimestamp":1746681213725,"pinned":false,"source":"gallery","id":"2061917f-f76a-458a-8da9-f162de22b97e","publisherId":"eed56242-9699-4317-8bc7-e9f4b9bdd3ff","publisherDisplayName":"redhat","targetPlatform":"undefined","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"ms-kubernetes-tools.vscode-kubernetes-tools","uuid":"4837e4f3-1b01-4732-b1a6-daa57ef64cab"},"version":"1.3.20","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/ms-kubernetes-tools.vscode-kubernetes-tools-1.3.20","scheme":"file"},"relativeLocation":"ms-kubernetes-tools.vscode-kubernetes-tools-1.3.20","metadata":{"installedTimestamp":1746681213725,"pinned":false,"source":"gallery","id":"4837e4f3-1b01-4732-b1a6-daa57ef64cab","publisherId":"d5b943eb-b968-4c2d-b241-a117ce9c3961","publisherDisplayName":"ms-kubernetes-tools","targetPlatform":"undefined","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"be5invis.vscode-icontheme-nomo-dark","uuid":"e0ee11e7-aa20-4e86-a3b9-2cd7d14fed93"},"version":"1.3.6","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/be5invis.vscode-icontheme-nomo-dark-1.3.6","scheme":"file"},"relativeLocation":"be5invis.vscode-icontheme-nomo-dark-1.3.6","metadata":{"installedTimestamp":1746681267018,"pinned":false,"source":"gallery","id":"e0ee11e7-aa20-4e86-a3b9-2cd7d14fed93","publisherId":"8c148d69-cbc6-480b-bd8b-a42715926324","publisherDisplayName":"be5invis","targetPlatform":"undefined","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"mrworkman.papercolor-vscode-redux","uuid":"6fc58049-3c07-44ae-b059-fdc34928e4a7"},"version":"1.1.0","location":{"$mid":1,"path":"/Users/junoh.moon/.cursor/extensions/mrworkman.papercolor-vscode-redux-1.1.0","scheme":"file"},"relativeLocation":"mrworkman.papercolor-vscode-redux-1.1.0","metadata":{"installedTimestamp":1746681354775,"pinned":false,"source":"gallery","id":"6fc58049-3c07-44ae-b059-fdc34928e4a7","publisherId":"fcf492ec-61cf-4da7-a01c-10057d49d8e7","publisherDisplayName":"mrworkman","targetPlatform":"undefined","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}},{"identifier":{"id":"fwcd.kotlin","uuid":"c86bc8a9-fd3b-44db-b28a-2d146cb78d3c"},"version":"0.2.36","location":{"$mid":1,"fsPath":"/Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36","external":"file:///Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36","path":"/Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36","scheme":"file"},"relativeLocation":"fwcd.kotlin-0.2.36","metadata":{"installedTimestamp":1746681429786,"pinned":false,"source":"gallery","id":"c86bc8a9-fd3b-44db-b28a-2d146cb78d3c","publisherId":"11fffb01-8ad1-43db-902d-06159b6d504a","publisherDisplayName":"fwcd","targetPlatform":"undefined","updated":false,"isPreReleaseVersion":false,"hasPreReleaseVersion":false}}]
+[
+	{
+		"identifier": {
+			"id": "ms-python.debugpy",
+			"uuid": "4bd5d2c9-9d65-401a-b0b2-7498d9f17615"
+		},
+		"version": "2024.6.0",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-python.debugpy-2024.6.0-darwin-arm64",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-python.debugpy-2024.6.0-darwin-arm64",
+		"metadata": {
+			"installedTimestamp": 1745454832440,
+			"pinned": false,
+			"source": "gallery",
+			"id": "4bd5d2c9-9d65-401a-b0b2-7498d9f17615",
+			"publisherId": "998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8",
+			"publisherDisplayName": "ms-python",
+			"targetPlatform": "darwin-arm64",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-python.python",
+			"uuid": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5"
+		},
+		"version": "2024.12.3",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-python.python-2024.12.3-darwin-arm64",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-python.python-2024.12.3-darwin-arm64",
+		"metadata": {
+			"installedTimestamp": 1745454832440,
+			"pinned": false,
+			"source": "gallery",
+			"id": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5",
+			"publisherId": "998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8",
+			"publisherDisplayName": "ms-python",
+			"targetPlatform": "darwin-arm64",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-python.vscode-pylance",
+			"uuid": "364d2426-116a-433a-a5d8-a5098dc3afbd"
+		},
+		"version": "2024.8.1",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-python.vscode-pylance-2024.8.1",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-python.vscode-pylance-2024.8.1",
+		"metadata": {
+			"installedTimestamp": 1745454832440,
+			"pinned": false,
+			"source": "gallery",
+			"id": "364d2426-116a-433a-a5d8-a5098dc3afbd",
+			"publisherId": "998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8",
+			"publisherDisplayName": "ms-python",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-azuretools.vscode-docker",
+			"uuid": "0479fc1c-3d67-49f9-b087-fb9069afe48f"
+		},
+		"version": "1.29.6",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-azuretools.vscode-docker-1.29.6",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-azuretools.vscode-docker-1.29.6",
+		"metadata": {
+			"isApplicationScoped": false,
+			"isMachineScoped": false,
+			"isBuiltin": false,
+			"installedTimestamp": 1745916475648,
+			"pinned": false,
+			"source": "gallery",
+			"id": "0479fc1c-3d67-49f9-b087-fb9069afe48f",
+			"publisherId": "52b787f2-79a9-4f32-99b4-393afe3005d3",
+			"publisherDisplayName": "Microsoft",
+			"targetPlatform": "undefined",
+			"updated": true,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false,
+			"preRelease": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "docker.docker",
+			"uuid": "aa98a064-0f79-4961-a4b7-78df16d547ee"
+		},
+		"version": "0.6.0",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/docker.docker-0.6.0-darwin-arm64",
+			"scheme": "file"
+		},
+		"relativeLocation": "docker.docker-0.6.0-darwin-arm64",
+		"metadata": {
+			"isApplicationScoped": false,
+			"isMachineScoped": false,
+			"isBuiltin": false,
+			"installedTimestamp": 1745995747505,
+			"pinned": false,
+			"source": "gallery",
+			"id": "aa98a064-0f79-4961-a4b7-78df16d547ee",
+			"publisherId": "58585719-0451-4361-90b6-0b2eee07534d",
+			"publisherDisplayName": "Docker",
+			"targetPlatform": "darwin-arm64",
+			"updated": true,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false,
+			"preRelease": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "vscodevim.vim",
+			"uuid": "d96e79c6-8b25-4be3-8545-0e0ecefcae03"
+		},
+		"version": "1.29.0",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.0",
+			"scheme": "file"
+		},
+		"relativeLocation": "vscodevim.vim-1.29.0",
+		"metadata": {
+			"installedTimestamp": 1746677569006,
+			"pinned": false,
+			"source": "gallery",
+			"id": "d96e79c6-8b25-4be3-8545-0e0ecefcae03",
+			"publisherId": "5d63889b-1b67-4b1f-8350-4f1dce041a26",
+			"publisherDisplayName": "vscodevim",
+			"targetPlatform": "undefined",
+			"updated": true,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false,
+			"isApplicationScoped": false,
+			"isMachineScoped": false,
+			"isBuiltin": false,
+			"preRelease": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "davidanson.vscode-markdownlint",
+			"uuid": "daf8b44d-8aae-4da2-80c5-1f770219f643"
+		},
+		"version": "0.59.0",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/davidanson.vscode-markdownlint-0.59.0",
+			"scheme": "file"
+		},
+		"relativeLocation": "davidanson.vscode-markdownlint-0.59.0",
+		"metadata": {
+			"installedTimestamp": 1746681200795,
+			"pinned": false,
+			"source": "gallery",
+			"id": "daf8b44d-8aae-4da2-80c5-1f770219f643",
+			"publisherId": "2e4d1cda-6ef0-4e42-a352-ab540afe8ff0",
+			"publisherDisplayName": "DavidAnson",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "redhat.vscode-yaml",
+			"uuid": "2061917f-f76a-458a-8da9-f162de22b97e"
+		},
+		"version": "1.18.0",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/redhat.vscode-yaml-1.18.0",
+			"scheme": "file"
+		},
+		"relativeLocation": "redhat.vscode-yaml-1.18.0",
+		"metadata": {
+			"installedTimestamp": 1746681213725,
+			"pinned": false,
+			"source": "gallery",
+			"id": "2061917f-f76a-458a-8da9-f162de22b97e",
+			"publisherId": "eed56242-9699-4317-8bc7-e9f4b9bdd3ff",
+			"publisherDisplayName": "redhat",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-kubernetes-tools.vscode-kubernetes-tools",
+			"uuid": "4837e4f3-1b01-4732-b1a6-daa57ef64cab"
+		},
+		"version": "1.3.20",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-kubernetes-tools.vscode-kubernetes-tools-1.3.20",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-kubernetes-tools.vscode-kubernetes-tools-1.3.20",
+		"metadata": {
+			"installedTimestamp": 1746681213725,
+			"pinned": false,
+			"source": "gallery",
+			"id": "4837e4f3-1b01-4732-b1a6-daa57ef64cab",
+			"publisherId": "d5b943eb-b968-4c2d-b241-a117ce9c3961",
+			"publisherDisplayName": "ms-kubernetes-tools",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "be5invis.vscode-icontheme-nomo-dark",
+			"uuid": "e0ee11e7-aa20-4e86-a3b9-2cd7d14fed93"
+		},
+		"version": "1.3.6",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/be5invis.vscode-icontheme-nomo-dark-1.3.6",
+			"scheme": "file"
+		},
+		"relativeLocation": "be5invis.vscode-icontheme-nomo-dark-1.3.6",
+		"metadata": {
+			"installedTimestamp": 1746681267018,
+			"pinned": false,
+			"source": "gallery",
+			"id": "e0ee11e7-aa20-4e86-a3b9-2cd7d14fed93",
+			"publisherId": "8c148d69-cbc6-480b-bd8b-a42715926324",
+			"publisherDisplayName": "be5invis",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "mrworkman.papercolor-vscode-redux",
+			"uuid": "6fc58049-3c07-44ae-b059-fdc34928e4a7"
+		},
+		"version": "1.1.0",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/mrworkman.papercolor-vscode-redux-1.1.0",
+			"scheme": "file"
+		},
+		"relativeLocation": "mrworkman.papercolor-vscode-redux-1.1.0",
+		"metadata": {
+			"installedTimestamp": 1746681354775,
+			"pinned": false,
+			"source": "gallery",
+			"id": "6fc58049-3c07-44ae-b059-fdc34928e4a7",
+			"publisherId": "fcf492ec-61cf-4da7-a01c-10057d49d8e7",
+			"publisherDisplayName": "mrworkman",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "fwcd.kotlin",
+			"uuid": "c86bc8a9-fd3b-44db-b28a-2d146cb78d3c"
+		},
+		"version": "0.2.36",
+		"location": {
+			"$mid": 1,
+			"fsPath": "/Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36",
+			"external": "file:///Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36",
+			"path": "/Users/junoh.moon/.cursor/extensions/fwcd.kotlin-0.2.36",
+			"scheme": "file"
+		},
+		"relativeLocation": "fwcd.kotlin-0.2.36",
+		"metadata": {
+			"installedTimestamp": 1746681429786,
+			"pinned": false,
+			"source": "gallery",
+			"id": "c86bc8a9-fd3b-44db-b28a-2d146cb78d3c",
+			"publisherId": "11fffb01-8ad1-43db-902d-06159b6d504a",
+			"publisherDisplayName": "fwcd",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	}
+]
