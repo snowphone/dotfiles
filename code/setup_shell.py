@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import re
+import textwrap
 from argparse import ArgumentParser
 
 from link_files import FileLinker
@@ -36,6 +37,37 @@ class ShellSwitcher(Script):
             "Running initialization commands in zsh",
             f"zsh {HOME}/.zshrc",
             f"zsh {HOME}/.zgenom/sources/init.zsh",
+        )
+
+        self.shell.exec(
+            "Creating .zshenv to fix macOS path_helper PATH order issue",
+            textwrap.dedent(
+                """
+            cat > ~/.zshenv << 'EOF'
+            # macOS path_helper 재정렬 문제 해결
+            # 
+            # 문제상황:
+            # macOS의 로그인 쉘에서 /etc/zprofile의 path_helper가 PATH를 재정렬하여
+            # /usr/bin 등 시스템 경로가 sdkman/nvm/rbenv 등의 버전 관리자보다 앞에 위치하게 됨
+            # 
+            # 해결방법:
+            # path_helper 실행 전에 PATH를 비워서 재정렬할 사용자 경로가 없도록 함
+            # path_helper는 /etc/paths의 시스템 경로만 설정하고,
+            # 이후 .zshrc에서 sdkman 등이 PATH 앞에 추가되어 올바른 우선순위를 가짐
+            #
+            # 참고: .zshenv는 모든 zsh 쉘에서 가장 먼저 실행되고,
+            #      그 다음에 /etc/zprofile(로그인 쉘)이 실행됨
+            #
+            # 호환성: macOS에만 존재하는 path_helper를 체크하여 
+            #        Linux 등 다른 환경에서는 이 로직이 실행되지 않도록 함
+
+            if [[ -o login ]] && [[ -x /usr/libexec/path_helper ]]; then
+                # 로그인 쉘이고 path_helper가 존재하는 경우(macOS)에만 PATH를 비움
+                export PATH=""
+            fi
+            EOF
+                """
+            ),
         )
 
         return
