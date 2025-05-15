@@ -114,7 +114,7 @@ class DarwinPackageManager(PackageManager):
         if self.args.golang:
             pkgs.append("go")
         if self.args.java:
-            pkgs += ["java", "kotlin", "gradle", "maven"]
+            pkgs += ["java", "kotlin", "gradle"]
         return pkgs
 
     def do_misc(self):

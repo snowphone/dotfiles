@@ -29,7 +29,7 @@ class RedhatPackageManager(PackageManager):
         if self.args.boost:
             pkgs.append("boost-*")
         if self.args.java:
-            pkgs += ["maven", "java-11-openjdk", "java-11-openjdk-devel"]
+            pkgs += ["java-11-openjdk", "java-11-openjdk-devel"]
 
         return pkgs
 

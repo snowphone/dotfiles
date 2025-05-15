@@ -263,10 +263,9 @@ class LinuxAMD64(Script, GithubDownloadable):
             'curl -s https:"//get.sdkman.io?rcupdate=false" | bash',
         )
         exec_list(
-            "Installing java, gradle, maven, and kotlin",
+            "Installing java, gradle, and kotlin",
             "sdk install java",
             "sdk install gradle",
-            "sdk install maven",
             "sdk install kotlin",
         )
         return
