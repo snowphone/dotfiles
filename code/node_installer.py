@@ -16,7 +16,7 @@ class NodeInstaller(Script):
     def run(self):
         self.shell.exec(
             "Installing nvm",
-            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | PROFILE=/dev/null bash",
+            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | PROFILE=/dev/null bash",
             # Set PROFILE to /dev/null to not update .zshrc or .bashrc
         )
         self._sourced_exec(
