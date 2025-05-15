@@ -6,6 +6,9 @@ from argparse import (
 )
 from pathlib import Path
 
+from elixir_installer import ElixirInstaller
+from java_installer import JavaInstaller
+from node_installer import NodeInstaller
 from script import Script
 from util import GithubDownloadable
 
@@ -46,7 +49,6 @@ class LinuxAMD64(Script, GithubDownloadable):
                 "linux-amd64.tar.gz",
             ),
         )
-
 
         self.shell.exec(
             "Installing bazel-lsp",
@@ -169,7 +171,7 @@ class LinuxAMD64(Script, GithubDownloadable):
         )
 
         if self.args.java:
-            self._install_java()
+            JavaInstaller(self.args).run()
 
         self.shell.exec(
             "Removing auxiliary files",
@@ -177,14 +179,9 @@ class LinuxAMD64(Script, GithubDownloadable):
         )
 
         if self.args.elixir:
-            self.shell.exec(
-                "Installing asdf plugin manager",
-                "git clone https://github.com/asdf-vm/asdf ~/.asdf",
-            )
+            ElixirInstaller(self.args).run()
 
-            self._install_elixir()
-
-        self._install_node()
+        NodeInstaller(self.args).run()
 
         self.shell.exec_list(
             "Installing 7zip",
@@ -197,31 +194,6 @@ class LinuxAMD64(Script, GithubDownloadable):
         )
 
         return
-
-    def _install_node(self):
-        self.shell.exec(
-            "Installing nvm",
-            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | PROFILE=/dev/null bash",
-            # Set PROFILE to /dev/null to not update .zshrc or .bashrc
-        )
-        self._sourced_exec(
-            "Installing nodejs lts via nvm",
-            f"nvm install --lts",
-        )
-        self._sourced_exec(
-            "Installing yarn",
-            f"npm install --global yarn",
-        )
-
-        if self.args.typescript:
-            self._sourced_exec(
-                "Installing typescript related things",
-                "npm install -g typescript ts-node pkg tslib",
-            )
-        return
-
-    def _sourced_exec(self, message: str, cmd: str):
-        return self.shell.exec(message, f"source {self.HOME}/.nvm/nvm.sh && {cmd}")
 
     def _install_tty_clock(self):
         self.shell.exec_list(
@@ -250,42 +222,6 @@ class LinuxAMD64(Script, GithubDownloadable):
             f"mv {self.HOME}/.local/bin/autocomplete/bat.bash {self.bash_completion_path}/bat",
             f"mv {self.HOME}/.local/bin/bat.1 {self.man_path}/bat.1",
         )
-
-    def _install_java(self):
-        sdk_path = f"{self.HOME}/.sdkman/bin/sdkman-init.sh"
-
-        def exec_list(msg: str, *cmds: str):
-            sourced_cmds = [f"source {sdk_path} && {cmd}" for cmd in cmds]
-            self.shell.exec_list(msg, *sourced_cmds)
-
-        self.shell.exec(
-            "Downloading sdkman",
-            'curl -s https:"//get.sdkman.io?rcupdate=false" | bash',
-        )
-        exec_list(
-            "Installing java, gradle, and kotlin",
-            "sdk install java",
-            "sdk install gradle",
-            "sdk install kotlin",
-        )
-        return
-
-    def _install_elixir(self):
-        def exec_list(msg: str, *cmds: str):
-            asdf_path = f"{self.HOME}/.asdf/asdf.sh"
-            sourced_cmds = [f"source {asdf_path} && {cmd}" for cmd in cmds]
-            self.shell.exec_list(msg, *sourced_cmds)
-
-        exec_list(
-            "Installing elixir",
-            "asdf plugin add erlang",
-            "asdf install erlang 24.3.4.2",
-            "asdf global erlang  24.3.4.2",
-            "asdf plugin add elixir",
-            "asdf install elixir 1.13.4-otp-24",
-            "asdf global elixir 1.13.4-otp-24",
-        )
-        return
 
 
 if __name__ == "__main__":

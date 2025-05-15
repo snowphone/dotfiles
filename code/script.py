@@ -1,3 +1,7 @@
+from abc import (
+    ABC,
+    abstractmethod,
+)
 from argparse import Namespace
 from getpass import getuser
 from os import makedirs
@@ -6,7 +10,7 @@ from pathlib import Path
 from shell import Shell
 
 
-class Script:
+class Script(ABC):
     def __init__(self, args: Namespace):
         self.shell = Shell()
         self.args = args
@@ -14,7 +18,9 @@ class Script:
         self.USER = getuser()
         self.proj_root = Path(__file__).resolve().parents[1]
 
+    @abstractmethod
     def run(self) -> None:
+        "Execute the script's main functionality"
         raise NotImplementedError()
 
     def _exists(self, cmd: str) -> bool:

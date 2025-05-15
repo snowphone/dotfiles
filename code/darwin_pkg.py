@@ -2,6 +2,8 @@ import os
 from argparse import Namespace
 from pathlib import Path
 
+from java_installer import JavaInstaller
+from node_installer import NodeInstaller
 from package_manager import PackageManager
 from script import Script
 from util import (
@@ -113,8 +115,6 @@ class DarwinPackageManager(PackageManager):
             print("Misc is not supported")
         if self.args.golang:
             pkgs.append("go")
-        if self.args.java:
-            pkgs += ["java", "kotlin", "gradle"]
         return pkgs
 
     def do_misc(self):
@@ -123,7 +123,6 @@ class DarwinPackageManager(PackageManager):
         """
         paths = set()
         for pkg in frozenset(self.pkgs) & {
-            "java",
             "gnu-sed",
             "gnu-getopt",
             "grep",
@@ -194,6 +193,9 @@ class Mac(Script, GithubDownloadable):
             "pip3 install --user visidata",
         )
 
+        if self.args.java:
+            JavaInstaller(self.args).run()
+
         self.shell.exec(
             "Installing bazel-lsp",
             self.github_dl_single_cmd(
@@ -204,7 +206,7 @@ class Mac(Script, GithubDownloadable):
         )
 
         self._install_casks()
-        self._install_node()
+        NodeInstaller(self.args).run()
 
         self._mkdir(self.zsh_completion_path)
         self._mkdir(self.bash_completion_path)
@@ -277,28 +279,3 @@ class Mac(Script, GithubDownloadable):
                 f"brew install --cask {cask}",
             )
         return
-
-    def _install_node(self):
-        self.shell.exec(
-            "Installing nvm",
-            "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | PROFILE=/dev/null bash",
-            # Set PROFILE to /dev/null to not update .zshrc or .bashrc
-        )
-        self._sourced_exec(
-            "Installing nodejs lts via nvm",
-            f"nvm install --lts",
-        )
-        self._sourced_exec(
-            "Installing yarn",
-            f"npm install --global yarn",
-        )
-
-        if self.args.typescript:
-            self._sourced_exec(
-                "Installing typescript related things",
-                "npm install -g typescript ts-node pkg tslib",
-            )
-        return
-
-    def _sourced_exec(self, message: str, cmd: str):
-        return self.shell.exec(message, f"source {self.HOME}/.nvm/nvm.sh && {cmd}")
