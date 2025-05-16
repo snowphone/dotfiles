@@ -1,7 +1,6 @@
 .ssh/known_hosts.old
 .ssh/known_hosts
 .ssh/authorized_keys
-.ssh/id_ed25519
 **/__pycache__
 
 .venv/
