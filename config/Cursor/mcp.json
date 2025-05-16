@@ -1,55 +1,23 @@
-{
-	"mcpServers": {
-		"notionApi": {
-			"command": "npx",
-			"args": [
-				"-y",
-				"@notionhq/notion-mcp-server"
-			]
-		},
-		"iterm-mcp": {
-			"command": "npx",
-			"args": [
-				"-y",
-				"iterm-mcp"
-			]
-		},
-		"playwright-browser": {
-			"command": "uvx",
-			"args": [
-				"playwright-server"
-			]
-		},
-		"kubernetes": {
-			"command": "npx",
-			"args": [
-				"-y",
-				"kubernetes-mcp-server@latest"
-			]
-		},
-		"sequential-thinking": {
-			"command": "npx",
-			"args": [
-				"-y",
-				"@modelcontextprotocol/server-sequential-thinking"
-			]
-		},
-		"time": {
-			"command": "uvx",
-			"args": [
-				"mcp-server-time",
-				"--local-timezone",
-				"Asia/Seoul"
-			]
-		},
-		"naverSearch": {
-			"command": "uv",
-			"args": [
-				"run",
-				"python",
-				"-m",
-				"mcp-naver.hosts.cursor"
-			]
-		}
-	}
-}
+U2FsdGVkX18O6nbaZc8VhW1Y3g2Pyplj63N8k3z+QtlSuz9a5pfla3Q8ztmMEZDa
+yNhR8kmIjqp78X+mwYa6v36+Q7PA7NTRh61kJf0HtnVoKfdzHWTkz54zfZ2+ZGTS
+Hs7LoH0w6ppaUog/Qf02nWP5zG3E4McMKGYf5OS82MghF3MRyD3cqWL3aMn7lGf0
+8AL3vEING4ifWn40InpduN0IMYN/OFN2vevCDhVIC3WrAyTyACqhCAvj3edK01vS
+irWEeTXnt2RjhEEzagZFPWoP0zJNCWbl0vN/1TNUEGZxScYZ2OVX3xjxef8trSes
+1HEwB1kgZqjxK3sFU9EVV8ZXirVa3CKquNe8jeTeeepJhIc38j2qX+rnYd+t8SXp
+SqdgtYA5aSnob83j72+pv0d5bXRh6+afY+gwTjOTeXpyCQMQQOFXvmMke4AsLKR6
+brny/v1RwfTnpI/oSs08rTCcK3GW/Hd8H0WTNA4sk6V3V+zMyCpKIxe+NiI+xq84
+aOqiM9W5dDvOT7WboXCS7eAWrwPl86I5wxS6XklVvSqfpfBHOBoaXtGSJC8MfybU
+im451ZLDWtbwyUOIRsr2BWvFqaQvNjezJChBHBHo0rEXj3gr62CCWXJvWbTV+zcU
+SthPjUSarRRC2Hc7KZdt0S7cWSKSangBHA8qEW9Sfc6TvrnZUEUl7Kz/KAX2rmxz
+PBUnnThMQVAil1+ATIVXGnhxGvoxqvZf9HFwQdWHyWdqE03lnsR+84KEoVS+SBCT
+ESO0qbz58vLWiVgRyNMwT/X9JdCBV3ynRs29xPR2WtJD8peIL+PfDEZ8Ymx/skdl
+Wdmt1FoZjJEY35VbgyrrKhyQP5RSyKNuuqmgdFZvSCLa47r7gkvCylMLTu1FSqB/
+/ghJ8DqC5FkdPLAYJaU7EtN8KNmYROKw8DbQQZAYM3L3rf0zl0clUPH7BeKyoWCJ
+g9vTodh6mPJkIdRIENEvWEuCimfxhiJgrNVmHttk52XH0xz467Zdoc5YsD4p6bDz
+syVpKL+8cVdeecBoQoeJqFv8JU15iHPYBhyAIqQCyP4EBQSlUkaO7STGUIQMhYbZ
+b4ivGSbeemgPO/ANuSRI8RmP+/qgk9X9JY5TKfITWyOMHxG/dnv1JtLaPWs1KxQG
+IrZkhxUHDuBD9yNXVMvbPRwCFlLWAEyu2C/qdwfr2dPSbDoNOeVMfqSUafiu3yMM
+H8ksgvaIe32QSQFp/QCVHxpUKraDVrZxmoOp/pKNI4+Em8woLWX4FeitSgIgTf8U
+/Tzf9TcJtDPo46ZVKTdg/K/LS/Be4pfKRR/rbku4ZrHT9HkL4aATqtPXyf1jzoGH
+JeMzWgm5AdnymmfaHQflchNmTz953jnXFIoP3/4dUKhBrwVn95qWlCrN8cJIMaYK
+wcbZQnLBBjDvxfsKBvRwjb/NHSYxyCzX1fzsPDrCCDOK+9KApha/l/gy3vVEZ3xX

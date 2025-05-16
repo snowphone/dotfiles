@@ -1,2 +1,3 @@
 #pattern  filter=crypt diff=crypt merge=crypt
 .ssh/id_ed25519  filter=crypt diff=crypt merge=crypt
+config/Cursor/mcp.json  filter=crypt diff=crypt merge=crypt
