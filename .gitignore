@@ -22,3 +22,22 @@ config/nautilus/
 config/k9s/
 config/helm/
 config/gpicview/
+config/Calibre Library/
+config/Code/
+config/QtProject.conf
+config/Thunar/
+config/btop/
+config/github-copilot/
+config/glib-2.0/
+config/glow/
+config/go/
+config/immich/
+config/libreoffice/
+config/mimeapps.list
+config/obsidian/
+config/okularrc
+config/puddletag/
+config/pypoetry/
+config/racket/
+config/ripgrep-all/
+config/xfce4/
