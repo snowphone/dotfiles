@@ -1016,7 +1016,7 @@
                                             "^com\\.p5sys\\.jump\\.mac\\.viewer$",
                                             "^com\\.p5sys\\.jump\\.mac\\.viewer\\.",
                                             "^com\\.teamviewer\\.TeamViewer$",
-											"^com\\.todesktop\\.230313mzl4w4u92$",
+                                            "^com\\.todesktop\\.230313mzl4w4u92$",
                                             "^com\\.vmware\\.horizon$",
                                             "^com\\.2X\\.Client\\.Mac$",
                                             "^com\\.OpenText\\.Exceed-TurboX-Client$",
@@ -1091,7 +1091,7 @@
                                             "^com\\.parallels\\.desktop\\.console$",
                                             "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
                                             "^com\\.citrix\\.XenAppViewer$",
-											"^com\\.todesktop\\.230313mzl4w4u92$",
+                                            "^com\\.todesktop\\.230313mzl4w4u92$",
                                             "^com\\.vmware\\.proxyApp\\.",
                                             "^com\\.parallels\\.winapp\\.",
                                             "^com\\.utmapp\\.UTM$",
@@ -2427,6 +2427,26 @@
                         "device_address": "d6-6f-1d-c9-65-2b",
                         "is_keyboard": true,
                         "is_pointing_device": true
+                    },
+                    "ignore": false,
+                    "mouse_flip_horizontal_wheel": true,
+                    "mouse_flip_vertical_wheel": true
+                },
+                {
+                    "identifiers": {
+                        "device_address": "e0-ab-fd-81-64-a8",
+                        "is_keyboard": true,
+                        "is_pointing_device": true
+                    },
+                    "ignore": false,
+                    "mouse_flip_horizontal_wheel": true,
+                    "mouse_flip_vertical_wheel": true
+                },
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 24814,
+                        "vendor_id": 6127
                     },
                     "ignore": false,
                     "mouse_flip_horizontal_wheel": true,

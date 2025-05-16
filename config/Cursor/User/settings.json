@@ -6,5 +6,8 @@
     "window.newWindowProfile": "Default",
     "workbench.iconTheme": "vs-nomo-dark",
     "terminal.integrated.sendKeybindingsToShell": true,
-    "vim.foldfix": true
+    "vim.foldfix": true,
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "enabled"
+    }
 }
