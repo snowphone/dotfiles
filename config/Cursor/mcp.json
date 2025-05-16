@@ -41,6 +41,15 @@
 				"--local-timezone",
 				"Asia/Seoul"
 			]
+		},
+		"naverSearch": {
+			"command": "uv",
+			"args": [
+				"run",
+				"python",
+				"-m",
+				"mcp-naver.hosts.cursor"
+			]
 		}
 	}
 }
