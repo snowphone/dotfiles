@@ -134,37 +134,6 @@
 	},
 	{
 		"identifier": {
-			"id": "vscodevim.vim",
-			"uuid": "d96e79c6-8b25-4be3-8545-0e0ecefcae03"
-		},
-		"version": "1.29.1",
-		"location": {
-			"$mid": 1,
-			"fsPath": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.1",
-			"external": "file:///Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.1",
-			"path": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.1",
-			"scheme": "file"
-		},
-		"relativeLocation": "vscodevim.vim-1.29.1",
-		"metadata": {
-			"installedTimestamp": 1747359562154,
-			"pinned": false,
-			"source": "gallery",
-			"id": "d96e79c6-8b25-4be3-8545-0e0ecefcae03",
-			"publisherId": "5d63889b-1b67-4b1f-8350-4f1dce041a26",
-			"publisherDisplayName": "vscodevim",
-			"targetPlatform": "undefined",
-			"updated": true,
-			"isPreReleaseVersion": false,
-			"hasPreReleaseVersion": false,
-			"isApplicationScoped": false,
-			"isMachineScoped": false,
-			"isBuiltin": false,
-			"preRelease": false
-		}
-	},
-	{
-		"identifier": {
 			"id": "davidanson.vscode-markdownlint",
 			"uuid": "daf8b44d-8aae-4da2-80c5-1f770219f643"
 		},
@@ -371,13 +340,14 @@
 		"version": "0.394.0",
 		"location": {
 			"$mid": 1,
+			"fsPath": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
+			"external": "file:///Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
 			"path": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
 			"scheme": "file"
 		},
 		"relativeLocation": "ms-vscode-remote.remote-containers-0.394.0",
 		"metadata": {
-			"installedTimestamp": 1746795570755,
-			"pinned": false,
+			"installedTimestamp": 1747413812508,
 			"source": "gallery",
 			"id": "93ce222b-5f6f-49b7-9ab1-a0463c6238df",
 			"publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
@@ -439,6 +409,35 @@
 			"updated": false,
 			"isPreReleaseVersion": false,
 			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "vscodevim.vim",
+			"uuid": "d96e79c6-8b25-4be3-8545-0e0ecefcae03"
+		},
+		"version": "1.29.2",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.2",
+			"scheme": "file"
+		},
+		"relativeLocation": "vscodevim.vim-1.29.2",
+		"metadata": {
+			"isApplicationScoped": false,
+			"isMachineScoped": false,
+			"isBuiltin": false,
+			"installedTimestamp": 1747413801220,
+			"pinned": false,
+			"source": "gallery",
+			"id": "d96e79c6-8b25-4be3-8545-0e0ecefcae03",
+			"publisherId": "5d63889b-1b67-4b1f-8350-4f1dce041a26",
+			"publisherDisplayName": "vscodevim",
+			"targetPlatform": "undefined",
+			"updated": true,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false,
+			"preRelease": false
 		}
 	}
 ]
