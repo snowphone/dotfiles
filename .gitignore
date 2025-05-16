@@ -41,3 +41,7 @@ config/pypoetry/
 config/racket/
 config/ripgrep-all/
 config/xfce4/
+config/MusicBrainz/
+config/gpt4all.io/
+config/raycast/
+config/zed/
