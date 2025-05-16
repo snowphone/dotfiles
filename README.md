@@ -9,6 +9,16 @@ cd ~/.dotfiles && ./install.sh -d [debian | redhat | darwin] [--java|--latex|--b
 
 Note that you may need to enter the password to decrypt the ssh key.
 
+## Encryption and Decryption
+
+Files with personal information are encrypted with [transcrypt](https://github.com/elasticdog/transcrypt).
+The `install.sh` script will set up transcrypt and decrypt all files.
+
+The following examples will be helpful:
+- `transcrypt --list` to list encrypted files
+- `transcrypt --display` to print current configuration for this repository 
+- `transcrypt --add path/to/file && git add path/to/file .gitattributes` to add a file to encrypt
+
 ## How to Install openssh-server on WSL2
 
 VM-based WSL2 gives us much faster native-filesystem-access-speed, but it also has some drawbacks. One of the drawbacks is an isolated network.
