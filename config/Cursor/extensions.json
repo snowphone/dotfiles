@@ -137,15 +137,17 @@
 			"id": "vscodevim.vim",
 			"uuid": "d96e79c6-8b25-4be3-8545-0e0ecefcae03"
 		},
-		"version": "1.29.0",
+		"version": "1.29.1",
 		"location": {
 			"$mid": 1,
-			"path": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.0",
+			"fsPath": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.1",
+			"external": "file:///Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.1",
+			"path": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.1",
 			"scheme": "file"
 		},
-		"relativeLocation": "vscodevim.vim-1.29.0",
+		"relativeLocation": "vscodevim.vim-1.29.1",
 		"metadata": {
-			"installedTimestamp": 1746677569006,
+			"installedTimestamp": 1747359562154,
 			"pinned": false,
 			"source": "gallery",
 			"id": "d96e79c6-8b25-4be3-8545-0e0ecefcae03",
@@ -423,8 +425,6 @@
 		"version": "3.16.4",
 		"location": {
 			"$mid": 1,
-			"fsPath": "/Users/junoh.moon/.cursor/extensions/vscjava.vscode-gradle-3.16.4",
-			"external": "file:///Users/junoh.moon/.cursor/extensions/vscjava.vscode-gradle-3.16.4",
 			"path": "/Users/junoh.moon/.cursor/extensions/vscjava.vscode-gradle-3.16.4",
 			"scheme": "file"
 		},
