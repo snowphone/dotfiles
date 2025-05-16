@@ -114,6 +114,12 @@ class FileLinker(Script):
             rf"ln -sf {self.proj_root}/config/Cursor/User/settings.json $HOME/Library/Application\ Support/Cursor/User/settings.json",
         )
 
+        if os.path.exists(f"{HOME}/Library/Application Support/Claude"):
+            self.shell.exec(
+                "Linking MCP configuration for Claude Desktop",
+                rf"ln -sf {self.proj_root}/config/Cursor/mcp.json $HOME/Library/Application\ Support/Claude/claude_desktop_config.json",
+            )
+
         return
 
     def _is_wsl(self):
