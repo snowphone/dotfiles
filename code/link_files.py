@@ -41,6 +41,7 @@ class FileLinker(Script):
             f'ln -fs "{proj_root}"/.bashrc {HOME}/.bashrc',  # Deprecated: bashrc
             f'ln -fs "{proj_root}"/.gitconfig  {HOME}/.gitconfig',  # Global git configuration
             f'ln -fs "{proj_root}"/.common.shrc {HOME}/.common.shrc',
+            f'ln -fs "{proj_root}"/.sensitive.shrc {HOME}/.sensitive.shrc',
             f'ln -fs "{proj_root}"/.shinit {HOME}/.shinit',
             f'ln -fs "{proj_root}"/.zshrc {HOME}/.zshrc',
             f'ln -fs "{proj_root}"/.p10k.zsh {HOME}/.p10k.zsh',
