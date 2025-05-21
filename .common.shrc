@@ -97,46 +97,24 @@ transfer() {
 # Define common exclusions
 _fzf_exclusions=(".git" "node_modules" "__pycache__" ".venv")
 
-# Check if the 'bfs' command exists, otherwise fallback to 'fd'
-if command -v bfs &> /dev/null; then
-    # Create a function to generate the exclusion options for bfs
-    _fzf_bfs_exclude() {
-        local exclude_expr=""
-        for dir in "${_fzf_exclusions[@]}"; do
-            exclude_expr+=" -name \"$dir\" -prune -or"
-        done
-        echo "$exclude_expr"
-    }
+# Create a function to generate the exclusion options for fd
+_fzf_fd_exclude() {
+	local exclude_opts=""
+	for dir in "${_fzf_exclusions[@]}"; do
+		exclude_opts+=" --exclude \"$dir\""
+	done
+	echo "$exclude_opts"
+}
 
-	# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
-    _fzf_compgen_path() {
-        eval bfs . -follow -hidden $( _fzf_bfs_exclude ) -type f -print 2>/dev/null
-    }
+# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
+_fzf_compgen_path() {
+	eval fd $( _fzf_fd_exclude ) --type f --hidden --follow . "$1" 2>/dev/null
+}
 
-	# Invoked when a user types `cd **<tab>`
-    _fzf_compgen_dir() {
-        eval bfs . -follow -hidden $( _fzf_bfs_exclude ) -type d -print 2>/dev/null
-    }
-else
-    # Create a function to generate the exclusion options for fd
-    _fzf_fd_exclude() {
-        local exclude_opts=""
-        for dir in "${_fzf_exclusions[@]}"; do
-            exclude_opts+=" --exclude \"$dir\""
-        done
-        echo "$exclude_opts"
-    }
-
-	# Invoked when a user types `<command> **<tab>`, where <command> is not `cd`
-    _fzf_compgen_path() {
-        eval fd $( _fzf_fd_exclude ) --type f --hidden --follow . "$1" 2>/dev/null
-    }
-
-	# Invoked when a user types `cd **<tab>`
-    _fzf_compgen_dir() {
-        eval fd $( _fzf_fd_exclude ) --type d --hidden --follow . "$1" 2>/dev/null
-    }
-fi
+# Invoked when a user types `cd **<tab>`
+_fzf_compgen_dir() {
+	eval fd $( _fzf_fd_exclude ) --type d --hidden --follow . "$1" 2>/dev/null
+}
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
