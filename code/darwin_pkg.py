@@ -171,12 +171,12 @@ class Mac(Script, GithubDownloadable):
 
         self.shell.exec(
             "Installing commitgpt",
-            f"cargo install --git https://github.com/snowphone/CommitGPT",
+            f"cargo install --force --git https://github.com/snowphone/CommitGPT",
         )
 
         self.shell.exec(
             "Installing macchina",
-            f"cargo install macchina",
+            f"cargo install --force macchina",
         )
 
         self.shell.exec(
