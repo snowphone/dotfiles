@@ -51,8 +51,8 @@ if command -v rsync >/dev/null 2>&1; then
 	# Please refer to https://askubuntu.com/a/1495090 for more details.
 fi
 
-alias ls='ls --human-readable --color=always'
-alias ll='ls --human-readable -l --all --classify --size'
+alias ls='ls -h --color=always'
+alias ll='ls -h -l --all --classify --size'
 
 alias scp='scp -r'
 alias mv='mv -i'
