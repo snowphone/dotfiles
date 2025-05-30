@@ -1,0 +1,26 @@
+{
+	"permissions": {
+		"allow": [
+			"Bash(kubectl get:*)",
+			"Bash(kubectl logs:*)",
+			"Bash(kubectl describe:*)",
+			"Bash(./gradlew:*)",
+			"Bash(cat:*)",
+			"Bash(git push:*)",
+			"Bash(gh run list:*)",
+			"Bash(rg:*)",
+			"Bash(kubectl apply:*)",
+			"Bash(kubectl rollout:*)",
+			"Bash(kubectl get:*)",
+			"Bash(find:*)",
+			"Bash(grep:*)",
+			"Bash(true)",
+			"Bash(rm:*)",
+			"Bash(git add:*)",
+			"Bash(curl:*)",
+			"Bash(docker pull:*)",
+			"WebFetch"
+		],
+		"deny": []
+	}
+}

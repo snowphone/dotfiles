@@ -51,6 +51,10 @@ class FileLinker(Script):
             f'ln -fs "{proj_root}"/.xprofile {HOME}/.xprofile',  # Set higher priority to vim
             f"mkdir -p {HOME}/.vim",
             f'ln -fs "{proj_root}"/tasks.ini {HOME}/.vim/tasks.ini',
+
+            f"mkdir -p {HOME}/.claude",
+            f'ln -fs "{proj_root}"/config/claude-code/CLAUDE.md {HOME}/.claude/CLAUDE.md',
+            f'ln -fs "{proj_root}"/config/claude-code/settings.json {HOME}/.claude/settings.json',
         )
 
         if not os.path.islink(f"{HOME}/.config"):
