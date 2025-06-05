@@ -274,23 +274,6 @@ if has("nvim")
   Plug 'lewis6991/spellsitter.nvim'
   set spell
 
-  " Deps
-  Plug 'MeanderingProgrammer/render-markdown.nvim'
-  Plug 'stevearc/dressing.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'MunifTanjim/nui.nvim'
-  
-  " Optional deps
-  Plug 'nvim-tree/nvim-web-devicons'
-  Plug 'HakonHarnes/img-clip.nvim'
-  
-  " ``'on': 'AvanteAsk'` removed since it does not work on my environment, in
-  " contraray to the documentation.
-  " https://github.com/yetone/avante.nvim/issues/453
-  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
-  set laststatus=3
-  autocmd! User avante.nvim lua require('avante_lib').load()
-
   " vim의 기본 f 기능을 확장함. 
   " <leader><leader> s + <1char>: 현재 커서 기준으로 앞뒤에있는 <1char>로 점프
   Plug 'smoka7/hop.nvim'
@@ -306,6 +289,13 @@ if has("nvim")
   nmap <leader><leader>S :HopChar2<CR>
   xmap <leader><leader>S :HopChar2<CR>
   omap <leader><leader>S :HopChar2<CR>
+
+
+  " Claude integration
+  Plug 'coder/claudecode.nvim'
+  " 키맵핑 설정
+  nnoremap <leader>aa <cmd>ClaudeCode<cr>
+  vnoremap <leader>ae <cmd>ClaudeCodeSend<cr>
 endif
 
 
