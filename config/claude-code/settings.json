@@ -49,6 +49,8 @@
       "Bash(which:*)",
       "Bash(zip:*)",
       "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh workflow list:*)",
       "Bash(kubectl apply:*)",
       "Bash(kubectl describe:*)",
       "Bash(kubectl get:*)",
