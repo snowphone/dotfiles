@@ -76,35 +76,6 @@
 	},
 	{
 		"identifier": {
-			"id": "ms-azuretools.vscode-docker",
-			"uuid": "0479fc1c-3d67-49f9-b087-fb9069afe48f"
-		},
-		"version": "1.29.6",
-		"location": {
-			"$mid": 1,
-			"path": "/Users/junoh.moon/.cursor/extensions/ms-azuretools.vscode-docker-1.29.6",
-			"scheme": "file"
-		},
-		"relativeLocation": "ms-azuretools.vscode-docker-1.29.6",
-		"metadata": {
-			"isApplicationScoped": false,
-			"isMachineScoped": false,
-			"isBuiltin": false,
-			"installedTimestamp": 1745916475648,
-			"pinned": false,
-			"source": "gallery",
-			"id": "0479fc1c-3d67-49f9-b087-fb9069afe48f",
-			"publisherId": "52b787f2-79a9-4f32-99b4-393afe3005d3",
-			"publisherDisplayName": "Microsoft",
-			"targetPlatform": "undefined",
-			"updated": true,
-			"isPreReleaseVersion": false,
-			"hasPreReleaseVersion": false,
-			"preRelease": false
-		}
-	},
-	{
-		"identifier": {
 			"id": "docker.docker",
 			"uuid": "aa98a064-0f79-4961-a4b7-78df16d547ee"
 		},
@@ -340,8 +311,6 @@
 		"version": "0.394.0",
 		"location": {
 			"$mid": 1,
-			"fsPath": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
-			"external": "file:///Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
 			"path": "/Users/junoh.moon/.cursor/extensions/ms-vscode-remote.remote-containers-0.394.0",
 			"scheme": "file"
 		},
@@ -413,31 +382,83 @@
 	},
 	{
 		"identifier": {
-			"id": "vscodevim.vim",
-			"uuid": "d96e79c6-8b25-4be3-8545-0e0ecefcae03"
+			"id": "ms-azuretools.vscode-docker",
+			"uuid": "0479fc1c-3d67-49f9-b087-fb9069afe48f"
 		},
-		"version": "1.29.2",
+		"version": "2.0.0",
 		"location": {
 			"$mid": 1,
-			"path": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.29.2",
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-azuretools.vscode-docker-2.0.0",
 			"scheme": "file"
 		},
-		"relativeLocation": "vscodevim.vim-1.29.2",
+		"relativeLocation": "ms-azuretools.vscode-docker-2.0.0",
 		"metadata": {
 			"isApplicationScoped": false,
 			"isMachineScoped": false,
 			"isBuiltin": false,
-			"installedTimestamp": 1747413801220,
+			"installedTimestamp": 1748959006504,
+			"pinned": false,
+			"source": "gallery",
+			"id": "0479fc1c-3d67-49f9-b087-fb9069afe48f",
+			"publisherId": "52b787f2-79a9-4f32-99b4-393afe3005d3",
+			"publisherDisplayName": "Microsoft",
+			"targetPlatform": "undefined",
+			"updated": true,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false,
+			"preRelease": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "ms-azuretools.vscode-containers",
+			"uuid": "2cd1d691-3d69-4d2d-ae39-fda4bc4cfd3d"
+		},
+		"version": "2.0.2",
+		"location": {
+			"$mid": 1,
+			"path": "/Users/junoh.moon/.cursor/extensions/ms-azuretools.vscode-containers-2.0.2",
+			"scheme": "file"
+		},
+		"relativeLocation": "ms-azuretools.vscode-containers-2.0.2",
+		"metadata": {
+			"installedTimestamp": 1748959006505,
+			"pinned": false,
+			"source": "gallery",
+			"id": "2cd1d691-3d69-4d2d-ae39-fda4bc4cfd3d",
+			"publisherId": "52b787f2-79a9-4f32-99b4-393afe3005d3",
+			"publisherDisplayName": "ms-azuretools",
+			"targetPlatform": "undefined",
+			"updated": false,
+			"isPreReleaseVersion": false,
+			"hasPreReleaseVersion": false
+		}
+	},
+	{
+		"identifier": {
+			"id": "vscodevim.vim",
+			"uuid": "d96e79c6-8b25-4be3-8545-0e0ecefcae03"
+		},
+		"version": "1.30.1",
+		"location": {
+			"$mid": 1,
+			"fsPath": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.30.1",
+			"external": "file:///Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.30.1",
+			"path": "/Users/junoh.moon/.cursor/extensions/vscodevim.vim-1.30.1",
+			"scheme": "file"
+		},
+		"relativeLocation": "vscodevim.vim-1.30.1",
+		"metadata": {
+			"installedTimestamp": 1749121393301,
 			"pinned": false,
 			"source": "gallery",
 			"id": "d96e79c6-8b25-4be3-8545-0e0ecefcae03",
 			"publisherId": "5d63889b-1b67-4b1f-8350-4f1dce041a26",
 			"publisherDisplayName": "vscodevim",
 			"targetPlatform": "undefined",
-			"updated": true,
+			"updated": false,
 			"isPreReleaseVersion": false,
-			"hasPreReleaseVersion": false,
-			"preRelease": false
+			"hasPreReleaseVersion": false
 		}
 	}
 ]
