@@ -37,6 +37,20 @@
 				"MODULE"
 			]
 		},
+		"kotlin-lsp": {
+			"args": [
+				"--stdio"
+			],
+			"command": "kotlin-lsp.sh",
+			"filetypes": [
+				"kotlin"
+			],
+			"root_markers": [
+				"build.gradle",
+				"build.gradle.kts",
+				"pom.xml"
+			]
+		},
 		"ocaml-lsp": {
 			"args": [
 				"config",

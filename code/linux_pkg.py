@@ -170,6 +170,16 @@ class LinuxAMD64(Script, GithubDownloadable):
             ),
         )
 
+        KOTLIN_LSP_VERSION = "0.252.17811"
+        kotlin_lsp_link = f"https://download-cdn.jetbrains.com/kotlin-lsp/{KOTLIN_LSP_VERSION}/kotlin-{KOTLIN_LSP_VERSION}.zip"
+        self.shell.exec_list(
+                "Installing kotlin lsp",
+                f"curl -Lfo /tmp/kotlin-lsp.zip '{kotlin_lsp_link}'",
+                f"unzip -o /tmp/kotlin-lsp.zip -d {self.HOME}/.local/bin/",
+                f"chmod +x {self.HOME}/.local/bin/kotlin-lsp",
+                "rm -f /tmp/kotlin-lsp.zip",
+                )
+
         if self.args.java:
             JavaInstaller(self.args).run()
 
@@ -189,7 +199,7 @@ class LinuxAMD64(Script, GithubDownloadable):
                 "https://7-zip.org/a/7z2408-linux-x64.tar.xz",
                 tar_extract_flags="xJ",
             ),
-            f"rm -rf {self.HOME}/.local/bin/MANUAL {self.HOME}/.local/bin/readme.txt  {self.HOME}/.local/bin/History.txt {self.HOME}/.local/bin/License.txt {self.HOME}/.locall/bin/7zzs",
+            f"rm -rf {self.HOME}/.local/bin/MANUAL {self.HOME}/.local/bin/readme.txt  {self.HOME}/.local/bin/History.txt {self.HOME}/.local/bin/License.txt {self.HOME}/.local/bin/7zzs",
             f"mv -f {self.HOME}/.local/bin/7zz {self.HOME}/.local/bin/7z",
         )
 

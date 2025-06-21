@@ -68,7 +68,6 @@ let g:coc_global_extensions = [
 			\'coc-go',
 			\'coc-java',
 			\'coc-json',
-			\'coc-kotlin',
 			\'coc-markdownlint',
 			\'coc-pairs',
 			\'coc-perl',
